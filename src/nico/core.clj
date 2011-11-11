@@ -1,2 +1,4 @@
 (ns nico.core)
-(prn "Hello, world!")
+
+(defn -main [& args]
+  (prn "Hello, world!"))

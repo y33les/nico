@@ -5,7 +5,7 @@
   (reverse
    (into ()
     (clojure.string/split-lines
-     (slurp qsfile)))
+     (slurp qsfile)))))
 
 (defn eval-circle [circ]
   "Evaluates the expression represented by the circle circ"

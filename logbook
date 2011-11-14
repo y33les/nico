@@ -2,3 +2,25 @@
           - circle syntax decided as map {:fn f :args '(a b c)}
           - eval-circle written
           - read-qset written
+14/11/11: - began fixing eval-circle to accept circles as args
+          - eval-circle needs to be recursive:-
+            = e.g. (def c0 = {:fn + :args 3 7})
+                   (def c1 = {:fn * :args c0 2})
+                   (eval-circle c0) => (eval (+ 3 7)) => 10
+                   (eval-circle c1) => (eval (* (+ 3 7) 2)) => 20
+            = so (eval-circle c1) does this:-
+	      # initialise expr => ()
+	      # cons (:fn c1) => (*)
+	      # look at first arg
+	      # c0 is not a number so recur
+	      # intialise expr => (* ())
+	      # cons (:fn c0) => (* (+))
+	      # look at first arg
+	      # 3 is a number so cons => (* (+ 3))
+	      # look at second arg
+	      # 7 is a number so cons => (* (+ 3 7))
+	      # back up a level
+	      # 2 is a number so cons => (* (+ 3 7) 2)
+	      # out of args so eval => (eval (* (+ 3 7) 2)) => 20
+          - display for generated code?
+	  - not finding clojure.string on netbook?

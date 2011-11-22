@@ -24,3 +24,4 @@
 	      # out of args so eval => (eval (* (+ 3 7) 2)) => 20
           - display for generated code?
 	  - not finding clojure.string on netbook?
+22/11/11: - wrote fn circ-arg that creates list from circle arg or returns int arg

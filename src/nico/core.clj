@@ -17,5 +17,16 @@
               (:args circ))
         :else circ))
 
+;; fn to parse arguments to check if circle and deconstruct as appropriate (BROKEN)
+(defn parse-args [args]
+  "Parses the output of circ-arg to deconstruct circles"
+  (loop [out '()
+         args a]
+    (cond (not (nil? a))
+          (cond (= (class (first a) clojure.lang.PersistenArrayMap))
+                (cons (recur (circ-arg (first a))) out)
+                :else (cons (first a) out))
+          (recur (rest a)))))
+
 (defn -main [& args]
   (prn "Hello, world!"))

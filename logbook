@@ -25,3 +25,11 @@
           - display for generated code?
 	  - not finding clojure.string on netbook?
 22/11/11: - wrote fn circ-arg that creates list from circle arg or returns int arg
+24/11/11: - wrote fn parse-args to parse output of circ-arg to desconstruct circles
+          - currently broken; need function to perform as follows:-
+            = begin with input and '()
+            = check first arg:-
+              # is input '()?  if so, done.  if not, continue
+              # if first element is circle, parse-args and cons sublist to output
+              # if not circle, cons to output
+              # recur with rest of list

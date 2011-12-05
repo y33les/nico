@@ -1,4 +1,11 @@
-(ns nico.core)
+(ns nico.core
+  (:gen-class)
+  (:use (guiftw swt styles)
+        [clojure.string :only [split-lines]])
+  (:import (org.eclipse.swt SWT)
+           (org.eclipse.swt.widgets Shell Button MessageBox Canvas)
+           (org.eclipse.swt.events SelectionListener)
+           (org.eclipse.swt.layout RowLayout)))
 
 (defn read-qset [qsfile]
   "Reads a set of questions from the file qsfile into a list"
@@ -7,26 +14,22 @@
     (clojure.string/split-lines
      (slurp qsfile)))))
 
+(def window
+  (swt
+   [Shell [*id :main-window]
+    [Canvas [*id :circle-area]]]))
 
-;; fix this, need recursive fn that gens e.g. (+ (* (- 3 2 1) 4) (+ 5 6)) for
-;; several-deep circle maps
-(defn circ-arg [circ]
-  "Evaluates the expression represented by the circle circ"
-  (cond (= (class circ) clojure.lang.PersistentArrayMap)
-        (cons (:fn circ)
-              (:args circ))
-        :else circ))
+(def look
+  (stylesheet
+   [:main-window] [:text "Nico v0.0.1"
+                   :size ^unroll (640 480)
+                   :layout (RowLayout.)]
+   [:circle-area] [:*cons [SWT/NONE]]))
 
-;; fn to parse arguments to check if circle and deconstruct as appropriate (BROKEN)
-(defn parse-args [args]
-  "Parses the output of circ-arg to deconstruct circles"
-  (loop [out '()
-         args a]
-    (cond (not (nil? a))
-          (cond (= (class (first a) clojure.lang.PersistenArrayMap))
-                (cons (recur (circ-arg (first a))) out)
-                :else (cons (first a) out))
-          (recur (rest a)))))
+(def actions '())
 
 (defn -main [& args]
-  (prn "Hello, world!"))
+  (let [gui (window look actions)
+        shell (:root @gui)]
+    (.open shell)
+    (swt-loop shell)))

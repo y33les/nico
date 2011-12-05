@@ -33,3 +33,7 @@
               # if first element is circle, parse-args and cons sublist to output
               # if not circle, cons to output
               # recur with rest of list
+05/12/11: - began writing recursive version of parse-args
+          - ditching circ-arg, writing parse-circ to conflate circ-arg and parse-args
+          - ditching circles as maps, will use lists, starting on gui
+          - cba to fight jfx2 anymore so using guiftw/swt again

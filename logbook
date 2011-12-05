@@ -37,3 +37,8 @@
           - ditching circ-arg, writing parse-circ to conflate circ-arg and parse-args
           - ditching circles as maps, will use lists, starting on gui
           - cba to fight jfx2 anymore so using guiftw/swt again
+          - ditched circle maps stuff, currently draws just a blank canvas
+          - added "new" and "delete" buttons
+          - added "split" button
+          - sorted gridlayout, canvas with 3 buttons below it
+          - added dummy fns for new, split and del

@@ -22,7 +22,7 @@
   "Takes a list of ints and agents and returns the same list with agents derefed."
   (loop [l arg-list
          out '()]
-    (cons (empty? l) (reverse out)
+    (cond (empty? l) (reverse out)
           (agent? (eval (first l))) (recur (rest l) (cons (deref (eval (first l))) out))
           :else (recur (rest l) (cons (first l) out)))))
 
@@ -31,11 +31,11 @@
   `(def ~name
      (agent
       (cons ~fun
-            (cons ~(cond (agent? (eval arg1)) (deref (eval arg1))
+            (cons ~(cond (agent? (eval arg1)) `(eval (deref (eval arg1)))
                         :else arg1)
-                  (cons ~(cond (agent? (eval arg2)) (deref (eval ~arg2))
+                  (cons ~(cond (agent? (eval arg2)) `(eval (deref (eval ~arg2)))
                               :else arg2)
-                        ~(make-vals args)))))))
+                        (quote ~(make-vals args))))))))
 
 (def window
   "Defines the contents of the main application window."

@@ -8,13 +8,19 @@
            (org.eclipse.swt.layout GridLayout GridData)))
 
 (defn read-qset [qsfile]
-  "Reads a set of questions from the file qsfile into a list"
+  "Reads a set of questions from the file qsfile into a list."
   (reverse
    (into ()
     (clojure.string/split-lines
      (slurp qsfile)))))
 
+(defmacro defcircle [name fun arg1 arg2 & args]
+  "Creates a new agent name representing a circle containing (fun arg1 arg2 & args)."
+  `(def ~name (agent (cons ~fun (cons ~arg1 (cons ~arg2 (quote ~args)))))))
+  
+
 (def window
+  "Defines the contents of the main application window."
   (swt
    [Shell [*id :main-window]
     [Canvas [*id :circle-area]]
@@ -23,6 +29,7 @@
     [Button [*id :del-circle]]]))
 
 (def look
+  "Defines button behaviour and the style of the main application window."
   (stylesheet
    [:main-window] [:text "Nico v0.0.1"
                    :size ^unroll (640 480)
@@ -37,6 +44,7 @@
                   :text "Delete"]))
 
 (defn new-circle [gui event]
+  "Creates a new circle agent and displays it onscreen."
   (doto (MessageBox.
          (:root @gui)
          (bit-or SWT/ICON_INFORMATION SWT/OK))
@@ -45,6 +53,7 @@
     .open))
 
 (defn split-circle [gui event]
+  "Increments the number of arguments to a circle by 1 and displays this onscreen."
   (doto (MessageBox.
          (:root @gui)
          (bit-or SWT/ICON_INFORMATION SWT/OK))
@@ -53,6 +62,7 @@
     .open))
 
 (defn del-circle [gui event]
+  "Removes a circle from view."
   (doto (MessageBox.
          (:root @gui)
          (bit-or SWT/ICON_INFORMATION SWT/OK))
@@ -61,6 +71,7 @@
     .open))
 
 (def actions
+  "Defines button behaviour."
   (stylesheet
    [:new-circle] [:selection+widget-selected new-circle]
    [:split-circle] [:selection+widget-selected split-circle]

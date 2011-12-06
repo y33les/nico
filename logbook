@@ -42,3 +42,7 @@
           - added "split" button
           - sorted gridlayout, canvas with 3 buttons below it
           - added dummy fns for new, split and del
+06/12/11: - began work on gen-circle fn to generate an agent representing each circle
+          - added doc strings
+          - decided gen-circle would be better as a macro defcircle
+          - wrote defcircle, creates an agent containing a list representing the function

@@ -46,3 +46,7 @@
           - added doc strings
           - decided gen-circle would be better as a macro defcircle
           - wrote defcircle, creates an agent containing a list representing the function
+          - need to rewrite defcircle to check if an arg is an agent and deref it
+          - added agent? to check if arg is an agent
+          - added make-vals to take a mixed list of ints and agents and return a list of ints and agents derefed
+          - for some reason (first l) returns the symbol; calling eval on it seems to work to get the agents out of the list

@@ -14,9 +14,21 @@
     (clojure.string/split-lines
      (slurp qsfile)))))
 
+(defn agent? [a]
+  "Returns true if a is an agent."
+  (= (class a) clojure.lang.Agent))
+
+(defn make-vals [arg-list]
+  "Takes a list of ints and agents and returns the same list with agents derefed."
+  (loop [l arg-list
+         out '()]
+    (cons (empty? l) (reverse out)
+          (agent? (eval (first l))) (recur (rest l) (cons (deref (eval (first l))) out))
+          :else (recur (rest l) (cons (first l) out)))))
+
 (defmacro defcircle [name fun arg1 arg2 & args]
   "Creates a new agent name representing a circle containing (fun arg1 arg2 & args)."
-  `(def ~name (agent (cons ~fun (cons ~arg1 (cons ~arg2 (quote ~args)))))))
+  `(def ~name (agent (cons ~fun (cons ~arg1 (cons ~arg2 (quote (make-vals ~args))))))))
   
 
 (def window

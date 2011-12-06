@@ -50,3 +50,4 @@
           - added agent? to check if arg is an agent
           - added make-vals to take a mixed list of ints and agents and return a list of ints and agents derefed
           - for some reason (first l) returns the symbol; calling eval on it seems to work to get the agents out of the list
+          - defcircle *nearly* works but is evaling circles and not updating, rather than adding lists and changing with edits to dependant circles

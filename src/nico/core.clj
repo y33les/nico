@@ -28,8 +28,14 @@
 
 (defmacro defcircle [name fun arg1 arg2 & args]
   "Creates a new agent name representing a circle containing (fun arg1 arg2 & args)."
-  `(def ~name (agent (cons ~fun (cons ~arg1 (cons ~arg2 (quote (make-vals ~args))))))))
-  
+  `(def ~name
+     (agent
+      (cons ~fun
+            (cons ~(cond (agent? (eval arg1)) (deref (eval arg1))
+                        :else arg1)
+                  (cons ~(cond (agent? (eval arg2)) (deref (eval ~arg2))
+                              :else arg2)
+                        ~(make-vals args)))))))
 
 (def window
   "Defines the contents of the main application window."

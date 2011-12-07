@@ -58,3 +58,5 @@
           - sorted defcircle, need a fn to iteratively eval elements of a circle sexp
           - turned out didn't need a fn to quote symbols in a list as they are by default symbols when accessed from a list
           - wrote framework for eval-circle, need to figure out what goes in place of "something" and "something else"
+          - writing fn nested? to check if circle contains other circles
+          - wrote rough version of eval-circle using nested? for a base case

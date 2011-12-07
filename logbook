@@ -52,3 +52,9 @@
           - for some reason (first l) returns the symbol; calling eval on it seems to work to get the agents out of the list
           - defcircle *nearly* works but is evaling circles and not updating, rather than adding lists and changing with edits to dependant circles
           - dodgy quoting in defcircle, sort it out
+07/12/11: - working on defcircle again, trying macroexpand et al.
+          - figured don't actually need circles as agents, can just redefine on modification so working on a new defcircle to gen lists
+          - got a nesting defcircle using lists now,  just need to make it use symbols rather than the list the symbol resolves to; need a fn to iterate across a list and quote the symbols
+          - sorted defcircle, need a fn to iteratively eval elements of a circle sexp
+          - turned out didn't need a fn to quote symbols in a list as they are by default symbols when accessed from a list
+          - wrote framework for eval-circle, need to figure out what goes in place of "something" and "something else"

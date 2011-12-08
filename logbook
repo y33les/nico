@@ -60,3 +60,6 @@
           - wrote framework for eval-circle, need to figure out what goes in place of "something" and "something else"
           - writing fn nested? to check if circle contains other circles
           - wrote rough version of eval-circle using nested? for a base case
+08/12/11: - nested? is checking if circle fns and non-circle args are nested, adding check for that
+          - nested? fixed, eval-circle currently unable to eval several-deep nests; first circle it encounters it returns
+          - i might just have cracked this eval-circle bastard! seems to be working, need to test with very nested circles but seems ok for now! :D

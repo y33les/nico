@@ -49,17 +49,18 @@
 
 (defn nested? [circ]
   "Returns true if a circle contains other circles."
-  (loop [c circ]
-    (cond (empty? c) false
-          (= (class (eval (first c))) clojure.lang.Cons) true
-          :else (recur (rest c)))))
+  (cond (not (= (class circ) clojure.lang.Cons)) false
+        :else (loop [c circ]
+                (cond (empty? c) false
+                      (= (class (eval (first c))) clojure.lang.Cons) true
+                      :else (recur (rest c))))))
 
 (defn eval-circle [circ]
   "Iterates across a circle list, resolving symbols into their respective circles."
   (loop [c circ
          out '()]
     (cond (empty? c) (reverse out)
-          (nested? (eval (first c))) (recur (eval (first c)) '())
+          (nested? (eval (first c))) (recur (rest c) (cons (eval-circle (eval (first c))) out))
           :else (recur (rest c) (cons (eval (first c)) out)))))
 
 (def window

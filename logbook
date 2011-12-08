@@ -63,3 +63,5 @@
 08/12/11: - nested? is checking if circle fns and non-circle args are nested, adding check for that
           - nested? fixed, eval-circle currently unable to eval several-deep nests; first circle it encounters it returns
           - i might just have cracked this eval-circle bastard! seems to be working, need to test with very nested circles but seems ok for now! :D
+          - it even works if you redefine a dependency! :O
+          - tidied up comments, sorted dodgy def docs

@@ -14,29 +14,6 @@
     (clojure.string/split-lines
      (slurp qsfile)))))
 
-;; (defn agent? [a]
-;;   "Returns true if a is an agent."
-;;   (= (class a) clojure.lang.Agent))
-
-;; (defn make-vals [arg-list]
-;;   "Takes a list of ints and agents and returns the same list with agents derefed."
-;;   (loop [l arg-list
-;;          out '()]
-;;     (cond (empty? l) (reverse out)
-;;           (agent? (eval (first l))) (recur (rest l) (cons (deref (eval (first l))) out))
-;;           :else (recur (rest l) (cons (first l) out)))))
-
-;; (defmacro defcircle [name fun arg1 arg2 & args]
-;;   "Creates a new agent name representing a circle containing (fun arg1 arg2 & args)."
-;;   `(def ~name
-;;      (agent
-;;       (cons ~fun
-;;             (cons ~(cond (agent? (eval arg1)) `(eval (deref (eval ~arg1)))
-;;                         :else arg1)
-;;                   (cons ~(cond (agent? (eval arg2)) `(eval (deref (eval ~arg2)))
-;;                               :else arg2)
-;;                         (quote ~(make-vals args))))))))
-
 (defmacro defcircle [name fun arg1 arg2 & args]
   "Creates a new circle represented by '(fun arg1 arg2 & args).  Can be nested."
   `(def ~name
@@ -64,7 +41,7 @@
           :else (recur (rest c) (cons (eval (first c)) out)))))
 
 (def window
-  "Defines the contents of the main application window."
+  ;; Defines the contents of the main application window.
   (swt
    [Shell [*id :main-window]
     [Canvas [*id :circle-area]]
@@ -73,7 +50,7 @@
     [Button [*id :del-circle]]]))
 
 (def look
-  "Defines button behaviour and the style of the main application window."
+  ;; Defines button behaviour and the style of the main application window.
   (stylesheet
    [:main-window] [:text "Nico v0.0.1"
                    :size ^unroll (640 480)
@@ -115,7 +92,7 @@
     .open))
 
 (def actions
-  "Defines button behaviour."
+  ;; Defines button behaviour.
   (stylesheet
    [:new-circle] [:selection+widget-selected new-circle]
    [:split-circle] [:selection+widget-selected split-circle]

@@ -6,7 +6,6 @@ Nico provides a means of expressing a chain of mathematical reasoning graphicall
 
 Nico is licensed under version 3 of the GNU General Public License (GPL); see the included file `LICENSE` for the full text of the GPLv3.
 
-<h2 style="font-size:75%;">
     Nico: An Environment for Mathematical Expression in Schools
     Copyright (C) 2011  Philip M. Yeeles
     
@@ -24,4 +23,3 @@ Nico is licensed under version 3 of the GNU General Public License (GPL); see th
     
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-</h2>

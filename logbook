@@ -65,3 +65,4 @@
           - i might just have cracked this eval-circle bastard! seems to be working, need to test with very nested circles but seems ok for now! :D
           - it even works if you redefine a dependency! :O
           - tidied up comments, sorted dodgy def docs
+		  - test commit for git on windows

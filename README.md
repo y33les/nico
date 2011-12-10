@@ -1,6 +1,7 @@
-<img src="http://loomcore.github.com/images/logo.png" alt="Nico: An Environment for Mathematical Expression in Schools" height="175" align="right" />
-
 **<h1 style="font-size:175%;">Nico: An Environment for Mathematical Expression in Schools</h1>**
+================================================================================================
+
+<img src="http://loomcore.github.com/images/logo.png" alt="Nico: An Environment for Mathematical Expression in Schools" height="175" align="right" />
 
 Nico provides a means of expressing a chain of mathematical reasoning graphically, to aid in the understanding of various methods of calculation.  It is written in Rich Hickey's excellent [Clojure](http://clojure.org) language, a recent dialect of the venerable [LISP](http://en.wikipedia.org/wiki/Lisp_%28programming_language%29) that runs on top of the [JVM](http://java.com).  It is the subject of my final-year project as part of the Computer Science BA at the University of Cambridge.
 

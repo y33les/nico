@@ -59,9 +59,9 @@
 (defmacro defcircle [name fun arg1 arg2 & args]
   "Creates a new circle represented by '(fun arg1 arg2 & args).  Can be nested."
   `(def ~name
-     {:x ~(. (java.util.Random.) nextInt canvx)
-      :y ~(. (java.util.Random.) nextInt canvy)
-      :img-circ img-c~(+ 2 (count args))
+     {:x ~(. (java.util.Random.) nextInt 640) ;; canvx)
+      :y ~(. (java.util.Random.) nextInt 480) ;; canvy)
+      :img-circ ~(symbol (str "img-c" (+ 2 (count args))))
       :circ (cons ~fun
                   (cons ~(cond (symbol? arg1) `(quote ~arg1)
                                :else arg1)
@@ -71,19 +71,20 @@
 
 (defn nested? [circ]
   "Returns true if a circle contains other circles."
-  (cond (not (= (class circ) clojure.lang.Cons)) false
-        :else (loop [c circ]
+  (cond (not (= (class circ) clojure.lang.PersistentArrayMap)) false ;; clojure.lang.Cons)) false
+        :else (loop [c (:circ circ)]
                 (cond (empty? c) false
-                      (= (class (eval (first c))) clojure.lang.Cons) true
+                      (= (class (eval (first c))) clojure.lang.PersistentArrayMap) true
                       :else (recur (rest c))))))
 
 (defn eval-circle [circ]
   "Iterates across a circle list, resolving symbols into their respective circles."
-  (loop [c circ
+  (loop [c (:circ circ)
          out '()]
     (cond (empty? c) (reverse out)
-          (nested? (eval (first c))) (recur (rest c) (cons (eval-circle (eval (first c))) out))
-          :else (recur (rest c) (cons (eval (first c)) out)))))
+          (nested? (eval (first c))) (recur (rest c) (cons (eval-circle (:circ (eval (first c)))) out))
+          :else (recur (rest c) (cons (first c) out)))))
+
 
 (def window
   ;; Defines the contents of the main application window.

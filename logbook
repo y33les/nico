@@ -79,3 +79,5 @@
           - defcircle map gens random :x and :y within canvas bounds and sets :img-circ to img-cn, getting n by counting args
           - defcircle :circ is as before
           - need to fix eval-circle to account for new map stuff
+          - defcircle now resolves img-cn correctly
+          - eval-circle is broken, need to fix to deal with maps

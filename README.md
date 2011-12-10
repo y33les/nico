@@ -1,4 +1,4 @@
-**<h1 style="font-size:175%;">Nico: An Environment for Mathematical Expression in Schools</h1>**
+**<h1 style="font-size:150%;">Nico: An Environment for Mathematical Expression in Schools</h1>**
 ================================================================================================
 
 <img src="http://loomcore.github.com/images/logo.png" alt="Nico: An Environment for Mathematical Expression in Schools" height="175" align="right" />

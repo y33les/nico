@@ -1,8 +1,8 @@
-**Nico: An Environment for Mathematical Expression in Schools**
-===============================================================
+**<h1 style="font-size:175%;">Nico</h1>**
+=========================================
 
-*Nico: An Environment for Mathematical Expression in Schools*
--------------------------------------------------------------
+*An Environment for Mathematical Expression in Schools*
+-------------------------------------------------------
 
 <img src="http://loomcore.github.com/images/logo.png" alt="Nico: An Environment for Mathematical Expression in Schools" height="175" align="right" />
 

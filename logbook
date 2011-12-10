@@ -65,3 +65,17 @@
           - i might just have cracked this eval-circle bastard! seems to be working, need to test with very nested circles but seems ok for now! :D
           - it even works if you redefine a dependency! :O
           - tidied up comments, sorted dodgy def docs
+09/12/11: - started dicking about trying to draw circles
+10/12/11: - added used-coords agent to keep track of where circles can be drawn
+          - imported PaintListener and PaintEvent
+          - imported Image and GC
+          - imported Device and Display
+          - defined circle images
+          - working on fn get-circ-bounds to get bounding box for each circle graphic
+          - need to sort circle structure; thinking of a map like {:x x :y y :img img-cn :circ '(fn arg1 arg2 & args)}
+          - defined circx and circy as width and height of circle images
+          - modding defcircle to make a map as above
+          - defined canvx and canvy as width and height of the canvas
+          - defcircle map gens random :x and :y within canvas bounds and sets :img-circ to img-cn, getting n by counting args
+          - defcircle :circ is as before
+          - need to fix eval-circle to account for new map stuff

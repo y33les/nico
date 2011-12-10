@@ -21,9 +21,23 @@
   (:use (guiftw swt styles)
         [clojure.string :only [split-lines]])
   (:import (org.eclipse.swt SWT)
-           (org.eclipse.swt.widgets Shell Button MessageBox Canvas)
-           (org.eclipse.swt.events SelectionListener)
-           (org.eclipse.swt.layout GridLayout GridData)))
+           (org.eclipse.swt.widgets Shell Button MessageBox Canvas Display)
+           (org.eclipse.swt.events SelectionListener PaintListener PaintEvent)
+           (org.eclipse.swt.layout GridLayout GridData)
+           (org.eclipse.swt.graphics GC Image Device Rectangle Point)))
+
+;; Images used to represent circles of 2-8 arguments.
+(def img-c2 (Image. (Display/getCurrent) "images/nico_circ2.png"))
+(def img-c3 (Image. (Display/getCurrent) "images/nico_circ3.png"))
+(def img-c4 (Image. (Display/getCurrent) "images/nico_circ4.png"))
+(def img-c5 (Image. (Display/getCurrent) "images/nico_circ5.png"))
+(def img-c6 (Image. (Display/getCurrent) "images/nico_circ6.png"))
+(def img-c7 (Image. (Display/getCurrent) "images/nico_circ7.png"))
+(def img-c8 (Image. (Display/getCurrent) "images/nico_circ8.png"))
+
+;; Width and height of the circle images.
+(def circx (.. img-c2 getBounds width))
+(def circy (.. img-c2 getBounds height))
 
 (defn read-qset [qsfile]
   "Reads a set of questions from the file qsfile into a list."
@@ -32,15 +46,28 @@
     (clojure.string/split-lines
      (slurp qsfile)))))
 
+;; (defmacro defcircle [name fun arg1 arg2 & args]
+;;   "Creates a new circle represented by '(fun arg1 arg2 & args).  Can be nested."
+;;   `(def ~name
+;;      (cons ~fun
+;;            (cons ~(cond (symbol? arg1) `(quote ~arg1)
+;;                         :else arg1)
+;;                  (cons ~(cond (symbol? arg2) `(quote ~arg2)
+;;                               :else arg2)
+;;                        (quote ~args))))))
+
 (defmacro defcircle [name fun arg1 arg2 & args]
   "Creates a new circle represented by '(fun arg1 arg2 & args).  Can be nested."
   `(def ~name
-     (cons ~fun
-           (cons ~(cond (symbol? arg1) `(quote ~arg1)
-                        :else arg1)
-                 (cons ~(cond (symbol? arg2) `(quote ~arg2)
-                              :else arg2)
-                       (quote ~args))))))
+     {:x ~(. (java.util.Random.) nextInt canvx)
+      :y ~(. (java.util.Random.) nextInt canvy)
+      :img-circ img-c~(+ 2 (count args))
+      :circ (cons ~fun
+                  (cons ~(cond (symbol? arg1) `(quote ~arg1)
+                               :else arg1)
+                        (cons ~(cond (symbol? arg2) `(quote ~arg2)
+                                     :else arg2)
+                              (quote ~args))))}))
 
 (defn nested? [circ]
   "Returns true if a circle contains other circles."
@@ -63,9 +90,9 @@
   (swt
    [Shell [*id :main-window]
     [Canvas [*id :circle-area]]
-    [Button [*id :new-circle]]
-    [Button [*id :split-circle]]
-    [Button [*id :del-circle]]]))
+    [Button [*id :new-circ]]
+    [Button [*id :split-circ]]
+    [Button [*id :del-circ]]]))
 
 (def look
   ;; Defines button behaviour and the style of the main application window.
@@ -75,21 +102,40 @@
                    :layout (GridLayout. 3 true)]
    [:circle-area] [:*cons [SWT/NONE]
                    :layoutData (GridData. GridData/FILL GridData/BEGINNING true true 3 1)]
-   [:new-circle] [:*cons [SWT/PUSH]
-                  :text "New"]
-   [:split-circle] [:*cons [SWT/PUSH]
-                    :text "Split"]
-   [:del-circle] [:*cons [SWT/PUSH]
-                  :text "Delete"]))
+   [:new-circ] [:*cons [SWT/PUSH]
+                :text "New"]
+   [:split-circ] [:*cons [SWT/PUSH]
+                  :text "Split"]
+   [:del-circ] [:*cons [SWT/PUSH]
+                :text "Delete"]))
 
-(defn new-circle [gui event]
-  "Creates a new circle agent and displays it onscreen."
-  (doto (MessageBox.
-         (:root @gui)
-         (bit-or SWT/ICON_INFORMATION SWT/OK))
-    (.setText "New Circle")
-    (.setMessage "New!")
-    .open))
+;; Width and height of the canvas.
+(def canvx (. (-> @gui :main-window :circle-area) getSize) x)
+(def canvy (. (-> @gui :main-window :circle-area) getSize) y)
+
+;; (defn new-circle [gui event]
+;;   "Creates a new circle agent and displays it onscreen."
+;;   (doto (MessageBox.
+;;          (:root @gui)
+;;          (bit-or SWT/ICON_INFORMATION SWT/OK))
+;;     (.setText "New Circle")
+;;     (.setMessage "New!")
+;;     .open))
+
+(def used-coords
+  ;; Agent listing locations of existing circles.
+  (agent '()))
+
+(defn get-circ-bounds [circ]
+  "Returns a map of the x- and y-co-ordinates and the height and width of the bounding box around a circle image."
+  (
+
+(defn new-circle [circ gui event]
+  "Displays a new circle onscreen."
+  (do
+    (doto (-> @gui :main-window :circle-area)
+      ())
+    (send-off used-coords #(cons circ %))))
 
 (defn split-circle [gui event]
   "Increments the number of arguments to a circle by 1 and displays this onscreen."
@@ -112,9 +158,9 @@
 (def actions
   ;; Defines button behaviour.
   (stylesheet
-   [:new-circle] [:selection+widget-selected new-circle]
-   [:split-circle] [:selection+widget-selected split-circle]
-   [:del-circle] [:selection+widget-selected del-circle]))
+   [:new-circ] [:selection+widget-selected new-circle]
+   [:split-circ] [:selection+widget-selected split-circle]
+   [:del-circ] [:selection+widget-selected del-circle]))
 
 (defn -main [& args]
   (let [gui (window look actions)

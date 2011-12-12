@@ -26,6 +26,23 @@
            (org.eclipse.swt.layout GridLayout GridData)
            (org.eclipse.swt.graphics GC Image Device Rectangle Point)))
 
+(defn init-repl []
+  (do
+    (import (org.eclipse.swt SWT))
+    (import (org.eclipse.swt.widgets Shell Button MessageBox Canvas Display))
+    (import (org.eclipse.swt.events SelectionListener PaintListener PaintEvent))
+    (import (org.eclipse.swt.layout GridLayout GridData))
+    (import (org.eclipse.swt.graphics GC Image Device Rectangle Point))
+    (def img-c2 (Image. (Display/getCurrent) "images/nico_circ2.png"))
+    (def img-c3 (Image. (Display/getCurrent) "images/nico_circ3.png"))
+    (def img-c4 (Image. (Display/getCurrent) "images/nico_circ4.png"))
+    (def img-c5 (Image. (Display/getCurrent) "images/nico_circ5.png"))
+    (def img-c6 (Image. (Display/getCurrent) "images/nico_circ6.png"))
+    (def img-c7 (Image. (Display/getCurrent) "images/nico_circ7.png"))
+    (def img-c8 (Image. (Display/getCurrent) "images/nico_circ8.png"))))
+
+;;(init-repl)
+
 ;; Images used to represent circles of 2-8 arguments.
 (def img-c2 (Image. (Display/getCurrent) "images/nico_circ2.png"))
 (def img-c3 (Image. (Display/getCurrent) "images/nico_circ3.png"))
@@ -69,13 +86,29 @@
                                      :else arg2)
                               (quote ~args))))}))
 
+;; (defn nested? [circ]
+;;   "Returns true if a circle contains other circles."
+;;   (cond (not (= (class circ) clojure.lang.PersistentArrayMap)) false ;; clojure.lang.Cons)) false
+;;         :else (loop [c (:circ circ)]
+;;                 (cond (empty? c) false
+;;                       (= (class (eval (first c))) clojure.lang.PersistentArrayMap) true
+;;                       :else (recur (rest c))))))
+
 (defn nested? [circ]
   "Returns true if a circle contains other circles."
-  (cond (not (= (class circ) clojure.lang.PersistentArrayMap)) false ;; clojure.lang.Cons)) false
-        :else (loop [c (:circ circ)]
+  (cond (not (= (class circ) clojure.lang.Cons)) false
+        :else (loop [c circ]
                 (cond (empty? c) false
-                      (= (class (eval (first c))) clojure.lang.PersistentArrayMap) true
-                      :else (recur (rest c))))))
+                      (= (class (eval (first c))) clojure.lang.Cons) true
+                                            :else (recur (rest c))))))
+
+;; (defn eval-circle [circ]
+;;   "Iterates across a circle list, resolving symbols into their respective circles."
+;;   (loop [c (:circ circ)
+;;          out '()]
+;;     (cond (empty? c) (reverse out)
+;;           (nested? (eval (first c))) (recur (rest c) (cons (eval-circle (:circ  (eval (first c)))) out))
+;;           :else (recur (rest c) (cons (first c) out)))))
 
 (defn eval-circle [circ]
   "Iterates across a circle list, resolving symbols into their respective circles."
@@ -83,8 +116,7 @@
          out '()]
     (cond (empty? c) (reverse out)
           (nested? (eval (first c))) (recur (rest c) (cons (eval-circle (:circ (eval (first c)))) out))
-          :else (recur (rest c) (cons (first c) out)))))
-
+                    :else (recur (rest c) (cons (eval (first c)) out)))))
 
 (def window
   ;; Defines the contents of the main application window.

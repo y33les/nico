@@ -81,3 +81,5 @@
           - need to fix eval-circle to account for new map stuff
           - defcircle now resolves img-cn correctly
           - eval-circle is broken, need to fix to deal with maps
+11/12/11: - eval-circle is evaluating nested circles to maps, need to make it use :circ not the whole map
+          - added fn init-repl to save time experimenting in the repl

@@ -1,0 +1,45 @@
+--- 
+layout: post
+title: It begins.
+published: true
+meta: 
+  _edit_last: "1"
+tags: 
+- Cambridge
+- Clojure
+- CompSci
+- Dev
+- Dissertation
+- Java
+- Lisp
+- Open source
+- Research
+type: post
+status: publish
+---
+<p>So my final year at Cambridge has rolled around and it transpires that I have a "substantial" project to undertake, also known as a dissertation. Keen as I am on education, I have decided to develop a piece of educational software. I present to you, dear reader, <a href="http://github.com/loomcore/nico"><i>Nico</i></a> – an environment for expressing mathematical method graphically.</p>
+
+<div id="logo" style="display:block; float:right;">
+	<img src="http://pmy22.user.srcf.net/uploads/logo_cut_white.png" alt="Nico: Open Arithmetic Expression" width="300" />
+</div>
+<!-- <img class="alignright" src="http://pmy22.user.srcf.net/uploads/logo_cut_white.png" alt="Nico: Open Arithmetic Expression" width="300" /> -->
+
+<p>The idea behind Nico is that although mindlessly regurgitating a method of answering a mathematical problem again and again will teach you how to solve that question, it will not necessarily make apparent how that method works (i.e. <i>why</i> one might follow that method). My hope is that by understanding why we follow an algorithm, users will be able not only to recall the method better in the future, but also to extend what they have learned to other problems. Sadly the time constraints of the dissertation do not allow me to conduct a proper study into whether or not this is actually the case, though at some point in the future it could be very interesting to (when I wouldn't be risking my degree to do so!). For the purposes of actually finishing this dissertation in the year allotted, Nico is going to be aimed initially at upper primary school (~Year 5/6), but will hopefully be extensible to other levels in the future.</p>
+<div id="diagram" style="display:block; float:left;">
+	<img src="http://pmy22.user.srcf.net/uploads/nico02.png" alt="Proposed Nico syntax" width="400" />
+</div>
+<!-- <img class="alignleft" src="http://pmy22.user.srcf.net/uploads/nico02.png" alt="Proposed Nico syntax" width="400" /> -->
+
+<p>Although the final representation is yet to be decided, it it likely that Nico will use an abstraction of the student's method based around coloured circles with a function in the middle and an arbitrary number of sectors representing arguments. Circles can feed into other circles as arguments (à la brackets), and the colour of each circle is indicative of how deeply-nested the function it encompasses is. A fairly crude mockup is shown to the left. This is somewhat of a departure from my original idea of using flowchart-style boxes and arrows, but after consulting with members of the <a href="http://www.cl.cam.ac.uk/research/rainbow/">Rainbow Group</a> (Cambridge's HCI research group) and running some tests on other students I found the circles to be more readable and approachable. Another feature I hope to include is for Nico to rearrange and re-express the current question in real-time to reflect how the user approaches it. For example:–</p>
+
+<p style="text-align: center;">\[ 32 \times 48 = ( 2 \times 8 ) + ( 2 \times 40 ) + ( 30 \times 8 ) + ( 30 \times 40 ) \]</p>
+
+<p>Nico will be written in <a href="http://clojure.org">Clojure</a>, a fantastic language that brings the delights of <a href="http://en.wikipedia.org/wiki/Lisp_(programming_language)">LISP</a> (everyone loves LISP, right?) to the <a href="http://en.wikipedia.org/wiki/Java_Virtual_Machine">JVM</a>, allowing one to leverage the considerable libraries available for Java without having to actually use the language. After two years of enforced Java study, this came as somewhat of a blessing: I shan't be so cliché as to draw comparisons between Java and <a href="http://en.wikipedia.org/wiki/Cobol">COBOL</a>, but suffice it to say that I am no great fan of that particular language. My experience thus far with Clojure has been generally positive; the LISP syntax (or lack thereof) is refreshing, dynamic development is a joy and with seamless Java interoperability the overall development experience is very smooth indeed. Not only this, but the functional nature of Clojure and its excellent support for concurrent programming make it ideal for this project, as a graphical application that will be manipulating mathematical expressions.</p>
+
+<p>I hope you find this project of some interest; I certainly do, and will continue to post updates as Nico develops.  For now, however, check out the <a href="http://github.com/loomcore/nico">GitHub repo</a> to see my work in progress.</p>
+
+<p>N.B. Here's the official proposal I submitted to the Computer Lab, though some features (notably the syntax of the graphical language) have changed since I wrote it:–</p>
+
+<div id="pdfviewer" style="float:center; align:center; text-align:center;">
+	<iframe class="aligncenter" style="border: 1px solid #dddddd;" src="http://docs.google.com/viewer?url=http%3A%2F%2Fpmy22.user.srcf.net%2Fuploads%2Fproposal_rev04.pdf&amp;embedded=true" width="640" height="400"></iframe>
+</div>

@@ -1,1 +1,28 @@
-My GitHub Page
+---
+layout: default
+title: Yeeles.
+---
+
+<div id="home">
+  <!-- iterate through the posts on this page -->
+  {% for page in paginator.posts %}
+    <div class="post" style="margin-bottom:2em;">
+	  <p class="meta">{{ page.date | date: "%A, %d %B %Y" }}</p>
+      <h1><a href="{{ page.url }}">{{ page.title }}</a></h1>
+        {{ page.content | postmorefilter: page.url, "Read more" }}
+    </div>
+  {% endfor %}
+
+  <!-- links to prev and next pages for browsing thru archives -->
+  <div id="pagination" style="float:center; align:center; text-align:center; margin-bottom:1em; font-family:chunk; font-size: 175%; text-shadow: #aaa 1px 1px 1px;">
+  {% if paginator.next_page %}
+    <a href="/page{{ paginator.next_page }}">&laquo; Older</a>
+  {% endif %}
+  {% if paginator.previous_page == 1 %}
+    <a href="/">Newer &raquo;</a>
+  {% elsif paginator.previous_page %}
+    <a href="/page{{ paginator.previous_page }}">Newer &raquo;</a>
+  {% endif %}
+  </div>
+
+</div>

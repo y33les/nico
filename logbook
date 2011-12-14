@@ -88,3 +88,7 @@
           - eval-circle works again with 1-deep nests, fixing for multiple levels
           - eval-circle fixed to work with maps of arbitrary depth! :D
           - rename defcircle to defcircle-map, working on a fn defcircle to call defcircle-map and add its :x and :y components to the used-coords agent
+          - added fn xy-rng to generate random map {:x x :y y} and push the list '(x y) to used-coords
+          - updated swank to v1.3.4 so agents actually work now
+          - removed defcircle and moved defcircle-map back to defcircle
+          - defcircle now uses xy-rng to update used-coords when defing circles

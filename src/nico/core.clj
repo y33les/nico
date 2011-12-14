@@ -75,27 +75,19 @@
       {:x x
        :y y})))
 
-(defmacro defcircle-map [name fun arg1 arg2 & args]
+(defmacro defcircle [name fun arg1 arg2 & args]
   "Creates a new circle represented by '(fun arg1 arg2 & args).  Can be nested."
+  (let [xy (xy-rng)]
   `(def ~name
-     {:x ~(. (java.util.Random.) nextInt 640) ;; canvx)
-      :y ~(. (java.util.Random.) nextInt 480) ;; canvy)
+     {:x ~(:x xy)
+      :y ~(:y xy)
       :img-circ ~(symbol (str "img-c" (+ 2 (count args))))
       :circ (cons ~fun
                   (cons ~(cond (symbol? arg1) `(quote ~arg1)
                                :else arg1)
                         (cons ~(cond (symbol? arg2) `(quote ~arg2)
                                      :else arg2)
-                              (quote ~args))))}))
-
-(defn defcircle [name fun arg1 arg2 & args]
-  "Creates a new circle using defcircle-map and adds a list of its x and y co-ordinates to used-coords."
-  (do
-    (loop [in args
-           out (list arg2 arg1 fun name 'defcircle-map)]
-      (cond (empty? in) (do (prn (reverse out)) (eval (reverse out)))
-            :else (recur (rest in) (cons (first in) out))))
-    (send-off used-coords #(cons '((:x name) (:y name)) %))))
+                              (quote ~args))))})))
 
 (defn nested? [circ]
   "Returns true if a circle contains other circles."

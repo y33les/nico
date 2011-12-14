@@ -81,7 +81,7 @@
   `(def ~name
      {:x ~(:x xy)
       :y ~(:y xy)
-      :img-circ ~(symbol (str "img-c" (+ 2 (count args))))
+      :img ~(symbol (str "img-c" (+ 2 (count args))))
       :circ (cons ~fun
                   (cons ~(cond (symbol? arg1) `(quote ~arg1)
                                :else arg1)
@@ -135,8 +135,8 @@
                 :text "Delete"]))
 
 ;; Width and height of the canvas.
-(def canvx (. (-> @gui :main-window :circle-area) getSize) x)
-(def canvy (. (-> @gui :main-window :circle-area) getSize) y)
+;; (def canvx (. (-> @gui :main-window :circle-area) getSize))
+;; (def canvy (. (-> @gui :main-window :circle-area) getSize))
 
 ;; (defn new-circle [gui event]
 ;;   "Creates a new circle agent and displays it onscreen."
@@ -147,16 +147,19 @@
 ;;     (.setMessage "New!")
 ;;     .open))
 
-(defn get-circ-bounds [circ]
-  "Returns a map of the x- and y-co-ordinates and the height and width of the bounding box around a circle image."
-  (
+;; (defn get-circ-bounds [circ]
+;;   "Returns a map of the x- and y-co-ordinates and the height and width of the bounding box around a circle image."
+;;   '())
 
-(defn new-circle [circ gui event]
+(defn draw-circle [circ gc]
+  "Draws the circle circ on the graphical context gc."
+  (.. gc (drawImage (:img circ) 0 0 circx circy (:x circ) (:y circ) circx circy)))
+
+(defn new-circle [circ gui] ;; event]
   "Displays a new circle onscreen."
-  (do
-    (doto (-> @gui :main-window :circle-area)
-      ())
-    (send-off used-coords #(cons circ %))))
+;;   (doto (-> @gui :main-window :circle-area)
+  (let [gc (GC. (-> @gui :main-window :circle-area))]
+    (draw-circle circ gc)))
 
 (defn split-circle [gui event]
   "Increments the number of arguments to a circle by 1 and displays this onscreen."

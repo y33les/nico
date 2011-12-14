@@ -92,3 +92,6 @@
           - updated swank to v1.3.4 so agents actually work now
           - removed defcircle and moved defcircle-map back to defcircle
           - defcircle now uses xy-rng to update used-coords when defing circles
+          - added draw-circle to eliminate some future cruft
+          - renamed :img-circ to :img
+          - need to add creation dialogue to new-circle

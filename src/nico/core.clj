@@ -63,15 +63,6 @@
     (clojure.string/split-lines
      (slurp qsfile)))))
 
-;; (defmacro defcircle [name fun arg1 arg2 & args]
-;;   "Creates a new circle represented by '(fun arg1 arg2 & args).  Can be nested."
-;;   `(def ~name
-;;      (cons ~fun
-;;            (cons ~(cond (symbol? arg1) `(quote ~arg1)
-;;                         :else arg1)
-;;                  (cons ~(cond (symbol? arg2) `(quote ~arg2)
-;;                               :else arg2)
-;;                        (quote ~args))))))
 
 (defmacro defcircle [name fun arg1 arg2 & args]
   "Creates a new circle represented by '(fun arg1 arg2 & args).  Can be nested."
@@ -86,37 +77,27 @@
                                      :else arg2)
                               (quote ~args))))}))
 
-;; (defn nested? [circ]
-;;   "Returns true if a circle contains other circles."
-;;   (cond (not (= (class circ) clojure.lang.PersistentArrayMap)) false ;; clojure.lang.Cons)) false
-;;         :else (loop [c (:circ circ)]
-;;                 (cond (empty? c) false
-;;                       (= (class (eval (first c))) clojure.lang.PersistentArrayMap) true
-;;                       :else (recur (rest c))))))
 
 (defn nested? [circ]
   "Returns true if a circle contains other circles."
   (cond (not (= (class circ) clojure.lang.Cons)) false
         :else (loop [c circ]
                 (cond (empty? c) false
-                      (= (class (eval (first c))) clojure.lang.Cons) true
+                      (= (class (eval (first c))) clojure.lang.PersistentArrayMap) true
                                             :else (recur (rest c))))))
-
-;; (defn eval-circle [circ]
-;;   "Iterates across a circle list, resolving symbols into their respective circles."
-;;   (loop [c (:circ circ)
-;;          out '()]
-;;     (cond (empty? c) (reverse out)
-;;           (nested? (eval (first c))) (recur (rest c) (cons (eval-circle (:circ  (eval (first c)))) out))
-;;           :else (recur (rest c) (cons (first c) out)))))
 
 (defn eval-circle [circ]
   "Iterates across a circle list, resolving symbols into their respective circles."
   (loop [c (:circ circ)
          out '()]
     (cond (empty? c) (reverse out)
-          (nested? (eval (first c))) (recur (rest c) (cons (eval-circle (:circ (eval (first c)))) out))
-                    :else (recur (rest c) (cons (eval (first c)) out)))))
+          (map? (eval (first c))) (cond (nested? (:circ (eval (first c)))) (recur (rest c) (cons (eval-circle (eval (first c))) out))
+                                        :else (recur (rest c) (cons (:circ (eval (first c))) out)))
+          :else (recur (rest c) (cons (eval (first c)) out)))))
+
+;; (defcircle c0 + 1 2 3 4 5)
+;; (defcircle c1 * 4 c0)
+;; (defcircle c2 + 2 c1 4 c0 c1)
 
 (def window
   ;; Defines the contents of the main application window.

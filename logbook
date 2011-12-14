@@ -83,7 +83,8 @@
           - eval-circle is broken, need to fix to deal with maps
 11/12/11: - eval-circle is evaluating nested circles to maps, need to make it use :circ not the whole map
           - added fn init-repl to save time experimenting in the repl
-13/12/11: - added circle defs as comments to eval in emacs to speed things up a bit
+14/12/11: - added circle defs as comments to eval in emacs to speed things up a bit
           - fixed nested? to work with map structure
           - eval-circle works again with 1-deep nests, fixing for multiple levels
           - eval-circle fixed to work with maps of arbitrary depth! :D
+          - rename defcircle to defcircle-map, working on a fn defcircle to call defcircle-map and add its :x and :y components to the used-coords agent

@@ -56,6 +56,10 @@
 (def circx (.. img-c2 getBounds width))
 (def circy (.. img-c2 getBounds height))
 
+(def used-coords
+  ;; Agent listing locations of existing circles.
+  (agent '()))
+
 (defn read-qset [qsfile]
   "Reads a set of questions from the file qsfile into a list."
   (reverse
@@ -63,8 +67,15 @@
     (clojure.string/split-lines
      (slurp qsfile)))))
 
+(defn xy-rng []
+  (let [x (. (java.util.Random.) nextInt 640) ;; canvx
+        y (. (java.util.Random.) nextInt 480)] ;; canvy
+    (do
+      (send-off used-coords #(cons (list x y) %))
+      {:x x
+       :y y})))
 
-(defmacro defcircle [name fun arg1 arg2 & args]
+(defmacro defcircle-map [name fun arg1 arg2 & args]
   "Creates a new circle represented by '(fun arg1 arg2 & args).  Can be nested."
   `(def ~name
      {:x ~(. (java.util.Random.) nextInt 640) ;; canvx)
@@ -77,6 +88,14 @@
                                      :else arg2)
                               (quote ~args))))}))
 
+(defn defcircle [name fun arg1 arg2 & args]
+  "Creates a new circle using defcircle-map and adds a list of its x and y co-ordinates to used-coords."
+  (do
+    (loop [in args
+           out (list arg2 arg1 fun name 'defcircle-map)]
+      (cond (empty? in) (do (prn (reverse out)) (eval (reverse out)))
+            :else (recur (rest in) (cons (first in) out))))
+    (send-off used-coords #(cons '((:x name) (:y name)) %))))
 
 (defn nested? [circ]
   "Returns true if a circle contains other circles."
@@ -135,10 +154,6 @@
 ;;     (.setText "New Circle")
 ;;     (.setMessage "New!")
 ;;     .open))
-
-(def used-coords
-  ;; Agent listing locations of existing circles.
-  (agent '()))
 
 (defn get-circ-bounds [circ]
   "Returns a map of the x- and y-co-ordinates and the height and width of the bounding box around a circle image."

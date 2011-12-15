@@ -95,3 +95,5 @@
           - added draw-circle to eliminate some future cruft
           - renamed :img-circ to :img
           - need to add creation dialogue to new-circle
+15/12/11: - dialogue can use org.eclipse.swt.widgets.Spinner
+          - removed git-circ-bounds

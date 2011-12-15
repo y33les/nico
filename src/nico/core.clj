@@ -147,10 +147,6 @@
 ;;     (.setMessage "New!")
 ;;     .open))
 
-;; (defn get-circ-bounds [circ]
-;;   "Returns a map of the x- and y-co-ordinates and the height and width of the bounding box around a circle image."
-;;   '())
-
 (defn draw-circle [circ gc]
   "Draws the circle circ on the graphical context gc."
   (.. gc (drawImage (:img circ) 0 0 circx circy (:x circ) (:y circ) circx circy)))

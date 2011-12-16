@@ -96,4 +96,5 @@
           - renamed :img-circ to :img
           - need to add creation dialogue to new-circle
 15/12/11: - dialogue can use org.eclipse.swt.widgets.Spinner
-          - removed git-circ-bounds
+          - removed get-circ-bounds
+16/12/11: - imported Spinner and Dialog wrote some comments, bit stuck atm :(

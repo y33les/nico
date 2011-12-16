@@ -21,7 +21,7 @@
   (:use (guiftw swt styles)
         [clojure.string :only [split-lines]])
   (:import (org.eclipse.swt SWT)
-           (org.eclipse.swt.widgets Shell Button MessageBox Canvas Display)
+           (org.eclipse.swt.widgets Shell Button MessageBox Canvas Display Dialog Spinner)
            (org.eclipse.swt.events SelectionListener PaintListener PaintEvent)
            (org.eclipse.swt.layout GridLayout GridData)
            (org.eclipse.swt.graphics GC Image Device Rectangle Point)))
@@ -155,7 +155,9 @@
   "Displays a new circle onscreen."
 ;;   (doto (-> @gui :main-window :circle-area)
   (let [gc (GC. (-> @gui :main-window :circle-area))]
-    (draw-circle circ gc)))
+    (doto (Dialog. (:root @gui) SWT/NONE)
+      ;; add spinner and use to sort circle out)
+      (draw-circle circ gc)))
 
 (defn split-circle [gui event]
   "Increments the number of arguments to a circle by 1 and displays this onscreen."
@@ -165,6 +167,7 @@
     (.setText "Split Circle")
     (.setMessage "Split!")
     .open))
+
 
 (defn del-circle [gui event]
   "Removes a circle from view."

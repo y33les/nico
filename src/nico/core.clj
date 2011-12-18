@@ -133,7 +133,7 @@
                  :minimum 2]
    [:new-circ] [:*cons [SWT/PUSH]
                 :text "New"]
-          [:split-circ] [:*cons [SWT/PUSH]
+   [:split-circ] [:*cons [SWT/PUSH]
                   :text "Split"]
    [:del-circ] [:*cons [SWT/PUSH]
                 :text "Delete"]))
@@ -153,16 +153,20 @@
 
 (defn draw-circle [circ gc]
   "Draws the circle circ on the graphical context gc."
-  (.. gc (drawImage (:img circ) 0 0 circx circy (:x circ) (:y circ) circx circy)))
+;;   (.. gc (drawImage (:img circ) 0 0 circx circy (:x circ) (:y circ) circx circy)))
+  (.. gc (drawImage (:img circ) 0 0)))
 
-(defn new-circle [circ gui] ;; event]
+(defcircle c0 + 1 2 3 4 5)
+
+(defn new-circle [gui event]
   "Displays a new circle onscreen."
 ;;   (doto (-> @gui :main-window :circle-area)
-  (let [gc (GC. (-> @gui :main-window :circle-area))
-        n (Integer/parseInt (-> @gui :main-window :arg-count :text))]
-    (doto (Dialog. (:root @gui) SWT/NONE)
-      ;; add spinner and use to sort circle out
-      (draw-circle circ gc))))
+;;   (prn (str (class (GC. (-> @gui :ids :circle-area))))))
+  (let [gc (GC. (-> @gui :ids :circle-area))
+        n (Integer/parseInt (.getText (-> @gui :ids :arg-count)))]
+;;     (draw-circle circ gc)))
+;;     (draw-circle c0 gc)
+    (.. gc (fillRectangle 10 10 50 50))))
 
 (defn split-circle [gui event]
   "Increments the number of arguments to a circle by 1 and displays this onscreen."
@@ -186,6 +190,9 @@
 (def actions
   ;; Defines button behaviour.
   (stylesheet
+   ;; problem here: draw-circle needs a canvas rather than an event
+   ;; can do like e.gc.drawImage(...)
+   [:circle-area] [:paint+paint-control draw-circle]
    [:new-circ] [:selection+widget-selected new-circle]
    [:split-circ] [:selection+widget-selected split-circle]
    [:del-circ] [:selection+widget-selected del-circle]))

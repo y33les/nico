@@ -100,3 +100,8 @@
 16/12/11: - imported Spinner and Dialog, wrote some comments, bit stuck atm :(
 18/12/11: - added spinner, decided to ditch the dialogue for now and just have it on the main window
           - began writing spinner-parsing stuff into new-circle, thinking it needs to change to defcircle a new dircle then display it, poss. a dialogue box to determine arguments (for now at least)
+          - finally figured out how to access spinner values and other in-gui stuff, embarrassing
+          - thinking of possibly writing a letcircle macro to let circles at runtime, rather than fiddling with defcircle
+          - draw-circle seems to be working but mysteriously not drawing anything on the canvas
+          - playing around with paintControl in actions for :circle-area, still nowt on the canvas
+          - images definitely working as able to draw on button

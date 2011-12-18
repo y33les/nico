@@ -115,9 +115,10 @@
   (swt
    [Shell [*id :main-window]
     [Canvas [*id :circle-area]]
-    [Button [*id :new-circ]]
+    [Spinner [*id :arg-count]]
     [Button [*id :split-circ]]
-    [Button [*id :del-circ]]]))
+    [Button [*id :del-circ]]
+    [Button [*id :new-circ]]]))
 
 (def look
   ;; Defines button behaviour and the style of the main application window.
@@ -127,9 +128,12 @@
                    :layout (GridLayout. 3 true)]
    [:circle-area] [:*cons [SWT/NONE]
                    :layoutData (GridData. GridData/FILL GridData/BEGINNING true true 3 1)]
+   [:arg-count] [:*cons [SWT/NONE]
+                 :maximum 8
+                 :minimum 2]
    [:new-circ] [:*cons [SWT/PUSH]
                 :text "New"]
-   [:split-circ] [:*cons [SWT/PUSH]
+          [:split-circ] [:*cons [SWT/PUSH]
                   :text "Split"]
    [:del-circ] [:*cons [SWT/PUSH]
                 :text "Delete"]))
@@ -154,10 +158,11 @@
 (defn new-circle [circ gui] ;; event]
   "Displays a new circle onscreen."
 ;;   (doto (-> @gui :main-window :circle-area)
-  (let [gc (GC. (-> @gui :main-window :circle-area))]
+  (let [gc (GC. (-> @gui :main-window :circle-area))
+        n (Integer/parseInt (-> @gui :main-window :arg-count :text))]
     (doto (Dialog. (:root @gui) SWT/NONE)
-      ;; add spinner and use to sort circle out)
-      (draw-circle circ gc)))
+      ;; add spinner and use to sort circle out
+      (draw-circle circ gc))))
 
 (defn split-circle [gui event]
   "Increments the number of arguments to a circle by 1 and displays this onscreen."

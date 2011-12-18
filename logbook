@@ -97,4 +97,6 @@
           - need to add creation dialogue to new-circle
 15/12/11: - dialogue can use org.eclipse.swt.widgets.Spinner
           - removed get-circ-bounds
-16/12/11: - imported Spinner and Dialog wrote some comments, bit stuck atm :(
+16/12/11: - imported Spinner and Dialog, wrote some comments, bit stuck atm :(
+18/12/11: - added spinner, decided to ditch the dialogue for now and just have it on the main window
+          - began writing spinner-parsing stuff into new-circle, thinking it needs to change to defcircle a new dircle then display it, poss. a dialogue box to determine arguments (for now at least)

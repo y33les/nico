@@ -1,5 +1,5 @@
 ;; Nico: An Environment for Mathematical Expression in Schools
-;; Copyright (C) 2011  Philip M. Yeeles
+;; Copyright (C) 2011-2012  Philip M. Yeeles
 ;; 
 ;; This file is part of Nico.
 ;; 

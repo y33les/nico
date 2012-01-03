@@ -105,4 +105,8 @@
           - draw-circle seems to be working but mysteriously not drawing anything on the canvas
           - playing around with paintControl in actions for :circle-area, still nowt on the canvas
           - images definitely working as able to draw on button
-19/12/11: - 
+03/01/12: - sick of fighting swt, switching to swing/seesaw, see if that works
+          - removing init-repl as so swt-dependent it's now pointless
+          - images now of type java.awt.image.BufferedImage
+          - old swt crap now in huge comment at the bottom
+          - mostly migrated to seesaw/swing, need to add actions for buttons

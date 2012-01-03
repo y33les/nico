@@ -1,5 +1,5 @@
 ;; Nico: An Environment for Mathematical Expression in Schools
-;; Copyright (C) 2011  Philip M. Yeeles
+;; Copyright (C) 2011-2012  Philip M. Yeeles
 ;; 
 ;; This file is part of Nico.
 ;; 
@@ -18,43 +18,23 @@
 
 (ns nico.core
   (:gen-class)
-  (:use (guiftw swt styles)
+  (:use (seesaw core)
         [clojure.string :only [split-lines]])
-  (:import (org.eclipse.swt SWT)
-           (org.eclipse.swt.widgets Shell Button MessageBox Canvas Display Dialog Spinner)
-           (org.eclipse.swt.events SelectionListener PaintListener PaintEvent)
-           (org.eclipse.swt.layout GridLayout GridData)
-           (org.eclipse.swt.graphics GC Image Device Rectangle Point)))
-
-(defn init-repl []
-  (do
-    (import (org.eclipse.swt SWT))
-    (import (org.eclipse.swt.widgets Shell Button MessageBox Canvas Display))
-    (import (org.eclipse.swt.events SelectionListener PaintListener PaintEvent))
-    (import (org.eclipse.swt.layout GridLayout GridData))
-    (import (org.eclipse.swt.graphics GC Image Device Rectangle Point))
-    (def img-c2 (Image. (Display/getCurrent) "images/nico_circ2.png"))
-    (def img-c3 (Image. (Display/getCurrent) "images/nico_circ3.png"))
-    (def img-c4 (Image. (Display/getCurrent) "images/nico_circ4.png"))
-    (def img-c5 (Image. (Display/getCurrent) "images/nico_circ5.png"))
-    (def img-c6 (Image. (Display/getCurrent) "images/nico_circ6.png"))
-    (def img-c7 (Image. (Display/getCurrent) "images/nico_circ7.png"))
-    (def img-c8 (Image. (Display/getCurrent) "images/nico_circ8.png"))))
-
-;;(init-repl)
+  (:import (java.io File)
+           (javax.imageio ImageIO)))
 
 ;; Images used to represent circles of 2-8 arguments.
-(def img-c2 (Image. (Display/getCurrent) "images/nico_circ2.png"))
-(def img-c3 (Image. (Display/getCurrent) "images/nico_circ3.png"))
-(def img-c4 (Image. (Display/getCurrent) "images/nico_circ4.png"))
-(def img-c5 (Image. (Display/getCurrent) "images/nico_circ5.png"))
-(def img-c6 (Image. (Display/getCurrent) "images/nico_circ6.png"))
-(def img-c7 (Image. (Display/getCurrent) "images/nico_circ7.png"))
-(def img-c8 (Image. (Display/getCurrent) "images/nico_circ8.png"))
+(def img-c2 (ImageIO/read (File. "images/nico_circ2.png")))
+(def img-c3 (ImageIO/read (File. "images/nico_circ3.png")))
+(def img-c4 (ImageIO/read (File. "images/nico_circ4.png")))
+(def img-c5 (ImageIO/read (File. "images/nico_circ5.png")))
+(def img-c6 (ImageIO/read (File. "images/nico_circ6.png")))
+(def img-c7 (ImageIO/read (File. "images/nico_circ7.png")))
+(def img-c8 (ImageIO/read (File. "images/nico_circ8.png")))
 
 ;; Width and height of the circle images.
-(def circx (.. img-c2 getBounds width))
-(def circy (.. img-c2 getBounds height))
+(def circx (.. img-c2 getWidth))
+(def circy (.. img-c2 getHeight))
 
 (def used-coords
   ;; Agent listing locations of existing circles.
@@ -109,6 +89,30 @@
 ;; (defcircle c0 + 1 2 3 4 5)
 ;; (defcircle c1 * 4 c0)
 ;; (defcircle c2 + 2 c1 4 c0 c1)
+
+(defn main-window []
+  "Creates the contents of Nico's main window."
+  (flow-panel
+   ;; :columns 1
+   :items [(xyz-panel :id :canvas
+                      :border "Calculation"
+                      :size [640 :by 480])
+           (button :text "New")
+           (button :text "Edit")]))
+
+(defn -main [& args]
+  (do
+    (native!)
+    (invoke-later
+     (-> (frame :title "Nico v0.0.1",
+                ;; :size [640 :by 480],
+                :content (main-window),
+                :on-close :exit)
+         pack!
+         show!))))
+
+;; Old SWT stuff
+(comment
 
 (def window
   ;; Defines the contents of the main application window.
@@ -202,3 +206,4 @@
         shell (:root @gui)]
     (.open shell)
     (swt-loop shell)))
+)

@@ -192,7 +192,7 @@
   (stylesheet
    ;; problem here: draw-circle needs a canvas rather than an event
    ;; can do like e.gc.drawImage(...)
-   [:circle-area] [:paint+paint-control draw-circle]
+   ;; [:circle-area] [:paint+paint-control draw-circle]
    [:new-circ] [:selection+widget-selected new-circle]
    [:split-circ] [:selection+widget-selected split-circle]
    [:del-circ] [:selection+widget-selected del-circle]))

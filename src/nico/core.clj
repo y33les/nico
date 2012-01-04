@@ -92,20 +92,24 @@
 
 (defn main-window []
   "Creates the contents of Nico's main window."
-  (flow-panel
-   ;; :columns 1
-   :items [(xyz-panel :id :canvas
-                      :border "Calculation"
-                      :size [640 :by 480])
-           (button :text "New")
-           (button :text "Edit")]))
+  (flow-panel :id :root
+              :items [(xyz-panel :id :canvas
+                                 :border "Calculation"
+                                 :size [640 :by 480])
+                      (grid-panel :id :buttons
+                                  :columns 1
+                                  :items [(button :id :new
+                                                  :text "New"
+                                                  :listen [:mouse-clicked (fn [e] (alert "New!"))])
+                                          (button :id :edit
+                                                  :text "Edit"
+                                                  :listen [:mouse-clicked (fn [e] (alert "Edit!"))])])]))
 
 (defn -main [& args]
   (do
     (native!)
     (invoke-later
      (-> (frame :title "Nico v0.0.1",
-                ;; :size [640 :by 480],
                 :content (main-window),
                 :on-close :exit)
          pack!

@@ -110,3 +110,5 @@
           - images now of type java.awt.image.BufferedImage
           - old swt crap now in huge comment at the bottom
           - mostly migrated to seesaw/swing, need to add actions for buttons
+04/01/12: - put buttons in column instead of line
+          - sorted out listeners; buttons now do alerts as placeholders

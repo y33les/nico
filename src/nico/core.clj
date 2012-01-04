@@ -18,8 +18,8 @@
 
 (ns nico.core
   (:gen-class)
-  (:use (seesaw core)
-        [clojure.string :only [split-lines]])
+  (:use (seesaw core graphics)
+        [clojure.string :only [split split-lines]])
   (:import (java.io File)
            (javax.imageio ImageIO)))
 
@@ -54,6 +54,7 @@
       (send-off used-coords #(cons (list x y) %))
       {:x x
        :y y})))
+
 
 (defmacro defcircle [name fun arg1 arg2 & args]
   "Creates a new circle represented by '(fun arg1 arg2 & args).  Can be nested."
@@ -90,20 +91,35 @@
 ;; (defcircle c1 * 4 c0)
 ;; (defcircle c2 + 2 c1 4 c0 c1)
 
+(defn string-to-int-list [s]
+  "Takes a string of integers separated by spaces as returns a list of integers."
+  (loop [in (split s #" ")
+         out '()]
+    (cond (empty? in) (reverse out)
+          :else (recur (rest in) (cons (Integer/parseInt (first in)) out)))))
+
+(defn new-circle []
+  "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
+  (load-string (str "(defcircle c0 " (input "New:") ")")))
+
+(defn edit-circle []
+  "Brings up a dialogue to edit the parameters of an existing circle and redraws it."
+    (load-string (str "(defcircle c0 " (input "Edit:") ")")))
+
 (defn main-window []
   "Creates the contents of Nico's main window."
   (flow-panel :id :root
-              :items [(xyz-panel :id :canvas
-                                 :border "Calculation"
-                                 :size [640 :by 480])
+              :items [(canvas :id :canvas
+                              :border "Calculation"
+                              :size [640 :by 480])
                       (grid-panel :id :buttons
                                   :columns 1
                                   :items [(button :id :new
                                                   :text "New"
-                                                  :listen [:mouse-clicked (fn [e] (alert "New!"))])
+                                                  :listen [:mouse-clicked (fn [e] (new-circle))])
                                           (button :id :edit
                                                   :text "Edit"
-                                                  :listen [:mouse-clicked (fn [e] (alert "Edit!"))])])]))
+                                                  :listen [:mouse-clicked (fn [e] (edit-circle))])])]))
 
 (defn -main [& args]
   (do
@@ -114,100 +130,3 @@
                 :on-close :exit)
          pack!
          show!))))
-
-;; Old SWT stuff
-(comment
-
-(def window
-  ;; Defines the contents of the main application window.
-  (swt
-   [Shell [*id :main-window]
-    [Canvas [*id :circle-area]]
-    [Spinner [*id :arg-count]]
-    [Button [*id :split-circ]]
-    [Button [*id :del-circ]]
-    [Button [*id :new-circ]]]))
-
-(def look
-  ;; Defines button behaviour and the style of the main application window.
-  (stylesheet
-   [:main-window] [:text "Nico v0.0.1"
-                   :size ^unroll (640 480)
-                   :layout (GridLayout. 3 true)]
-   [:circle-area] [:*cons [SWT/NONE]
-                   :layoutData (GridData. GridData/FILL GridData/BEGINNING true true 3 1)]
-   [:arg-count] [:*cons [SWT/NONE]
-                 :maximum 8
-                 :minimum 2]
-   [:new-circ] [:*cons [SWT/PUSH]
-                :text "New"]
-   [:split-circ] [:*cons [SWT/PUSH]
-                  :text "Split"]
-   [:del-circ] [:*cons [SWT/PUSH]
-                :text "Delete"]))
-
-;; Width and height of the canvas.
-;; (def canvx (. (-> @gui :main-window :circle-area) getSize))
-;; (def canvy (. (-> @gui :main-window :circle-area) getSize))
-
-;; (defn new-circle [gui event]
-;;   "Creates a new circle agent and displays it onscreen."
-;;   (doto (MessageBox.
-;;          (:root @gui)
-;;          (bit-or SWT/ICON_INFORMATION SWT/OK))
-;;     (.setText "New Circle")
-;;     (.setMessage "New!")
-;;     .open))
-
-(defn draw-circle [circ gc]
-  "Draws the circle circ on the graphical context gc."
-;;   (.. gc (drawImage (:img circ) 0 0 circx circy (:x circ) (:y circ) circx circy)))
-  (.. gc (drawImage (:img circ) 0 0)))
-
-(defcircle c0 + 1 2 3 4 5)
-
-(defn new-circle [gui event]
-  "Displays a new circle onscreen."
-;;   (doto (-> @gui :main-window :circle-area)
-;;   (prn (str (class (GC. (-> @gui :ids :circle-area))))))
-  (let [gc (GC. (-> @gui :ids :circle-area))
-        n (Integer/parseInt (.getText (-> @gui :ids :arg-count)))]
-;;     (draw-circle circ gc)))
-;;     (draw-circle c0 gc)
-    (.. gc (fillRectangle 10 10 50 50))))
-
-(defn split-circle [gui event]
-  "Increments the number of arguments to a circle by 1 and displays this onscreen."
-  (doto (MessageBox.
-         (:root @gui)
-         (bit-or SWT/ICON_INFORMATION SWT/OK))
-    (.setText "Split Circle")
-    (.setMessage "Split!")
-    .open))
-
-
-(defn del-circle [gui event]
-  "Removes a circle from view."
-  (doto (MessageBox.
-         (:root @gui)
-         (bit-or SWT/ICON_INFORMATION SWT/OK))
-    (.setText "Delete Circle")
-    (.setMessage "Delete!")
-    .open))
-
-(def actions
-  ;; Defines button behaviour.
-  (stylesheet
-   ;; problem here: draw-circle needs a canvas rather than an event
-   ;; can do like e.gc.drawImage(...)
-   ;; [:circle-area] [:paint+paint-control draw-circle]
-   [:new-circ] [:selection+widget-selected new-circle]
-   [:split-circ] [:selection+widget-selected split-circle]
-   [:del-circ] [:selection+widget-selected del-circle]))
-
-(defn -main [& args]
-  (let [gui (window look actions)
-        shell (:root @gui)]
-    (.open shell)
-    (swt-loop shell)))
-)

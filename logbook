@@ -112,3 +112,8 @@
           - mostly migrated to seesaw/swing, need to add actions for buttons
 04/01/12: - put buttons in column instead of line
           - sorted out listeners; buttons now do alerts as placeholders
+          - added new-circle and edit-circle to draw and edit circles getting info from dialogues
+          - added string-to-int-list to parse use input from dialogues (for now)
+          - dialogues for now taking defcircle arg strings, appending "defcircle" and evaling
+          - removed old swt crap now that fully migrated to seesaw/swing
+          - maybe have another agent with used circle names?

@@ -19,10 +19,9 @@
 (ns nico.core
   (:gen-class)
   (:use (seesaw core graphics)
-        [clojure.string :only [split split-lines]])
-  (:import (java.io File)
-           (javax.imageio ImageIO)))
+        [clojure.string :only [split split-lines]]))
 
+(comment
 ;; Images used to represent circles of 2-8 arguments.
 (def img-c2 (ImageIO/read (File. "images/nico_circ2.png")))
 (def img-c3 (ImageIO/read (File. "images/nico_circ3.png")))
@@ -35,6 +34,7 @@
 ;; Width and height of the circle images.
 (def circx (.. img-c2 getWidth))
 (def circy (.. img-c2 getHeight))
+)
 
 (def used-coords
   ;; Agent listing locations of existing circles.
@@ -62,7 +62,8 @@
   `(def ~name
      {:x ~(:x xy)
       :y ~(:y xy)
-      :img ~(symbol (str "img-c" (+ 2 (count args))))
+      ;; :img ~(symbol (str "img-c" (+ 2 (count args))))
+      :name ~(str name)
       :circ (cons ~fun
                   (cons ~(cond (symbol? arg1) `(quote ~arg1)
                                :else arg1)
@@ -98,18 +99,55 @@
     (cond (empty? in) (reverse out)
           :else (recur (rest in) (cons (Integer/parseInt (first in)) out)))))
 
+(defn draw-circle [circ]
+  "Draws a circle circ at co-ordinates (x,y) given a canvas c and a Graphics2D g."
+  (let [g (.getGraphics (select main-window [:#canvas]))
+        x (:x circ)
+        y (:y circ)
+        op (cond (= (first (:circ circ)) +) "+"
+                 (= (first (:circ circ)) -) "-"
+                 (= (first (:circ circ)) *) "*"
+                 (= (first (:circ circ)) /) "/"
+                 :else "error")
+        args (rest (:circ circ))
+        sym (:name circ)]
+    (doto g
+      (.drawOval x y 100 100)
+      (.drawOval (+ x 30) (+ y 30) 40 40)
+      (.drawString sym x (+ y 110))
+      (.drawString op (+ x 50) (+ y 50)))))
+      
+      ;; seesaw implementation; temp fix above by working directly on SunGraphics2D
+      (comment
+      (draw g
+            (ellipse x y 100) (style :foreground "#000000"
+                                     :background "#0000FF")
+            (ellipse x y 20)  (style :foreground "#000000"
+                                     :background "#FF0000")))
+
+(defn clear-screen []
+  "Clears all visible drawings from the canvas."
+  (doto (.getGraphics (select main-window [:#canvas]))
+    (.setColor java.awt.Color/WHITE)
+    (.fillRect 0 0 640 480)))
+
 (defn new-circle []
   "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
-  (load-string (str "(defcircle c0 " (input "New:") ")")))
+  (let [expr (read-string (str "(defcircle " (input "New:") ")"))
+  (do
+    (load-string (str "(defcircle " (input "New:") ")"))
+    (draw-circle (select main-window [:#canvas]) (.getGraphics (select main-window [:#canvas])) c0 x y)))
 
 (defn edit-circle []
   "Brings up a dialogue to edit the parameters of an existing circle and redraws it."
-    (load-string (str "(defcircle c0 " (input "Edit:") ")")))
+  (load-string (str "(defcircle " (input "Edit:") ")")))
 
-(defn main-window []
-  "Creates the contents of Nico's main window."
+(def main-window
+  ;; Creates the contents of Nico's main window.
+  (do (native!)
   (flow-panel :id :root
               :items [(canvas :id :canvas
+                              :background "#FFFFFF"
                               :border "Calculation"
                               :size [640 :by 480])
                       (grid-panel :id :buttons
@@ -119,14 +157,14 @@
                                                   :listen [:mouse-clicked (fn [e] (new-circle))])
                                           (button :id :edit
                                                   :text "Edit"
-                                                  :listen [:mouse-clicked (fn [e] (edit-circle))])])]))
+                                                  :listen [:mouse-clicked (fn [e] (edit-circle))])])])))
 
 (defn -main [& args]
   (do
     (native!)
     (invoke-later
      (-> (frame :title "Nico v0.0.1",
-                :content (main-window),
+                :content main-window,
                 :on-close :exit)
          pack!
          show!))))

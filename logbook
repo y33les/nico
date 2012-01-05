@@ -117,3 +117,14 @@
           - dialogues for now taking defcircle arg strings, appending "defcircle" and evaling
           - removed old swt crap now that fully migrated to seesaw/swing
           - maybe have another agent with used circle names?
+05/01/12: - removed println from new- and edit-circle
+          - canvas bg now white
+          - main-window changed to a def rather than a defn so now selectable
+          - -main fn changed accordingly
+          - for some reason .getGraphics is returning a SunGraphics2D (which seesaw can't use) rather than a Graphics2D (which it can) - casting to a Graphics or a Graphics2D still gives a SunGraphics2D, seems to be some kind of jvm internal type, maybe sth to do with how clojure works?
+          - using .drawOval to draw directly on the SunGraphics2D now as seesaw is being weird
+          - need to figure out how to fill circles, delete circles, add labels
+          - removing :img field from defcircle as well as loaded images as now drawing manually
+          - adding :name field to defcircle to make labelling onscreen easier
+          - draw-circle now labelling circles with names and ops
+          - writing fn clear-screen to paint a white rectangle over the whole canvas

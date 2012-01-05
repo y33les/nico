@@ -130,3 +130,7 @@
           - writing fn clear-screen to paint a white rectangle over the whole canvas
           - circle-drawing now limited - 15px-thick border between canvas edge and allowed drawing space, which clear-screen clears
           - tidied up some crap, removed commented-out sections
+          - added working clear button to window using the clear-screen fn
+          - tried tidying-up canvas and border by putting it in an xyz-panel but failed, put back
+          - draw-circle now prints the list of args above the circle, need to sort so that it prints around the circle
+          - should probably add random colour generator to defcircle, maybe a field :colour

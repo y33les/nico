@@ -34,7 +34,7 @@
 
 (defn xy-rng []
   (let [x (+ 15 (. (java.util.Random.) nextInt 510))
-        y (+ 15 (. (java.util.Random.) nextInt 350))]
+        y (+ 15 (. (java.util.Random.) nextInt 340))]
     (do
       (send-off used-coords #(cons (list x y) %))
       {:x x
@@ -94,12 +94,17 @@
         args (rest (:circ circ))
         sym (:name circ)]
     (doto g
+      (.setColor (java.awt.Color. 0x88FF88))
+      (.fillOval x y 100 100)
       (.setColor java.awt.Color/BLACK)
-      (.setBackground java.awt.Color/RED)
       (.drawOval x y 100 100)
+      (.setColor (java.awt.Color. 0x44BB44))
+      (.fillOval (+ x 30) (+ y 30) 40 40)
+      (.setColor java.awt.Color/BLACK)
       (.drawOval (+ x 30) (+ y 30) 40 40)
       (.drawString sym x (+ y 110))
-      (.drawString op (+ x 50) (+ y 50)))))
+      (.drawString op (+ x 50) (+ y 50))
+      (.drawString (str args) x y))))
       
 (defn clear-screen []
   "Clears all visible drawings from the canvas."
@@ -133,7 +138,10 @@
                                                   :listen [:mouse-clicked (fn [e] (new-circle))])
                                           (button :id :edit
                                                   :text "Edit"
-                                                  :listen [:mouse-clicked (fn [e] (edit-circle))])])])))
+                                                  :listen [:mouse-clicked (fn [e] (edit-circle))])
+                                          (button :id :clear
+                                                  :text "Clear"
+                                                  :listen [:mouse-clicked (fn [e] (clear-screen))])])])))
 
 (defn -main [& args]
   (do

@@ -48,8 +48,8 @@
      (slurp qsfile)))))
 
 (defn xy-rng []
-  (let [x (. (java.util.Random.) nextInt 640) ;; canvx
-        y (. (java.util.Random.) nextInt 480)] ;; canvy
+  (let [x (+ 15 (. (java.util.Random.) nextInt 510)) ;; canvx
+        y (+ 15 (. (java.util.Random.) nextInt 350))] ;; canvy
     (do
       (send-off used-coords #(cons (list x y) %))
       {:x x
@@ -99,6 +99,8 @@
     (cond (empty? in) (reverse out)
           :else (recur (rest in) (cons (Integer/parseInt (first in)) out)))))
 
+(def main-window)
+
 (defn draw-circle [circ]
   "Draws a circle circ at co-ordinates (x,y) given a canvas c and a Graphics2D g."
   (let [g (.getGraphics (select main-window [:#canvas]))
@@ -112,6 +114,8 @@
         args (rest (:circ circ))
         sym (:name circ)]
     (doto g
+      (.setColor java.awt.Color/BLACK)
+      (.setBackground java.awt.Color/RED)
       (.drawOval x y 100 100)
       (.drawOval (+ x 30) (+ y 30) 40 40)
       (.drawString sym x (+ y 110))
@@ -123,20 +127,21 @@
             (ellipse x y 100) (style :foreground "#000000"
                                      :background "#0000FF")
             (ellipse x y 20)  (style :foreground "#000000"
-                                     :background "#FF0000")))
+                                     :background "#FF0000"))
+      )
 
 (defn clear-screen []
   "Clears all visible drawings from the canvas."
   (doto (.getGraphics (select main-window [:#canvas]))
     (.setColor java.awt.Color/WHITE)
-    (.fillRect 0 0 640 480)))
+    (.fillRect 15 15 610 450)))
 
 (defn new-circle []
   "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
-  (let [expr (read-string (str "(defcircle " (input "New:") ")"))
+  (let [expr (read-string (str "(defcircle " (input "New:") ")"))]
   (do
-    (load-string (str "(defcircle " (input "New:") ")"))
-    (draw-circle (select main-window [:#canvas]) (.getGraphics (select main-window [:#canvas])) c0 x y)))
+    (load-string (str "(defcircle " (input "New:") ")")))))
+    ;; (draw-circle (select main-window [:#canvas]) (.getGraphics (select main-window [:#canvas])) c0 x y))))
 
 (defn edit-circle []
   "Brings up a dialogue to edit the parameters of an existing circle and redraws it."

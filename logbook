@@ -128,3 +128,4 @@
           - adding :name field to defcircle to make labelling onscreen easier
           - draw-circle now labelling circles with names and ops
           - writing fn clear-screen to paint a white rectangle over the whole canvas
+          - circle-drawing now limited - 15px-thick border between canvas edge and allowed drawing space, which clear-screen clears

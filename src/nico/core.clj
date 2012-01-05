@@ -21,21 +21,6 @@
   (:use (seesaw core graphics)
         [clojure.string :only [split split-lines]]))
 
-(comment
-;; Images used to represent circles of 2-8 arguments.
-(def img-c2 (ImageIO/read (File. "images/nico_circ2.png")))
-(def img-c3 (ImageIO/read (File. "images/nico_circ3.png")))
-(def img-c4 (ImageIO/read (File. "images/nico_circ4.png")))
-(def img-c5 (ImageIO/read (File. "images/nico_circ5.png")))
-(def img-c6 (ImageIO/read (File. "images/nico_circ6.png")))
-(def img-c7 (ImageIO/read (File. "images/nico_circ7.png")))
-(def img-c8 (ImageIO/read (File. "images/nico_circ8.png")))
-
-;; Width and height of the circle images.
-(def circx (.. img-c2 getWidth))
-(def circy (.. img-c2 getHeight))
-)
-
 (def used-coords
   ;; Agent listing locations of existing circles.
   (agent '()))
@@ -48,8 +33,8 @@
      (slurp qsfile)))))
 
 (defn xy-rng []
-  (let [x (+ 15 (. (java.util.Random.) nextInt 510)) ;; canvx
-        y (+ 15 (. (java.util.Random.) nextInt 350))] ;; canvy
+  (let [x (+ 15 (. (java.util.Random.) nextInt 510))
+        y (+ 15 (. (java.util.Random.) nextInt 350))]
     (do
       (send-off used-coords #(cons (list x y) %))
       {:x x
@@ -62,7 +47,6 @@
   `(def ~name
      {:x ~(:x xy)
       :y ~(:y xy)
-      ;; :img ~(symbol (str "img-c" (+ 2 (count args))))
       :name ~(str name)
       :circ (cons ~fun
                   (cons ~(cond (symbol? arg1) `(quote ~arg1)
@@ -87,10 +71,6 @@
           (map? (eval (first c))) (cond (nested? (:circ (eval (first c)))) (recur (rest c) (cons (eval-circle (eval (first c))) out))
                                         :else (recur (rest c) (cons (:circ (eval (first c))) out)))
           :else (recur (rest c) (cons (eval (first c)) out)))))
-
-;; (defcircle c0 + 1 2 3 4 5)
-;; (defcircle c1 * 4 c0)
-;; (defcircle c2 + 2 c1 4 c0 c1)
 
 (defn string-to-int-list [s]
   "Takes a string of integers separated by spaces as returns a list of integers."
@@ -121,15 +101,6 @@
       (.drawString sym x (+ y 110))
       (.drawString op (+ x 50) (+ y 50)))))
       
-      ;; seesaw implementation; temp fix above by working directly on SunGraphics2D
-      (comment
-      (draw g
-            (ellipse x y 100) (style :foreground "#000000"
-                                     :background "#0000FF")
-            (ellipse x y 20)  (style :foreground "#000000"
-                                     :background "#FF0000"))
-      )
-
 (defn clear-screen []
   "Clears all visible drawings from the canvas."
   (doto (.getGraphics (select main-window [:#canvas]))

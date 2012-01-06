@@ -21,8 +21,8 @@
   (:use (seesaw core graphics)
         [clojure.string :only [split split-lines]]))
 
-(def used-coords
-  ;; Agent listing locations of existing circles.
+(def used-circles
+  ;; Agent listing symbols pointing to existing circles.
   (agent '()))
 
 (defn read-qset [qsfile]
@@ -32,28 +32,23 @@
     (clojure.string/split-lines
      (slurp qsfile)))))
 
-(defn xy-rng []
-  (let [x (+ 15 (. (java.util.Random.) nextInt 510))
-        y (+ 15 (. (java.util.Random.) nextInt 340))]
-    (do
-      (send-off used-coords #(cons (list x y) %))
-      {:x x
-       :y y})))
-
-
 (defmacro defcircle [name fun arg1 arg2 & args]
-  "Creates a new circle represented by '(fun arg1 arg2 & args).  Can be nested."
-  (let [xy (xy-rng)]
-  `(def ~name
-     {:x ~(:x xy)
-      :y ~(:y xy)
+  "Creates a new circle represented by '(fun arg1 arg2 & args) and adds a symbol pointing to it to used-circles.  Can be nested."
+  `(do
+     (def ~name
+     {:x ~(+ 15 (. (java.util.Random.) nextInt 510))
+      :y ~(+ 15 (. (java.util.Random.) nextInt 340))
       :name ~(str name)
       :circ (cons ~fun
                   (cons ~(cond (symbol? arg1) `(quote ~arg1)
                                :else arg1)
                         (cons ~(cond (symbol? arg2) `(quote ~arg2)
                                      :else arg2)
-                              (quote ~args))))})))
+                              (quote ~args))))})
+     (send-off used-circles #(cons (quote ~name) %))))
+
+;; (def used-circles (agent '()))
+;; (restart-agent used-circles '())
 
 (defn nested? [circ]
   "Returns true if a circle contains other circles."
@@ -112,16 +107,35 @@
     (.setColor java.awt.Color/WHITE)
     (.fillRect 15 15 610 450)))
 
+(defn render []
+  "Clears the screen, then draws all circles currently in used-circles."
+  (do
+    (clear-screen)
+    (loop [u @used-circles]
+      (cond (not (empty? u)) (do (draw-circle (eval (first u))) (recur (rest u)))))))
+
 (defn new-circle []
   "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
-  (let [expr (read-string (str "(defcircle " (input "New:") ")"))]
-  (do
-    (load-string (str "(defcircle " (input "New:") ")")))))
-    ;; (draw-circle (select main-window [:#canvas]) (.getGraphics (select main-window [:#canvas])) c0 x y))))
+  (let [expr (input "New:")]
+    (do
+      (load-string (str "(defcircle " expr ")"))
+      (load-string (str "(draw-circle " (first (split expr #" ")) ")")))))
 
 (defn edit-circle []
   "Brings up a dialogue to edit the parameters of an existing circle and redraws it."
   (load-string (str "(defcircle " (input "Edit:") ")")))
+
+(defn del-circle [circ]
+  "Removes a circle from used-circles, such that it won't reappear on executing render."
+  (send-off used-circles (fn [_] (loop [in @used-circles
+                                        out '()
+                                        c circ]
+                                   (cond (empty? in) (reverse out)
+                                         (= (str (first in)) c) (recur (rest in) out c)
+                                         :else (recur (rest in) (cons (first in) out) c))))))
+
+;; (def used-circles (agent '()))
+;; (restart-agent used-circles '())
 
 (def main-window
   ;; Creates the contents of Nico's main window.
@@ -139,6 +153,12 @@
                                           (button :id :edit
                                                   :text "Edit"
                                                   :listen [:mouse-clicked (fn [e] (edit-circle))])
+                                          (button :id :remove
+                                                  :text "Remove"
+                                                  :listen [:mouse-clicked (fn [e] (del-circle (input "Remove:")))])
+                                          (button :id :render
+                                                  :text "Render"
+                                                  :listen [:mouse-clicked (fn [e] (render))])
                                           (button :id :clear
                                                   :text "Clear"
                                                   :listen [:mouse-clicked (fn [e] (clear-screen))])])])))

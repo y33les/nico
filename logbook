@@ -134,3 +134,14 @@
           - tried tidying-up canvas and border by putting it in an xyz-panel but failed, put back
           - draw-circle now prints the list of args above the circle, need to sort so that it prints around the circle
           - should probably add random colour generator to defcircle, maybe a field :colour
+06/01/12: - used-coords now used-circles
+          - xy-rng no longer sends off xy maps to used-coords, will change defcircle to send whole circles off to used-circles, can grab :x and :y data from those if needed
+          - in fact, removing xy-rng altogether as can incorporate into defcircle
+          - defcircle now sends off a symbol pointing to the new circle to used-circles
+          - wrote a fn render that redraws all active circles, added a button for it
+          - defcircle not actually defining circles, only sending off a symbol corresponding to name to used-circles
+          - defcircle fixed, now sends off the symbol pointing to the new circle to used-circles
+          - added fn del-circle to remove circles from used-circles, works
+          - rewriting new-circle to define a new circle and draw it
+          - new-circle for some reason not sending circles off to used-circles
+          - buttons mysteriously executing without complaint but not actually doing anything; maybe all in seperate thread/namespace?

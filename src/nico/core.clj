@@ -99,8 +99,9 @@
       (.drawOval (+ x 30) (+ y 30) 40 40)
       (.drawString sym x (+ y 110))
       (.drawString op (+ x 50) (+ y 50))
-      (.drawString (str args) x y))))
-      
+      (.drawString (str args) x y)
+      (.drawString (str @used-circles) (+ x 100) (+ y 100)))))
+
 (defn clear-screen []
   "Clears all visible drawings from the canvas."
   (doto (.getGraphics (select main-window [:#canvas]))
@@ -112,30 +113,80 @@
   (do
     (clear-screen)
     (loop [u @used-circles]
-      (cond (not (empty? u)) (do (draw-circle (eval (first u))) (recur (rest u)))))))
+      (cond (not (empty? u)) (do (draw-circle (first u)) (recur (rest u)))))))
 
-(defn new-circle []
-  "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
-  (let [expr (input "New:")]
-    (do
-      (load-string (str "(defcircle " expr ")"))
-      (load-string (str "(draw-circle " (first (split expr #" ")) ")")))))
-
-(defn edit-circle []
-  "Brings up a dialogue to edit the parameters of an existing circle and redraws it."
-  (load-string (str "(defcircle " (input "Edit:") ")")))
-
-(defn del-circle [circ]
-  "Removes a circle from used-circles, such that it won't reappear on executing render."
-  (send-off used-circles (fn [_] (loop [in @used-circles
-                                        out '()
-                                        c circ]
-                                   (cond (empty? in) (reverse out)
-                                         (= (str (first in)) c) (recur (rest in) out c)
-                                         :else (recur (rest in) (cons (first in) out) c))))))
+(defn find-circle [name]
+  "Returns the circle in used-circles with the :name property corresponding to name."
+  (loop [n name
+         u @used-circles]
+    (cond (empty? u) (alert "Circle not found.")
+          (= n (:name (first u))) (first u)
+          :else (recur n (rest u)))))
 
 ;; (def used-circles (agent '()))
 ;; (restart-agent used-circles '())
+
+(defn kill-used-circles []
+  "Empties used-circles.  For use in debugging; should be removed from finished program."
+  (def used-circles (agent '())))
+
+(defn new-circle []
+  "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
+  (let [in   (input "New:")
+        name (first (split in #" "))
+        fun  (eval (read-string (nth (split in #" ") 1)))
+        expr (cons fun (rest (rest (read-string (str "(" in ")")))))
+        circ {:x (+ 15 (. (java.util.Random.) nextInt 510))
+              :y (+ 15 (. (java.util.Random.) nextInt 340))
+              :name name
+              :circ expr}]
+                    ;; (cons fun
+                    ;;      (cons ~(cond (not (integer? arg1)) `(quote ~arg1)
+                    ;;                   :else arg1)
+                    ;;            (cons ~(cond (not (integer? arg2)) `(quote ~arg2)
+                    ;;                         :else arg2)
+                    ;;                  (quote ~args))))}]
+       (do
+         (send-off used-circles #(cons circ %))
+         (await used-circles)
+         (draw-circle (find-circle name)))))
+       ;; (load-string (str "(draw-circle " (first (split expr #" ")) ")"))
+       ;; (load-string (str "(println (resolve '" (first (split expr #" ")) "))")))))
+
+
+(defn del-circle [& name]
+  "Removes a circle from used-circles, such that it won't reappear on executing render."
+  (do
+    (send-off used-circles (fn [_] (loop [in @used-circles
+                                          out '()
+                                          c (cond (nil? name) (input "Remove:")
+                                                  :else (first name))]
+                                     (cond (empty? in) (reverse out)
+                                           (= (:name (first in)) c) (recur (rest in) out c)
+                                           :else (recur (rest in) (cons (first in) out) c)))))
+    ;; (await-for 2000 used-circles)
+    (render)))
+
+(defn edit-circle []
+  "Brings up a dialogue to edit the parameters of an existing circle and redraws it."
+  (let [in   (input "Edit:")
+        name (first (split in #" "))
+        fun  (eval (read-string (nth (split in #" ") 1)))
+        expr (cons fun (rest (rest (read-string (str "(" in ")")))))
+        old  (find-circle name)
+        new  {:x (:x old)
+              :y (:y old)
+              :name (:name old)
+              :circ expr}]
+    (do
+      (prn name)
+      (prn expr)
+      (prn (str "old: " old))
+      (prn (str "new: " new))
+      (del-circle name)
+      (send-off used-circles #(cons new %))
+      ;; (await used-circles)
+      (render))))
 
 (def main-window
   ;; Creates the contents of Nico's main window.
@@ -155,7 +206,7 @@
                                                   :listen [:mouse-clicked (fn [e] (edit-circle))])
                                           (button :id :remove
                                                   :text "Remove"
-                                                  :listen [:mouse-clicked (fn [e] (del-circle (input "Remove:")))])
+                                                  :listen [:mouse-clicked (fn [e] (del-circle))])
                                           (button :id :render
                                                   :text "Render"
                                                   :listen [:mouse-clicked (fn [e] (render))])

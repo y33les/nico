@@ -145,3 +145,13 @@
           - rewriting new-circle to define a new circle and draw it
           - new-circle for some reason not sending circles off to used-circles
           - buttons mysteriously executing without complaint but not actually doing anything; maybe all in seperate thread/namespace?
+07/01/12: - thinking of ditching defcircle and just keeping the used-circles agent, maybe incorporate into new-circle?
+          - rewriting new-circle as a macro that creates the circle map, sends it off to used-circles and draws it - used-circles will now be used as a list of maps rather than symbols
+          - added fn find-circle to select circles by name from used-circles for when it contains maps rather than symbols
+          - adding fn build-circle-expr to de-nest circles
+          - or not, because that's a stupid idea - need to have symbols or similar in case nested circles change
+          - fixed new-circle so that the actual fn is used in :circ rather than the symbol (i.e. the fn + as opposed to '+)
+          - added fn kill-used-circles to empty used-circles to save time debugging
+          - rewrote edit-circle so it now removes old circle and re-adds new one with new expression in :circ field
+          - added ability to supply an argument to del-circle without using input box so that edit-circle now works properly
+          - 

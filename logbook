@@ -162,3 +162,14 @@
           - adding fn count-nested to see how nested circles are, will use to determine colour
           - link-circles now incorporated into draw-circle, removed from render
           - not working, will come back to later
+          - java.awt.event.MouseEvent has methods getX() and getY() to get mouse co-ords relative to component, will be useful
+          - need fns to get mouse co-ords on click, to check if co-ords within bounds of a circle and to stop circles overlapping
+          - adding fn in-circle to check if supplied co-ords are within a circle and returns circle name as a string, nil otherwise
+          - in-circle sorted
+          - fixing new-circle to check if circles overlap and place them such that they stay onscreen
+          - changed in-circle to now take an int and a bool, checks if int is within x range of a circle if the bool is true (y range if false)
+          - added fn in-circle? as a wrapper to in-circle, works the same but returns true if in a circle, false otherwise
+          - added fn available? as a wrapper to in-circle?, works the same but accounts for if that would be going off-screen or over another circle
+          - reintroducing xy-rng to generate a pair of available co-ords using available?; this is now used in new-circle
+          - new-circle not not-overlapping, blaming xy-rng, can't see why atm
+          - 

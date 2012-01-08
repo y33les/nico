@@ -81,6 +81,37 @@
 
 (def main-window)
 
+(defn in-circle [x x?]
+  "Checks if the supplied co-ordinate is within a circle (checks against :x if x? is true, :y otherwise) and, if so, returns the name of that circle as a string (otherwise returns nil)."
+  (loop [u @used-circles]
+    (cond x? (cond (empty? u) nil
+                   (and (> x (:x (first u)))
+                        (< x (+ (:x (first u)) 100))) (:name (first u))
+                   :else (recur (rest u)))
+          :else (cond (empty? u) nil
+                      (and (> x (:y (first u)))
+                           (< x (+ (:y (first u)) 100))) (:name (first u))
+                      :else (recur (rest u))))))
+
+(defn in-circle? [x x?]
+  "Wrapper function for in-circle that returns true if x is within the horizontal (if x? is true, vertical if x? is false) range of any circle and false otherwise."
+  (not (nil? (in-circle x x?))))
+
+(defn available? [x x?]
+  "Wrapper function for in-circle? that also checks if the generated co-ordinate will be out of bounds.  If x? is true it checks a x co-ordinate, if not it checks a y co-ordinate."
+  (cond x? (not (or (in-circle? x x?) (> (+ x 100) 640) (in-circle (+ x 100) x?)))
+        :else (not (or (in-circle? x x?) (> (+ x 100) 480) (in-circle (+ x 100) x?)))))
+
+(defn xy-rng []
+  "Generates a pair of co-ordinates as a map that can be used to create a non-overlapping circle."
+  (let [r (java.util.Random.)]
+    {:x (loop [rx (+ 15 (. r nextInt 510))]
+          (cond (not (available? rx true)) rx
+                :else (recur (+ 15 (. r nextInt 510)))))
+     :y (loop [ry (+ 15 (. r nextInt 340))]
+          (cond (not (available? ry false)) ry
+                :else (recur (+ 15 (. r nextInt 340)))))}))
+
 (defn count-nested [circ]
   "Returns an integer corresponding to how many nests of circles a given circle contains."
   (loop [c (rest (:circ circ))
@@ -113,7 +144,7 @@
         y (:y circ)
         op (cond (= (first (:circ circ)) +) "+"
                  (= (first (:circ circ)) -) "-"
-                 (= (first (:circ circ)) *) (str \u00d7)
+-                 (= (first (:circ circ)) *) (str \u00d7)
                  (= (first (:circ circ)) /) (str \u00f7)
                  :else "error")
         args (rest (:circ circ))
@@ -160,26 +191,18 @@
 (defn new-circle []
   "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
   (let [in   (input "New:")
+        rng  (xy-rng)
         name (first (split in #" "))
         fun  (eval (read-string (nth (split in #" ") 1)))
         expr (cons fun (rest (rest (read-string (str "(" in ")")))))
-        circ {:x (+ 15 (. (java.util.Random.) nextInt 510))
-              :y (+ 15 (. (java.util.Random.) nextInt 340))
+        circ {:x (:x rng)
+              :y (:y rng)
               :name name
               :circ expr}]
-                    ;; (cons fun
-                    ;;      (cons ~(cond (not (integer? arg1)) `(quote ~arg1)
-                    ;;                   :else arg1)
-                    ;;            (cons ~(cond (not (integer? arg2)) `(quote ~arg2)
-                    ;;                         :else arg2)
-                    ;;                  (quote ~args))))}]
        (do
          (send-off used-circles #(cons circ %))
          (await used-circles)
          (draw-circle (find-circle name)))))
-       ;; (load-string (str "(draw-circle " (first (split expr #" ")) ")"))
-       ;; (load-string (str "(println (resolve '" (first (split expr #" ")) "))")))))
-
 
 (defn del-circle [& name]
   "Removes a circle from used-circles, such that it won't reappear on executing render."

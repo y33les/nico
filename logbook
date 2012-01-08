@@ -154,4 +154,11 @@
           - added fn kill-used-circles to empty used-circles to save time debugging
           - rewrote edit-circle so it now removes old circle and re-adds new one with new expression in :circ field
           - added ability to supply an argument to del-circle without using input box so that edit-circle now works properly
-          - 
+08/01/12: - fixed nested? fn to work with new circles (takes a map arg, use in conjunction with find-circle)
+          - eval-circle fixed to work with new circles
+          - render now draws current totals of all active circles
+          - adding fn link-circles to (for now) draw a line/arrow between circles where there is a circle arg (will later make a triangle or sth nicer but a line/arrow is fine for now)
+          - done, incorporated into render
+          - adding fn count-nested to see how nested circles are, will use to determine colour
+          - link-circles now incorporated into draw-circle, removed from render
+          - not working, will come back to later

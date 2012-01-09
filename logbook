@@ -187,4 +187,11 @@
           - added next q and prev q buttons, dummy fns returning nil for now
           - next and prev buttons now just grab the first question
           - now displays first q properly on opening app
-          - 
+          - changing read-qset to read qs into a list of maps
+          - question format is (for now) {:n question-number :q question :a? answered? :c? correct?}
+          - qset file just a list of sexps atm
+          - closing file dialogue just gives you a blank canvas to play with, need to decide if want or not, probs do but should formalise it rather than just closing the dialogue
+          - put dummy fns for next and prev back in, open now does the string manipulation properly (also its :id has changed from :qset to :open)
+          - question bit was printing "(quote <q>)" so now using (first (rest (:q (first @current-qset)))) to just get the maths bit
+          - adding area for current total, will have to leave inactive until root-finding fn is done
+          - thinking of having font red until total is correct (turns green)

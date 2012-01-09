@@ -38,11 +38,22 @@
           :else (recur n (rest u)))))
 
 (defn read-qset [qsfile]
-  "Reads a set of questions from the file qsfile into a list."
-  (reverse
-   (into ()
-    (clojure.string/split-lines
-     (slurp qsfile)))))
+  "Reads a set of questions from the file qsfile into a list of maps."
+  (loop [in (reverse (into () (clojure.string/split-lines (slurp qsfile))))
+         out '()
+         n 1]
+    (cond (empty? in) (reverse out)
+          :else (recur
+                 (rest in)
+                 (cons
+                  (read-string (str
+                                "{:n "
+                                n
+                                " :q '"
+                                (first in)
+                                " :a? false :c? false}"))
+                  out)
+                 (inc n)))))
 
 (defmacro defcircle [name fun arg1 arg2 & args]
   "Creates a new circle represented by '(fun arg1 arg2 & args) and adds a symbol pointing to it to used-circles.  Can be nested."
@@ -264,40 +275,74 @@
   (do
     (native!)
     (border-panel :id     :root
-                  :north  (label      :id         :question
-                                      :text       (str "Q: " (first @current-qset))
-                                      :font       {:name :sans-serif :style :bold :size 24}
-                                      :border     "Question")
-                  :center (canvas     :id         :canvas
-                                      :background "#FFFFFF"
-                                      :border     "Calculation"
-                                      :size       [640 :by 480])
-                  :east   (grid-panel :id         :buttons
-                                      :columns    1
-                                      :items      [(button :id     :qset
-                                                           :text   "Open"
-                                                           :listen [:mouse-clicked (fn [e] (do (load-qset) (config! (select main-window [:#question]) :text (str "Q: " (first @current-qset)))))])
-                                                   (button :id     :next
-                                                           :text   "Next"
-                                                           :listen [:mouse-clicked (fn [e] (config! (select main-window [:#question]) :text (str "Q: " (first @current-qset))))])
-                                                   (button :id     :prev
-                                                           :text   "Previous"
-                                                           :listen [:mouse-clicked (fn [e] (config! (select main-window [:#question]) :text (str "Q: " (first @current-qset))))])
-                                                   (button :id     :new
-                                                           :text   "New"
-                                                           :listen [:mouse-clicked (fn [e] (do (new-circle) (render)))])
-                                                   (button :id     :edit
-                                                           :text   "Edit"
-                                                           :listen [:mouse-clicked (fn [e] (do (edit-circle) (render)))])
-                                                   (button :id     :remove
-                                                           :text   "Remove"
-                                                           :listen [:mouse-clicked (fn [e] (do (del-circle) (render)))])
-                                                   (button :id     :render
-                                                           :text   "Render"
-                                                           :listen [:mouse-clicked (fn [e] (render))])
-                                                   (button :id     :clear
-                                                           :text   "Clear"
-                                                           :listen [:mouse-clicked (fn [e] (clear-screen))])]))))
+                  :north  (border-panel :id       :top
+                                        :center   (label  :id     :question
+                                                          :text   (str
+                                                                   "Q"
+                                                                   (:n (first @current-qset))
+                                                                   ": "
+                                                                   (:q (first @current-qset)))
+                                                          :font   {:name :sans-serif :style :bold :size 24}
+                                                          :border "Question")
+                                        :east     (label  :id     :answer
+                                                          :text   "ans"
+                                                          :font   {:name :sans-serif :style :bold :size 24}
+                                                         :border "Answer"))
+                  :center (canvas       :id         :canvas
+                                        :background "#FFFFFF"
+                                        :border     "Calculation"
+                                        :size       [640 :by 480])
+                  :east   (grid-panel   :id         :buttons
+                                        :columns    1
+                                        :items      [(button :id     :open
+                                                             :text   "Open"
+                                                             :listen [:mouse-clicked (fn [e]
+                                                                                       (do (load-qset)
+                                                                                           (config!
+                                                                                            (select
+                                                                                             main-window
+                                                                                             [:#question])
+                                                                                            :text (str
+                                                                                                   (first
+                                                                                                    (rest
+                                                                                                     (:q
+                                                                                                      (first @current-qset)))))
+                                                                                            :border (str
+                                                                                                     "Question "
+                                                                                                     (:n
+                                                                                                      (first @current-qset))))))])
+                                                     (button :id     :next
+                                                             :text   "Next"
+                                                             :listen [:mouse-clicked (fn [e] (constantly nil))])
+                                                     (button :id     :prev
+                                                             :text   "Previous"
+                                                             :listen [:mouse-clicked (fn [e] (constantly nil))])
+                                                     (button :id     :new
+                                                             :text   "New"
+                                                             :listen [:mouse-clicked (fn [e]
+                                                                                       (do
+                                                                                         (new-circle)
+                                                                                         (render)))])
+                                                     (button :id     :edit
+                                                             :text   "Edit"
+                                                             :listen [:mouse-clicked (fn [e]
+                                                                                       (do
+                                                                                         (edit-circle)
+                                                                                         (render)))])
+                                                     (button :id     :remove
+                                                             :text   "Remove"
+                                                             :listen [:mouse-clicked (fn [e]
+                                                                                       (do
+                                                                                         (del-circle)
+                                                                                         (render)))])
+                                                     (button :id     :render
+                                                             :text   "Render"
+                                                             :listen [:mouse-clicked (fn [e]
+                                                                                       (render))])
+                                                     (button :id     :clear
+                                                             :text   "Clear"
+                                                             :listen [:mouse-clicked (fn [e]
+                                                                                       (clear-screen))])]))))
 
 (defn -main [& args]
   (do
@@ -310,4 +355,4 @@
                   :on-close :exit)
            pack!
            show!)
-       (config! (select main-window [:#question]) :text (str "Q: " (first @current-qset)))))))
+       (config! (select main-window [:#question]) :text (str (first (rest (:q (first @current-qset))))) :border (str "Question " (:n (first @current-qset))))))))

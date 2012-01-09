@@ -172,4 +172,19 @@
           - added fn available? as a wrapper to in-circle?, works the same but accounts for if that would be going off-screen or over another circle
           - reintroducing xy-rng to generate a pair of available co-ords using available?; this is now used in new-circle
           - new-circle not not-overlapping, blaming xy-rng, can't see why atm
+09/01/12: - xy-rng was only generating unavailable co-ords!  forgot to take out the (not) around the available? predicates *facepalm*
+          - increasing font size on canvas, will wok on showing/checking questions next
+          - need a fn choose-qset to choose a file containing a set of questions, the others to iterate through and mark answers
+          - therefore need a function to check which is the root circle; need to finish count-nested
+          - main-window now used border-panel to display shit properly
+          - thinking of reading the qset into an agent, could give qs a :correct? field to automate marking/show totals?
+          - added agent current-qset that holds a list of questions from a .nqs file
+          - added fns load-qset (loads .nqs file and sends off to current-qset) and kill-current-qset (empties current-qset)
+          - reversing order of circle rendering so that root rather than leaves is on top
+          - meh, looks worse, putting it back
+          - new-circle warns that non-existent circle args don't exist but still lets you use them
+          - actually, that's good: if you then define the circles you pre-declared it links them up properly, needs a bit of polish though
+          - added next q and prev q buttons, dummy fns returning nil for now
+          - next and prev buttons now just grab the first question
+          - now displays first q properly on opening app
           - 

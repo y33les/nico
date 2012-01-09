@@ -18,11 +18,15 @@
 
 (ns nico.core
   (:gen-class)
-  (:use (seesaw core graphics)
+  (:use (seesaw core graphics chooser)
         [clojure.string :only [split split-lines]]))
 
 (def used-circles
   ;; Agent listing symbols pointing to existing circles.
+  (agent '()))
+
+(def current-qset
+  ;; Agent listing question set read from a file.
   (agent '()))
 
 (defn find-circle [name]
@@ -106,10 +110,10 @@
   "Generates a pair of co-ordinates as a map that can be used to create a non-overlapping circle."
   (let [r (java.util.Random.)]
     {:x (loop [rx (+ 15 (. r nextInt 510))]
-          (cond (not (available? rx true)) rx
+          (cond (available? rx true) rx
                 :else (recur (+ 15 (. r nextInt 510)))))
      :y (loop [ry (+ 15 (. r nextInt 340))]
-          (cond (not (available? ry false)) ry
+          (cond (available? ry false) ry
                 :else (recur (+ 15 (. r nextInt 340)))))}))
 
 (defn count-nested [circ]
@@ -137,14 +141,14 @@
           :else (recur (rest c) x y))))
 
 (defn draw-circle [circ]
-  "Draws a circle circ at co-ordinates (x,y) given a canvas c and a Graphics2D g."
+  "Draws a circle circ at co-ordinates ((:x circ),(:y circ)) on the canvas."
   (let [g (.getGraphics (select main-window [:#canvas]))
         c circ
         x (:x circ)
         y (:y circ)
         op (cond (= (first (:circ circ)) +) "+"
                  (= (first (:circ circ)) -) "-"
--                 (= (first (:circ circ)) *) (str \u00d7)
+                 (= (first (:circ circ)) *) (str \u00d7)
                  (= (first (:circ circ)) /) (str \u00f7)
                  :else "error")
         args (rest (:circ circ))
@@ -187,6 +191,23 @@
 (defn kill-used-circles []
   "Empties used-circles.  For use in debugging; should be removed from finished program."
   (def used-circles (agent '())))
+
+(defn kill-current-qset []
+  "Empties current-qset.  For use in debugging; should be removed from finished program."
+  (def current-qset (agent '())))
+
+(defn load-qset []
+  "Brings up a dialogue with a file chooser to specify where to load the question set from.  Sends off the contents of the chosen file to current-qset."
+  (choose-file :filters [(file-filter "Nico Question Set (*.nqs)"
+                                      #(or (.isDirectory %)
+                                           (=
+                                            (apply str (take-last 4 (.toString (.getAbsoluteFile %))))
+                                            ".nqs")))]
+               :success-fn (fn [fc f]
+                             (send-off current-qset
+                                       (fn [_]
+                                         (read-qset
+                                          (.getAbsoluteFile f)))))))
 
 (defn new-circle []
   "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
@@ -240,36 +261,53 @@
 
 (def main-window
   ;; Creates the contents of Nico's main window.
-  (do (native!)
-  (flow-panel :id :root
-              :items [(canvas :id :canvas
-                              :background "#FFFFFF"
-                              :border "Calculation"
-                              :size [640 :by 480])
-                      (grid-panel :id :buttons
-                                  :columns 1
-                                  :items [(button :id :new
-                                                  :text "New"
-                                                  :listen [:mouse-clicked (fn [e] (new-circle))])
-                                          (button :id :edit
-                                                  :text "Edit"
-                                                  :listen [:mouse-clicked (fn [e] (edit-circle))])
-                                          (button :id :remove
-                                                  :text "Remove"
-                                                  :listen [:mouse-clicked (fn [e] (del-circle))])
-                                          (button :id :render
-                                                  :text "Render"
-                                                  :listen [:mouse-clicked (fn [e] (render))])
-                                          (button :id :clear
-                                                  :text "Clear"
-                                                  :listen [:mouse-clicked (fn [e] (clear-screen))])])])))
+  (do
+    (native!)
+    (border-panel :id     :root
+                  :north  (label      :id         :question
+                                      :text       (str "Q: " (first @current-qset))
+                                      :font       {:name :sans-serif :style :bold :size 24}
+                                      :border     "Question")
+                  :center (canvas     :id         :canvas
+                                      :background "#FFFFFF"
+                                      :border     "Calculation"
+                                      :size       [640 :by 480])
+                  :east   (grid-panel :id         :buttons
+                                      :columns    1
+                                      :items      [(button :id     :qset
+                                                           :text   "Open"
+                                                           :listen [:mouse-clicked (fn [e] (do (load-qset) (config! (select main-window [:#question]) :text (str "Q: " (first @current-qset)))))])
+                                                   (button :id     :next
+                                                           :text   "Next"
+                                                           :listen [:mouse-clicked (fn [e] (config! (select main-window [:#question]) :text (str "Q: " (first @current-qset))))])
+                                                   (button :id     :prev
+                                                           :text   "Previous"
+                                                           :listen [:mouse-clicked (fn [e] (config! (select main-window [:#question]) :text (str "Q: " (first @current-qset))))])
+                                                   (button :id     :new
+                                                           :text   "New"
+                                                           :listen [:mouse-clicked (fn [e] (do (new-circle) (render)))])
+                                                   (button :id     :edit
+                                                           :text   "Edit"
+                                                           :listen [:mouse-clicked (fn [e] (do (edit-circle) (render)))])
+                                                   (button :id     :remove
+                                                           :text   "Remove"
+                                                           :listen [:mouse-clicked (fn [e] (do (del-circle) (render)))])
+                                                   (button :id     :render
+                                                           :text   "Render"
+                                                           :listen [:mouse-clicked (fn [e] (render))])
+                                                   (button :id     :clear
+                                                           :text   "Clear"
+                                                           :listen [:mouse-clicked (fn [e] (clear-screen))])]))))
 
 (defn -main [& args]
   (do
     (native!)
+    (load-qset)
     (invoke-later
-     (-> (frame :title "Nico v0.0.1",
-                :content main-window,
-                :on-close :exit)
-         pack!
-         show!))))
+     (do
+       (-> (frame :title "Nico v0.0.1",
+                  :content main-window,
+                  :on-close :exit)
+           pack!
+           show!)
+       (config! (select main-window [:#question]) :text (str "Q: " (first @current-qset)))))))

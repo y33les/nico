@@ -195,3 +195,12 @@
           - question bit was printing "(quote <q>)" so now using (first (rest (:q (first @current-qset)))) to just get the maths bit
           - adding area for current total, will have to leave inactive until root-finding fn is done
           - thinking of having font red until total is correct (turns green)
+10/01/12: - added fn point-in-circle, has original functionality of in-circle (i.e. takes two co-ords)
+          - starting working on dnd stuff, writing fn drag-circle-begin to get co-ords of click, check if in circle and send off to new agent currently-dragging-circle
+          - will next write fn drag-circle-end to send off nil to currently-dragging-circle, mod the :x and :y fields of the circle and re-render (not in that order)
+          - added agent current-question to keep track of question number
+          - dnd basically works, has trouble with leaf circles though, will come back to
+          - count-nested might be easier to do backwards, i.e. count how many steps before hitting a root (i.e. one with no symbols)
+          - so will check no. of symbols in each circle reached, somehow keep a record of all possible paths?
+          - clojure tree library/ies?  recursively build a tree?
+          - 

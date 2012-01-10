@@ -29,6 +29,14 @@
   ;; Agent listing question set read from a file.
   (agent '()))
 
+(def current-question
+  ;; Agent containing an integer corresponding to the quesiton number.
+  (agent 0))
+
+(def currently-dragging-circle
+  ;; Agent containing a string corresponding to the name of the circle currently being dragged.
+  (agent nil))
+
 (defn find-circle [name]
   "Returns the circle in used-circles with the :name property corresponding to name."
   (loop [n name
@@ -112,6 +120,16 @@
   "Wrapper function for in-circle that returns true if x is within the horizontal (if x? is true, vertical if x? is false) range of any circle and false otherwise."
   (not (nil? (in-circle x x?))))
 
+(defn point-in-circle [x y]
+  "Checks if the supplied co-ordinates are within a circle and, if so,  returns the name of that circle (else nil)."
+  (loop [u @used-circles]
+    (cond (empty? u) nil
+          (and (> x (:x (first u)))
+               (< x (+ (:x (first u)) 100))
+               (> y (:y (first u)))
+               (< y (+ (:y (first u)) 100))) (:name (first u))
+          :else (recur (rest u)))))
+
 (defn available? [x x?]
   "Wrapper function for in-circle? that also checks if the generated co-ordinate will be out of bounds.  If x? is true it checks a x co-ordinate, if not it checks a y co-ordinate."
   (cond x? (not (or (in-circle? x x?) (> (+ x 100) 640) (in-circle (+ x 100) x?)))
@@ -127,14 +145,26 @@
           (cond (available? ry false) ry
                 :else (recur (+ 15 (. r nextInt 340)))))}))
 
+(comment
 (defn count-nested [circ]
   "Returns an integer corresponding to how many nests of circles a given circle contains."
   (loop [c (rest (:circ circ))
-         n 0]
+         n 1]
     (cond (empty? c) n
           ;; (symbol? (first c)) (cond (nested? (find-circle (str (first c)))) (recur (rest c) (+ n (count-nested (find-circle (str (first c))))))
           ;;                           :else (recur (rest c) (inc n)))
           (symbol? (first c)) (recur (rest c) (+ n (count-nested (find-circle (str (first c))))))
+          :else (recur (rest c) n))))
+)
+
+(defn count-nested [circ]
+  "Returns an integer representing the number of levels traversed before hitting a root node."
+  (loop [c (rest (:circ circ))
+         ;; s is number of symbols in current circle
+         s (loop [
+         n 0]
+    (cond (empty? c) n
+          (symbol? (first c)) '()
           :else (recur (rest c) n))))
 
 (defn link-circles [circ]
@@ -270,6 +300,25 @@
       ;; (await used-circles)
       (render))))
 
+(defn drag-circle-begin [e]
+  "Detects if a circle has been selected and, if so, sends off its name to currently-dragging-circle."
+  (let [x  (.getX e)
+        y  (.getY e)
+        c  (point-in-circle x y)
+        c? (not (nil? c))]
+    (cond c? (send-off currently-dragging-circle (fn [_] c)))))
+
+(defn drag-circle-end [e]
+  "When a circle being dragged is released, modifies its :x and :y fields and sends off nil to currently-dragging-circle."
+  (let [x   (.getX e)
+        y   (.getY e)
+        old (find-circle @currently-dragging-circle)
+        new {:x x :y y :name (:name old) :circ (:circ old)}]
+    (cond (not (nil? @currently-dragging-circle)) (do
+                                                    (del-circle (:name old))
+                                                    (send-off used-circles #(cons new %))
+                                                    (send-off currently-dragging-circle (fn [_] nil))))))
+
 (def main-window
   ;; Creates the contents of Nico's main window.
   (do
@@ -291,7 +340,11 @@
                   :center (canvas       :id         :canvas
                                         :background "#FFFFFF"
                                         :border     "Calculation"
-                                        :size       [640 :by 480])
+                                        :size       [640 :by 480]
+                                        :listen     [:mouse-pressed #(drag-circle-begin %)
+                                                     :mouse-released #(do
+                                                                        (drag-circle-end %)
+                                                                        (render))])
                   :east   (grid-panel   :id         :buttons
                                         :columns    1
                                         :items      [(button :id     :open

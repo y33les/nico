@@ -157,15 +157,66 @@
           :else (recur (rest c) n))))
 )
 
+(defn leaf? [circ]
+  "Returns true if the circle does not have any other circles as arguments."
+  (loop [c (rest (:circ circ))
+         l true]
+    (cond (empty? c) l
+          (symbol? (first c)) false
+          :else (recur (rest c) l))))
+
+(defn nested-circles [circ]
+  "Returns a list of circ's arguments that are other circles."
+  (loop [in  (rest (:circ circ))
+         out '()]
+    (cond (empty? in) (reverse out)
+          (symbol? (first in)) (recur (rest in) (cons (str (first in)) out))
+          :else (recur (rest in) out))))
+
+(defn is-arg? [circ1 circ2]
+  "Returns true if circ1 is an argument of circ2."
+  (loop [n (:name circ1)
+         c (rest (:circ circ2))
+         a false]
+    (cond (empty? c) a
+          (= n (str (first c))) true
+          :else (recur n (rest c) a))))
+
+(defn root? [circ]
+  "Returns true if circ is not used as an argument to any other circle."
+  (loop [c circ
+         u @used-circles
+         r true]
+    (cond (empty? u) r
+          (is-arg? c (first u)) false
+          :else (recur c (rest u) r))))
+
+(defn find-root []
+  "Returns the root circle (i.e. the circle to be evaluated that contains all others)."
+  (loop [u @used-circles
+         c nil]
+    (cond (empty? u) c
+          (root? (first u)) (first u)
+          :else (recur (rest u) c))))
+
+(defn find-longest-path [circ]
+  "Takes a nested circle and returns the longest path to a root circle."
+  '())
+
 (defn count-nested [circ]
   "Returns an integer representing the number of levels traversed before hitting a root node."
   (loop [c (rest (:circ circ))
          ;; s is number of symbols in current circle
-         s (loop [
-         n 0]
+         s (loop [cp c
+                  n 0]
+             (cond (empty? cp) n
+                   (symbol? (first cp)) (recur (rest cp) (inc n))
+                   :else (recur (rest cp) n)))
+         n 1]
     (cond (empty? c) n
-          (symbol? (first c)) '()
-          :else (recur (rest c) n))))
+          (symbol? (first c)) (cond (> s 1) (recur (rest c) s (+ n (count-nested (find-circle (find-longest-path c)))))
+                                    :else (recur (rest c) s (+ n (count-nested (find-circle (str (first c))))))
+          :else (recur (rest c) s n)))))
 
 (defn link-circles [circ]
   "Draws a lines from a nested circle to its circle-valued arguments."
@@ -173,7 +224,7 @@
          x (+ (:x circ) 50)
          y (+ (:y circ) 50)]
     (cond (empty? c) nil
-          (symbol? (first c)) (do (let [t (find-circle (str (first c)))
+          (symbol? (first c)) (do (let [t  (find-circle (str (first c)))
                                         tx (+ (:x t) 50)
                                         ty (+ (:y t) 50)]
                                   (doto (.getGraphics (select main-window [:#canvas]))
@@ -334,9 +385,9 @@
                                                           :font   {:name :sans-serif :style :bold :size 24}
                                                           :border "Question")
                                         :east     (label  :id     :answer
-                                                          :text   "ans"
+                                                          :text   ""
                                                           :font   {:name :sans-serif :style :bold :size 24}
-                                                         :border "Answer"))
+                                                          :border "Answer"))
                   :center (canvas       :id         :canvas
                                         :background "#FFFFFF"
                                         :border     "Calculation"
@@ -395,7 +446,25 @@
                                                      (button :id     :clear
                                                              :text   "Clear"
                                                              :listen [:mouse-clicked (fn [e]
-                                                                                       (clear-screen))])]))))
+                                                                                       (clear-screen))])])
+                  :south  (button       :id         :eval
+                                        :text       "Evaluate!"
+                                        :font       {:name :sans-serif :style :bold :size 16}
+                                        :listen [:mouse-clicked (fn [e]
+                                                                  (config!
+                                                                   (select
+                                                                    main-window
+                                                                    [:#answer])
+                                                                   :text (str (eval (eval-circle (find-root))))
+                                                                   :foreground (cond (=
+                                                                                (eval
+                                                                                 (eval-circle
+                                                                                  (find-root)))
+                                                                                (eval
+                                                                                 (eval
+                                                                                  (:q
+                                                                                   (first @current-qset))))) "#00FF00"
+                                                                                   :else "#FF0000")))]))))
 
 (defn -main [& args]
   (do

@@ -203,4 +203,13 @@
           - count-nested might be easier to do backwards, i.e. count how many steps before hitting a root (i.e. one with no symbols)
           - so will check no. of symbols in each circle reached, somehow keep a record of all possible paths?
           - clojure tree library/ies?  recursively build a tree?
+11/01/12: - wrote fn leaf? to check if circle contains any others as args
+          - wrote fn nested-circles to return a list of strings corresponding to the circles used as arguments to the input circle
+          - thinking should maybe have a fn that compares two paths, might need to trampoline?
+          - no, that's stupid, will just have a list of lists
+          - maybe just see if any paths lead to a leaf and return?  maybe a fn find-longest-path?
+          - maybe find root by checking circle name against other circles' args, then work from root?
+          - doing this now: writing fns is-arg? to check if circle is in another circle and root? to use this to see if circle is a root
+          - root? works, writing fn find-root to iterate through used-circles and find the root circle
+          - find-root works, now able to evaluate whole trees!
           - 

@@ -212,4 +212,9 @@
           - doing this now: writing fns is-arg? to check if circle is in another circle and root? to use this to see if circle is a root
           - root? works, writing fn find-root to iterate through used-circles and find the root circle
           - find-root works, now able to evaluate whole trees!
-          - 
+          - sorted out answer diaplying result, marking result - and in under 300ms (from pressing eval button)!
+          - success criterion fulfilled! w00t!!1 :D :D
+          - edit-circle fixed to re-link circles properly
+          - getting NullPointerException when dnding non-root circle
+          - can use :popup property of canvas to define context menus (JPopupMenu), probs better than buttons for circle operations
+          - writing todo list now in ./TODO

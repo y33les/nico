@@ -342,13 +342,9 @@
               :name (:name old)
               :circ expr}]
     (do
-      (prn name)
-      (prn expr)
-      (prn (str "old: " old))
-      (prn (str "new: " new))
       (del-circle name)
       (send-off used-circles #(cons new %))
-      ;; (await used-circles)
+      (link-circles (find-circle name))
       (render))))
 
 (defn drag-circle-begin [e]

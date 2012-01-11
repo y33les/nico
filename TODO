@@ -1,0 +1,8 @@
+- fix dnd
+- get rid of buttons, more intuitive interface (e.g. popup menus)
+- live updating of answer and other stuff, dave need for render, evaluate buttons, etc.
+- make question look like maths not lisp
+- fix next/prev buttons to scroll through qset
+- make .nqs default/only filter in file selection dialogue
+- have marking scheme for whole qset (i.e. set :a? and :c? fields to reflect if question was answered and, if so, if it was correct - though now thinking maybe just only let them progress when it's right)
+- maybe instead of next/prev buttons, have it so that it just moves on when you get it right

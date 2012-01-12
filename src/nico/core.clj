@@ -45,6 +45,21 @@
   "Empties current-qset.  For use in debugging; should be removed from finished program."
   (def current-qset (agent '())))
 
+(defn lisp-to-maths [sexp]
+  "Translates a sexp into a string of child-readable maths."
+  (loop [s   (rest sexp)
+         op  (cond (= (eval (first sexp)) +) "+"
+                   (= (eval (first sexp)) -) "-"
+                   (= (eval (first sexp)) *) (str \u00d7)
+                   (= (eval (first sexp)) /) (str \u00f7)
+                   :else "error")
+         out ""
+         n 0]
+    (cond (empty? s) (str out "")
+          (odd? n) (recur s op (str out op) (inc n))
+          (list? (first s)) (recur (rest s) op (str out "(" (lisp-to-maths (first s)) ")") (inc n))
+          :else (recur (rest s) op (str out (first s)) (inc n)))))
+
 (defn find-circle [name]
   "Returns the circle in used-circles with the :name property corresponding to name."
   (loop [n name
@@ -333,7 +348,7 @@
                                 :foreground "#000000")
                                (config!
                                 (select main-window [:#question])
-                                :text (str (eval (:q (get-q-no @current-question))))
+                                :text (lisp-to-maths (eval (:q (get-q-no @current-question))))
                                 :border (str "Question " @current-question))
                                (kill-used-circles)
                                (render)))))
@@ -411,7 +426,7 @@
     (get-q-no @current-question)
     (cond (not (nil? (get-q-no @current-question))) (do (config!
                                                          (select main-window [:#question])
-                                                         :text (str (first (rest (:q (get-q-no @current-question)))))
+                                                         :text (lisp-to-maths (first (rest (:q (get-q-no @current-question)))))
                                                          :border (str "Question " @current-question))
                                                         (config!
                                                          (select main-window [:#answer])
@@ -458,11 +473,11 @@
                                                                    (:n (first @current-qset))
                                                                    ": "
                                                                    (:q (first @current-qset)))
-                                                          :font   {:name :sans-serif :style :bold :size 24}
+                                                          :font   {:name :sans-serif :style :bold :size 18}
                                                           :border "Question")
                                         :east     (label  :id     :answer
                                                           :text   "0"
-                                                          :font   {:name :sans-serif :style :bold :size 24}
+                                                          :font   {:name :sans-serif :style :bold :size 18}
                                                           :border "Answer"))
                   :center (canvas       :id         :canvas
                                         :background "#FFFFFF"
@@ -523,4 +538,4 @@
                   :on-close :exit)
            pack!
            show!)
-       (config! (select main-window [:#question]) :text (str (first (rest (:q (first @current-qset))))) :border (str "Question " (:n (first @current-qset))))))))
+       (config! (select main-window [:#question]) :text (lisp-to-maths (first (rest (:q (first @current-qset))))) :border (str "Question " (:n (first @current-qset))))))))

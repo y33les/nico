@@ -233,3 +233,6 @@
           - removed old version of check-answer, new one now used question-right and question-wrong
           - next-question and all that shit works, need to write a bit to deal with end of qset
           - done, now asks user for a new qset on completion
+          - began writing fn lisp-to-maths to make questions readable
+          - that works, incorporating into question display
+          - putting into load-qset, next-question, -main

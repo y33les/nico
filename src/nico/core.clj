@@ -37,6 +37,14 @@
   ;; Agent containing a string corresponding to the name of the circle currently being dragged.
   (agent nil))
 
+(defn kill-used-circles []
+  "Empties used-circles.  For use in debugging; should be removed from finished program."
+  (def used-circles (agent '())))
+
+(defn kill-current-qset []
+  "Empties current-qset.  For use in debugging; should be removed from finished program."
+  (def current-qset (agent '())))
+
 (defn find-circle [name]
   "Returns the circle in used-circles with the :name property corresponding to name."
   (loop [n name
@@ -62,6 +70,14 @@
                                 " :a? false :c? false}"))
                   out)
                  (inc n)))))
+
+(defn get-q-no [num]
+  "Gets the question from the current set with the :n field of value num."
+  (loop [qs @current-qset
+         n  num]
+    (cond (empty? qs) nil
+          (= n (:n (first qs))) (first qs)
+          :else (recur (rest qs) n))))    
 
 (defmacro defcircle [name fun arg1 arg2 & args]
   "Creates a new circle represented by '(fun arg1 arg2 & args) and adds a symbol pointing to it to used-circles.  Can be nested."
@@ -280,14 +296,22 @@
                                    (.drawString (str (:name (last u)) ": " (eval (eval-circle (last u)))) 20 y))
                                  (recur (butlast u) (+ y 10)))))))
 
-(defn kill-used-circles []
-  "Empties used-circles.  For use in debugging; should be removed from finished program."
-  (def used-circles (agent '())))
-
-(defn kill-current-qset []
-  "Empties current-qset.  For use in debugging; should be removed from finished program."
-  (def current-qset (agent '())))
-
+(defn load-qset-init []
+  "Brings up a dialogue with a file chooser to specify where to load the question set from.  Sends off the contents of the chosen file to current-qset."
+  (choose-file :filters [(file-filter "Nico Question Set (*.nqs)"
+                                      #(or (.isDirectory %)
+                                           (=
+                                            (apply str (take-last 4 (.toString (.getAbsoluteFile %))))
+                                            ".nqs")))]
+               :success-fn (fn [fc f]
+                             (do
+                               (send-off current-qset
+                                         (fn [_]
+                                           (read-qset
+                                            (.getAbsoluteFile f))))
+                               (send-off current-question
+                                         (fn [_] 1))))))
+                         
 (defn load-qset []
   "Brings up a dialogue with a file chooser to specify where to load the question set from.  Sends off the contents of the chosen file to current-qset."
   (choose-file :filters [(file-filter "Nico Question Set (*.nqs)"
@@ -296,10 +320,23 @@
                                             (apply str (take-last 4 (.toString (.getAbsoluteFile %))))
                                             ".nqs")))]
                :success-fn (fn [fc f]
-                             (send-off current-qset
-                                       (fn [_]
-                                         (read-qset
-                                          (.getAbsoluteFile f)))))))
+                             (do
+                               (send-off current-qset
+                                         (fn [_]
+                                           (read-qset
+                                            (.getAbsoluteFile f))))
+                               (send-off current-question
+                                         (fn [_] 1))
+                               (config!
+                                (select main-window [:#answer])
+                                :text "0"
+                                :foreground "#000000")
+                               (config!
+                                (select main-window [:#question])
+                                :text (str (eval (:q (get-q-no @current-question))))
+                                :border (str "Question " @current-question))
+                               (kill-used-circles)
+                               (render)))))
 
 (defn new-circle []
   "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
@@ -366,6 +403,49 @@
                                                     (send-off used-circles #(cons new %))
                                                     (send-off currently-dragging-circle (fn [_] nil))))))
 
+(defn next-question []
+  "Loads the next question in the current question set."
+  (do
+    (send-off current-question #(inc %))
+    (await current-question)
+    (get-q-no @current-question)
+    (cond (not (nil? (get-q-no @current-question))) (do (config!
+                                                         (select main-window [:#question])
+                                                         :text (str (first (rest (:q (get-q-no @current-question)))))
+                                                         :border (str "Question " @current-question))
+                                                        (config!
+                                                         (select main-window [:#answer])
+                                                         :text "0"
+                                                         :foreground "#000000"))
+          :else (do
+                  (alert "Well done!  Please choose another question set.")
+                  (load-qset)))))
+
+(defn question-right []
+  "To be executed when a question is answered correctly."
+  (do
+    (config!
+     (select main-window [:#answer])
+     :text (str (eval (eval-circle (find-root))))
+     :foreground "#00FF00")
+    (alert "Correct!")
+    (next-question)
+    (kill-used-circles)
+    (await used-circles)
+    (render)))
+
+(defn question-wrong []
+  "To be executed when a question is answered incorrectly."
+  (config!
+   (select main-window [:#answer])
+   :text (str (eval (eval-circle (find-root))))
+   :foreground "#FF0000"))
+
+(defn check-answer []
+  "Evaluate the current root circle and check against the answer to the current question, displaying the result to the user."
+  (cond (= (eval (eval-circle (find-root))) (eval (eval (:q (get-q-no @current-question))))) (question-right)
+        :else (question-wrong)))
+
 (def main-window
   ;; Creates the contents of Nico's main window.
   (do
@@ -381,7 +461,7 @@
                                                           :font   {:name :sans-serif :style :bold :size 24}
                                                           :border "Question")
                                         :east     (label  :id     :answer
-                                                          :text   ""
+                                                          :text   "0"
                                                           :font   {:name :sans-serif :style :bold :size 24}
                                                           :border "Answer"))
                   :center (canvas       :id         :canvas
@@ -397,44 +477,28 @@
                                         :items      [(button :id     :open
                                                              :text   "Open"
                                                              :listen [:mouse-clicked (fn [e]
-                                                                                       (do (load-qset)
-                                                                                           (config!
-                                                                                            (select
-                                                                                             main-window
-                                                                                             [:#question])
-                                                                                            :text (str
-                                                                                                   (first
-                                                                                                    (rest
-                                                                                                     (:q
-                                                                                                      (first @current-qset)))))
-                                                                                            :border (str
-                                                                                                     "Question "
-                                                                                                     (:n
-                                                                                                      (first @current-qset))))))])
-                                                     (button :id     :next
-                                                             :text   "Next"
-                                                             :listen [:mouse-clicked (fn [e] (constantly nil))])
-                                                     (button :id     :prev
-                                                             :text   "Previous"
-                                                             :listen [:mouse-clicked (fn [e] (constantly nil))])
+                                                                                       (do (load-qset)))])
                                                      (button :id     :new
                                                              :text   "New"
                                                              :listen [:mouse-clicked (fn [e]
                                                                                        (do
                                                                                          (new-circle)
-                                                                                         (render)))])
+                                                                                         (render)
+                                                                                         (check-answer)))])
                                                      (button :id     :edit
                                                              :text   "Edit"
                                                              :listen [:mouse-clicked (fn [e]
                                                                                        (do
                                                                                          (edit-circle)
-                                                                                         (render)))])
+                                                                                         (render)
+                                                                                         (check-answer)))])
                                                      (button :id     :remove
                                                              :text   "Remove"
                                                              :listen [:mouse-clicked (fn [e]
                                                                                        (do
                                                                                          (del-circle)
-                                                                                         (render)))])
+                                                                                         (render)
+                                                                                         (check-answer)))])
                                                      (button :id     :render
                                                              :text   "Render"
                                                              :listen [:mouse-clicked (fn [e]
@@ -446,26 +510,12 @@
                   :south  (button       :id         :eval
                                         :text       "Evaluate!"
                                         :font       {:name :sans-serif :style :bold :size 16}
-                                        :listen [:mouse-clicked (fn [e]
-                                                                  (config!
-                                                                   (select
-                                                                    main-window
-                                                                    [:#answer])
-                                                                   :text (str (eval (eval-circle (find-root))))
-                                                                   :foreground (cond (=
-                                                                                (eval
-                                                                                 (eval-circle
-                                                                                  (find-root)))
-                                                                                (eval
-                                                                                 (eval
-                                                                                  (:q
-                                                                                   (first @current-qset))))) "#00FF00"
-                                                                                   :else "#FF0000")))]))))
+                                        :listen [:mouse-clicked (fn [e] (check-answer))]))))
 
 (defn -main [& args]
   (do
     (native!)
-    (load-qset)
+    (load-qset-init)
     (invoke-later
      (do
        (-> (frame :title "Nico v0.0.1",

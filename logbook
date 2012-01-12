@@ -218,3 +218,18 @@
           - getting NullPointerException when dnding non-root circle
           - can use :popup property of canvas to define context menus (JPopupMenu), probs better than buttons for circle operations
           - writing todo list now in ./TODO
+          - wrote fn check-answer to replace cruft in main-window
+          - made new, edit and remove check the answer after rendering
+          - failed at splash screen by just setting manifest options, not important, will come back to
+          - answer now live-updating, could probs remove eval button now
+12/01/12: - check-answer now pops up with an alert telling you when you get it right, then calls next-question (which needs to be written)
+          - writing fn get-q-no to get a question given its :n value
+          - wrote fn next-question to update current-question and load it
+          - adding fns question-right and question-wrong to execute on checking answer
+          - fixed load-qset, now kills circles, resets current-question, resets answer, re-renders
+          - removed new and prev buttons as pointless
+          - removed some cruft in the listener for the open button
+          - added fn load-qset-init for use in initialisation in -main
+          - removed old version of check-answer, new one now used question-right and question-wrong
+          - next-question and all that shit works, need to write a bit to deal with end of qset
+          - done, now asks user for a new qset on completion

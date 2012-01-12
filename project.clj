@@ -21,5 +21,5 @@
   :dependencies [[org.clojure/clojure "1.2.0"]
                  [seesaw "1.3.0"]]
   :dev-dependencies [[swank-clojure "1.3.4-SNAPSHOT"]]
-  ;; :repl-options [:init nil :caught clj-stacktrace.repl/pst+]
+  :repl-options [:init nil :caught clj-stacktrace.repl/pst+]
   :main nico.core)

@@ -236,3 +236,10 @@
           - began writing fn lisp-to-maths to make questions readable
           - that works, incorporating into question display
           - putting into load-qset, next-question, -main
+15/01/12: - adding fn canvas-selected to do popups depending on if an existing circle is selected; if canvas is clicked not on a circle, eval (new-circle), else bring up a popup with options for (edit-circle) and (del-circle)
+          - popup sort of working but for some reason doesn't bring up a menu, just executes the first action, namely (edit-circle)
+          - turns out popup requires a vector of actions not fns/labels, have corrected but same problem for some reason
+          - have defined three actions: new-, edit- and del-circle-action, to use in menus (might help?)
+17/01/12: - working on popups but still for some reason executing first item on menu - tried not using canvas-selected and just giving :popup a vector of actions but no joy
+          - turns out you're not supposed to put brackets around the :handler fns in actions :$ - now working, need to make it work on circles selected, i.e. (edit-circle) becomes (edit-circle circ) where circ is the circle that was right-clicked
+          - also need to make it so that it doesn't think you're dragging when you right click, as currently trying to drag even when a circle doesn't exist

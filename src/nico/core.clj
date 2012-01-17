@@ -152,7 +152,7 @@
   (not (nil? (in-circle x x?))))
 
 (defn point-in-circle [x y]
-  "Checks if the supplied co-ordinates are within a circle and, if so,  returns the name of that circle (else nil)."
+  "Checks if the supplied co-ordinates are within a circle and, if so, returns the name of that circle (else nil)."
   (loop [u @used-circles]
     (cond (empty? u) nil
           (and (> x (:x (first u)))
@@ -353,15 +353,17 @@
                                (kill-used-circles)
                                (render)))))
 
-(defn new-circle []
+(defn new-circle [& e]
   "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
   (let [in   (input "New:")
         rng  (xy-rng)
         name (first (split in #" "))
         fun  (eval (read-string (nth (split in #" ") 1)))
         expr (cons fun (rest (rest (read-string (str "(" in ")")))))
-        circ {:x (:x rng)
-              :y (:y rng)
+        circ {:x (cond (not (nil? e)) (:x rng)
+                       :else (.getX e))
+              :y (cond (not (nil? e)) (:y rng)
+                       :else (.getY e))
               :name name
               :circ expr}]
        (do
@@ -382,10 +384,11 @@
     ;; (await-for 2000 used-circles)
     (render)))
 
-(defn edit-circle []
+(defn edit-circle [& circ]
   "Brings up a dialogue to edit the parameters of an existing circle and redraws it."
   (let [in   (input "Edit:")
-        name (first (split in #" "))
+        name (cond (nil? circ) (first (split in #" "))
+                   :else circ)
         fun  (eval (read-string (nth (split in #" ") 1)))
         expr (cons fun (rest (rest (read-string (str "(" in ")")))))
         old  (find-circle name)
@@ -461,6 +464,30 @@
   (cond (= (eval (eval-circle (find-root))) (eval (eval (:q (get-q-no @current-question))))) (question-right)
         :else (question-wrong)))
 
+(def new-circle-action
+  ;; Action for adding a circle, for use in menus.
+  (action :handler new-circle
+          :name "New circle"))
+
+(def edit-circle-action
+  ;; Action for editing a circle, for use in menus.
+  (action :handler edit-circle
+          :name "Edit circle"))
+
+(def del-circle-action
+  ;; Action for removing a circle, for use in menus.
+  (action :handler del-circle
+          :name "Remove circle"))
+
+(defn canvas-selected [e]
+  "Handle a right mouse click on the canvas."
+  (let [x  (.getX e)
+        y  (.getY e)
+        c  (point-in-circle x y)
+        c? (not (nil? c))]
+    (cond c? [edit-circle-action del-circle-action]
+          :else [new-circle-action])))
+    
 (def main-window
   ;; Creates the contents of Nico's main window.
   (do
@@ -483,6 +510,7 @@
                                         :background "#FFFFFF"
                                         :border     "Calculation"
                                         :size       [640 :by 480]
+                                        :popup      #(canvas-selected %)
                                         :listen     [:mouse-pressed #(drag-circle-begin %)
                                                      :mouse-released #(do
                                                                         (drag-circle-end %)

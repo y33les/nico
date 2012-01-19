@@ -37,6 +37,10 @@
   ;; Agent containing a string corresponding to the name of the circle currently being dragged.
   (agent nil))
 
+(def current-click
+  ;; Agent containing a map of the co-ordinates on the canvas where the mouse was clicked.
+  (agent {:x 0 :y 0}))
+
 (defn kill-used-circles []
   "Empties used-circles.  For use in debugging; should be removed from finished program."
   (def used-circles (agent '())))
@@ -353,6 +357,65 @@
                                (kill-used-circles)
                                (render)))))
 
+(def new-dialogue
+  ;; The dialogue to be displayed as part of new-circle.
+  (let [arg1 (button-group)
+        arg2 (button-group)
+        arg3 (button-group)
+        arg4 (button-group)
+        arg5 (button-group)
+        arg6 (button-group)
+        arg7 (button-group)
+        arg8 (button-group)]
+  (frame :id :new-box
+         :title "New Circle"
+         :content (border-panel :id :new-box-contents
+                                :east (listbox :id :op-select
+                                               :model '("+" "-" (str \u00d7) (str \u00f7)))
+                                :center (grid-panel :id :arg-type-select
+                                                    :columns 4
+                                                    :items [(label "Argument 1")
+                                                            (radio :text "Number" :group arg1 :selected? true)
+                                                            (radio :text "Circle" :group arg1)
+                                                            (label "Argument 2")
+                                                            (radio :text "Number" :group arg2 :selected? true)
+                                                            (radio :text "Circle" :group arg2)
+                                                            (label "Argument 3")
+                                                            (radio :text "Number" :group arg3)
+                                                            (radio :text "Circle" :group arg3)
+                                                            (radio :text "None" :group arg3 :selected? true)
+                                                            (label "Argument 4")
+                                                            (radio :text "Number" :group arg4)
+                                                            (radio :text "Circle" :group arg4)
+                                                            (radio :text "None" :group arg4 :selected? true)
+                                                            (label "Argument 5")
+                                                            (radio :text "Number" :group arg5)
+                                                            (radio :text "Circle" :group arg5)
+                                                            (radio :text "None" :group arg5 :selected? true)
+                                                            (label "Argument 6")
+                                                            (radio :text "Number" :group arg6)
+                                                            (radio :text "Circle" :group arg6)
+                                                            (radio :text "None" :group arg6 :selected? true)
+                                                            (label "Argument 7")
+                                                            (radio :text "Number" :group arg7)
+                                                            (radio :text "Circle" :group arg7)
+                                                            (radio :text "None" :group arg7 :selected? true)
+                                                            (label "Argument 8")
+                                                            (radio :text "Number" :group arg8)
+                                                            (radio :text "Circle" :group arg8)
+                                                            (radio :text "None" :group arg8 :selected? true)])))))
+
+(defn test-new-box [& args]
+  (do
+    (native!)
+    (invoke-later
+     (do
+       (-> (frame :title "New",
+                  :content new-dialogue,
+                  :on-close :dispose)
+           pack!
+           show!)))))
+
 (defn new-circle [& e]
   "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
   (let [in   (input "New:")
@@ -360,10 +423,10 @@
         name (first (split in #" "))
         fun  (eval (read-string (nth (split in #" ") 1)))
         expr (cons fun (rest (rest (read-string (str "(" in ")")))))
-        circ {:x (cond (not (nil? e)) (:x rng)
-                       :else (.getX e))
-              :y (cond (not (nil? e)) (:y rng)
-                       :else (.getY e))
+        circ {:x (:x @current-click);;(cond (not (nil? e)) (:x rng)
+                 ;;      :else (.getX e))
+              :y (:y @current-click);;(cond (not (nil? e)) (:y rng)
+                 ;;      :else (.getY e))
               :name name
               :circ expr}]
        (do
@@ -371,24 +434,25 @@
          (await used-circles)
          (draw-circle (find-circle name)))))
 
-(defn del-circle [& name]
+(defn del-circle [& a]
   "Removes a circle from used-circles, such that it won't reappear on executing render."
-  (do
+  ;; (do
     (send-off used-circles (fn [_] (loop [in @used-circles
                                           out '()
-                                          c (cond (nil? name) (input "Remove:")
-                                                  :else (first name))]
+                                          c (cond (string? (first a)) (first a)
+                                                  (instance? java.awt.event.ActionEvent (first a)) (point-in-circle (:x @current-click) (:y @current-click))
+                                                  :else (input "Remove:"))]
                                      (cond (empty? in) (reverse out)
                                            (= (:name (first in)) c) (recur (rest in) out c)
-                                           :else (recur (rest in) (cons (first in) out) c)))))
+                                           :else (recur (rest in) (cons (first in) out) c))))))
     ;; (await-for 2000 used-circles)
-    (render)))
+    ;; (render)))
 
-(defn edit-circle [& circ]
+(defn edit-circle [& e]
   "Brings up a dialogue to edit the parameters of an existing circle and redraws it."
   (let [in   (input "Edit:")
-        name (cond (nil? circ) (first (split in #" "))
-                   :else circ)
+        name (cond (not (nil? e)) (point-in-circle (:x @current-click) (:y @current-click))
+                   :else (first (split in #" ")))
         fun  (eval (read-string (nth (split in #" ") 1)))
         expr (cons fun (rest (rest (read-string (str "(" in ")")))))
         old  (find-circle name)
@@ -397,6 +461,7 @@
               :name (:name old)
               :circ expr}]
     (do
+      (prn name)
       (del-circle name)
       (send-off used-circles #(cons new %))
       (link-circles (find-circle name))
@@ -511,10 +576,11 @@
                                         :border     "Calculation"
                                         :size       [640 :by 480]
                                         :popup      #(canvas-selected %)
-                                        :listen     [:mouse-pressed #(drag-circle-begin %)
-                                                     :mouse-released #(do
-                                                                        (drag-circle-end %)
-                                                                        (render))])
+                                        :listen     [:mouse-moved (fn [e] (send-off current-click (fn [_] {:x (- (.getX e) 50) :y (- (.getY e) 50)})))])
+                                        ;; :listen     [:mouse-pressed #(drag-circle-begin %)
+                                        ;;              :mouse-released #(do
+                                        ;;                                 (drag-circle-end %)
+                                        ;;                                 (render))])
                   :east   (grid-panel   :id         :buttons
                                         :columns    1
                                         :items      [(button :id     :open

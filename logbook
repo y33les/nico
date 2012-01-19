@@ -243,3 +243,25 @@
 17/01/12: - working on popups but still for some reason executing first item on menu - tried not using canvas-selected and just giving :popup a vector of actions but no joy
           - turns out you're not supposed to put brackets around the :handler fns in actions :$ - now working, need to make it work on circles selected, i.e. (edit-circle) becomes (edit-circle circ) where circ is the circle that was right-clicked
           - also need to make it so that it doesn't think you're dragging when you right click, as currently trying to drag even when a circle doesn't exist
+18/01/12: - disabling dragging listeners for now, just until popups work
+          - popups seem to work but not evaluating after creating
+          - getting "circle not found" with popup editing
+          - popup remove circle doesn't do anything, no exceptions though :\
+          - new button doesn't work (NullPointerException), but edit and remove buttons still work
+          - turns out some kind of arg is being passed to edit-circle (and presumably del-circle), guessing the event?  will experiment
+          - looks like a java.awt.event.ActionEvent is being passed to it, annoyingly can't .getX and things like that with it so will keep looking
+          - changing edit-circle and del-circle to check if arg is an ActionEvent or a String, currently trying to use .getX and .getY though i know they don't work with ActionEvents, looking into it
+          - maybe have a couple of agents for current co-ordinates on click?
+          - added agent current-click to keep co-ords on clicking
+          - changed new-circle to put circles at the current co-ords in current-click
+19/01/12: - made popup new work, now puts circles where the mouse is - edit still getting a NullPointerException
+          - wtf, del-circle seems to work fine other than in a popup menu :\ loop generates the right resultant list, just crashes used-circles with a NullPointerException in a popup context
+          - right, so del-circle wasn't working because the circle didn't exist yet; works if you (render) between making and deleting the circle
+          - edit now getting an IllegalArgumentException, saying that 1 is the wrong number of args to be passing
+          - need, however, to sort out the fact that it's now only changing the answer on the next circle op, not even on the next render
+          - thinking now maybe losing edit-circle and these context menus and just having it so that clicking on blank makes a circle, clicking on a circle deletes that circle - alex suggests a delete confirmation dialogue but not sure about that, will have to see how it feels
+          - coming back to that later, moving on to making the new-circle dialogue usable for now
+          - adding a fn new-dialogue for the new-circle dialogue
+          - changing new-dialogue from a fn to a def of a frame, like main-window
+          - added fn fn-to-maths to take an operation and output its proper unicode symbol
+          - removing fn-to-maths as pointless

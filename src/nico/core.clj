@@ -357,7 +357,13 @@
                                (kill-used-circles)
                                (render)))))
 
-
+(defn gen-circ-checks []
+  "Returns a vector containing one checkbox for each circle currently in used-circles."
+  (loop [in  @used-circles
+         out '()
+         n   0]
+    (cond (empty? in) (into '[] out)
+          :else (recur (rest in) (cons (checkbox :id (keyword (:name (first in))) :text (:name (first in)) :selected? false) out) (inc n)))))
 
 (def new-dialogue
   ;; The dialogue to be displayed as part of new-circle.
@@ -380,7 +386,6 @@
                                                      (radio :text (str \u00d7) :group op)
                                                      (radio :text (str \u00f7) :group op)])
                     :center (grid-panel :id :args-select
-                                        :border "Arguments"
                                         :columns 2
                                         :items [(vertical-panel :id :args-left
                                                                 :items [(horizontal-panel :border "Argument 1"
@@ -490,7 +495,7 @@
                                                                                                             :paint-track? true)])])])
                     :south (horizontal-panel :id :circ-args-select
                                              :border "Available Circles"
-                                             :items [])))))
+                                             :items (gen-circ-checks))))))
 
 (defn test-new-box [& args]
   (do

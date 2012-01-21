@@ -270,3 +270,5 @@
           - replacing ops listbox with radio buttons
           - redoing all this shit, now got radios for ops, checks and sliders for 8 number args, checks for circle args
           - right, got a nicer-looking dialogue now, need to write a fn to populate the circle args bit at the bottom now
+          - writing a fn gen-circ-checks to do that
+          - seems to work, now have a load of checkboxes at the bottom of the dialogue, just need to connect it all up with listeners and shit now :)

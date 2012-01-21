@@ -268,3 +268,5 @@
 21/01/12: - working on redoing new dialogue
           - currently have a listbox and a load of radio buttons, need to add listeners for which radio buttons are selected - thinking sliders for numbers, listboxes for circles
           - replacing ops listbox with radio buttons
+          - redoing all this shit, now got radios for ops, checks and sliders for 8 number args, checks for circle args
+          - right, got a nicer-looking dialogue now, need to write a fn to populate the circle args bit at the bottom now

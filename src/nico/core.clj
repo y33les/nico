@@ -359,7 +359,8 @@
 
 (def new-dialogue
   ;; The dialogue to be displayed as part of new-circle.
-  (let [arg1 (button-group)
+  (let [op   (button-group)
+        arg1 (button-group)
         arg2 (button-group)
         arg3 (button-group)
         arg4 (button-group)
@@ -367,43 +368,57 @@
         arg6 (button-group)
         arg7 (button-group)
         arg8 (button-group)]
-  (frame :id :new-box
-         :title "New Circle"
-         :content (border-panel :id :new-box-contents
-                                :east (listbox :id :op-select
-                                               :model '("+" "-" (str \u00d7) (str \u00f7)))
-                                :center (grid-panel :id :arg-type-select
-                                                    :columns 4
-                                                    :items [(label "Argument 1")
-                                                            (radio :text "Number" :group arg1 :selected? true)
-                                                            (radio :text "Circle" :group arg1)
-                                                            (label "Argument 2")
-                                                            (radio :text "Number" :group arg2 :selected? true)
-                                                            (radio :text "Circle" :group arg2)
-                                                            (label "Argument 3")
-                                                            (radio :text "Number" :group arg3)
-                                                            (radio :text "Circle" :group arg3)
-                                                            (radio :text "None" :group arg3 :selected? true)
-                                                            (label "Argument 4")
-                                                            (radio :text "Number" :group arg4)
-                                                            (radio :text "Circle" :group arg4)
-                                                            (radio :text "None" :group arg4 :selected? true)
-                                                            (label "Argument 5")
-                                                            (radio :text "Number" :group arg5)
-                                                            (radio :text "Circle" :group arg5)
-                                                            (radio :text "None" :group arg5 :selected? true)
-                                                            (label "Argument 6")
-                                                            (radio :text "Number" :group arg6)
-                                                            (radio :text "Circle" :group arg6)
-                                                            (radio :text "None" :group arg6 :selected? true)
-                                                            (label "Argument 7")
-                                                            (radio :text "Number" :group arg7)
-                                                            (radio :text "Circle" :group arg7)
-                                                            (radio :text "None" :group arg7 :selected? true)
-                                                            (label "Argument 8")
-                                                            (radio :text "Number" :group arg8)
-                                                            (radio :text "Circle" :group arg8)
-                                                            (radio :text "None" :group arg8 :selected? true)])))))
+    (do
+      (native!)
+      (border-panel :id :new-box
+                    :north (horizontal-panel :id :op-select
+                                             :border "Operator"
+                                             :items [(radio :text "+" :group op :selected? true)
+                                                     (radio :text "-" :group op)
+                                                     (radio :text (str \u00d7) :group op)
+                                                     (radio :text (str \u00f7) :group op)])
+                    :center (grid-panel :id :arg-type-select
+                                        :columns 2
+                                        :items [(label "Argument 1")
+                                                (horizontal-panel :items [(radio :text "Number" :group arg1 :selected? true)
+                                                                          (radio :text "Circle" :group arg1)])
+                                                (slider :id :arg1n
+                                                        :orientation :horizontal
+                                                        :value 0
+                                                        :min -10
+                                                        :max 10
+                                                        :minor-tick-spacing 1
+                                                        :major-tick-spacing 5
+                                                        :snap-to-ticks? true
+                                                        :paint-labels? true
+                                                        :paint-track? true)
+                                                (label "Argument 2")
+                                                (horizontal-panel :items [(radio :text "Number" :group arg2 :selected? true)
+                                                                          (radio :text "Circle" :group arg2)])
+                                                (label "Argument 3")
+                                                (horizontal-panel :items [(radio :text "Number" :group arg3)
+                                                                          (radio :text "Circle" :group arg3)
+                                                                          (radio :text "None" :group arg3 :selected? true)])
+                                                (label "Argument 4")
+                                                (horizontal-panel :items [(radio :text "Number" :group arg4)
+                                                                          (radio :text "Circle" :group arg4)
+                                                                          (radio :text "None" :group arg4 :selected? true)])
+                                                (label "Argument 5")
+                                                (horizontal-panel :items [(radio :text "Number" :group arg5)
+                                                                          (radio :text "Circle" :group arg5)
+                                                                          (radio :text "None" :group arg5 :selected? true)])
+                                                (label "Argument 6")
+                                                (horizontal-panel :items [(radio :text "Number" :group arg6)
+                                                                          (radio :text "Circle" :group arg6)
+                                                                          (radio :text "None" :group arg6 :selected? true)])
+                                                (label "Argument 7")
+                                                (horizontal-panel :items [(radio :text "Number" :group arg7)
+                                                                          (radio :text "Circle" :group arg7)
+                                                                          (radio :text "None" :group arg7 :selected? true)])
+                                                (label "Argument 8")
+                                                (horizontal-panel :items [(radio :text "Number" :group arg8)
+                                                                          (radio :text "Circle" :group arg8)
+                                                                          (radio :text "None" :group arg8 :selected? true)])])))))
 
 (defn test-new-box [& args]
   (do

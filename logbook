@@ -265,3 +265,6 @@
           - changing new-dialogue from a fn to a def of a frame, like main-window
           - added fn fn-to-maths to take an operation and output its proper unicode symbol
           - removing fn-to-maths as pointless
+21/01/12: - working on redoing new dialogue
+          - currently have a listbox and a load of radio buttons, need to add listeners for which radio buttons are selected - thinking sliders for numbers, listboxes for circles
+          - replacing ops listbox with radio buttons

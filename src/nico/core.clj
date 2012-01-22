@@ -357,145 +357,227 @@
                                (kill-used-circles)
                                (render)))))
 
-(defn gen-circ-checks []
-  "Returns a vector containing one checkbox for each circle currently in used-circles."
+(defn gen-circ-radios [pfx gp]
+  "Returns a vector containing one radio button for each circle currently in used-circles.  Each radio button has the :id :(str pfx :name), and is in the button-group gp."
   (loop [in  @used-circles
          out '()
          n   0]
     (cond (empty? in) (into '[] out)
-          :else (recur (rest in) (cons (checkbox :id (keyword (:name (first in))) :text (:name (first in)) :selected? false) out) (inc n)))))
+          :else (recur (rest in)
+                       (cons (radio :id (keyword (str pfx (:name (first in))))
+                                    :text (:name (first in))
+                                    :group gp
+                                    :selected? (cond (= n 0) true
+                                                     :else false))
+                             out)
+                       (inc n)))))
 
 (def new-dialogue
   ;; The dialogue to be displayed as part of new-circle.
-  (let [op   (button-group)
-        arg1 (button-group)
-        arg2 (button-group)
-        arg3 (button-group)
-        arg4 (button-group)
-        arg5 (button-group)
-        arg6 (button-group)
-        arg7 (button-group)
-        arg8 (button-group)]
+  (let [op    (button-group)
+        arg1  (button-group)
+        arg1r (button-group)
+        arg2  (button-group)
+        arg2r (button-group)
+        arg3  (button-group)
+        arg3r (button-group)
+        arg4  (button-group)
+        arg4r (button-group)
+        arg5  (button-group)
+        arg5r (button-group)
+        arg6  (button-group)
+        arg6r (button-group)
+        arg7  (button-group)
+        arg7r (button-group)
+        arg8  (button-group)
+        arg8r (button-group)]
     (do
       (native!)
       (border-panel :id :new-box
-                    :north (horizontal-panel :id :op-select
-                                             :border "Operator"
-                                             :items [(radio :text "+" :group op :selected? true)
-                                                     (radio :text "-" :group op)
-                                                     (radio :text (str \u00d7) :group op)
-                                                     (radio :text (str \u00f7) :group op)])
-                    :center (grid-panel :id :args-select
-                                        :columns 2
-                                        :items [(vertical-panel :id :args-left
-                                                                :items [(horizontal-panel :border "Argument 1"
-                                                                                          :items [(checkbox :id :arg1s
-                                                                                                            :selected? true)
-                                                                                                  (slider   :id :arg1n
-                                                                                                            :orientation :horizontal
-                                                                                                            :value 0
-                                                                                                            :min -10
-                                                                                                            :max 10
-                                                                                                            :minor-tick-spacing 1
-                                                                                                            :major-tick-spacing 5
-                                                                                                            :snap-to-ticks? true
-                                                                                                            :paint-labels? true
-                                                                                                            :paint-track? true)])
-                                                                        (horizontal-panel :border "Argument 3"
-                                                                                          :items [(checkbox :id :arg3s
-                                                                                                            :selected? true)
-                                                                                                  (slider   :id :arg1n
-                                                                                                            :orientation :horizontal
-                                                                                                            :value 0
-                                                                                                            :min -10
-                                                                                                            :max 10
-                                                                                                            :minor-tick-spacing 1
-                                                                                                            :major-tick-spacing 5
-                                                                                                            :snap-to-ticks? true
-                                                                                                            :paint-labels? true
-                                                                                                            :paint-track? true)])
-                                                                        (horizontal-panel :border "Argument 5"
-                                                                                          :items [(checkbox :id :arg5s
-                                                                                                            :selected? true)
-                                                                                                  (slider   :id :arg1n
-                                                                                                            :orientation :horizontal
-                                                                                                            :value 0
-                                                                                                            :min -10
-                                                                                                            :max 10
-                                                                                                            :minor-tick-spacing 1
-                                                                                                            :major-tick-spacing 5
-                                                                                                            :snap-to-ticks? true
-                                                                                                            :paint-labels? true
-                                                                                                            :paint-track? true)])
-                                                                        (horizontal-panel :border "Argument 7"
-                                                                                          :items [(checkbox :id :arg7s
-                                                                                                            :selected? true)
-                                                                                                  (slider   :id :arg1n
-                                                                                                            :orientation :horizontal
-                                                                                                            :value 0
-                                                                                                            :min -10
-                                                                                                            :max 10
-                                                                                                            :minor-tick-spacing 1
-                                                                                                            :major-tick-spacing 5
-                                                                                                            :snap-to-ticks? true
-                                                                                                            :paint-labels? true
-                                                                                                            :paint-track? true)])])
-                                                (vertical-panel :id :args-right
-                                                                :items [(horizontal-panel :border "Argument 2"
-                                                                                          :items [(checkbox :id :arg2s
-                                                                                                            :selected? true)
-                                                                                                  (slider   :id :arg1n
-                                                                                                            :orientation :horizontal
-                                                                                                            :value 0
-                                                                                                            :min -10
-                                                                                                            :max 10
-                                                                                                            :minor-tick-spacing 1
-                                                                                                            :major-tick-spacing 5
-                                                                                                            :snap-to-ticks? true
-                                                                                                            :paint-labels? true
-                                                                                                            :paint-track? true)])
-                                                                        (horizontal-panel :border "Argument 4"
-                                                                                          :items [(checkbox :id :arg4s
-                                                                                                            :selected? true)
-                                                                                                  (slider   :id :arg1n
-                                                                                                            :orientation :horizontal
-                                                                                                            :value 0
-                                                                                                            :min -10
-                                                                                                            :max 10
-                                                                                                            :minor-tick-spacing 1
-                                                                                                            :major-tick-spacing 5
-                                                                                                            :snap-to-ticks? true
-                                                                                                            :paint-labels? true
-                                                                                                            :paint-track? true)])
-                                                                        (horizontal-panel :border "Argument 6"
-                                                                                          :items [(checkbox :id :arg6s
-                                                                                                            :selected? true)
-                                                                                                  (slider   :id :arg1n
-                                                                                                            :orientation :horizontal
-                                                                                                            :value 0
-                                                                                                            :min -10
-                                                                                                            :max 10
-                                                                                                            :minor-tick-spacing 1
-                                                                                                            :major-tick-spacing 5
-                                                                                                            :snap-to-ticks? true
-                                                                                                            :paint-labels? true
-                                                                                                            :paint-track? true)])
-                                                                        (horizontal-panel :border "Argument 8"
-                                                                                          :items [(checkbox :id :arg8s
-                                                                                                            :selected? true)
-                                                                                                  (slider   :id :arg1n
-                                                                                                            :orientation :horizontal
-                                                                                                            :value 0
-                                                                                                            :min -10
-                                                                                                            :max 10
-                                                                                                            :minor-tick-spacing 1
-                                                                                                            :major-tick-spacing 5
-                                                                                                            :snap-to-ticks? true
-                                                                                                            :paint-labels? true
-                                                                                                            :paint-track? true)])])])
-                    :south (horizontal-panel :id :circ-args-select
-                                             :border "Available Circles"
-                                             :items (gen-circ-checks))))))
+                    :north (horizontal-panel :id :name-op
+                                             :items [(horizontal-panel :id :name-field
+                                                                       :border "Name"
+                                                                       :items [(text)])
+                                                     (horizontal-panel :id :op-select
+                                                                       :border "Operator"
+                                                                       :items [(radio :id :plus
+                                                                                      :text "+"
+                                                                                      :group op
+                                                                                      :selected? true)
+                                                                               (radio :id :minus
+                                                                                      :text "-"
+                                                                                      :group op)
+                                                                               (radio :id :mul
+                                                                                      :text (str \u00d7)
+                                                                                      :group op)
+                                                                               (radio :id :div
+                                                                                      :text (str \u00f7)
+                                                                                      :group op)])])
+                    :center :items [(grid-panel :id :args-selector
+                                                :border "Argument 1"
+                                                :items [(checkbox :id :arg1s
+                                                                  :selected? true)
+                                                        (label :text "Enabled?")
+                                                        (radio :id :arg1n?
+                                                               :group arg1
+                                                               :selected? true)
+                                                        (slider :id :arg1n
+                                                                :orientation :horizontal
+                                                                :value 0
+                                                                :min -10
+                                                                :max 10
+                                                                :minor-tick-spacing 1
+                                                                :major-tick-spacing 5
+                                                                :snap-to-ticks? true
+                                                                :paint-labels? true
+                                                                :paint-track? true)
+                                                        (radio :id :arg1c?
+                                                               :group arg1)
+                                                        (gen-circ-radios "a1" arg1r)])
+
+                    [(vertical-panel :border "Argument 1"
+                                                    :items [(horizontal-panel :items [(checkbox :id :arg1s
+                                                                                                :selected? true)
+                                                                                      (slider   :id :arg1n
+                                                                                                :orientation :horizontal
+                                                                                                :value 0
+                                                                                                :min -10
+                                                                                                :max 10
+                                                                                                :minor-tick-spacing 1
+                                                                                                :major-tick-spacing 5
+                                                                                                :snap-to-ticks? true
+                                                                                                :paint-labels? true
+                                                                                                :paint-track? true)])
+                                                            (gen-circ-checks "a1")])
+                                    (vertical-panel :border "Argument 3"
+                                                    :items [(horizontal-panel :items [(checkbox :id :arg3s
+                                                                                                :selected? true)
+                                                                                      (slider   :id :arg3n
+                                                                                                :orientation :horizontal
+                                                                                                :value 0
+                                                                                                :min -10
+                                                                                                :max 10
+                                                                                                :minor-tick-spacing 1
+                                                                                                :major-tick-spacing 5
+                                                                                                :snap-to-ticks? true
+                                                                                                :paint-labels? true
+                                                                                                :paint-track? true)])
+                                                            (gen-circ-checks "a3")])
+                                    (vertical-panel :border "Argument 5"
+                                                    :items [(horizontal-panel :items [(checkbox :id :arg5s
+                                                                                                :selected? true)
+                                                                                      (slider   :id :arg5n
+                                                                                                :orientation :horizontal
+                                                                                                :value 0
+                                                                                                :min -10
+                                                                                                :max 10
+                                                                                                :minor-tick-spacing 1
+                                                                                                :major-tick-spacing 5
+                                                                                                :snap-to-ticks? true
+                                                                                                :paint-labels? true
+                                                                                                :paint-track? true)])
+                                                            (gen-circ-checks "a5")])
+                                    (vertical-panel :border "Argument 7"
+                                                    :items [(horizontal-panel :items [(checkbox :id :arg7s
+                                                                                                :selected? true)
+                                                                                      (slider   :id :arg7n
+                                                                                                :orientation :horizontal
+                                                                                                :value 0
+                                                                                                :min -10
+                                                                                                :max 10
+                                                                                                :minor-tick-spacing 1
+                                                                                                :major-tick-spacing 5
+                                                                                                :snap-to-ticks? true
+                                                                                                :paint-labels? true
+                                                                                                :paint-track? true)])
+                                                            (gen-circ-checks "a7")])]
+                    :west :items [(vertical-panel :border "Argument 2"
+                                                    :items [(horizontal-panel :items [(checkbox :id :arg2s
+                                                                                                :selected? true)
+                                                                                      (slider   :id :arg2n
+                                                                                                :orientation :horizontal
+                                                                                                :value 0
+                                                                                                :min -10
+                                                                                                :max 10
+                                                                                                :minor-tick-spacing 1
+                                                                                                :major-tick-spacing 5
+                                                                                                :snap-to-ticks? true
+                                                                                                :paint-labels? true
+                                                                                                :paint-track? true)])
+                                                            (gen-circ-checks "a2")])
+                                  (vertical-panel :border "Argument 4"
+                                                    :items [(horizontal-panel :items [(checkbox :id :arg4s
+                                                                                                :selected? true)
+                                                                                      (slider   :id :arg4n
+                                                                                                :orientation :horizontal
+                                                                                                :value 0
+                                                                                                :min -10
+                                                                                                :max 10
+                                                                                                :minor-tick-spacing 1
+                                                                                                :major-tick-spacing 5
+                                                                                                :snap-to-ticks? true
+                                                                                                :paint-labels? true
+                                                                                                :paint-track? true)])
+                                                            (gen-circ-checks "a4")])
+                                  (vertical-panel :border "Argument 6"
+                                                    :items [(horizontal-panel :items [(checkbox :id :arg6s
+                                                                                                :selected? true)
+                                                                                      (slider   :id :arg6n
+                                                                                                :orientation :horizontal
+                                                                                                :value 0
+                                                                                                :min -10
+                                                                                                :max 10
+                                                                                                :minor-tick-spacing 1
+                                                                                                :major-tick-spacing 5
+                                                                                                :snap-to-ticks? true
+                                                                                                :paint-labels? true
+                                                                                                :paint-track? true)])
+                                                            (gen-circ-checks "a6")])
+                                  (vertical-panel :border "Argument 8"
+                                                    :items [(horizontal-panel :items [(checkbox :id :arg8s
+                                                                                                :selected? true)
+                                                                                      (slider   :id :arg8n
+                                                                                                :orientation :horizontal
+                                                                                                :value 0
+                                                                                                :min -10
+                                                                                                :max 10
+                                                                                                :minor-tick-spacing 1
+                                                                                                :major-tick-spacing 5
+                                                                                                :snap-to-ticks? true
+                                                                                                :paint-labels? true
+                                                                                                :paint-track? true)])
+                                                            (gen-circ-checks "a8")])]))))
+
+(defn get-circ-params []
+  "Gets the parameters set by the new-dialogue box for a new circle."
+  {:name (.getText (select new-dialogue [:#name-field]))
+   :circ (loop [op   (cond
+                      (.isSelected (select new-dialogue [:#plus])) +
+                      (.isSelected (select new-dialogue [:#plus])) -
+                      (.isSelected (select new-dialogue [:#plus])) *
+                      (.isSelected (select new-dialogue [:#plus])) /
+                      :else 'error)
+                in-s (list
+                      (select new-dialogue [:#arg1s])
+                      (select new-dialogue [:#arg2s])
+                      (select new-dialogue [:#arg3s])
+                      (select new-dialogue [:#arg4s])
+                      (select new-dialogue [:#arg5s])
+                      (select new-dialogue [:#arg6s])
+                      (select new-dialogue [:#arg7s])
+                      (select new-dialogue [:#arg8s]))
+                in-n (loop [s   in-s
+                            out '()
+                            n   1]
+                       (cond (empty? s) (reverse out)
+                             (.isSelected (first s) (recur (rest s) (cons (eval (read-string (str "(.getValue (select new-dialogue [:#arg" n "n]"))) out (inc n)))
+                             :else (recur (rest s) out (inc n)))))
+                in-c (loop [in  @used-circles
+                            out '()]
+                       (cond (empty? in) (reverse out)
+                             :else (recur (rest in) (cons (eval (read-string (str "(select new-dialogue [:#" (:name (first in)) "]"))) out))))
+                out  (op)]
+           (cond (empty? in-c) (reverse out)
 
 (defn test-new-box [& args]
   (do

@@ -272,3 +272,10 @@
           - right, got a nicer-looking dialogue now, need to write a fn to populate the circle args bit at the bottom now
           - writing a fn gen-circ-checks to do that
           - seems to work, now have a load of checkboxes at the bottom of the dialogue, just need to connect it all up with listeners and shit now :)
+22/01/12: - added text field for circle name to new-circle dialogue
+          - removing "available" from border/title of circles section of new-circle dialogue
+          - feeling like may encounter problems with new-circle dialogue, make sure that (gen-circ-checks) is run every time it's opened
+          - writing fn get-circ-params to get info from new-dialogue; for now will generate a map with just :name and :circ, then new-circle will add :x and :y fields
+          - realised that circ bit at the bottom can't work thanks to non-commutative - and / (fuck 'em); now going to do (gen-circ-checks) for each arg, also going to mod gen-circ-checks to take an arg to use as a prefix to the generated ids
+          - changing get-circ-checks to get-circ-radios as no longer makes sense to have checkboxes
+          - now thinking needs an arg check, a num/circ radio, a num slider and circ radios

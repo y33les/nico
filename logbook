@@ -279,3 +279,7 @@
           - realised that circ bit at the bottom can't work thanks to non-commutative - and / (fuck 'em); now going to do (gen-circ-checks) for each arg, also going to mod gen-circ-checks to take an arg to use as a prefix to the generated ids
           - changing get-circ-checks to get-circ-radios as no longer makes sense to have checkboxes
           - now thinking needs an arg check, a num/circ radio, a num slider and circ radios
+          - oops, forgot to make gen-circ-radios put the radios into a horizontal-panel *facepalm* done now
+          - right, new layout now working but weird amounts of whitespace around left columns
+          - also, mixed up left and right ffs
+          - redone new-dialogue AGAIN, working mostly how i want it to now but placement of some objects dodgy, may well put things into a vertical-panel of horizontal-panels rather than the border-panel i have now to align them properly; need to sort out new-dialogue layour fully before finishing get-circ-params

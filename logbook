@@ -288,3 +288,5 @@
           - works with circles :)
           - making new-dialogue a fn to regenerate circs, etc., each time new-circle gets run
           - works! :D getting a wrong no. of args error for invoke-later in test-new-box though :\
+          - redoing get-circ-params, major rework of old fn
+          - written, weird error about get-meta though, guessing the :id property is a metadatum?

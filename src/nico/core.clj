@@ -461,27 +461,30 @@
                       (.isSelected (select new-dialogue [:#plus])) *
                       (.isSelected (select new-dialogue [:#plus])) /
                       :else 'error)
-                in-s (list
-                      (select new-dialogue [:#arg1s])
-                      (select new-dialogue [:#arg2s])
-                      (select new-dialogue [:#arg3s])
-                      (select new-dialogue [:#arg4s])
-                      (select new-dialogue [:#arg5s])
-                      (select new-dialogue [:#arg6s])
-                      (select new-dialogue [:#arg7s])
-                      (select new-dialogue [:#arg8s]))
-                in-n (loop [s   in-s
-                            out '()
-                            n   1]
-                       (cond (empty? s) (reverse out)
-                             (.isSelected (first s)) (recur (rest s) (cons (eval (read-string (str "(.getValue (select new-dialogue [:#arg" n "n]"))) out) (inc n))
-                             :else (recur (rest s) out (inc n))))
-                in-c (loop [in  @used-circles
-                            out '()]
-                       (cond (empty? in) (reverse out)
-                             :else (recur (rest in) (cons (eval (read-string (str "(select new-dialogue [:#" (:name (first in)) "]"))) out))))
-                out  (op)]
-           (cond (empty? in-c) (reverse out)))})
+                s? (list
+                      (select new-dialogue [:#arg1s?])
+                      (select new-dialogue [:#arg2s?])
+                      (select new-dialogue [:#arg3s?])
+                      (select new-dialogue [:#arg4s?])
+                      (select new-dialogue [:#arg5s?])
+                      (select new-dialogue [:#arg6s?])
+                      (select new-dialogue [:#arg7s?])
+                      (select new-dialogue [:#arg8s?]))
+                select-n (fn [n s] (eval (read-string (str "(select new-dialogue [:#arg" n s "])"))))
+                select-c (fn [n c] (eval (read-string (str "(select new-dialogue [:#a" n (:name c) "])"))))
+                get-circ (fn [n] (loop [in @used-circles]
+                                   (cond (empty? in) nil
+                                         (.isSelected (select-c n (first in))) (first in)
+                                         :else (recur (rest in)))))
+                n 1
+                out (op)]
+           (cond (empty? s?) (reverse out)
+                 (first s?)  (recur op (rest s?) select-n select-c get-circ (inc n) (cons
+                                                                                     (cond (.isSelected (select-n n "n?")) (.getValue (select-n n "n"))
+                                                                                           (.isSelected (select-n n "c?")) (get-circ n)
+                                                                                           :else "error")
+                                                                                     out))
+                 :else (recur op (rest s?) select-n select-c get-circ (inc n) out)))})
 
 (defn test-new-box [& args]
   (let [dlg (new-dialogue)]

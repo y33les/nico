@@ -373,211 +373,84 @@
                                                       out)
                                                 (inc n))))))
 
-(def new-dialogue
-  ;; The dialogue to be displayed as part of new-circle.
-  (let [op    (button-group)
-        arg1  (button-group)
-        arg1r (button-group)
-        arg2  (button-group)
-        arg2r (button-group)
-        arg3  (button-group)
-        arg3r (button-group)
-        arg4  (button-group)
-        arg4r (button-group)
-        arg5  (button-group)
-        arg5r (button-group)
-        arg6  (button-group)
-        arg6r (button-group)
-        arg7  (button-group)
-        arg7r (button-group)
-        arg8  (button-group)
-        arg8r (button-group)]
-    (do
-      (native!)
-      (border-panel :id :new-box
-                    :north (horizontal-panel :id :name-op
-                                             :items [(horizontal-panel :id :name-field
-                                                                       :border "Name"
-                                                                       :items [(text)])
-                                                     (horizontal-panel :id :op-select
-                                                                       :border "Operator"
-                                                                       :items [(radio :id :plus
-                                                                                      :text "+"
-                                                                                      :group op
-                                                                                      :selected? true)
-                                                                               (radio :id :minus
-                                                                                      :text "-"
-                                                                                      :group op)
-                                                                               (radio :id :mul
-                                                                                      :text (str \u00d7)
-                                                                                      :group op)
-                                                                               (radio :id :div
-                                                                                      :text (str \u00f7)
-                                                                                      :group op)])])
-                    :center (vertical-panel :id :args-left
-                                            :items [(border-panel :id :args-selector-1
-                                                                  :border "Argument 1"
-                                                                  :west (vertical-panel :items [(checkbox :id :arg1s
-                                                                                                          :selected? true)
-                                                                                                (radio :id :arg1n?
-                                                                                                       :group arg1
-                                                                                                       :selected? true)
-                                                                                                (radio :id :arg1c?
-                                                                                                       :group arg1)])
-                                                                  :east (vertical-panel :items [(label :text "Enabled?")
-                                                                                                (slider :id :arg1n
-                                                                                                        :orientation :horizontal
-                                                                                                        :value 0
-                                                                                                        :min -10
-                                                                                                        :max 10
-                                                                                                        :minor-tick-spacing 1
-                                                                                                        :major-tick-spacing 5
-                                                                                                        :snap-to-ticks? true
-                                                                                                        :paint-labels? true
-                                                                                                        :paint-track? true)
-                                                                                                (gen-circ-radios "a1" arg1r)]))
-                                                    (border-panel :id :args-selector-3
-                                                                  :border "Argument 3"
-                                                                  :west (vertical-panel :items [(checkbox :id :arg3s)
-                                                                                                (radio :id :arg3n?
-                                                                                                       :group arg3
-                                                                                                       :selected? true)
-                                                                                                (radio :id :arg3c?
-                                                                                                       :group arg3)])
-                                                                  :east (vertical-panel :items [(label :text "Enabled?")
-                                                                                                (slider :id :arg3n
-                                                                                                        :orientation :horizontal
-                                                                                                        :value 0
-                                                                                                        :min -10
-                                                                                                        :max 10
-                                                                                                        :minor-tick-spacing 1
-                                                                                                        :major-tick-spacing 5
-                                                                                                        :snap-to-ticks? true
-                                                                                                        :paint-labels? true
-                                                                                                        :paint-track? true)
-                                                                                                (gen-circ-radios "a3" arg3r)]))
-                                                    (border-panel :id :args-selector-5
-                                                                  :border "Argument 5"
-                                                                  :west (vertical-panel :items [(checkbox :id :arg5s)
-                                                                                                (radio :id :arg5n?
-                                                                                                       :group arg5
-                                                                                                       :selected? true)
-                                                                                                (radio :id :arg5c?
-                                                                                                       :group arg5)])
-                                                                  :east (vertical-panel :items [(label :text "Enabled?")
-                                                                                                (slider :id :arg5n
-                                                                                                        :orientation :horizontal
-                                                                                                        :value 0
-                                                                                                        :min -10
-                                                                                                        :max 10
-                                                                                                        :minor-tick-spacing 1
-                                                                                                        :major-tick-spacing 5
-                                                                                                        :snap-to-ticks? true
-                                                                                                        :paint-labels? true
-                                                                                                        :paint-track? true)
-                                                                                                (gen-circ-radios "a5" arg5r)]))
-                                                    (border-panel :id :args-selector-7
-                                                                  :border "Argument 7"
-                                                                  :west (vertical-panel :items [(checkbox :id :arg7s)
-                                                                                                (radio :id :arg7n?
-                                                                                                       :group arg7
-                                                                                                       :selected? true)
-                                                                                                (radio :id :arg7c?
-                                                                                                       :group arg7)])
-                                                                  :east (vertical-panel :items [(label :text "Enabled?")
-                                                                                                (slider :id :arg7n
-                                                                                                        :orientation :horizontal
-                                                                                                        :value 0
-                                                                                                        :min -10
-                                                                                                        :max 10
-                                                                                                        :minor-tick-spacing 1
-                                                                                                        :major-tick-spacing 5
-                                                                                                        :snap-to-ticks? true
-                                                                                                        :paint-labels? true
-                                                                                                        :paint-track? true)
-                                                                                                (gen-circ-radios "a7" arg7r)]))])
-                    :east   (vertical-panel :id :args-right
-                                            :items [(border-panel :id :args-selector-2
-                                                                  :border "Argument 2"
-                                                                  :west (vertical-panel :items [(checkbox :id :arg2s
-                                                                                                          :selected? true)
-                                                                                                (radio :id :arg2n?
-                                                                                                       :group arg2
-                                                                                                       :selected? true)
-                                                                                                (radio :id :arg2c?
-                                                                                                       :group arg2)])
-                                                                  :east (vertical-panel :items [(label :text "Enabled?")
-                                                                                                (slider :id :arg2n
-                                                                                                        :orientation :horizontal
-                                                                                                        :value 0
-                                                                                                        :min -10
-                                                                                                        :max 10
-                                                                                                        :minor-tick-spacing 1
-                                                                                                        :major-tick-spacing 5
-                                                                                                        :snap-to-ticks? true
-                                                                                                        :paint-labels? true
-                                                                                                        :paint-track? true)
-                                                                                                (gen-circ-radios "a2" arg2r)]))
-                                                    (border-panel :id :args-selector-4
-                                                                  :border "Argument 4"
-                                                                  :west (vertical-panel :items [(checkbox :id :arg4s)
-                                                                                                (radio :id :arg4n?
-                                                                                                       :group arg4
-                                                                                                       :selected? true)
-                                                                                                (radio :id :arg4c?
-                                                                                                       :group arg4)])
-                                                                  :east (vertical-panel :items [(label :text "Enabled?")
-                                                                                                (slider :id :arg4n
-                                                                                                        :orientation :horizontal
-                                                                                                        :value 0
-                                                                                                        :min -10
-                                                                                                        :max 10
-                                                                                                        :minor-tick-spacing 1
-                                                                                                        :major-tick-spacing 5
-                                                                                                        :snap-to-ticks? true
-                                                                                                        :paint-labels? true
-                                                                                                        :paint-track? true)
-                                                                                                (gen-circ-radios "a4" arg4r)]))
-                                                    (border-panel :id :args-selector-6
-                                                                  :border "Argument 6"
-                                                                  :west (vertical-panel :items [(checkbox :id :arg6s)
-                                                                                                (radio :id :arg6n?
-                                                                                                       :group arg6
-                                                                                                       :selected? true)
-                                                                                                (radio :id :arg6c?
-                                                                                                       :group arg1)])
-                                                                  :east (vertical-panel :items [(label :text "Enabled?")
-                                                                                                (slider :id :arg6n
-                                                                                                        :orientation :horizontal
-                                                                                                        :value 0
-                                                                                                        :min -10
-                                                                                                        :max 10
-                                                                                                        :minor-tick-spacing 1
-                                                                                                        :major-tick-spacing 5
-                                                                                                        :snap-to-ticks? true
-                                                                                                        :paint-labels? true
-                                                                                                        :paint-track? true)
-                                                                                                (gen-circ-radios "a6" arg6r)]))
-                                                    (border-panel :id :args-selector-8
-                                                                  :border "Argument 8"
-                                                                  :west (vertical-panel :items [(checkbox :id :arg8s)
-                                                                                                (radio :id :arg8n?
-                                                                                                       :group arg8
-                                                                                                       :selected? true)
-                                                                                                (radio :id :arg8c?
-                                                                                                       :group arg8)])
-                                                                  :east (vertical-panel :items [(label :text "Enabled?")
-                                                                                                (slider :id :arg8n
-                                                                                                        :orientation :horizontal
-                                                                                                        :value 0
-                                                                                                        :min -10
-                                                                                                        :max 10
-                                                                                                        :minor-tick-spacing 1
-                                                                                                        :major-tick-spacing 5
-                                                                                                        :snap-to-ticks? true
-                                                                                                        :paint-labels? true
-                                                                                                        :paint-track? true)
-                                                                                                (gen-circ-radios "a8" arg8r)]))])))))
+;; Groups of radio buttons for use in new-dialogue
+(def op (button-group))
+(def arg1 (button-group))
+(def arg1r (button-group))
+(def arg2 (button-group))
+(def arg2r (button-group))
+(def arg3 (button-group))
+(def arg3r (button-group))
+(def arg4 (button-group))
+(def arg4r (button-group))
+(def arg5 (button-group))
+(def arg5r (button-group))
+(def arg6 (button-group))
+(def arg6r (button-group))
+(def arg7 (button-group))
+(def arg7r (button-group))
+(def arg8 (button-group))
+(def arg8r (button-group))
+
+(defn new-arg-panel [n]
+  "Creates the configuration panel for argument n to be used in new-dialogue."
+  (border-panel :id (keyword (str "args-selector-" n))
+                :border (str "Argument " n)
+                :north  (checkbox :id (keyword (str "arg" n "s?"))
+                                  :text "Enabled?"
+                                  :selected? (cond (< n 3) true
+                                                   :else false))
+                :center (horizontal-panel :items [(radio :id (keyword (str "arg" n "n?"))
+                                                         :group (eval (symbol (str "arg" n)))
+                                                         :selected? true)
+                                                  (slider :id (keyword (str "arg" n "n"))
+                                                          :orientation :horizontal
+                                                          :value 0
+                                                          :min -10
+                                                          :max 10
+                                                          :minor-tick-spacing 1
+                                                          :major-tick-spacing 5
+                                                          :snap-to-ticks? true
+                                                          :paint-labels? true
+                                                          :paint-track? true)])
+                :south  (horizontal-panel :items [(radio :id (keyword (str "arg" n "c?"))
+                                                         :group (eval (symbol (str "arg" n))))
+                                                  (gen-circ-radios (str "a" n) (eval (symbol (str "arg" n "r"))))])))
+
+(defn new-dialogue []
+  "Generates the dialogue to be displayed as part of new-circle."
+;;   (do
+;;     (native!)
+    (border-panel :id :new-box
+                  :north (horizontal-panel :id :name-op
+                                           :items [(horizontal-panel :id :name-field
+                                                                     :border "Name"
+                                                                     :items [(text)])
+                                                   (horizontal-panel :id :op-select
+                                                                     :border "Operator"
+                                                                     :items [(radio :id :plus
+                                                                                    :text "+"
+                                                                                    :group op
+                                                                                    :selected? true)
+                                                                             (radio :id :minus
+                                                                                    :text "-"
+                                                                                    :group op)
+                                                                             (radio :id :mul
+                                                                                    :text (str \u00d7)
+                                                                                    :group op)
+                                                                             (radio :id :div
+                                                                                    :text (str \u00f7)
+                                                                                    :group op)])])
+                  :center (vertical-panel :id :args-left
+                                          :items [(new-arg-panel 1)
+                                                  (new-arg-panel 3)
+                                                  (new-arg-panel 5)
+                                                  (new-arg-panel 7)])
+                  :east  (vertical-panel :id :args-right
+                                         :items [(new-arg-panel 2)
+                                                 (new-arg-panel 4)
+                                                 (new-arg-panel 6)
+                                                 (new-arg-panel 8)])))
 
 (defn get-circ-params []
   "Gets the parameters set by the new-dialogue box for a new circle."
@@ -601,25 +474,26 @@
                             out '()
                             n   1]
                        (cond (empty? s) (reverse out)
-                             (.isSelected (first s) (recur (rest s) (cons (eval (read-string (str "(.getValue (select new-dialogue [:#arg" n "n]"))) out (inc n)))
-                             :else (recur (rest s) out (inc n)))))
+                             (.isSelected (first s)) (recur (rest s) (cons (eval (read-string (str "(.getValue (select new-dialogue [:#arg" n "n]"))) out) (inc n))
+                             :else (recur (rest s) out (inc n))))
                 in-c (loop [in  @used-circles
                             out '()]
                        (cond (empty? in) (reverse out)
                              :else (recur (rest in) (cons (eval (read-string (str "(select new-dialogue [:#" (:name (first in)) "]"))) out))))
                 out  (op)]
-           (cond (empty? in-c) (reverse out)
+           (cond (empty? in-c) (reverse out)))})
 
 (defn test-new-box [& args]
-  (do
-    (native!)
-    (invoke-later
-     (do
-       (-> (frame :title "New",
-                  :content new-dialogue,
-                  :on-close :dispose)
-           pack!
-           show!)))))
+  (let [dlg (new-dialogue)]
+    (do
+      (native!)
+      (invoke-later
+       (do
+         (-> (frame :title "New",
+                    :content dlg,
+                    :on-close :dispose)
+             pack!
+             show!))))))
 
 (defn new-circle [& e]
   "Brings up a dialogue to define and draw a new circle on the Calculation canvas."

@@ -283,3 +283,8 @@
           - right, new layout now working but weird amounts of whitespace around left columns
           - also, mixed up left and right ffs
           - redone new-dialogue AGAIN, working mostly how i want it to now but placement of some objects dodgy, may well put things into a vertical-panel of horizontal-panels rather than the border-panel i have now to align them properly; need to sort out new-dialogue layour fully before finishing get-circ-params
+23/01/12: - writing fn new-arg-panel to simplify the layout of new-dialogue, sick of killing/yanking so much boilerplate
+          - works!  so far anyway, need to test with circles
+          - works with circles :)
+          - making new-dialogue a fn to regenerate circs, etc., each time new-circle gets run
+          - works! :D getting a wrong no. of args error for invoke-later in test-new-box though :\

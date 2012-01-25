@@ -290,3 +290,6 @@
           - works! :D getting a wrong no. of args error for invoke-later in test-new-box though :\
           - redoing get-circ-params, major rework of old fn
           - written, weird error about get-meta though, guessing the :id property is a metadatum?
+25/01/12: - think the get-meta error is because new-dialogue is now a defn and not a def
+          - changing it back to a def, will write a fn to re-eval it to get new circs, etc.
+          - that worked, now able to select stuff but getting a weird error about using an Integer as an ISeq on line 483 :S

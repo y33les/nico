@@ -417,15 +417,15 @@
                                                          :group (eval (symbol (str "arg" n))))
                                                   (gen-circ-radios (str "a" n) (eval (symbol (str "arg" n "r"))))])))
 
-(defn new-dialogue []
-  "Generates the dialogue to be displayed as part of new-circle."
+(def new-dialogue
+  ;; Generates the dialogue to be displayed as part of new-circle.
 ;;   (do
 ;;     (native!)
     (border-panel :id :new-box
                   :north (horizontal-panel :id :name-op
-                                           :items [(horizontal-panel :id :name-field
+                                           :items [(horizontal-panel :id :name-panel
                                                                      :border "Name"
-                                                                     :items [(text)])
+                                                                     :items [(text :id :name-field)])
                                                    (horizontal-panel :id :op-select
                                                                      :border "Operator"
                                                                      :items [(radio :id :plus
@@ -451,15 +451,15 @@
                                                  (new-arg-panel 4)
                                                  (new-arg-panel 6)
                                                  (new-arg-panel 8)])))
-
+(test-new-box)
 (defn get-circ-params []
   "Gets the parameters set by the new-dialogue box for a new circle."
   {:name (.getText (select new-dialogue [:#name-field]))
    :circ (loop [op   (cond
                       (.isSelected (select new-dialogue [:#plus])) +
-                      (.isSelected (select new-dialogue [:#plus])) -
-                      (.isSelected (select new-dialogue [:#plus])) *
-                      (.isSelected (select new-dialogue [:#plus])) /
+                      (.isSelected (select new-dialogue [:#minus])) -
+                      (.isSelected (select new-dialogue [:#mul])) *
+                      (.isSelected (select new-dialogue [:#div])) /
                       :else 'error)
                 s? (list
                       (select new-dialogue [:#arg1s?])
@@ -487,7 +487,7 @@
                  :else (recur op (rest s?) select-n select-c get-circ (inc n) out)))})
 
 (defn test-new-box [& args]
-  (let [dlg (new-dialogue)]
+  (let [dlg new-dialogue]
     (do
       (native!)
       (invoke-later

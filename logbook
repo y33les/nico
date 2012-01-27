@@ -303,3 +303,15 @@
           - working on incorporating it into new-circle, currently able to make a new circle from info in dialogue if dialogue is already open, but circ args are maps not pointers to other circs
           - w00t, able to get info out of new-dialogue and draw circles with it, though currently having to call (new-circle) followed by (render) in the repl to do so, also have to re-eval new-dialogue to get new circs as possible args
           - even works with nested circles (and can evaluate)!
+          - writing fn re-eval-box to regenerate circ lists etc.
+          - works!  w00t
+          - test-new-box renamed show-new-box
+          - hmmm, not working
+          - now if i (new-circle) from the repl the box appears but immediately creates a circle with the default options (i.e. (+ 0 0)); changing stuff doesn't do anything, also get a "Circle not found." alert and a NullPointerException
+          - just realised there's no like "OK" button on the box, adding
+          - trying to make it so that clicking ok returns the circle, thinking a listener outside of new-dialogue would work better than the :listen field i'm currently writing...
+          - started trying to put bits of new-circle into the listener on :new-ok but gonna put a listener into new-circle instead now
+          - put listener into new-circle now
+          - hmmm, still not showing new-dialogue when i right-click to do a new circle, need to sort that shit out soon
+          - dialogue appears when i run (new-circle) from the repl, but :new-ok doesn't seem to do anything; weirdly it seems to be returning some function
+          - just doing (show-new-box) followed by (dispose! new-dialogue) returns the JPanel thati s new-dialogue, but not this weird fn

@@ -450,8 +450,22 @@
                                          :items [(new-arg-panel 2)
                                                  (new-arg-panel 4)
                                                  (new-arg-panel 6)
-                                                 (new-arg-panel 8)])))
-;; (test-new-box)
+                                                 (new-arg-panel 8)])
+                  :south (button :id :new-ok
+                                 :text "OK")))
+
+(defn re-eval-box []
+  "Regenerate the bits of new-dialogue that need regenerating."
+  (do
+    (config! (select new-dialogue [:#args-left]) :items [(new-arg-panel 1)
+                                                         (new-arg-panel 3)
+                                                         (new-arg-panel 5)
+                                                         (new-arg-panel 7)])
+    (config! (select new-dialogue [:#args-right]) :items [(new-arg-panel 2)
+                                                          (new-arg-panel 4)
+                                                          (new-arg-panel 6)
+                                                          (new-arg-panel 8)])))
+
 (defn get-circ-params []
   "Gets the parameters set by the new-dialogue box for a new circle."
   {:name (.getText (select new-dialogue [:#name-field]))
@@ -486,7 +500,7 @@
                                                                                      out))
                  :else (recur op (rest s?) select-n select-c get-circ (inc n) out)))})
 
-(defn test-new-box [& args]
+(defn show-new-box [& args]
   (let [dlg new-dialogue]
     (do
       (native!)
@@ -500,15 +514,20 @@
 
 (defn new-circle [& e]
   "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
-  (let [params (get-circ-params)
-        circ   {:x (:x @current-click)
-                :y (:y @current-click)
-                :name (:name params)
-                :circ (:circ params)}]
-       (do
-         (send-off used-circles #(cons circ %))
-         (await used-circles)
-         (draw-circle (find-circle name)))))
+  (do
+    (re-eval-box)
+    (show-new-box)
+    (listen (select new-dialogue [:#new-ok])
+            :mouse-clicked (fn [b] (let [params (get-circ-params)
+                                         circ   {:x (:x @current-click)
+                                                 :y (:y @current-click)
+                                                 :name (:name params)
+                                                 :circ (:circ params)}]
+                                     (do
+                                       (send-off used-circles #(cons circ %))
+                                       (await used-circles)
+                                       (dispose! new-dialogue)
+                                       (draw-circle (find-circle name))))))))
 (comment
 (defn new-circle [& e]
   "Brings up a dialogue to define and draw a new circle on the Calculation canvas."

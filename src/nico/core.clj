@@ -451,7 +451,7 @@
                                                  (new-arg-panel 4)
                                                  (new-arg-panel 6)
                                                  (new-arg-panel 8)])))
-(test-new-box)
+;; (test-new-box)
 (defn get-circ-params []
   "Gets the parameters set by the new-dialogue box for a new circle."
   {:name (.getText (select new-dialogue [:#name-field]))
@@ -462,14 +462,14 @@
                       (.isSelected (select new-dialogue [:#div])) /
                       :else 'error)
                 s? (list
-                      (select new-dialogue [:#arg1s?])
-                      (select new-dialogue [:#arg2s?])
-                      (select new-dialogue [:#arg3s?])
-                      (select new-dialogue [:#arg4s?])
-                      (select new-dialogue [:#arg5s?])
-                      (select new-dialogue [:#arg6s?])
-                      (select new-dialogue [:#arg7s?])
-                      (select new-dialogue [:#arg8s?]))
+                    (.isSelected (select new-dialogue [:#arg1s?]))
+                    (.isSelected (select new-dialogue [:#arg2s?]))
+                    (.isSelected (select new-dialogue [:#arg3s?]))
+                    (.isSelected (select new-dialogue [:#arg4s?]))
+                    (.isSelected (select new-dialogue [:#arg5s?]))
+                    (.isSelected (select new-dialogue [:#arg6s?]))
+                    (.isSelected (select new-dialogue [:#arg7s?]))
+                    (.isSelected (select new-dialogue [:#arg8s?])))
                 select-n (fn [n s] (eval (read-string (str "(select new-dialogue [:#arg" n s "])"))))
                 select-c (fn [n c] (eval (read-string (str "(select new-dialogue [:#a" n (:name c) "])"))))
                 get-circ (fn [n] (loop [in @used-circles]
@@ -477,11 +477,11 @@
                                          (.isSelected (select-c n (first in))) (first in)
                                          :else (recur (rest in)))))
                 n 1
-                out (op)]
+                out (list op)]
            (cond (empty? s?) (reverse out)
                  (first s?)  (recur op (rest s?) select-n select-c get-circ (inc n) (cons
                                                                                      (cond (.isSelected (select-n n "n?")) (.getValue (select-n n "n"))
-                                                                                           (.isSelected (select-n n "c?")) (get-circ n)
+                                                                                           (.isSelected (select-n n "c?")) (symbol (:name (get-circ n)))
                                                                                            :else "error")
                                                                                      out))
                  :else (recur op (rest s?) select-n select-c get-circ (inc n) out)))})
@@ -500,6 +500,18 @@
 
 (defn new-circle [& e]
   "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
+  (let [params (get-circ-params)
+        circ   {:x (:x @current-click)
+                :y (:y @current-click)
+                :name (:name params)
+                :circ (:circ params)}]
+       (do
+         (send-off used-circles #(cons circ %))
+         (await used-circles)
+         (draw-circle (find-circle name)))))
+(comment
+(defn new-circle [& e]
+  "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
   (let [in   (input "New:")
         rng  (xy-rng)
         name (first (split in #" "))
@@ -515,7 +527,7 @@
          (send-off used-circles #(cons circ %))
          (await used-circles)
          (draw-circle (find-circle name)))))
-
+)
 (defn del-circle [& a]
   "Removes a circle from used-circles, such that it won't reappear on executing render."
   ;; (do

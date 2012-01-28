@@ -315,3 +315,12 @@
           - hmmm, still not showing new-dialogue when i right-click to do a new circle, need to sort that shit out soon
           - dialogue appears when i run (new-circle) from the repl, but :new-ok doesn't seem to do anything; weirdly it seems to be returning some function
           - just doing (show-new-box) followed by (dispose! new-dialogue) returns the JPanel thati s new-dialogue, but not this weird fn
+28/01/12: - thinking it might be the listen that's returning the fn, will experiment
+          - yeah it is, need to look into how to use listen properly or switch back to using :listen in :new-ok
+          - ok so listen installs a listener and returns a fn that, when called, removes all the listeners from the object being listened to
+          - got it to work from the repl i.e. (listen ... (prn "lol")) prints "lol" when :new-ok is clicked but new-circle isn't working for some reason
+          - tried doing the same stuff as in new-circle from the repl but nothing, suggests problem is in the (fn [b] ...) bit
+          - hmmm, works with just an alert
+          - works with a do
+          - works with a do inside a let
+          - works with a send-off inside a do inside a let

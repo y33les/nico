@@ -440,7 +440,12 @@
                                                                                     :group op)
                                                                              (radio :id :div
                                                                                     :text (str \u00f7)
-                                                                                    :group op)])])
+                                                                                    :group op)])
+                                                   (horizontal-panel :id :new-ok-box
+                                                                     :border "Finish"
+                                                                     :items [(label :text "  Done?  ")
+                                                                             (button :id :new-ok :text "OK")
+                                                                             (label :text "  ")])])
                   :center (vertical-panel :id :args-left
                                           :items [(new-arg-panel 1)
                                                   (new-arg-panel 3)
@@ -450,9 +455,7 @@
                                          :items [(new-arg-panel 2)
                                                  (new-arg-panel 4)
                                                  (new-arg-panel 6)
-                                                 (new-arg-panel 8)])
-                  :south (button :id :new-ok
-                                 :text "OK")))
+                                                 (new-arg-panel 8)])))
 
 (defn re-eval-box []
   "Regenerate the bits of new-dialogue that need regenerating."
@@ -524,6 +527,7 @@
                                                  :name (:name params)
                                                  :circ (:circ params)}]
                                      (do
+                                       (prn "OK!")
                                        (send-off used-circles #(cons circ %))
                                        (await used-circles)
                                        (dispose! new-dialogue)

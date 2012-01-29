@@ -324,3 +324,15 @@
           - works with a do
           - works with a do inside a let
           - works with a send-off inside a do inside a let
+29/01/12: - realised that there was a reference to a variable "name" on L534 in new-circle that doesn't exist, have replaced with (:name circ) but still nowt from new-circle
+          - commented-out all that context menu shit, now it's (should be) click on blank for new, click on circ for del
+          - added fuckloads of prns to new-circle to see what's wrong, looks like it's not getting past re-eval-box
+          - ok, commenting out the (re-eval-box) stage gets us as far as "before let", so something goes wrong in that let
+          - right, removed params, :name and :circ from the let, still no joy, let's try removing circ
+          - circ is now {:lol true :dongs true} and i've taken out the draw-circle stage...
+          - ...and the problem is still there ಠ_ಠ
+          - trying moving the let outside the listen now, see if that helps
+          - oops, just realised i was referring to (:x (.getX e)) (and correspondingly for y), will try removing that first
+          - nope, will try the outside-listen thing then
+          - nope, but problem def. seems to be between "shown" and "in let"
+          - fuck this, doing it tomorrow

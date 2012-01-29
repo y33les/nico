@@ -518,20 +518,23 @@
 (defn new-circle [& e]
   "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
   (do
-    (re-eval-box)
+    (prn "start")
+    ;; (re-eval-box) ;; something is seriously fucked here
+    (prn "re-evaled")
     (show-new-box)
+    (prn "shown")
+    (let [params (get-circ-params)
+          circ   {:x (.getX e)
+                  :y (.getY e)
+                  :name (:name params)
+                  :circ (:circ params)}]
     (listen (select new-dialogue [:#new-ok])
-            :mouse-clicked (fn [b] (let [params (get-circ-params)
-                                         circ   {:x (:x @current-click)
-                                                 :y (:y @current-click)
-                                                 :name (:name params)
-                                                 :circ (:circ params)}]
-                                     (do
-                                       (prn "OK!")
-                                       (send-off used-circles #(cons circ %))
-                                       (await used-circles)
-                                       (dispose! new-dialogue)
-                                       (draw-circle (find-circle name))))))))
+            :mouse-clicked (fn [_] (do
+                                     (prn "OK!")
+                                     (send-off used-circles #(cons circ %))
+                                     (await used-circles)
+                                     (dispose! new-dialogue)
+                                     (draw-circle (find-circle (:name circ)))))))))
 (comment
 (defn new-circle [& e]
   "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
@@ -692,12 +695,16 @@
                                         :background "#FFFFFF"
                                         :border     "Calculation"
                                         :size       [640 :by 480]
-                                        :popup      #(canvas-selected %)
-                                        :listen     [:mouse-moved (fn [e] (send-off current-click (fn [_] {:x (- (.getX e) 50) :y (- (.getY e) 50)})))])
+                                        ;; :popup      #(canvas-selected %)
+                                        ;; :listen     [:mouse-moved (fn [e] (send-off current-click (fn [_] {:x (- (.getX e) 50) :y (- (.getY e) 50)})))])
                                         ;; :listen     [:mouse-pressed #(drag-circle-begin %)
                                         ;;              :mouse-released #(do
                                         ;;                                 (drag-circle-end %)
                                         ;;                                 (render))])
+                                        :listen     [:mouse-clicked (fn [e] (let [x (.getX e)
+                                                                                  y (.getY e)]
+                                                                              (cond (nil? (point-in-circle x y)) (new-circle e)
+                                                                                    :else (del-circle (point-in-circle x y)))))])
                   :east   (grid-panel   :id         :buttons
                                         :columns    1
                                         :items      [(button :id     :open

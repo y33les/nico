@@ -336,3 +336,6 @@
           - nope, will try the outside-listen thing then
           - nope, but problem def. seems to be between "shown" and "in let"
           - fuck this, doing it tomorrow
+30/01/12: - interestingly, on kamek not getting the "shown" message so it may well be that it's not coming out of the (show-new-box) stage, also getting an exception at some point, will try again...
+          - ...yep, getting (on kamek) a wrong no. of args exception on running (-main), apparently wrong no. of args passed to invoke-later
+          - will try to implement again as :listen field in new-dialogue i think, awkward but might have more of a chance; problem seems to be that (show-new-box) doesn't terminate so it never moves on to the next step in the (do ...) block (i.e. the (let ...) bit)

@@ -444,7 +444,8 @@
                                                    (horizontal-panel :id :new-ok-box
                                                                      :border "Finish"
                                                                      :items [(label :text "  Done?  ")
-                                                                             (button :id :new-ok :text "OK")
+                                                                             (button :id :new-ok
+                                                                                     :text "OK")
                                                                              (label :text "  ")])])
                   :center (vertical-panel :id :args-left
                                           :items [(new-arg-panel 1)
@@ -519,13 +520,13 @@
   "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
   (do
     (prn "start")
-    ;; (re-eval-box) ;; something is seriously fucked here
-    (prn "re-evaled")
-    (show-new-box)
+    (future (re-eval-box)
+            (prn "re-evaled"))
+    (future (show-new-box))
     (prn "shown")
-    (let [params (get-circ-params)
-          circ   {:x (.getX e)
-                  :y (.getY e)
+    (let [params (future (get-circ-params))
+          circ   {:x (:x @current-click) ;; (.getX e)
+                  :y (:y @current-click) ;; (.getY e)
                   :name (:name params)
                   :circ (:circ params)}]
     (listen (select new-dialogue [:#new-ok])
@@ -533,8 +534,8 @@
                                      (prn "OK!")
                                      (send-off used-circles #(cons circ %))
                                      (await used-circles)
-                                     (dispose! new-dialogue)
-                                     (draw-circle (find-circle (:name circ)))))))))
+                                     (dispose! new-dialogue)))))))
+                                     ;; (draw-circle (find-circle (:name circ)))))))))
 (comment
 (defn new-circle [& e]
   "Brings up a dialogue to define and draw a new circle on the Calculation canvas."

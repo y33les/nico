@@ -339,3 +339,20 @@
 30/01/12: - interestingly, on kamek not getting the "shown" message so it may well be that it's not coming out of the (show-new-box) stage, also getting an exception at some point, will try again...
           - ...yep, getting (on kamek) a wrong no. of args exception on running (-main), apparently wrong no. of args passed to invoke-later
           - will try to implement again as :listen field in new-dialogue i think, awkward but might have more of a chance; problem seems to be that (show-new-box) doesn't terminate so it never moves on to the next step in the (do ...) block (i.e. the (let ...) bit)
+31/01/12: - will move new-circle stuff into the :listen field of :new-ok
+          - works with just (dispose! new-dialogue)
+          - switching the order of (re-eval-box) and (show-new-box) helps *facepalm*
+          - :\ still no joy doing it in the :listen field
+          - :\ works from the repl, did exactly the same thing as in core.clj, from (let [params ...] to (:name c)), no idea what's wrong here
+          - seems to work if i replace #(cons c %) with a fn that just returns 'foo and comment out the draw-circle line (having removed the let)
+          - seems to work with a simple let, sending (+ 2 2) off to used-circles
+          - stops working when the let contains (get-circ-params)
+          - re-ordering (re-eval-box) and (show-new-box) doesn't help in new-circle for some reason
+          - removing (get-circ-params) from the let in new-circle doesn't work, still dies when i give it a pre-made circle in the let
+          - putting (show-new-box) in a new thread gets us as far as "shown" but still no joy otherwise
+          - same if using future
+          - works if not using (.getX e) and (.getY e) :\ 
+          - works if using current-click rather than the event co-ords
+          - disposes if (get-circ-params) is in a future
+          - weirdly, it's returning the test circle from before ({:x 340 :y 240 :name bar :circ baz}) and two nil circles ({:x 0 :y 0 :name nil :circ nil})
+          - ok, so now it's working and even rendering but it's drawing a nil circle, as described above - i guess (get-circ-params) isn't terminating/isn't terminating quickly enough?

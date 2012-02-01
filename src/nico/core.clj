@@ -496,13 +496,13 @@
                                          :else (recur (rest in)))))
                 n 1
                 out (list op)]
-           (cond (empty? s?) (reverse out)
-                 (first s?)  (recur op (rest s?) select-n select-c get-circ (inc n) (cons
+           (cond (empty? s?) (do (prn "empty") (reverse out))
+                 (first s?)  (do (prn (str n " true")) (recur op (rest s?) select-n select-c get-circ (inc n) (cons
                                                                                      (cond (.isSelected (select-n n "n?")) (.getValue (select-n n "n"))
                                                                                            (.isSelected (select-n n "c?")) (symbol (:name (get-circ n)))
                                                                                            :else "error")
-                                                                                     out))
-                 :else (recur op (rest s?) select-n select-c get-circ (inc n) out)))})
+                                                                                     out)))
+                 :else (do (prn (str n " false")) (recur op (rest s?) select-n select-c get-circ (inc n) out))))})
 
 (defn show-new-box [& args]
   (let [dlg new-dialogue]

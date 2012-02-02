@@ -359,3 +359,6 @@
 01/02/12: - doing (send-off used-circles #(cons <MAP> %)) makes the agent fail; error is saying "Unable to resolve symbol: select in this context" - wtf
           - interesting, (get-circ-params) in new-circle isn't getting past the first iteration (i.e. it prints "1 true" and stops)
           - also it's printing "1 true" before i've even clicked the OK button
+02/02/12: - just realised having the let outside of the lsten doesn't make sense, hence the early "1 true", putting back inside
+          - ok, sorted but same problems; still stopping at "1 true" and showing a nil circle on rendering
+          - ah, problem seems to occur with send-off; just tried doing send-off manually from the repl and it did a nil circle and stopped at "1 true"

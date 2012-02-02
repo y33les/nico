@@ -524,18 +524,18 @@
             (prn "re-evaled"))
     (future (show-new-box))
     (prn "shown")
-    (let [params (future (get-circ-params))
-          circ   {:x (:x @current-click) ;; (.getX e)
-                  :y (:y @current-click) ;; (.getY e)
-                  :name (:name params)
-                  :circ (:circ params)}]
     (listen (select new-dialogue [:#new-ok])
-            :mouse-clicked (fn [_] (do
-                                     (prn "OK!")
-                                     (send-off used-circles #(cons circ %))
-                                     (await used-circles)
-                                     (dispose! new-dialogue)))))))
-                                     ;; (draw-circle (find-circle (:name circ)))))))))
+            :mouse-clicked (fn [_] (let [params (future (get-circ-params))
+                                         circ   {:x (:x @current-click) ;; (.getX e)
+                                                 :y (:y @current-click) ;; (.getY e)
+                                                 :name (:name params)
+                                                 :circ (:circ params)}]
+                                     (do
+                                       (prn "OK!")
+                                       (send-off used-circles #(cons circ %))
+                                       (await used-circles)
+                                       (dispose! new-dialogue)))))))
+                                       ;; (draw-circle (find-circle (:name circ)))))))))
 (comment
 (defn new-circle [& e]
   "Brings up a dialogue to define and draw a new circle on the Calculation canvas."

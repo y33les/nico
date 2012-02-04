@@ -130,13 +130,6 @@
                                     :else (recur (rest c) (cons (:circ (find-circle (str (first c)))) out)))
           :else (recur (rest c) (cons (first c) out)))))
 
-(defn string-to-int-list [s]
-  "Takes a string of integers separated by spaces as returns a list of integers."
-  (loop [in (split s #" ")
-         out '()]
-    (cond (empty? in) (reverse out)
-          :else (recur (rest in) (cons (Integer/parseInt (first in)) out)))))
-
 (def main-window)
 
 (defn in-circle [x x?]
@@ -169,16 +162,6 @@
   "Wrapper function for in-circle? that also checks if the generated co-ordinate will be out of bounds.  If x? is true it checks a x co-ordinate, if not it checks a y co-ordinate."
   (cond x? (not (or (in-circle? x x?) (> (+ x 100) 640) (in-circle (+ x 100) x?)))
         :else (not (or (in-circle? x x?) (> (+ x 100) 480) (in-circle (+ x 100) x?)))))
-
-(defn xy-rng []
-  "Generates a pair of co-ordinates as a map that can be used to create a non-overlapping circle."
-  (let [r (java.util.Random.)]
-    {:x (loop [rx (+ 15 (. r nextInt 510))]
-          (cond (available? rx true) rx
-                :else (recur (+ 15 (. r nextInt 510)))))
-     :y (loop [ry (+ 15 (. r nextInt 340))]
-          (cond (available? ry false) ry
-                :else (recur (+ 15 (. r nextInt 340)))))}))
 
 (comment
 (defn count-nested [circ]
@@ -267,6 +250,52 @@
                                   (recur (rest c) x y))
           :else (recur (rest c) x y))))
 
+(defn draw-args [g args x y]
+  "Draws the arguments of an expression around its circle."
+  (cond (= (count args) 2) (doto g
+                             (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
+                             (.drawString (str (nth args 1)) (+ x 48) (+ y 89)))
+        (= (count args) 3) (doto g
+                             (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
+                             (.drawString (str (nth args 1)) (+ x 73) (+ y 80))
+                             (.drawString (str (nth args 2)) (+ x 23) (+ y 80)))
+        (= (count args) 4) (doto g
+                             (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
+                             (.drawString (str (nth args 1)) (+ x 83) (+ y 55))
+                             (.drawString (str (nth args 2)) (+ x 48) (+ y 89))
+                             (.drawString (str (nth args 3)) (+ x 13) (+ y 55)))
+        (= (count args) 5) (doto g
+                             (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
+                             (.drawString (str (nth args 1)) (+ x 80) (+ y 43))
+                             (.drawString (str (nth args 2)) (+ x 68) (+ y 82))
+                             (.drawString (str (nth args 3)) (+ x 28) (+ y 82))
+                             (.drawString (str (nth args 4)) (+ x 16) (+ y 43)))
+        (= (count args) 6) (doto g
+                             (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
+                             (.drawString (str (nth args 1)) (+ x 79) (+ y 40))
+                             (.drawString (str (nth args 2)) (+ x 79) (+ y 72))
+                             (.drawString (str (nth args 3)) (+ x 48) (+ y 89))
+                             (.drawString (str (nth args 4)) (+ x 17) (+ y 72))
+                             (.drawString (str (nth args 5)) (+ x 17) (+ y 40)))
+        (= (count args) 7) (doto g
+                             (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
+                             (.drawString (str (nth args 1)) (+ x 76) (+ y 37))
+                             (.drawString (str (nth args 2)) (+ x 78) (+ y 66))
+                             (.drawString (str (nth args 3)) (+ x 64) (+ y 86))
+                             (.drawString (str (nth args 4)) (+ x 32) (+ y 86))
+                             (.drawString (str (nth args 5)) (+ x 18) (+ y 66))
+                             (.drawString (str (nth args 6)) (+ x 20) (+ y 37)))
+        (= (count args) 8) (doto g
+                             (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
+                             (.drawString (str (nth args 1)) (+ x 73) (+ y 32))
+                             (.drawString (str (nth args 2)) (+ x 83) (+ y 55))
+                             (.drawString (str (nth args 3)) (+ x 73) (+ y 80))
+                             (.drawString (str (nth args 4)) (+ x 48) (+ y 89))
+                             (.drawString (str (nth args 5)) (+ x 23) (+ y 80))
+                             (.drawString (str (nth args 6)) (+ x 13) (+ y 55))
+                             (.drawString (str (nth args 7)) (+ x 23) (+ y 32)))
+        :else nil))
+
 (defn draw-circle [circ]
   "Draws a circle circ at co-ordinates ((:x circ),(:y circ)) on the canvas."
   (let [g (.getGraphics (select main-window [:#canvas]))
@@ -291,8 +320,8 @@
         (.setColor java.awt.Color/BLACK)
         (.drawOval (+ x 30) (+ y 30) 40 40)
         (.drawString sym x (+ y 110))
-        (.drawString op (+ x 46) (+ y 54))
-        (.drawString (str args) x y))
+        (.drawString op (+ x 46) (+ y 54)))
+      (draw-args g args x y)
       (link-circles c))))
 
 (defn clear-screen []
@@ -331,7 +360,7 @@
                                (send-off current-question
                                          (fn [_] 1))))))
                          
-(defn load-qset []
+(defn load-qset [& a]
   "Brings up a dialogue with a file chooser to specify where to load the question set from.  Sends off the contents of the chosen file to current-qset."
   (choose-file :filters [(file-filter "Nico Question Set (*.nqs)"
                                       #(or (.isDirectory %)
@@ -536,25 +565,7 @@
                                        (await used-circles)
                                        (dispose! new-dialogue)))))))
                                        ;; (draw-circle (find-circle (:name circ)))))))))
-(comment
-(defn new-circle [& e]
-  "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
-  (let [in   (input "New:")
-        rng  (xy-rng)
-        name (first (split in #" "))
-        fun  (eval (read-string (nth (split in #" ") 1)))
-        expr (cons fun (rest (rest (read-string (str "(" in ")")))))
-        circ {:x (:x @current-click);;(cond (not (nil? e)) (:x rng)
-                 ;;      :else (.getX e))
-              :y (:y @current-click);;(cond (not (nil? e)) (:y rng)
-                 ;;      :else (.getY e))
-              :name name
-              :circ expr}]
-       (do
-         (send-off used-circles #(cons circ %))
-         (await used-circles)
-         (draw-circle (find-circle name)))))
-)
+
 (defn del-circle [& a]
   "Removes a circle from used-circles, such that it won't reappear on executing render."
   ;; (do
@@ -568,44 +579,6 @@
                                            :else (recur (rest in) (cons (first in) out) c))))))
     ;; (await-for 2000 used-circles)
     ;; (render)))
-
-(defn edit-circle [& e]
-  "Brings up a dialogue to edit the parameters of an existing circle and redraws it."
-  (let [in   (input "Edit:")
-        name (cond (not (nil? e)) (point-in-circle (:x @current-click) (:y @current-click))
-                   :else (first (split in #" ")))
-        fun  (eval (read-string (nth (split in #" ") 1)))
-        expr (cons fun (rest (rest (read-string (str "(" in ")")))))
-        old  (find-circle name)
-        new  {:x (:x old)
-              :y (:y old)
-              :name (:name old)
-              :circ expr}]
-    (do
-      (prn name)
-      (del-circle name)
-      (send-off used-circles #(cons new %))
-      (link-circles (find-circle name))
-      (render))))
-
-(defn drag-circle-begin [e]
-  "Detects if a circle has been selected and, if so, sends off its name to currently-dragging-circle."
-  (let [x  (.getX e)
-        y  (.getY e)
-        c  (point-in-circle x y)
-        c? (not (nil? c))]
-    (cond c? (send-off currently-dragging-circle (fn [_] c)))))
-
-(defn drag-circle-end [e]
-  "When a circle being dragged is released, modifies its :x and :y fields and sends off nil to currently-dragging-circle."
-  (let [x   (.getX e)
-        y   (.getY e)
-        old (find-circle @currently-dragging-circle)
-        new {:x x :y y :name (:name old) :circ (:circ old)}]
-    (cond (not (nil? @currently-dragging-circle)) (do
-                                                    (del-circle (:name old))
-                                                    (send-off used-circles #(cons new %))
-                                                    (send-off currently-dragging-circle (fn [_] nil))))))
 
 (defn next-question []
   "Loads the next question in the current question set."
@@ -650,30 +623,6 @@
   (cond (= (eval (eval-circle (find-root))) (eval (eval (:q (get-q-no @current-question))))) (question-right)
         :else (question-wrong)))
 
-(def new-circle-action
-  ;; Action for adding a circle, for use in menus.
-  (action :handler new-circle
-          :name "New circle"))
-
-(def edit-circle-action
-  ;; Action for editing a circle, for use in menus.
-  (action :handler edit-circle
-          :name "Edit circle"))
-
-(def del-circle-action
-  ;; Action for removing a circle, for use in menus.
-  (action :handler del-circle
-          :name "Remove circle"))
-
-(defn canvas-selected [e]
-  "Handle a right mouse click on the canvas."
-  (let [x  (.getX e)
-        y  (.getY e)
-        c  (point-in-circle x y)
-        c? (not (nil? c))]
-    (cond c? [edit-circle-action del-circle-action]
-          :else [new-circle-action])))
-    
 (def main-window
   ;; Creates the contents of Nico's main window.
   (do
@@ -695,13 +644,8 @@
                   :center (canvas       :id         :canvas
                                         :background "#FFFFFF"
                                         :border     "Calculation"
-                                        :size       [640 :by 480]
-                                        ;; :popup      #(canvas-selected %)
+                                        :size       [(int (.getWidth (.getScreenSize (java.awt.Toolkit/getDefaultToolkit)))) :by (int (.getHeight (.getScreenSize (java.awt.Toolkit/getDefaultToolkit))))]
                                         ;; :listen     [:mouse-moved (fn [e] (send-off current-click (fn [_] {:x (- (.getX e) 50) :y (- (.getY e) 50)})))])
-                                        ;; :listen     [:mouse-pressed #(drag-circle-begin %)
-                                        ;;              :mouse-released #(do
-                                        ;;                                 (drag-circle-end %)
-                                        ;;                                 (render))])
                                         :listen     [:mouse-clicked (fn [e] (let [x (.getX e)
                                                                                   y (.getY e)]
                                                                               (cond (nil? (point-in-circle x y)) (new-circle e)
@@ -746,6 +690,21 @@
                                         :font       {:name :sans-serif :style :bold :size 16}
                                         :listen [:mouse-clicked (fn [e] (check-answer))]))))
 
+(def open-action
+  ;; Action for opening a new question set, for use in menus.
+  (action :handler load-qset
+          :name "Open..."))
+
+(def exit-action
+  ;; Action for exiting Nico, for use in menus.
+  (action :handler (fn [a] (System/exit 0))
+          :name "Exit"))
+
+(def about-action
+  ;; Action for displaying the 'About' popup, for use in menus.
+  (action :handler (fn [a] (alert "Nico rocks!"))
+          :name "About..."))
+
 (defn -main [& args]
   (do
     (native!)
@@ -753,6 +712,8 @@
     (invoke-later
      (do
        (-> (frame :title "Nico v0.0.1",
+                  :menubar (menubar :items [(menu :text "File" :items [open-action exit-action])
+                                            (menu :text "Help" :items [about-action])])
                   :content main-window,
                   :on-close :exit)
            pack!

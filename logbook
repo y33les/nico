@@ -362,3 +362,26 @@
 02/02/12: - just realised having the let outside of the lsten doesn't make sense, hence the early "1 true", putting back inside
           - ok, sorted but same problems; still stopping at "1 true" and showing a nil circle on rendering
           - ah, problem seems to occur with send-off; just tried doing send-off manually from the repl and it did a nil circle and stopped at "1 true"
+04/02/12: - weird, seems to work from the repl on klungo now, doing the let with the prn and the send-off; maybe it's the await?  who fucking knows anymore
+          - but the OK button still kills it, completely erased all the other circle in used-circles from the screen; they're all there in the agent but it only draws the nil one for some reason, it's not even crashed the agent
+          - fuck it, coming back to this shit, gonna work on other stuff
+          - added menubar with file/help and fns open, exit, about; about just a popup atm but that's not very important anyway
+          - made it fullscreen
+          - doing the arg placements, need to print at (50, 10) and (50, 90) - font size is 11pt so add 11 to top y, sub 11 from bottom y, sub 2 from each x
+          - arg placement done
+          - w00t, didn't realise i'd fixed click-to-delete, so one-click sontrol scheme is now implemented
+          - seems like last thing to fix is this fucking interface, better get on with it then...
+          - but i'm going to procrastinate by removing a load of cruft
+          - removed fns:-
+            = string-to-int-list
+            = xy-rng
+            = edit-circle
+            = old revisions of new-circle
+            = drag-circle-begin
+            = drag-circle-end
+            = new-circle-action
+            = edit-circle-action
+            = del-circle-action
+            = canvas-selected
+            = context menu handlers in main-window
+            = dnd handlers in main-window

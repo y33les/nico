@@ -418,3 +418,23 @@
           - hmmm, simple loop in the repl with a fn in the bindings works
           - right, select-n seems to be dodgy, it freezes when putting the same fn into new-circle, telling it to print a selection using it as :success-fn
           - maybe i'll have to incorporate get-circ-params into new-circle, will try
+          - going to rewrite select-n and select-c as checking against n and taking an arg r? that, if true, selects the radio button, else selects the slider or circ radio button
+          - also takes an arg n? that says if you want the radio for num or circ (true is num)
+          - that was all bollocks, have kept what i wrote in the scratchpad for now but it was pretty damn ugly: playing aruond with keywords now, so instead of all that read-string shit it's now selecting as normal, but with (keyword (str "#" ...)) in it
+          - hmmm, this at least terminates, but it's sending a nil circle to used-circles
+          - also i forgot to add a bit that disposes of the dialogue box >:| *facepalm*
+          - added in await, dispose!, render - now the box doesn't open, just adds a nil circle to used-circles :(
+          - removed all that crap, still doing it >:| will leave it out for now, just concentrate on the main issue
+          - ok, it's back now :\ whatever
+          - also the new select-n seems to work :D
+          - right, it's returning a nil circle because it's evaluating its success fn before the user changes anything, so it's just getting blanks and zeroes
+          - will try wrapping the get-circ-params shit in anonymous fn
+          - OH MY FUCKING GOD IT APPEARS TO WORK mustn't get my hopes up yet though
+          - it does indeed appear to work (at least with numbers, will try circles now)!
+          - IT WORKS WITH CIRCLES OH MY FUCKING GOD IT WORKS *SOB* *SOB* *SOB*
+          - also, just realised i haven't made clear-screen clear the screen since i made the window bigger, doing that
+          - also, clicking on the canvas is fucked-up, checking that shit out now
+          - yeah it was giving new-circle an arg, that probs doesn't help
+          - actually, think i'll try to eliminate current-click by using that event arg
+          - new-circle now requires an event as an arg
+          - ima back this shit the fuck up before it stops working again

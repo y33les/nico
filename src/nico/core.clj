@@ -21,6 +21,9 @@
   (:use (seesaw core graphics chooser)
         [clojure.string :only [split split-lines]]))
 
+(def screen-x (int (.getWidth (.getScreenSize (java.awt.Toolkit/getDefaultToolkit)))))
+(def screen-y (int (.getHeight (.getScreenSize (java.awt.Toolkit/getDefaultToolkit)))))
+
 (def used-circles
   ;; Agent listing symbols pointing to existing circles.
   (agent '()))
@@ -328,7 +331,7 @@
   "Clears all visible drawings from the canvas."
   (doto (.getGraphics (select main-window [:#canvas]))
     (.setColor java.awt.Color/WHITE)
-    (.fillRect 15 15 610 450)))
+    (.fillRect 15 15 (- screen-x 30) (- screen-y 30))))
 
 (defn render []
   "Clears the screen, then draws all circles currently in used-circles, linking nested circles together."
@@ -548,14 +551,51 @@
      :circ (:circ (get-circ-params))}))
 
 ;; (defn show-new-box [& args]
-(defn new-circle [& args] ;; need to add in (native!) and (re-eval-box) somewhere, possibly here
-  (let [dlg (new-dialogue)]
+(defn new-circle [e] ;; need to add in (native!) and (re-eval-box) somewhere, possibly here
+ (let [dlg (new-dialogue)]
     (invoke-later
      (-> (dialog :title "New",
                  :content dlg,
                  :on-close :dispose
-                 :success-fn (fn [_]     (do (prn ((fn [n s] (eval (read-string (str "(select dlg [:#arg" n s "])")))) 1 "n?"))
-        (prn ((fn [n s] (eval (read-string (str "(select dlg [:#arg" n s "])")))) 2 "n"))));; (alert (str (get-circ-params dlg))));; (send-off used-circles #(cons {:x 200 :y 200 :name (.getText (select new-dialogue [:#name-field])) :circ '()} %)))
+                 :success-fn (fn [_] (let [x (.getX e) ;; (:x @current-click)
+                                   y (.getY e) ;; (:y @current-click)
+                                   circ {:x x
+                                         :y y
+                                         :name (.getText (select dlg [:#name-field]))
+                                         :circ (loop [op   (cond
+                                                            (.isSelected (select dlg [:#plus])) +
+                                                            (.isSelected (select dlg [:#minus])) -
+                                                            (.isSelected (select dlg [:#mul])) *
+                                                            (.isSelected (select dlg [:#div])) /
+                                                            :else 'error)
+                                                      s? (list
+                                                          (.isSelected (select dlg [:#arg1s?]))
+                                                          (.isSelected (select dlg [:#arg2s?]))
+                                                          (.isSelected (select dlg [:#arg3s?]))
+                                                          (.isSelected (select dlg [:#arg4s?]))
+                                                          (.isSelected (select dlg [:#arg5s?]))
+                                                          (.isSelected (select dlg [:#arg6s?]))
+                                                          (.isSelected (select dlg [:#arg7s?]))
+                                                          (.isSelected (select dlg [:#arg8s?])))
+                                                      ;; select-n (fn [n s] (eval (read-string (str "(select dlg [:#arg" n s "])"))))
+                                                      select-n (fn [n s] (select dlg [(keyword (str "#arg" n s))]))
+                                                      ;; select-c (fn [n c] (eval (read-string (str "(select dlg [:#a" n (:name c) "])"))))
+                                                      select-c (fn [n c] (select dlg [(keyword (str "#a" n (:name c)))]))
+                                                      get-circ (fn [n] (loop [in @used-circles]
+                                                                         (cond (empty? in) nil
+                                                                               (.isSelected (select-c n (first in))) (first in)
+                                                                               :else (recur (rest in)))))
+                                                      n 1
+                                                      out (list op)]
+                                                 (do (prn "bindings done") (prn (.isSelected (select-n 1 "n?"))) (prn (.getValue (select-n 2 "n")))
+                                                 (cond (empty? s?) (do (prn "empty") (reverse out))
+                                                       (first s?)  (do (prn (str n " true")) (recur op (rest s?) select-n select-c get-circ (inc n) (cons
+                                                                                                                           (cond (.isSelected (select-n n "n?")) (do (prn "num") (.getValue (select-n n "n")))
+                                                                                                                                 (.isSelected (select-n n "c?")) (do (prn "circ") (symbol (:name (get-circ n))))
+                                                                                                                                 :else "error")
+                                                                                                                           out)))
+                                                       :else (do (prn (str n " false")) (recur op (rest s?) select-n select-c get-circ (inc n) out)))))}]
+                                       (send-off used-circles #(cons circ %))))
                  :cancel-fn (fn [_] (dispose! dlg)))
           pack!
           show!))))
@@ -669,7 +709,7 @@
                   :center (canvas       :id         :canvas
                                         :background "#FFFFFF"
                                         :border     "Calculation"
-                                        :size       [(int (.getWidth (.getScreenSize (java.awt.Toolkit/getDefaultToolkit)))) :by (int (.getHeight (.getScreenSize (java.awt.Toolkit/getDefaultToolkit))))]
+                                        :size       [screen-x :by screen-y]
                                         ;; :listen     [:mouse-moved (fn [e] (send-off current-click (fn [_] {:x (- (.getX e) 50) :y (- (.getY e) 50)})))])
                                         :listen     [:mouse-clicked (fn [e] (let [x (.getX e)
                                                                                   y (.getY e)]

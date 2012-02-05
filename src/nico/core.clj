@@ -446,6 +446,8 @@
                                                          :group (eval (symbol (str "arg" n))))
                                                   (gen-circ-radios (str "a" n) (eval (symbol (str "arg" n "r"))))])))
 
+(def new-circle) ;; Declare new-circle, to be defined later
+
 (def new-dialogue
   ;; Generates the dialogue to be displayed as part of new-circle.
 ;;   (do
@@ -474,7 +476,9 @@
                                                                      :border "Finish"
                                                                      :items [(label :text "  Done?  ")
                                                                              (button :id :new-ok
-                                                                                     :text "OK")
+                                                                                     :text "OK"
+                                                                                     :mnemonic \O
+                                                                                     :listen [:mouse-clicked #(new-circle %)])
                                                                              (label :text "  ")])])
                   :center (vertical-panel :id :args-left
                                           :items [(new-arg-panel 1)
@@ -533,18 +537,36 @@
                                                                                      out)))
                  :else (do (prn (str n " false")) (recur op (rest s?) select-n select-c get-circ (inc n) out))))})
 
-(defn show-new-box [& args]
-  (let [dlg new-dialogue]
-    (do
-      (native!)
-      (invoke-later
-       (do
-         (-> (frame :title "New",
-                    :content dlg,
-                    :on-close :dispose)
-             pack!
-             show!))))))
+(defn get-new-circ []
+  "Gets the details of a new circle from new-dialogue and constructs the circle."
+  (let [x (:x @current-click) ;; (.getX e)
+        y (:y @current-click)] ;; (.getY e)]
+    {:x x
+     :y y
+     :name (:name (get-circ-params))
+     :circ (:circ (get-circ-params))}))
 
+;; (defn show-new-box [& args]
+(defn new-circle [& args] ;; need to add in (native!) and (re-eval-box) somewhere, possibly here
+  (do
+    (native!)
+    (invoke-later
+     (-> (dialog :title "New",
+                 :content new-dialogue,
+                 :on-close :dispose
+                 :success-fn (fn [_] (alert (str (.getText (select new-dialogue [:#name-field]))))))
+          pack!
+          show!))
+    (listen (select new-dialogue [:#new-ok])
+            :mouse-clicked (fn [e] (dispose! new-dialogue)))))
+
+(comment
+(defn new-circle [& e]
+  "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
+  (dispose! new-dialogue)))
+;;   (do (prn "new-circle")
+;;   (send-off used-circles #(cons (get-new-circ) %))))
+(comment
 (defn new-circle [& e]
   "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
   (do
@@ -554,16 +576,16 @@
     (future (show-new-box))
     (prn "shown")
     (listen (select new-dialogue [:#new-ok])
-            :mouse-clicked (fn [_] (let [params (future (get-circ-params))
-                                         circ   {:x (:x @current-click) ;; (.getX e)
-                                                 :y (:y @current-click) ;; (.getY e)
-                                                 :name (:name params)
-                                                 :circ (:circ params)}]
+            :mouse-clicked (fn [_] (let [;; params (future (get-circ-params))
+                                         circ   {:x 320 ;; (:x @current-click) ;; (.getX e)
+                                                 :y 240 ;; (:y @current-click) ;; (.getY e)
+                                                 :name (:name (future (get-circ-params)))
+                                                 :circ (:circ (future (get-circ-params)))}]
                                      (do
                                        (prn "OK!")
                                        (send-off used-circles #(cons circ %))
                                        (await used-circles)
-                                       (dispose! new-dialogue)))))))
+                                       (dispose! new-dialogue))))))))
                                        ;; (draw-circle (find-circle (:name circ)))))))))
 
 (defn del-circle [& a]
@@ -648,35 +670,22 @@
                                         ;; :listen     [:mouse-moved (fn [e] (send-off current-click (fn [_] {:x (- (.getX e) 50) :y (- (.getY e) 50)})))])
                                         :listen     [:mouse-clicked (fn [e] (let [x (.getX e)
                                                                                   y (.getY e)]
-                                                                              (cond (nil? (point-in-circle x y)) (new-circle e)
-                                                                                    :else (del-circle (point-in-circle x y)))))])
+                                                                              (do
+                                                                                (send-off current-click (fn [_] {:x x :y y}))
+                                                                                (cond (nil? (point-in-circle x y)) (do
+                                                                                                                     (new-circle e)
+                                                                                                                     (render)
+                                                                                                                     (check-answer))
+                                                                                      :else (do
+                                                                                              (del-circle (point-in-circle x y))
+                                                                                              (render)
+                                                                                              (check-answer))))))])
                   :east   (grid-panel   :id         :buttons
                                         :columns    1
                                         :items      [(button :id     :open
                                                              :text   "Open"
                                                              :listen [:mouse-clicked (fn [e]
                                                                                        (do (load-qset)))])
-                                                     (button :id     :new
-                                                             :text   "New"
-                                                             :listen [:mouse-clicked (fn [e]
-                                                                                       (do
-                                                                                         (new-circle)
-                                                                                         (render)
-                                                                                         (check-answer)))])
-                                                     (button :id     :edit
-                                                             :text   "Edit"
-                                                             :listen [:mouse-clicked (fn [e]
-                                                                                       (do
-                                                                                         (edit-circle)
-                                                                                         (render)
-                                                                                         (check-answer)))])
-                                                     (button :id     :remove
-                                                             :text   "Remove"
-                                                             :listen [:mouse-clicked (fn [e]
-                                                                                       (do
-                                                                                         (del-circle)
-                                                                                         (render)
-                                                                                         (check-answer)))])
                                                      (button :id     :render
                                                              :text   "Render"
                                                              :listen [:mouse-clicked (fn [e]
@@ -693,16 +702,30 @@
 (def open-action
   ;; Action for opening a new question set, for use in menus.
   (action :handler load-qset
+          :mnemonic \O
           :name "Open..."))
 
 (def exit-action
   ;; Action for exiting Nico, for use in menus.
   (action :handler (fn [a] (System/exit 0))
+          :mnemonic \E
           :name "Exit"))
 
 (def about-action
   ;; Action for displaying the 'About' popup, for use in menus.
-  (action :handler (fn [a] (alert "Nico rocks!"))
+  (action :handler (fn [a] (alert (str "Nico v0.0.01\n
+Copyright " \u00a9 " 2011-2012 Philip M. Yeeles\n
+Nico is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.\n
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.\n
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.")))
+          :mnemonic \A
           :name "About..."))
 
 (defn -main [& args]
@@ -712,8 +735,12 @@
     (invoke-later
      (do
        (-> (frame :title "Nico v0.0.1",
-                  :menubar (menubar :items [(menu :text "File" :items [open-action exit-action])
-                                            (menu :text "Help" :items [about-action])])
+                  :menubar (menubar :items [(menu :text "File"
+                                                  :mnemonic \F
+                                                  :items [open-action exit-action])
+                                            (menu :text "Help"
+                                                  :mnemonic \H
+                                                  :items [about-action])])
                   :content main-window,
                   :on-close :exit)
            pack!

@@ -405,3 +405,16 @@
           - oops, was pressing wrong OK button, *facepalm* ffs
           - hmmm, no joy with the right OK button, but did get an interesting error message: Exception occurred during event dispatching: java.security.PrivilegedActionException: java.security.PrivilegedActionException: java.lang.Exception: Unable to resolve symbol: select in this context (NO_SOURCE_FILE:0)
           - weird, can get the text from :name-field but it still doesn't like get-new-circ
+05/02/12: - changed :succes-fn of new-circle to send-off a fake circle grabbing name info from the box to used-circles; that works
+          - also works as the custom OK button listener i implemented
+          - added :cancel-fn to new-circle that disposes of new-dialogue
+          - made new-dialogue a fn again, now that i'm using dialog it'll let me native! it
+          - commenting-out the old OK button and its listener code now
+          - hopefully now that new-dialogue is a fn i won't new re-eval-box? pfft
+          - will need to either incorporate get-circ-params into new-circle or make it able to accept the dialogue box as an arg
+          - yeah, will make the box an arg
+          - get-circ-params now very brittle indeed, dirty little hack but might work, hopefully?
+          - of course not!  still gets stuck at "1 true"; have added more prns to get-circ-params, looks like it gets stuck after "1 true" but before "num", so somwhere in the recur?  maybe it doesn't like recurring with fns?
+          - hmmm, simple loop in the repl with a fn in the bindings works
+          - right, select-n seems to be dodgy, it freezes when putting the same fn into new-circle, telling it to print a selection using it as :success-fn
+          - maybe i'll have to incorporate get-circ-params into new-circle, will try

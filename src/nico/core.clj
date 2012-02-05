@@ -448,10 +448,10 @@
 
 (def new-circle) ;; Declare new-circle, to be defined later
 
-(def new-dialogue
-  ;; Generates the dialogue to be displayed as part of new-circle.
-;;   (do
-;;     (native!)
+(defn new-dialogue []
+  "Generates the dialogue to be displayed as part of new-circle."
+  (do
+    (native!)
     (border-panel :id :new-box
                   :north (horizontal-panel :id :name-op
                                            :items [(horizontal-panel :id :name-panel
@@ -471,15 +471,15 @@
                                                                                     :group op)
                                                                              (radio :id :div
                                                                                     :text (str \u00f7)
-                                                                                    :group op)])
-                                                   (horizontal-panel :id :new-ok-box
-                                                                     :border "Finish"
-                                                                     :items [(label :text "  Done?  ")
-                                                                             (button :id :new-ok
-                                                                                     :text "OK"
-                                                                                     :mnemonic \O
-                                                                                     :listen [:mouse-clicked #(new-circle %)])
-                                                                             (label :text "  ")])])
+                                                                                    :group op)])])
+                                                   ;; (horizontal-panel :id :new-ok-box
+                                                   ;;                   :border "Finish"
+                                                   ;;                   :items [(label :text "  Done?  ")
+                                                   ;;                           (button :id :new-ok
+                                                   ;;                                   :text "OK"
+                                                   ;;                                   :mnemonic \O
+                                                   ;;                                   :listen [:mouse-clicked #(new-circle %)])
+                                                   ;;                           (label :text "  ")])])
                   :center (vertical-panel :id :args-left
                                           :items [(new-arg-panel 1)
                                                   (new-arg-panel 3)
@@ -489,7 +489,7 @@
                                          :items [(new-arg-panel 2)
                                                  (new-arg-panel 4)
                                                  (new-arg-panel 6)
-                                                 (new-arg-panel 8)])))
+                                                 (new-arg-panel 8)]))))
 
 (defn re-eval-box []
   "Regenerate the bits of new-dialogue that need regenerating."
@@ -503,39 +503,40 @@
                                                           (new-arg-panel 6)
                                                           (new-arg-panel 8)])))
 
-(defn get-circ-params []
-  "Gets the parameters set by the new-dialogue box for a new circle."
-  {:name (.getText (select new-dialogue [:#name-field]))
-   :circ (loop [op   (cond
-                      (.isSelected (select new-dialogue [:#plus])) +
-                      (.isSelected (select new-dialogue [:#minus])) -
-                      (.isSelected (select new-dialogue [:#mul])) *
-                      (.isSelected (select new-dialogue [:#div])) /
+(defn get-circ-params [d]
+  "Gets the parameters set by the dialogue box d for a new circle."
+  {:name (do (prn "name") (.getText (select d [:#name-field])))
+   :circ (do (prn "entering circ") (loop [op   (cond
+                      (.isSelected (select d [:#plus])) +
+                      (.isSelected (select d [:#minus])) -
+                      (.isSelected (select d [:#mul])) *
+                      (.isSelected (select d [:#div])) /
                       :else 'error)
                 s? (list
-                    (.isSelected (select new-dialogue [:#arg1s?]))
-                    (.isSelected (select new-dialogue [:#arg2s?]))
-                    (.isSelected (select new-dialogue [:#arg3s?]))
-                    (.isSelected (select new-dialogue [:#arg4s?]))
-                    (.isSelected (select new-dialogue [:#arg5s?]))
-                    (.isSelected (select new-dialogue [:#arg6s?]))
-                    (.isSelected (select new-dialogue [:#arg7s?]))
-                    (.isSelected (select new-dialogue [:#arg8s?])))
-                select-n (fn [n s] (eval (read-string (str "(select new-dialogue [:#arg" n s "])"))))
-                select-c (fn [n c] (eval (read-string (str "(select new-dialogue [:#a" n (:name c) "])"))))
+                    (.isSelected (select d [:#arg1s?]))
+                    (.isSelected (select d [:#arg2s?]))
+                    (.isSelected (select d [:#arg3s?]))
+                    (.isSelected (select d [:#arg4s?]))
+                    (.isSelected (select d [:#arg5s?]))
+                    (.isSelected (select d [:#arg6s?]))
+                    (.isSelected (select d [:#arg7s?]))
+                    (.isSelected (select d [:#arg8s?])))
+                select-n (fn [n s] (eval (read-string (str "(select dlg [:#arg" n s "])"))))
+                select-c (fn [n c] (eval (read-string (str "(select dlg [:#a" n (:name c) "])"))))
                 get-circ (fn [n] (loop [in @used-circles]
                                    (cond (empty? in) nil
                                          (.isSelected (select-c n (first in))) (first in)
                                          :else (recur (rest in)))))
                 n 1
                 out (list op)]
+           (do (prn "bindings done")
            (cond (empty? s?) (do (prn "empty") (reverse out))
                  (first s?)  (do (prn (str n " true")) (recur op (rest s?) select-n select-c get-circ (inc n) (cons
-                                                                                     (cond (.isSelected (select-n n "n?")) (.getValue (select-n n "n"))
-                                                                                           (.isSelected (select-n n "c?")) (symbol (:name (get-circ n)))
+                                                                                     (cond (.isSelected (select-n n "n?")) (do (prn "num") (.getValue (select-n n "n")))
+                                                                                           (.isSelected (select-n n "c?")) (do (prn "circ") (symbol (:name (get-circ n))))
                                                                                            :else "error")
                                                                                      out)))
-                 :else (do (prn (str n " false")) (recur op (rest s?) select-n select-c get-circ (inc n) out))))})
+                 :else (do (prn (str n " false")) (recur op (rest s?) select-n select-c get-circ (inc n) out))))))})
 
 (defn get-new-circ []
   "Gets the details of a new circle from new-dialogue and constructs the circle."
@@ -548,17 +549,19 @@
 
 ;; (defn show-new-box [& args]
 (defn new-circle [& args] ;; need to add in (native!) and (re-eval-box) somewhere, possibly here
-  (do
-    (native!)
+  (let [dlg (new-dialogue)]
     (invoke-later
      (-> (dialog :title "New",
-                 :content new-dialogue,
+                 :content dlg,
                  :on-close :dispose
-                 :success-fn (fn [_] (alert (str (.getText (select new-dialogue [:#name-field]))))))
+                 :success-fn (fn [_]     (do (prn ((fn [n s] (eval (read-string (str "(select dlg [:#arg" n s "])")))) 1 "n?"))
+        (prn ((fn [n s] (eval (read-string (str "(select dlg [:#arg" n s "])")))) 2 "n"))));; (alert (str (get-circ-params dlg))));; (send-off used-circles #(cons {:x 200 :y 200 :name (.getText (select new-dialogue [:#name-field])) :circ '()} %)))
+                 :cancel-fn (fn [_] (dispose! dlg)))
           pack!
-          show!))
-    (listen (select new-dialogue [:#new-ok])
-            :mouse-clicked (fn [e] (dispose! new-dialogue)))))
+          show!))))
+      ;; (listen (select new-dialogue [:#new-ok])
+      ;;         :mouse-clicked (fn [_] (send-off used-circles #(cons {:x 200 :y 200 :name (.getText (select new-dialogue [:#name-field])) :circ '()} %))))))
+            ;; (fn [e] (dispose! new-dialogue)))))
 
 (comment
 (defn new-circle [& e]

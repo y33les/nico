@@ -3,6 +3,8 @@
 / tidy up code
 - get rid of last few buttons, info printed in corner
 - make .nqs default/only filter in file selection dialogue
+
+for the future:
 - running totals? like what render used to do with this shit:
     (loop [u @used-circles
            y 20]
@@ -11,3 +13,4 @@
                                  (recur (butlast u) (+ y 10)))))))
 
 - splash screen?
+- save diagrams as pictures?

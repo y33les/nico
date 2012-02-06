@@ -480,3 +480,5 @@
           - harrumph, looks like it's going to need another 50px
           - yay, better :)
           - right, removing bit of render that draws the values in the corner (maybe add a nicer ver with boxes at some point?)
+          - put dispose! back into new-circle's :success-fn, gets an IllegalArgumentException about the dialogue box's metadata but doesn't seem to do any harm, solves the problem of marking the q at least
+          - gonna add a wait/sleep/whatever so you can see the diagram

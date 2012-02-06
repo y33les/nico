@@ -504,7 +504,9 @@
                                                        :else (recur op (rest s?) select-n select-c get-circ (inc n) out)))}]
                                        (do
                                          (send-off used-circles #(cons circ %))
+                                         (dispose! dlg)
                                          (render)
+                                         (Thread/sleep 500) ;; Give them a chance to see their answer
                                          (check-answer))))
                  :cancel-fn (fn [_] (dispose! dlg)))
           pack!

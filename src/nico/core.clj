@@ -431,6 +431,8 @@
 
 (defn new-arg-panel [n]
   "Creates the configuration panel for argument n to be used in new-dialogue."
+  (let [g  (button-group)
+        gr (button-group)]
   (border-panel :id (keyword (str "args-selector-" n))
                 :border (str "Argument " n)
                 :north  (checkbox :id (keyword (str "arg" n "s?"))
@@ -438,7 +440,7 @@
                                   :selected? (cond (< n 3) true
                                                    :else false))
                 :center (horizontal-panel :items [(radio :id (keyword (str "arg" n "n?"))
-                                                         :group (eval (symbol (str "arg" n)))
+                                                         :group g ;; (eval (symbol (str "arg" n)))
                                                          :selected? true)
                                                   (slider :id (keyword (str "arg" n "n"))
                                                           :orientation :horizontal
@@ -451,8 +453,8 @@
                                                           :paint-labels? true
                                                           :paint-track? true)])
                 :south  (horizontal-panel :items [(radio :id (keyword (str "arg" n "c?"))
-                                                         :group (eval (symbol (str "arg" n))))
-                                                  (gen-circ-radios (str "a" n) (eval (symbol (str "arg" n "r"))))])))
+                                                         :group g) ;; (eval (symbol (str "arg" n))))
+                                                  (gen-circ-radios (str "a" n) gr)])))) ;; (eval (symbol (str "arg" n "r"))))]))))
 
 (def new-circle) ;; Declare new-circle, to be defined later
 

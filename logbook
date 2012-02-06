@@ -446,3 +446,9 @@
           - removing :cancel-fn doesn't help
           - weird, now the new-circle dialogue isn't disposing correctly on clicking OK
           - fixed check-answer s.t. if there aren't any circles it sets :answer's :text to 0
+06/02/12: - discovered (debug!) :O
+          - apparently not showing because it's getting a java.security.PrivilegedActionException at line 492: new-arg-panel can't resolve the symbol arg1 (line 441) for some reason (it's one of the button groups)
+          - trying just letting a button-group g inside new-arg-panel
+          - ok, now it's struggling with arg1r, will try letting a button-group gr now
+          - SORTED.  FUCK.  YES.
+          - backing up now, will tidy up after pushing to github

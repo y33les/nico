@@ -438,3 +438,11 @@
           - actually, think i'll try to eliminate current-click by using that event arg
           - new-circle now requires an event as an arg
           - ima back this shit the fuck up before it stops working again
+          - making new-circle take 2 args x and y (for co-ords) instead of the event
+          - fixed available? as had old screen dims in it
+          - weird, seems to be entering new-circle when clicking on canvas as prints the x and y but isn't bringing up the dialogue
+          - maybe it's showing it elsewhere?  another thread?
+          - removing pack! doesn't help
+          - removing :cancel-fn doesn't help
+          - weird, now the new-circle dialogue isn't disposing correctly on clicking OK
+          - fixed check-answer s.t. if there aren't any circles it sets :answer's :text to 0

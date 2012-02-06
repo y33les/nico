@@ -21,8 +21,13 @@
   (:use (seesaw core graphics chooser)
         [clojure.string :only [split split-lines]]))
 
-(def screen-x (int (.getWidth (.getScreenSize (java.awt.Toolkit/getDefaultToolkit)))))
-(def screen-y (int (.getHeight (.getScreenSize (java.awt.Toolkit/getDefaultToolkit)))))
+(def screen-x
+  ;; Available screen width.
+  (int (.getWidth (.getScreenSize (java.awt.Toolkit/getDefaultToolkit)))))
+
+(def screen-y
+  ;; Available screen height.
+  (int (.getHeight (.getScreenSize (java.awt.Toolkit/getDefaultToolkit)))))
 
 (def used-circles
   ;; Agent listing symbols pointing to existing circles.
@@ -163,8 +168,8 @@
 
 (defn available? [x x?]
   "Wrapper function for in-circle? that also checks if the generated co-ordinate will be out of bounds.  If x? is true it checks a x co-ordinate, if not it checks a y co-ordinate."
-  (cond x? (not (or (in-circle? x x?) (> (+ x 100) 640) (in-circle (+ x 100) x?)))
-        :else (not (or (in-circle? x x?) (> (+ x 100) 480) (in-circle (+ x 100) x?)))))
+  (cond x? (not (or (in-circle? x x?) (> (+ x 100) screen-x) (in-circle (+ x 100) x?)))
+        :else (not (or (in-circle? x x?) (> (+ x 100) screen-y) (in-circle (+ x 100) x?)))))
 
 (comment
 (defn count-nested [circ]
@@ -541,6 +546,8 @@
                                                                                      out)))
                  :else (do (prn (str n " false")) (recur op (rest s?) select-n select-c get-circ (inc n) out))))))})
 
+(def check-answer) ;; to be defn'd later
+
 (defn get-new-circ []
   "Gets the details of a new circle from new-dialogue and constructs the circle."
   (let [x (:x @current-click) ;; (.getX e)
@@ -551,15 +558,13 @@
      :circ (:circ (get-circ-params))}))
 
 ;; (defn show-new-box [& args]
-(defn new-circle [e] ;; need to add in (native!) and (re-eval-box) somewhere, possibly here
- (let [dlg (new-dialogue)]
+(defn new-circle [x y] ;; need to add in (native!) and (re-eval-box) somewhere, possibly here
+ (do (prn x) (prn y) (let [dlg (new-dialogue)]
     (invoke-later
      (-> (dialog :title "New",
                  :content dlg,
                  :on-close :dispose
-                 :success-fn (fn [_] (let [x (.getX e) ;; (:x @current-click)
-                                   y (.getY e) ;; (:y @current-click)
-                                   circ {:x x
+                 :success-fn (fn [_] (let [circ {:x x
                                          :y y
                                          :name (.getText (select dlg [:#name-field]))
                                          :circ (loop [op   (cond
@@ -595,10 +600,13 @@
                                                                                                                                  :else "error")
                                                                                                                            out)))
                                                        :else (do (prn (str n " false")) (recur op (rest s?) select-n select-c get-circ (inc n) out)))))}]
-                                       (send-off used-circles #(cons circ %))))
+                                       (do
+                                         (send-off used-circles #(cons circ %))
+                                         (render)
+                                         (check-answer))))
                  :cancel-fn (fn [_] (dispose! dlg)))
           pack!
-          show!))))
+          show!)))))
       ;; (listen (select new-dialogue [:#new-ok])
       ;;         :mouse-clicked (fn [_] (send-off used-circles #(cons {:x 200 :y 200 :name (.getText (select new-dialogue [:#name-field])) :circ '()} %))))))
             ;; (fn [e] (dispose! new-dialogue)))))
@@ -633,7 +641,7 @@
 
 (defn del-circle [& a]
   "Removes a circle from used-circles, such that it won't reappear on executing render."
-  ;; (do
+  (do
     (send-off used-circles (fn [_] (loop [in @used-circles
                                           out '()
                                           c (cond (string? (first a)) (first a)
@@ -641,9 +649,10 @@
                                                   :else (input "Remove:"))]
                                      (cond (empty? in) (reverse out)
                                            (= (:name (first in)) c) (recur (rest in) out c)
-                                           :else (recur (rest in) (cons (first in) out) c))))))
+                                           :else (recur (rest in) (cons (first in) out) c)))))
     ;; (await-for 2000 used-circles)
-    ;; (render)))
+    (render)
+    (check-answer)))
 
 (defn next-question []
   "Loads the next question in the current question set."
@@ -685,7 +694,8 @@
 
 (defn check-answer []
   "Evaluate the current root circle and check against the answer to the current question, displaying the result to the user."
-  (cond (= (eval (eval-circle (find-root))) (eval (eval (:q (get-q-no @current-question))))) (question-right)
+  (cond (empty? @used-circles) (config! (select main-window [:#answer]) :text (str 0))
+        (= (eval (eval-circle (find-root))) (eval (eval (:q (get-q-no @current-question))))) (question-right)
         :else (question-wrong)))
 
 (def main-window
@@ -716,7 +726,7 @@
                                                                               (do
                                                                                 (send-off current-click (fn [_] {:x x :y y}))
                                                                                 (cond (nil? (point-in-circle x y)) (do
-                                                                                                                     (new-circle e)
+                                                                                                                     (new-circle x y)
                                                                                                                      (render)
                                                                                                                      (check-answer))
                                                                                       :else (do

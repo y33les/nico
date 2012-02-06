@@ -23,11 +23,11 @@
 
 (def screen-x
   ;; Available screen width.
-  (int (.getWidth (.getScreenSize (java.awt.Toolkit/getDefaultToolkit)))))
+  800) ;; (int (.getWidth (.getScreenSize (java.awt.Toolkit/getDefaultToolkit)))))
 
 (def screen-y
   ;; Available screen height.
-  (int (.getHeight (.getScreenSize (java.awt.Toolkit/getDefaultToolkit)))))
+  600) ;;(int (.getHeight (.getScreenSize (java.awt.Toolkit/getDefaultToolkit)))))
 
 (def used-circles
   ;; Agent listing symbols pointing to existing circles.

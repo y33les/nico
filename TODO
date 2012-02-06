@@ -1,6 +1,7 @@
 / make canvas show new-circle dialogue box on detecting a click
 / fix live update for del-circle (currently have to manually render after del)
 / tidy up code
+- fix maximising bug; make app properly fullscreen
 - get rid of last few buttons, info printed in corner
 - make .nqs default/only filter in file selection dialogue
 

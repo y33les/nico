@@ -41,14 +41,6 @@
   ;; Agent containing an integer corresponding to the quesiton number.
   (agent 0))
 
-(def currently-dragging-circle
-  ;; Agent containing a string corresponding to the name of the circle currently being dragged.
-  (agent nil))
-
-(def current-click
-  ;; Agent containing a map of the co-ordinates on the canvas where the mouse was clicked.
-  (agent {:x 0 :y 0}))
-
 (defn kill-used-circles []
   "Empties used-circles.  For use in debugging; should be removed from finished program."
   (def used-circles (agent '())))
@@ -105,21 +97,6 @@
     (cond (empty? qs) nil
           (= n (:n (first qs))) (first qs)
           :else (recur (rest qs) n))))    
-
-(defmacro defcircle [name fun arg1 arg2 & args]
-  "Creates a new circle represented by '(fun arg1 arg2 & args) and adds a symbol pointing to it to used-circles.  Can be nested."
-  `(do
-     (def ~name
-     {:x ~(+ 15 (. (java.util.Random.) nextInt 510))
-      :y ~(+ 15 (. (java.util.Random.) nextInt 340))
-      :name ~(str name)
-      :circ (cons ~fun
-                  (cons ~(cond (symbol? arg1) `(quote ~arg1)
-                               :else arg1)
-                        (cons ~(cond (symbol? arg2) `(quote ~arg2)
-                                     :else arg2)
-                              (quote ~args))))})
-     (send-off used-circles #(cons (quote ~name) %))))
 
 (defn nested? [circ]
   "Returns true if a circle contains other circles."
@@ -225,8 +202,8 @@
           (root? (first u)) (first u)
           :else (recur (rest u) c))))
 
-(defn find-longest-path [circ]
-  "Takes a nested circle and returns the longest path to a root circle."
+(defn find-longest-path [c]
+  "Find the longest path to the circle c."
   '())
 
 (defn count-nested [circ]
@@ -344,13 +321,7 @@
     (clear-screen)
     (loop [u @used-circles]
       (cond (not (empty? u)) (do (draw-circle (first u))
-                                 ;; (link-circles (first u))
-                                 (recur (rest u)))))
-    (loop [u @used-circles
-           y 20]
-      (cond (not (empty? u)) (do (doto (.getGraphics (select main-window [:#canvas]))
-                                   (.drawString (str (:name (last u)) ": " (eval (eval-circle (last u)))) 20 y))
-                                 (recur (butlast u) (+ y 10)))))))
+                                 (recur (rest u)))))))
 
 (defn load-qset-init []
   "Brings up a dialogue with a file chooser to specify where to load the question set from.  Sends off the contents of the chosen file to current-qset."
@@ -412,22 +383,6 @@
 
 ;; Groups of radio buttons for use in new-dialogue
 (def op (button-group))
-(def arg1 (button-group))
-(def arg1r (button-group))
-(def arg2 (button-group))
-(def arg2r (button-group))
-(def arg3 (button-group))
-(def arg3r (button-group))
-(def arg4 (button-group))
-(def arg4r (button-group))
-(def arg5 (button-group))
-(def arg5r (button-group))
-(def arg6 (button-group))
-(def arg6r (button-group))
-(def arg7 (button-group))
-(def arg7r (button-group))
-(def arg8 (button-group))
-(def arg8r (button-group))
 
 (defn new-arg-panel [n]
   "Creates the configuration panel for argument n to be used in new-dialogue."
@@ -482,14 +437,6 @@
                                                                              (radio :id :div
                                                                                     :text (str \u00f7)
                                                                                     :group op)])])
-                                                   ;; (horizontal-panel :id :new-ok-box
-                                                   ;;                   :border "Finish"
-                                                   ;;                   :items [(label :text "  Done?  ")
-                                                   ;;                           (button :id :new-ok
-                                                   ;;                                   :text "OK"
-                                                   ;;                                   :mnemonic \O
-                                                   ;;                                   :listen [:mouse-clicked #(new-circle %)])
-                                                   ;;                           (label :text "  ")])])
                   :center (vertical-panel :id :args-left
                                           :items [(new-arg-panel 1)
                                                   (new-arg-panel 3)
@@ -513,55 +460,11 @@
                                                           (new-arg-panel 6)
                                                           (new-arg-panel 8)])))
 
-(defn get-circ-params [d]
-  "Gets the parameters set by the dialogue box d for a new circle."
-  {:name (do (prn "name") (.getText (select d [:#name-field])))
-   :circ (do (prn "entering circ") (loop [op   (cond
-                      (.isSelected (select d [:#plus])) +
-                      (.isSelected (select d [:#minus])) -
-                      (.isSelected (select d [:#mul])) *
-                      (.isSelected (select d [:#div])) /
-                      :else 'error)
-                s? (list
-                    (.isSelected (select d [:#arg1s?]))
-                    (.isSelected (select d [:#arg2s?]))
-                    (.isSelected (select d [:#arg3s?]))
-                    (.isSelected (select d [:#arg4s?]))
-                    (.isSelected (select d [:#arg5s?]))
-                    (.isSelected (select d [:#arg6s?]))
-                    (.isSelected (select d [:#arg7s?]))
-                    (.isSelected (select d [:#arg8s?])))
-                select-n (fn [n s] (eval (read-string (str "(select dlg [:#arg" n s "])"))))
-                select-c (fn [n c] (eval (read-string (str "(select dlg [:#a" n (:name c) "])"))))
-                get-circ (fn [n] (loop [in @used-circles]
-                                   (cond (empty? in) nil
-                                         (.isSelected (select-c n (first in))) (first in)
-                                         :else (recur (rest in)))))
-                n 1
-                out (list op)]
-           (do (prn "bindings done")
-           (cond (empty? s?) (do (prn "empty") (reverse out))
-                 (first s?)  (do (prn (str n " true")) (recur op (rest s?) select-n select-c get-circ (inc n) (cons
-                                                                                     (cond (.isSelected (select-n n "n?")) (do (prn "num") (.getValue (select-n n "n")))
-                                                                                           (.isSelected (select-n n "c?")) (do (prn "circ") (symbol (:name (get-circ n))))
-                                                                                           :else "error")
-                                                                                     out)))
-                 :else (do (prn (str n " false")) (recur op (rest s?) select-n select-c get-circ (inc n) out))))))})
+(def check-answer) ;; Declare check-answer, to be defined later
 
-(def check-answer) ;; to be defn'd later
-
-(defn get-new-circ []
-  "Gets the details of a new circle from new-dialogue and constructs the circle."
-  (let [x (:x @current-click) ;; (.getX e)
-        y (:y @current-click)] ;; (.getY e)]
-    {:x x
-     :y y
-     :name (:name (get-circ-params))
-     :circ (:circ (get-circ-params))}))
-
-;; (defn show-new-box [& args]
-(defn new-circle [x y] ;; need to add in (native!) and (re-eval-box) somewhere, possibly here
- (do (prn x) (prn y) (let [dlg (new-dialogue)]
+(defn new-circle [x y]
+  "Brings up a dialogue box to configure a new circle.  Draws the circle on pressing 'OK'."
+  (let [dlg (new-dialogue)]
     (invoke-later
      (-> (dialog :title "New",
                  :content dlg,
@@ -584,9 +487,7 @@
                                                           (.isSelected (select dlg [:#arg6s?]))
                                                           (.isSelected (select dlg [:#arg7s?]))
                                                           (.isSelected (select dlg [:#arg8s?])))
-                                                      ;; select-n (fn [n s] (eval (read-string (str "(select dlg [:#arg" n s "])"))))
                                                       select-n (fn [n s] (select dlg [(keyword (str "#arg" n s))]))
-                                                      ;; select-c (fn [n c] (eval (read-string (str "(select dlg [:#a" n (:name c) "])"))))
                                                       select-c (fn [n c] (select dlg [(keyword (str "#a" n (:name c)))]))
                                                       get-circ (fn [n] (loop [in @used-circles]
                                                                          (cond (empty? in) nil
@@ -594,65 +495,32 @@
                                                                                :else (recur (rest in)))))
                                                       n 1
                                                       out (list op)]
-                                                 (do (prn "bindings done") (prn (.isSelected (select-n 1 "n?"))) (prn (.getValue (select-n 2 "n")))
-                                                 (cond (empty? s?) (do (prn "empty") (reverse out))
-                                                       (first s?)  (do (prn (str n " true")) (recur op (rest s?) select-n select-c get-circ (inc n) (cons
-                                                                                                                           (cond (.isSelected (select-n n "n?")) (do (prn "num") (.getValue (select-n n "n")))
-                                                                                                                                 (.isSelected (select-n n "c?")) (do (prn "circ") (symbol (:name (get-circ n))))
+                                                 (cond (empty? s?) (reverse out)
+                                                       (first s?)  (recur op (rest s?) select-n select-c get-circ (inc n) (cons
+                                                                                                                           (cond (.isSelected (select-n n "n?")) (.getValue (select-n n "n"))
+                                                                                                                                 (.isSelected (select-n n "c?")) (symbol (:name (get-circ n)))
                                                                                                                                  :else "error")
-                                                                                                                           out)))
-                                                       :else (do (prn (str n " false")) (recur op (rest s?) select-n select-c get-circ (inc n) out)))))}]
+                                                                                                                           out))
+                                                       :else (recur op (rest s?) select-n select-c get-circ (inc n) out)))}]
                                        (do
                                          (send-off used-circles #(cons circ %))
                                          (render)
                                          (check-answer))))
                  :cancel-fn (fn [_] (dispose! dlg)))
           pack!
-          show!)))))
-      ;; (listen (select new-dialogue [:#new-ok])
-      ;;         :mouse-clicked (fn [_] (send-off used-circles #(cons {:x 200 :y 200 :name (.getText (select new-dialogue [:#name-field])) :circ '()} %))))))
-            ;; (fn [e] (dispose! new-dialogue)))))
+          show!))))
 
-(comment
-(defn new-circle [& e]
-  "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
-  (dispose! new-dialogue)))
-;;   (do (prn "new-circle")
-;;   (send-off used-circles #(cons (get-new-circ) %))))
-(comment
-(defn new-circle [& e]
-  "Brings up a dialogue to define and draw a new circle on the Calculation canvas."
-  (do
-    (prn "start")
-    (future (re-eval-box)
-            (prn "re-evaled"))
-    (future (show-new-box))
-    (prn "shown")
-    (listen (select new-dialogue [:#new-ok])
-            :mouse-clicked (fn [_] (let [;; params (future (get-circ-params))
-                                         circ   {:x 320 ;; (:x @current-click) ;; (.getX e)
-                                                 :y 240 ;; (:y @current-click) ;; (.getY e)
-                                                 :name (:name (future (get-circ-params)))
-                                                 :circ (:circ (future (get-circ-params)))}]
-                                     (do
-                                       (prn "OK!")
-                                       (send-off used-circles #(cons circ %))
-                                       (await used-circles)
-                                       (dispose! new-dialogue))))))))
-                                       ;; (draw-circle (find-circle (:name circ)))))))))
-
-(defn del-circle [& a]
+(defn del-circle [x y & a]
   "Removes a circle from used-circles, such that it won't reappear on executing render."
   (do
     (send-off used-circles (fn [_] (loop [in @used-circles
                                           out '()
                                           c (cond (string? (first a)) (first a)
-                                                  (instance? java.awt.event.ActionEvent (first a)) (point-in-circle (:x @current-click) (:y @current-click))
+                                                  (instance? java.awt.event.ActionEvent (first a)) (point-in-circle x y);; (:x @current-click) (:y @current-click))
                                                   :else (input "Remove:"))]
                                      (cond (empty? in) (reverse out)
                                            (= (:name (first in)) c) (recur (rest in) out c)
                                            :else (recur (rest in) (cons (first in) out) c)))))
-    ;; (await-for 2000 used-circles)
     (render)
     (check-answer)))
 
@@ -705,54 +573,32 @@
   (do
     (native!)
     (border-panel :id     :root
-                  :north  (border-panel :id       :top
-                                        :center   (label  :id     :question
-                                                          :text   (str
-                                                                   "Q"
-                                                                   (:n (first @current-qset))
-                                                                   ": "
-                                                                   (:q (first @current-qset)))
-                                                          :font   {:name :sans-serif :style :bold :size 18}
-                                                          :border "Question")
-                                        :east     (label  :id     :answer
-                                                          :text   "0"
-                                                          :font   {:name :sans-serif :style :bold :size 18}
-                                                          :border "Answer"))
-                  :center (canvas       :id         :canvas
+                  :center (label  :id     :question
+                                  :text   (str
+                                           "Q"
+                                           (:n (first @current-qset))
+                                           ": "
+                                           (:q (first @current-qset)))
+                                  :font   {:name :sans-serif :style :bold :size 18}
+                                  :border "Question")
+                  :east   (label  :id     :answer
+                                  :text   "0"
+                                  :font   {:name :sans-serif :style :bold :size 18}
+                                  :border "Answer")
+                  :south  (canvas       :id         :canvas
                                         :background "#FFFFFF"
                                         :border     "Calculation"
-                                        :size       [screen-x :by screen-y]
-                                        ;; :listen     [:mouse-moved (fn [e] (send-off current-click (fn [_] {:x (- (.getX e) 50) :y (- (.getY e) 50)})))])
+                                        :size       [screen-x :by (- screen-y 100)]
                                         :listen     [:mouse-clicked (fn [e] (let [x (.getX e)
                                                                                   y (.getY e)]
-                                                                              (do
-                                                                                (send-off current-click (fn [_] {:x x :y y}))
-                                                                                (cond (nil? (point-in-circle x y)) (do
-                                                                                                                     (new-circle x y)
-                                                                                                                     (render)
-                                                                                                                     (check-answer))
-                                                                                      :else (do
-                                                                                              (del-circle (point-in-circle x y))
-                                                                                              (render)
-                                                                                              (check-answer))))))])
-                  :east   (grid-panel   :id         :buttons
-                                        :columns    1
-                                        :items      [(button :id     :open
-                                                             :text   "Open"
-                                                             :listen [:mouse-clicked (fn [e]
-                                                                                       (do (load-qset)))])
-                                                     (button :id     :render
-                                                             :text   "Render"
-                                                             :listen [:mouse-clicked (fn [e]
-                                                                                       (render))])
-                                                     (button :id     :clear
-                                                             :text   "Clear"
-                                                             :listen [:mouse-clicked (fn [e]
-                                                                                       (clear-screen))])])
-                  :south  (button       :id         :eval
-                                        :text       "Evaluate!"
-                                        :font       {:name :sans-serif :style :bold :size 16}
-                                        :listen [:mouse-clicked (fn [e] (check-answer))]))))
+                                                                              (cond (nil? (point-in-circle x y)) (do
+                                                                                                                   (new-circle x y)
+                                                                                                                   (render)
+                                                                                                                   (check-answer))
+                                                                                    :else (do
+                                                                                            (del-circle x y) ;; (point-in-circle x y))
+                                                                                            (render)
+                                                                                            (check-answer)))))]))))
 
 (def open-action
   ;; Action for opening a new question set, for use in menus.

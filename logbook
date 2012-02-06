@@ -452,3 +452,31 @@
           - ok, now it's struggling with arg1r, will try letting a button-group gr now
           - SORTED.  FUCK.  YES.
           - backing up now, will tidy up after pushing to github
+          - all seems good, need to make the new-circle dialogue dispose before showing the "correct" alert though
+          - also possible bug with moving on to new qsets, looking into it now
+          - nope, looks fine, must've done sth wrong
+          - **BIG CLEANUP**, removed things listed below
+            = currently-dragging-circle
+            = current-cilck
+            = defcircle
+            = all the arg<n> and arg<n>r button-groups, leaving op for now
+            = comments from new-dialogue
+            = get-circ-params
+            = get-new-circ
+            = comments from new-circle (also added docstring)
+            = prns (and their dos) from new-circle
+            = old revisions of new-circle
+            = await from del-circle
+            = :mouse-moved listener from canvas in main-window
+            = comment from render
+          - left all that count-nested shit alone, to work on in the future
+          - redoing del-circle to take x and y args instead of using current-click
+          - also changed it in main-window
+          - removing (send-off current-click ...) and its do in canvas in main-window
+          - cool, seems to still work after tidying now :)
+          - removing buttons (Open, Render, Clear, Evaluate!)
+          - also restructuring main-window so that q and a are now :center and :east (was a border-panel in :north), and canvas is :south
+          - ych a fi, canvas is now too big (takes up whole screen) so taking 50px of its height
+          - harrumph, looks like it's going to need another 50px
+          - yay, better :)
+          - right, removing bit of render that draws the values in the corner (maybe add a nicer ver with boxes at some point?)

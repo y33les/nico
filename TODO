@@ -1,6 +1,13 @@
 / make canvas show new-circle dialogue box on detecting a click
 / fix live update for del-circle (currently have to manually render after del)
-- tidy up code
+/ tidy up code
 - get rid of last few buttons, info printed in corner
 - make .nqs default/only filter in file selection dialogue
+- running totals? like what render used to do with this shit:
+    (loop [u @used-circles
+           y 20]
+      (cond (not (empty? u)) (do (doto (.getGraphics (select main-window [:#canvas]))
+                                   (.drawString (str (:name (last u)) ": " (eval (eval-circle (last u)))) 20 y))
+                                 (recur (butlast u) (+ y 10)))))))
+
 - splash screen?

@@ -511,3 +511,7 @@
           - looks like it works!  v. fast mouse still sometimes avoids the un-highlighting stage but it's basically fine; still a bit flashy though, should sort that eventually
           - writing a fn detect-qseg that tries to unify a circle with a bit of the question, for use in highlighting
           - looks like detect-qseg is gonna be quite hard, also don't know how to change the colour of only one part of the text - may have to split each character into a separate label and use that; would probs need detect-qseg to then output a character range rather than a substring so it can iterate through the labels and change colour accordingly
+          - i could, however, generate separate labels inside nested border-panels from the question (as it's a sexp) and config! the border-panel containing the parts i need
+          - writing a fn extract-qsegs to give me the nested labels and panels as detailed above
+          - written a rough draft of extract-qsegs, need to test, fix
+          - weird, running (extract-qsegs) in the repl complains that i'm passing an arg to it when it doesn't take one and i'm not passing one

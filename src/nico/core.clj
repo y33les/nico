@@ -333,6 +333,22 @@
       (draw-args g args x y)
       (link-circles c))))
 
+(defn detect-qseg
+  "Attempts to unify the circle circ with a part of the question that is currently being attempted.  Returns the substring of the question displayed that corresponds to circ."
+  [circ]
+  '())
+
+(defn highlight
+  "Highlights the circle circ, and the section of the question it represents."
+  [circ]
+  (let [x (:x circ)
+        y (:y circ)]
+    (do
+      (doto (.getGraphics (select main-window [:#canvas]))
+        (.setColor (java.awt.Color. 0x2ECCFA))
+        (.fillOval (- x 3) (- y 3) 106 106))
+      (comment do some shit to change the colour of the output of detect-qseg))))
+
 (defn clear-screen
   "Clears all visible drawings from the canvas."
   []
@@ -638,7 +654,56 @@
                                                                                     :else (do
                                                                                             (del-circle x y) ;; (point-in-circle x y))
                                                                                             (render)
-                                                                                            (check-answer)))))]))))
+                                                                                            (check-answer)))))
+                                                     :mouse-moved (fn [e] (let [x  (.getX e)
+                                                                               y  (.getY e)
+                                                                               n  (point-in-circle x y)
+                                                                               c  (cond (not (nil? n)) (find-circle n)
+                                                                                        :else nil)
+                                                                               e? (cond (nil? c) false
+                                                                                        (or (and (>= x (:x c))
+                                                                                                 (<= x (+ (:x c) 16))
+                                                                                                 (>= y (:y c))
+                                                                                                 (<= y (+ (:y c) 100)))
+                                                                                            (and (>= x (+ (:x c) 84))
+                                                                                                 (<= x (+ (:x c) 100))
+                                                                                                 (>= y (:y c))
+                                                                                                 (<= y (+ (:y c) 100)))
+                                                                                            (and (>= y (:y c))
+                                                                                                 (<= y (+ (:y c) 16))
+                                                                                                 (>= x (:x c))
+                                                                                                 (<= x (+ (:x c) 100)))
+                                                                                            (and (>= y (+ (:y c) 84))
+                                                                                                 (<= y (+ (:y c) 100))
+                                                                                                 (>= x (:x c))
+                                                                                                 (<= x (+ (:x c) 100)))) true
+                                                                                                 :else false)
+                                                                               i? (cond (nil? c) false
+                                                                                        (or (and (>= x (+ (:x c) 17))
+                                                                                                 (<= x (+ (:x c) 32))
+                                                                                                 (>= y (+ (:y c) 17))
+                                                                                                 (<= y (+ (:y c) 84)))
+                                                                                            (and (>= x (+ (:x c) 68))
+                                                                                                 (<= x (+ (:x c) 91))
+                                                                                                 (>= y (+ (:y c) 17))
+                                                                                                 (<= y (+ (:y c) 84)))
+                                                                                            (and (>= y (+ (:y c) 17))
+                                                                                                 (<= y (+ (:y c) 32))
+                                                                                                 (>= x (+ (:x c) 17))
+                                                                                                 (<= x (+ (:x c) 84)))
+                                                                                            (and (>= y (+ (:y c) 68))
+                                                                                                 (<= y (+ (:y c) 91))
+                                                                                                 (>= x (+ (:x c) 17))
+                                                                                                 (<= x (+ (:x c) 84)))) true
+                                                                                        :else false)]
+                                                                           (cond (not (nil? c)) (cond i? (do
+                                                                                                           (clear-screen)
+                                                                                                           (render)
+                                                                                                           (highlight c)
+                                                                                                           (draw-circle c))
+                                                                                                      e? (do
+                                                                                                           (clear-screen)
+                                                                                                           (render))))))]))))
 
 (def open-action
   ;; Action for opening a new question set, for use in menus.

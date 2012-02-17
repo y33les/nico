@@ -484,3 +484,30 @@
           - gonna add a wait/sleep/whatever so you can see the diagram
            -shit, just tested it on alex's comp and it makes a big-but-not-maximised window that when you maximise it it gets fucked up; need to sort making it a fullscreen app
 17/02/12: - trying to antialias the canvas using RenderingHints (like http://goo.gl/UcVdX)
+          - added highlighting listener to main-window, mentioned a fn highlight that i'll write now
+          - forgot that i actually need to un-highlight circles, smooth
+          - did simple is-circle-or-isn't check but re-rendering all the time looks shite, flashy
+          - written thing that checks if the mouse passes over a boundary 1px around the circle box, but of course it doesn't work as it refers to a circle that doesn't exist when you're outside it! *facepalm*
+          - will change so that it doesn't have the 1px border and just checks that you're at the edge of the circle
+          - hmmm, still not working, also flashy and shti when moving mouse within circle - maybe ignorable?  shoulds probs sort but priorities frankly
+          - added a prn to the edge checker, not printing so i guess it's not detecting
+          - forgot to add a bit to stop it checking when not on a circle so getting loads of NullPointerExceptions, have done that now
+          - that's sorted the thousands of exceptions out, but still not detecting edge passes
+          - put the edge-checking bit in the cond now, since c has to be non-nil
+          - stupid fucking moron, have got it backwards, only highlighting on an edge! *facepalm*
+          - put it the right way round now but still not detecting edge passes, must've gone wrong in the calculation of e? somewhere
+          - yeah, forgot to switch round the references to (:x c) and (:y c) in the top/bottom edge checks ಠ_ಠ
+          - nope, still nowt
+          - getting a fair amount of exceptions about invoke-later, i think it used to be 1 but got 3 on the last run, should probs keep an eye on that
+          - increased highlight radius by 1px too
+          - yeah, much nicer/clearer - back to the problem at hand now :P
+          - un-highlighting now works, but only if you move the mouse very slowly - guessing that's because you have to be exactly on the edge and moving the mouse fast skips a few co-ords at a time
+          - will have a buffer of ~5px or sth around the circle that counts as an edge
+          - managed to fuck up the bottom and right checks but the top and left seem to work, not sure if 5px is big enough though, still seemed to struggle with v. fast mouse movements - will add a bit to the highlight section that clears and re-renders before highlighting, also thinking of having a buffer like with e? but inside the circle, so that it only re-renders once
+          - of course, that shit don't work - when you're outside the circle, c becomes nil so it never detects it - will have to have a buffer of however many pixels inside the edge of the circle
+          - have bumped up the buffer size to 16px and added an internal buffer of 16px as well
+          - ok, sorted - apparently even a 16px buffer and another 16px internal buffer aren't enough to escape my crazy fast mouse movements
+          - also just realised my internal buffer is a bit wrong, fixing...
+          - looks like it works!  v. fast mouse still sometimes avoids the un-highlighting stage but it's basically fine; still a bit flashy though, should sort that eventually
+          - writing a fn detect-qseg that tries to unify a circle with a bit of the question, for use in highlighting
+          - looks like detect-qseg is gonna be quite hard, also don't know how to change the colour of only one part of the text - may have to split each character into a separate label and use that; would probs need detect-qseg to then output a character range rather than a substring so it can iterate through the labels and change colour accordingly

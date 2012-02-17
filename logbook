@@ -9,21 +9,21 @@
                    (eval-circle c0) => (eval (+ 3 7)) => 10
                    (eval-circle c1) => (eval (* (+ 3 7) 2)) => 20
             = so (eval-circle c1) does this:-
-	      # initialise expr => ()
-	      # cons (:fn c1) => (*)
-	      # look at first arg
-	      # c0 is not a number so recur
-	      # intialise expr => (* ())
-	      # cons (:fn c0) => (* (+))
-	      # look at first arg
-	      # 3 is a number so cons => (* (+ 3))
-	      # look at second arg
-	      # 7 is a number so cons => (* (+ 3 7))
-	      # back up a level
-	      # 2 is a number so cons => (* (+ 3 7) 2)
-	      # out of args so eval => (eval (* (+ 3 7) 2)) => 20
+              # initialise expr => ()
+              # cons (:fn c1) => (*)
+              # look at first arg
+              # c0 is not a number so recur
+              # intialise expr => (* ())
+              # cons (:fn c0) => (* (+))
+              # look at first arg
+              # 3 is a number so cons => (* (+ 3))
+              # look at second arg
+              # 7 is a number so cons => (* (+ 3 7))
+              # back up a level
+              # 2 is a number so cons => (* (+ 3 7) 2)
+              # out of args so eval => (eval (* (+ 3 7) 2)) => 20
           - display for generated code?
-	  - not finding clojure.string on netbook?
+          - not finding clojure.string on netbook?
 22/11/11: - wrote fn circ-arg that creates list from circle arg or returns int arg
 24/11/11: - wrote fn parse-args to parse output of circ-arg to desconstruct circles
           - currently broken; need function to perform as follows:-
@@ -351,7 +351,7 @@
           - removing (get-circ-params) from the let in new-circle doesn't work, still dies when i give it a pre-made circle in the let
           - putting (show-new-box) in a new thread gets us as far as "shown" but still no joy otherwise
           - same if using future
-          - works if not using (.getX e) and (.getY e) :\ 
+          - works if not using (.getX e) and (.getY e) :\
           - works if using current-click rather than the event co-ords
           - disposes if (get-circ-params) is in a future
           - weirdly, it's returning the test circle from before ({:x 340 :y 240 :name bar :circ baz}) and two nil circles ({:x 0 :y 0 :name nil :circ nil})
@@ -483,3 +483,4 @@
           - put dispose! back into new-circle's :success-fn, gets an IllegalArgumentException about the dialogue box's metadata but doesn't seem to do any harm, solves the problem of marking the q at least
           - gonna add a wait/sleep/whatever so you can see the diagram
            -shit, just tested it on alex's comp and it makes a big-but-not-maximised window that when you maximise it it gets fucked up; need to sort making it a fullscreen app
+17/02/12: - trying to antialias the canvas using RenderingHints (like http://goo.gl/UcVdX)

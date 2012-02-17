@@ -1,3 +1,15 @@
+post-meeting stuff to do:-
+- improve number entry (spinners or text fields)
+- connecting circles without having to go through the settings (drag between circles)
+- allow users to move the circles (dnd)
+- being able to change the operator (and args?)
+- basically lose the dialogue box
+- also have a submit button instead of automarking, allows them to break it and see what went wrong
+- highlighting the circle and the part of the sum it represents when the mouse hovers over
+- antialias canvas (and poss. text?)
+- get rid of names; user doesn't know why they need to name a circle
+/ fix docstrings: they go before [& args], not after
+
 / make canvas show new-circle dialogue box on detecting a click
 / fix live update for del-circle (currently have to manually render after del)
 / tidy up code

@@ -1,12 +1,17 @@
-- fix dnd
-- get rid of buttons, more intuitive interface (e.g. popup menus)
-- live updating of answer and other stuff, save need for render, evaluate buttons, etc.
-/ put args inside circles
-/ make questions look like maths not lisp
-/ fix next/prev buttons to scroll through qset
+/ make canvas show new-circle dialogue box on detecting a click
+/ fix live update for del-circle (currently have to manually render after del)
+/ tidy up code
+- fix maximising bug; make app properly fullscreen
+- get rid of last few buttons, info printed in corner
 - make .nqs default/only filter in file selection dialogue
-/ have marking scheme for whole qset (i.e. set :a? and :c? fields to reflect if question was answered and, if so, if it was correct - though now thinking maybe just only let them progress when it's right)
-/ maybe instead of next/prev buttons, have it so that it just moves on when you get it right
+
+for the future:
+- running totals? like what render used to do with this shit:
+    (loop [u @used-circles
+           y 20]
+      (cond (not (empty? u)) (do (doto (.getGraphics (select main-window [:#canvas]))
+                                   (.drawString (str (:name (last u)) ": " (eval (eval-circle (last u)))) 20 y))
+                                 (recur (butlast u) (+ y 10)))))))
+
 - splash screen?
-/ handle window being maximised
-/ click to add, click to remove?
+- save diagrams as pictures?

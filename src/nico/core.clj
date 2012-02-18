@@ -67,18 +67,40 @@
           (odd? n) (recur s op (str out op) (inc n))
           (list? (first s)) (recur (rest s) op (str out "(" (lisp-to-maths (first s)) ")") (inc n))
           :else (recur (rest s) op (str out (first s)) (inc n)))))
-
+(comment
 (defn extract-qsegs
   "Breaks the current question down into segments, generating nested border-panels with a label for that part of the question in each."
+  [q]
+  (loop [in q
+         out (border-panel)]
+    (cond (empty? in) out
+          (list? (first in)) (config! out :east (extract-qsegs (first in)))
+          :else (do
+                  (config! out :center (label :text (str (first in)))) ;; will just overwrite :text with (first in), TODO: fix
+                  (recur (rest in) out)))))
+)
+(defn extract-qsegs
+  "Breaks the current question down into segments, generating nested border-panels with a label for that part of the question in each."
+  [q]
+  (loop [in q
+         out '()]
+    (cond (empty? in) (reverse out)
+          (list? (first in)) (cons (extract-qsegs (first in)) out)
+          :else (recur (rest in) (cons (first in) out)))))
+
+;; (extract-qsegs (eval (:q (first @current-qset))))
+
+(defn test-qsegs
+  "Test extract-qsegs."
   []
-  (let [q (:q (first @current-qset))]
-    (loop [in q
-           out (border-panel)]
-      (cond (empty? in) out
-            (list? (first in)) (config! out :east (extract-qsegs (first in)))
-            :else (do
-                    (config! out :center (label :text (str (first in)))) ;; will just overwrite :text with (first in), TODO: fix
-                    (recur (rest in) out))))))
+  (let [b (extract-qsegs (eval (:q (first @current-qset))))
+        f (frame :title "lol"
+                 :content b
+                 :on-close :dispose)]
+    (-> f pack! show!)))
+
+;; (kill-current-qset)
+;; (test-qsegs)
 
 (defn find-circle
   "Returns the circle in used-circles with the :name property corresponding to name."

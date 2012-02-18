@@ -515,3 +515,7 @@
           - writing a fn extract-qsegs to give me the nested labels and panels as detailed above
           - written a rough draft of extract-qsegs, need to test, fix
           - weird, running (extract-qsegs) in the repl complains that i'm passing an arg to it when it doesn't take one and i'm not passing one
+18/02/12: - just realised the :q of each question in the qset is quoted, have put an eval before it in extract-qsegs
+          - stupid, getting the complaints about args because i tell it to recur with arg (first in) on line 78
+          - have written a test fn for extract-qsegs, namely test-qsegs; makes a frame containing the output of extract-qsegs
+          - writing a rough draft of extract-qsegs that generates a list rather than nexted border-panels, just to figure out the recursion and stuff first

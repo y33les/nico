@@ -519,3 +519,23 @@
           - stupid, getting the complaints about args because i tell it to recur with arg (first in) on line 78
           - have written a test fn for extract-qsegs, namely test-qsegs; makes a frame containing the output of extract-qsegs
           - writing a rough draft of extract-qsegs that generates a list rather than nexted border-panels, just to figure out the recursion and stuff first
+          - weird, getting a NullPointerException on running load-qset, should keep an eye on that
+          - added more antialiasing stuff to -main but stil seems to be doing precisely nowt; again, should probs keep an eye on that
+          - :\ added another couple of lines using system/setProperty, still seems to be doing nothing
+          - right, got my list version of extract-qsegs to work (missed out the recur bit, ffs), time to make it do border-panels!
+          - using qstest.nqs, extract-qsegs gives me a frame with "25" in it :\
+          - just realised that this is in fact "2 5", whcih is good as i haven't fixed the bit that just replaces rather than appends strings
+          - basically, need to find an equivalent of cons for border-panels and labels
+          - gonna add a border property to each border-panel i think, so i can see how they're nested (just for now, will remove later)
+          - yes!  there's a border around the "5", so it must be doing at least *something* right
+          - tried using str to concatenate (:text (:center out)) with (first in) in the :else bit, but to no avail - still just replacing text
+          - which will be mainly because (:text (:center out)) returns nil (i added a prn to check it)
+          - turns out (:center out) returns nil too
+          - trying adding an arg n to extract-qsegs to govern how the ids are named
+          - harrumph, it doesn't like me going (eval (read-string "... out...")) for some reason, says out isn't defined even though it's within the loop binding
+          - added a "Check" button that does (check-answer) when pressed
+          - thinking this whole approach is a bit too complicated; will try to just split the question up into individual labels per character i think and generate character ranges corresponding to where the sexp appears in the question
+          - right, so now writing a fn question-labels that returns a horizontal-panel full of id'd labels, one for each character - the quality test between sexps and bits of question will have to be done by string comparison of (lisp-to-maths <sexp>) and the output of some fn that iterates through the question labels and outputs a string
+          - added a fn test-labels that shows a frame containing the output of (question-labels)
+          - just realised :items in a horizontal-panel is a vector, so can build up a list, into it into [] and config! the panel - bear in mind if returning to the previous approach too
+          - test-labels still throwing up a tiny, empty frame for some reason

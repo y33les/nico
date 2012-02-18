@@ -70,22 +70,27 @@
 (comment
 (defn extract-qsegs
   "Breaks the current question down into segments, generating nested border-panels with a label for that part of the question in each."
-  [q]
+  [q n]
+  (do (prn (str "========" n "========"))
   (loop [in q
-         out (border-panel)]
+         out (border-panel :id (keyword (str "p" n))
+                           :border "")]
     (cond (empty? in) out
-          (list? (first in)) (config! out :east (extract-qsegs (first in)))
+          (list? (first in)) (do
+                               (config! out :east (extract-qsegs (first in) (inc n)))
+                               (recur (rest in) out))
           :else (do
-                  (config! out :center (label :text (str (first in)))) ;; will just overwrite :text with (first in), TODO: fix
-                  (recur (rest in) out)))))
-)
+                  (config! out :center (label :id (keyword (str "s" n)) :text (str (.getText (select out (vector (keyword (str "#s" n))))) (first in))))
+                  (prn (.getText (select out (vector (keyword (str "#s" n))))))
+                  (recur (rest in) out))))))
+
 (defn extract-qsegs
   "Breaks the current question down into segments, generating nested border-panels with a label for that part of the question in each."
   [q]
   (loop [in q
          out '()]
     (cond (empty? in) (reverse out)
-          (list? (first in)) (cons (extract-qsegs (first in)) out)
+          (list? (first in)) (recur (rest in) (cons (extract-qsegs (first in)) out))
           :else (recur (rest in) (cons (first in) out)))))
 
 ;; (extract-qsegs (eval (:q (first @current-qset))))
@@ -93,7 +98,7 @@
 (defn test-qsegs
   "Test extract-qsegs."
   []
-  (let [b (extract-qsegs (eval (:q (first @current-qset))))
+  (let [b (extract-qsegs (eval (:q (first @current-qset))) 0)
         f (frame :title "lol"
                  :content b
                  :on-close :dispose)]
@@ -101,6 +106,35 @@
 
 ;; (kill-current-qset)
 ;; (test-qsegs)
+)
+
+(defn question-labels
+  "Breaks the question down into a series of labels, one per character, contained within a horizontal-panel."
+  []
+  (loop [q (lisp-to-maths (eval (:q (first @current-qset))))
+         i '()
+         p (horizontal-panel :id :question)
+         n 0]
+    (cond (empty? q) (do
+                       (config! p :items (into [] (reverse i)))
+                       p)
+          :else (recur (rest q)
+                       (cons i (label :id (keyword (str "l" n))
+                                      :text (first q)))
+                       p
+                       (inc n)))))
+
+(defn test-labels
+  "Test question-labels."
+  []
+  (let [h (question-labels)
+        f (frame :title "lol"
+                 :content h
+                 :on-close :dispose)]
+    (-> f pack! show!)))
+
+;; (kill-current-qset)
+;; (test-labels)
 
 (defn find-circle
   "Returns the circle in used-circles with the :name property corresponding to name."
@@ -663,7 +697,7 @@
   (do
     (native!)
     (border-panel :id     :root
-                  :center (label  :id     :question
+                  :west   (label  :id     :question
                                   :text   (str
                                            "Q"
                                            (:n (first @current-qset))
@@ -671,10 +705,13 @@
                                            (:q (first @current-qset)))
                                   :font   {:name :sans-serif :style :bold :size 18}
                                   :border "Question")
-                  :east   (label  :id     :answer
+                  :center (label  :id     :answer
                                   :text   "0"
                                   :font   {:name :sans-serif :style :bold :size 18}
                                   :border "Answer")
+                  :east   (button :id     :submit
+                                  :text   "Check"
+                                  :listen [:mouse-clicked (fn [e] (check-answer))])
                   :south  (canvas       :id         :canvas
                                         :background "#FFFFFF"
                                         :border     "Calculation"
@@ -772,6 +809,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.")))
   "Main method, initialises application."
   [& args]
   (do
+    (System/setProperty "awt.useSystemAAFontSettings" "on")
+    (System/setProperty "swing.aatext" "true")
     (native!)
     (load-qset-init)
     (invoke-later
@@ -788,7 +827,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.")))
            pack!
            show!)
        (doto (.getGraphics (select main-window [:#canvas]))
-         (.setRenderingHint RenderingHints/KEY_ANTIALIASING RenderingHints/VALUE_ANTIALIAS_ON))
+         (.setRenderingHint RenderingHints/KEY_ANTIALIASING RenderingHints/VALUE_ANTIALIAS_ON)
+         (.setRenderingHint RenderingHints/KEY_TEXT_ANTIALIASING RenderingHints/VALUE_TEXT_ANTIALIAS_ON)
+         (.setRenderingHint RenderingHints/KEY_RENDERING RenderingHints/VALUE_RENDER_QUALITY))
        (config! (select main-window [:#question])
                 :text (lisp-to-maths (first (rest (:q (first @current-qset)))))
                 :border (str "Question " (:n (first @current-qset))))))))

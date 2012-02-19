@@ -108,19 +108,22 @@
 ;; (test-qsegs)
 )
 
-(defn question-labels
+(defmacro question-labels
   "Breaks the question down into a series of labels, one per character, contained within a horizontal-panel."
   []
   (loop [q (lisp-to-maths (eval (:q (first @current-qset))))
-         i '()
+         i []
          p (horizontal-panel :id :question)
          n 0]
     (cond (empty? q) (do
-                       (config! p :items (into [] (reverse i)))
+                       (prn "empty!")
+                       (prn i)
+                       (loop [v i] (cond (empty? v) nil :else (do (eval (first v)) (recur (rest v)))))
+                       (config! p :items i)
                        p)
           :else (recur (rest q)
-                       (cons i (label :id (keyword (str "l" n))
-                                      :text (first q)))
+                       (conj i `(label :id ~(keyword (str "l" n))
+                                       :text ~(first q)))
                        p
                        (inc n)))))
 

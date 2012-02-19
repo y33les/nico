@@ -539,3 +539,9 @@
           - added a fn test-labels that shows a frame containing the output of (question-labels)
           - just realised :items in a horizontal-panel is a vector, so can build up a list, into it into [] and config! the panel - bear in mind if returning to the previous approach too
           - test-labels still throwing up a tiny, empty frame for some reason
+19/02/12: - question-labels on klungo complaining about inputstreams, apparently it doesn't like labels
+          - now creating i as a vector directly rather than using into like a fucking moron
+          - trying to do question-labels as a macro now so can iterate across i, evaling each label - labels have to be quoted when conjing otherwise it moans about inputstreams, for some reason it can't just make a vector of JLabels (or a list for that matter)
+          - weird, macro runs fine but the vector it gets at the end is empty
+          - ...that may have had something to do with not having loaded a question set *facepalm*
+          - but now it gets as far as prning "empty!" then enters the debugger

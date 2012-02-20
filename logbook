@@ -559,3 +559,16 @@
           - even using unicode * it works, just opens debugger too
           - changing test q in qstest.nqs to only have + and -
           - yes!! it works! now to do the highlighting stuff
+          - adding a fn unhighlight to return text to all-black
+          - put font config in string-to-panel
+          - adding string-to-panel shit to main-window
+          - adding border stuff to string-to-panel, probs not necessary but better safe than sorry
+          - problems with load-qset, was trying to config the :text of the panel, now fixed
+          - same problem with next-question, fixed
+          - whoops, didn't need the border stuff in string-to-panel, stupid, removing
+          - optimised base case in the loop in string-to-panel - unnecessary config! shit was in there, moved to label initialisation
+          - appears that unhighlight doesn't work, investigating
+          - thought it might be that the keyword in select wasn't in a vector, but still nowt :(
+          - renaming unhighlight to highlight-text that takes a start index, an end index and a colour string - generalised version of highlighting bits of text rather than just unhighlihgting all text
+          - moron, had <= instead of >=!
+          - cool, that works now :) have also added a fn unhighlight-text as a shortcut to turning it all back to black

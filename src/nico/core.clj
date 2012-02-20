@@ -116,22 +116,19 @@
            i []
            n 0]
       (cond (empty? q) (do
-                         (prn "empty!")
-                         (prn i)
-                         ;; (loop [v i] (cond (empty? v) nil :else (do (eval (first v)) (recur (rest v)))))
                          (config! p :items i)
                          p)
             :else (recur (rest q)
                          (conj i (label :id (keyword (str "l" n))
-                                        :text (str (first q))))
+                                        :text (str (first q))
+                                        :font {:name :sans-serif :style :bold :size 18}
+                                        :foreground "#000000"))
                          (inc n))))))
 
 (defn test-labels
   "Test question-labels."
   []
   (let [h (string-to-panel (lisp-to-maths (eval (:q (first @current-qset)))))
-          ;; (horizontal-panel :id :question
-          ;;                   :items (question-labels))
         f (frame :title "lol"
                  :content h
                  :on-close :dispose)]
@@ -421,6 +418,24 @@
         (.fillOval (- x 3) (- y 3) 106 106))
       (comment do some shit to change the colour of the output of detect-qseg))))
 
+(defn highlight-text
+  "Change the colour of the question text to c between characters s and e inclusive."
+  [s e c]
+  (loop [n s]
+    (cond (>= n e) nil
+          :else (do
+                  (config! (select main-window [(keyword (str "#l" n))])
+                           :foreground c)
+                  (recur (inc n))))))
+
+(defn unhighlight-text
+  "Change the colour of all characters in :question to black."
+  []
+  (highlight-text 0 (count (lisp-to-maths (eval (:q (first @current-qset))))) "#000000"))
+
+;; (highlight-text 4 10 "#0000FF")
+;; (highlight-text 0 (count (lisp-to-maths (eval (:q (first @current-qset))))) "#000000")
+
 (defn clear-screen
   "Clears all visible drawings from the canvas."
   []
@@ -476,7 +491,7 @@
                                 :foreground "#000000")
                                (config!
                                 (select main-window [:#question])
-                                :text (lisp-to-maths (eval (:q (get-q-no @current-question))))
+                                :items [(string-to-panel (lisp-to-maths (eval (:q (get-q-no @current-question)))))]
                                 :border (str "Question " @current-question))
                                (kill-used-circles)
                                (render)))))
@@ -657,7 +672,7 @@
     (get-q-no @current-question)
     (cond (not (nil? (get-q-no @current-question))) (do (config!
                                                          (select main-window [:#question])
-                                                         :text (lisp-to-maths (first (rest (:q (get-q-no @current-question)))))
+                                                         :items [(string-to-panel (lisp-to-maths (first (rest (:q (get-q-no @current-question))))))]
                                                          :border (str "Question " @current-question))
                                                         (config!
                                                          (select main-window [:#answer])
@@ -701,14 +716,15 @@
   (do
     (native!)
     (border-panel :id     :root
-                  :west   (label  :id     :question
-                                  :text   (str
-                                           "Q"
-                                           (:n (first @current-qset))
-                                           ": "
-                                           (:q (first @current-qset)))
-                                  :font   {:name :sans-serif :style :bold :size 18}
-                                  :border "Question")
+                  :west   (string-to-panel (lisp-to-maths (eval (:q (first @current-qset)))))
+                          ;; (label  :id     :question
+                          ;;         :text   (str
+                          ;;                  "Q"
+                          ;;                  (:n (first @current-qset))
+                          ;;                  ": "
+                          ;;                  (:q (first @current-qset)))
+                          ;;         :font   {:name :sans-serif :style :bold :size 18}
+                          ;;         :border "Question")
                   :center (label  :id     :answer
                                   :text   "0"
                                   :font   {:name :sans-serif :style :bold :size 18}
@@ -835,5 +851,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.")))
          (.setRenderingHint RenderingHints/KEY_TEXT_ANTIALIASING RenderingHints/VALUE_TEXT_ANTIALIAS_ON)
          (.setRenderingHint RenderingHints/KEY_RENDERING RenderingHints/VALUE_RENDER_QUALITY))
        (config! (select main-window [:#question])
-                :text (lisp-to-maths (first (rest (:q (first @current-qset)))))
+                :items [(string-to-panel (lisp-to-maths (eval (:q (first @current-qset)))))]
                 :border (str "Question " (:n (first @current-qset))))))))

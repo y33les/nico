@@ -572,3 +572,5 @@
           - renaming unhighlight to highlight-text that takes a start index, an end index and a colour string - generalised version of highlighting bits of text rather than just unhighlihgting all text
           - moron, had <= instead of >=!
           - cool, that works now :) have also added a fn unhighlight-text as a shortcut to turning it all back to black
+          - changed detect-qseg to detect-subs for the general case (of strings, rather than just of circles and the current question)
+          - not working, complaining that it can't treat a String as an ISeq, investigating

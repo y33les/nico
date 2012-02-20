@@ -402,10 +402,27 @@
       (draw-args g args x y)
       (link-circles c))))
 
-(defn detect-qseg
-  "Attempts to unify the circle circ with a part of the question that is currently being attempted.  Returns the substring of the question displayed that corresponds to circ."
-  [circ]
-  '())
+(defn detect-subs
+  "Returns a list of maps containing start and end indices showing where a substring subs appears in the superstring sups."
+  [subs sups]
+  (loop [c subs
+         q sups
+         s (split q (re-pattern c))
+         i 0
+         l '()]
+    (cond (empty? s) (reverse l)
+          :else (recur c
+                       q
+                       (rest s)
+                       (inc i)
+                       (cons l (loop [st (first s)
+                                      j 0]
+                                 (cond (= j (count q)) {}
+                                       (= (subs q j (count st)) c) {:s (+ j (count st)) :e (+ j (count st) (count c))}
+                                       :else (recur st (inc j)))))))))
+
+;; (detect-subs "lol" "roflolmaomglolwtf")
+;; (detect-subs (lisp-to-maths (eval-circle (find-circle "c0"))) (lisp-to-maths (eval (:q (first @current-qset)))))
 
 (defn highlight
   "Highlights the circle circ, and the section of the question it represents."

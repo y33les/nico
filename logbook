@@ -574,3 +574,18 @@
           - cool, that works now :) have also added a fn unhighlight-text as a shortcut to turning it all back to black
           - changed detect-qseg to detect-subs for the general case (of strings, rather than just of circles and the current question)
           - not working, complaining that it can't treat a String as an ISeq, investigating
+          - just realised had my cons the wrong way round ffs, fixed
+          - still not working, now complaining as before but about an IFn rather than an ISeq
+          - changed it to return all instances of the substring, not just the first, same exception about the IFn though
+          - also realised that binding subs and sups is unnecessary, have removed and just left as args c and q
+          - woo, nearly works now, complaining about a string index being out of bounds so i guess it's an off-by-one-error
+          - realised that it was trying to get a substring with an end index way past the end of q so have changed the equality check to check if j+length is past the end of q instead
+          - having problems with reverse, think it's probs because i've replaced clojure.core/reverse with clojure.string/reverse in the repl, restarting slime
+          - yep, restarting slime's done it.  works now but is returning a list of lists, think it's because i'm consing rather than concating
+          - yeah, that's fixed it, only problem is now that it's getting several instances of the last occurence of c, rather than the earlier occurences
+          - weird, getting NullPointerExceptions when i try to use it with a let to get the actual substring
+          - w00t, sorted, just got a bit confused between c and st
+          - only problem is it gets stuck if the bit before the string is repeated (e.g. (detect-subs "a" "lalala"))
+          - OMFG IT HIGHLIGHTS XD
+          - now to make it unhighlight properly
+          - OMFG IT UNHIGHLIGHTS XD

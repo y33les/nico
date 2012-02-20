@@ -403,25 +403,28 @@
       (link-circles c))))
 
 (defn detect-subs
-  "Returns a list of maps containing start and end indices showing where a substring subs appears in the superstring sups."
-  [subs sups]
-  (loop [c subs
-         q sups
-         s (split q (re-pattern c))
+  "Returns a list of maps containing start and end indices showing where a substring c appears in the superstring q."
+  [c q]
+  (loop [s (split q (re-pattern c))
          i 0
          l '()]
-    (cond (empty? s) (reverse l)
-          :else (recur c
-                       q
-                       (rest s)
+    (do (prn (str "loop, i = " i))
+    (cond (empty? s) (do (prn "done") (prn (reverse l)) (reverse l))
+          :else (recur (rest s)
                        (inc i)
-                       (cons l (loop [st (first s)
-                                      j 0]
-                                 (cond (= j (count q)) {}
-                                       (= (subs q j (count st)) c) {:s (+ j (count st)) :e (+ j (count st) (count c))}
-                                       :else (recur st (inc j)))))))))
+                       (concat (loop [st (first s)
+                                      j  0
+                                      ms '()]
+                                 (do (prn (str "  loop, j = " j))
+                                 (cond (>= (+ j (count c)) (count q)) (do (prn "  end") ms)
+                                       (= (subs q j (+ j (count st))) st) (do (prn "  true") (cons {:s (+ j (count st)) :e (+ j (count st) (count c))} ms))
+                                       :else (do (prn "  else") (recur st (inc j) ms)))))
+                               l))))))
 
-;; (detect-subs "lol" "roflolmaomglolwtf")
+;; (let [s "0123456789" i (detect-subs "456" s)] (subs s (:s (first i)) (:e (first i))))
+;; (let [s "roflolmaomglolwtf" i (detect-subs "lol" s)] (subs s (:s (first i)) (:e (first i))))
+;; (let [s "fagaha" i (detect-subs "a" s)] (subs s (:s (first i)) (:e (first i))))
+;; (let [s "lalala" i (detect-subs "a" s)] (subs s (:s (first i)) (:e (first i))))
 ;; (detect-subs (lisp-to-maths (eval-circle (find-circle "c0"))) (lisp-to-maths (eval (:q (first @current-qset)))))
 
 (defn highlight
@@ -433,7 +436,16 @@
       (doto (.getGraphics (select main-window [:#canvas]))
         (.setColor (java.awt.Color. 0x2ECCFA))
         (.fillOval (- x 3) (- y 3) 106 106))
-      (comment do some shit to change the colour of the output of detect-qseg))))
+      (loop [q (lisp-to-maths (eval (:q (first @current-qset))))
+             i (detect-subs (lisp-to-maths (eval-circle circ)) q)]
+        (cond (not (empty? i)) (do
+                                 (loop [r (range (:s (first i)) (inc (:e (first i))))]
+                                   (cond (not (empty? r)) (do
+                                                            (config!
+                                                             (select main-window [(keyword (str "#l" (first r)))])
+                                                             :foreground "#2ECCFA")
+                                                            (recur (rest r)))))
+                                 (recur q (rest i))))))))
 
 (defn highlight-text
   "Change the colour of the question text to c between characters s and e inclusive."
@@ -810,6 +822,7 @@
                                                                                                            (highlight c)
                                                                                                            (draw-circle c))
                                                                                                       e? (do
+                                                                                                           (unhighlight-text)
                                                                                                            (clear-screen)
                                                                                                            (render))))))]))))
 

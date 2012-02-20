@@ -589,3 +589,9 @@
           - OMFG IT HIGHLIGHTS XD
           - now to make it unhighlight properly
           - OMFG IT UNHIGHLIGHTS XD
+          - removing prns, extract-qsegs and test-qsegs
+          - hmm, removed loads of prn crap, now it freezes on highlighting :\
+          - detect-subs now freezes :( investigating
+          - foolish, fucked up my brackets :P
+          - works now, also have changed it so that the range extends one before the actual end of expression to avoid highlighting one bracket
+          - weird, detects 2-4-6-8-10 on its own but won't detect 1+2+3+4+5 on the same canvas using the first q in the current revision of qstest.nqs

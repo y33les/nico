@@ -67,46 +67,6 @@
           (odd? n) (recur s op (str out op) (inc n))
           (list? (first s)) (recur (rest s) op (str out "(" (lisp-to-maths (first s)) ")") (inc n))
           :else (recur (rest s) op (str out (first s)) (inc n)))))
-(comment
-(defn extract-qsegs
-  "Breaks the current question down into segments, generating nested border-panels with a label for that part of the question in each."
-  [q n]
-  (do (prn (str "========" n "========"))
-  (loop [in q
-         out (border-panel :id (keyword (str "p" n))
-                           :border "")]
-    (cond (empty? in) out
-          (list? (first in)) (do
-                               (config! out :east (extract-qsegs (first in) (inc n)))
-                               (recur (rest in) out))
-          :else (do
-                  (config! out :center (label :id (keyword (str "s" n)) :text (str (.getText (select out (vector (keyword (str "#s" n))))) (first in))))
-                  (prn (.getText (select out (vector (keyword (str "#s" n))))))
-                  (recur (rest in) out))))))
-
-(defn extract-qsegs
-  "Breaks the current question down into segments, generating nested border-panels with a label for that part of the question in each."
-  [q]
-  (loop [in q
-         out '()]
-    (cond (empty? in) (reverse out)
-          (list? (first in)) (recur (rest in) (cons (extract-qsegs (first in)) out))
-          :else (recur (rest in) (cons (first in) out)))))
-
-;; (extract-qsegs (eval (:q (first @current-qset))))
-
-(defn test-qsegs
-  "Test extract-qsegs."
-  []
-  (let [b (extract-qsegs (eval (:q (first @current-qset))) 0)
-        f (frame :title "lol"
-                 :content b
-                 :on-close :dispose)]
-    (-> f pack! show!)))
-
-;; (kill-current-qset)
-;; (test-qsegs)
-)
 
 (defn string-to-panel
   "Breaks the string s down into a series of labels, one per character, contained within a horizontal-panel."
@@ -408,18 +368,16 @@
   (loop [s (split q (re-pattern c))
          i 0
          l '()]
-    (do (prn (str "loop, i = " i))
-    (cond (empty? s) (do (prn "done") (prn (reverse l)) (reverse l))
+    (cond (empty? s) (reverse l)
           :else (recur (rest s)
                        (inc i)
                        (concat (loop [st (first s)
                                       j  0
                                       ms '()]
-                                 (do (prn (str "  loop, j = " j))
-                                 (cond (>= (+ j (count c)) (count q)) (do (prn "  end") ms)
-                                       (= (subs q j (+ j (count st))) st) (do (prn "  true") (cons {:s (+ j (count st)) :e (+ j (count st) (count c))} ms))
-                                       :else (do (prn "  else") (recur st (inc j) ms)))))
-                               l))))))
+                                 (cond (>= (+ j (count c)) (count q)) ms
+                                       (= (subs q j (+ j (count st))) st) (cons {:s (+ j (count st)) :e (dec (+ j (count st) (count c)))} ms)
+                                       :else (recur st (inc j) ms)))
+                               l)))))
 
 ;; (let [s "0123456789" i (detect-subs "456" s)] (subs s (:s (first i)) (:e (first i))))
 ;; (let [s "roflolmaomglolwtf" i (detect-subs "lol" s)] (subs s (:s (first i)) (:e (first i))))

@@ -108,29 +108,30 @@
 ;; (test-qsegs)
 )
 
-(defmacro question-labels
-  "Breaks the question down into a series of labels, one per character, contained within a horizontal-panel."
-  []
-  (loop [q (lisp-to-maths (eval (:q (first @current-qset))))
-         i []
-         p (horizontal-panel :id :question)
-         n 0]
-    (cond (empty? q) (do
-                       (prn "empty!")
-                       (prn i)
-                       (loop [v i] (cond (empty? v) nil :else (do (eval (first v)) (recur (rest v)))))
-                       (config! p :items i)
-                       p)
-          :else (recur (rest q)
-                       (conj i `(label :id ~(keyword (str "l" n))
-                                       :text ~(first q)))
-                       p
-                       (inc n)))))
+(defn string-to-panel
+  "Breaks the string s down into a series of labels, one per character, contained within a horizontal-panel."
+  [s]
+  (let [p (horizontal-panel :id :question)]
+    (loop [q s
+           i []
+           n 0]
+      (cond (empty? q) (do
+                         (prn "empty!")
+                         (prn i)
+                         ;; (loop [v i] (cond (empty? v) nil :else (do (eval (first v)) (recur (rest v)))))
+                         (config! p :items i)
+                         p)
+            :else (recur (rest q)
+                         (conj i (label :id (keyword (str "l" n))
+                                        :text (str (first q))))
+                         (inc n))))))
 
 (defn test-labels
   "Test question-labels."
   []
-  (let [h (question-labels)
+  (let [h (string-to-panel (lisp-to-maths (eval (:q (first @current-qset)))))
+          ;; (horizontal-panel :id :question
+          ;;                   :items (question-labels))
         f (frame :title "lol"
                  :content h
                  :on-close :dispose)]

@@ -545,3 +545,17 @@
           - weird, macro runs fine but the vector it gets at the end is empty
           - ...that may have had something to do with not having loaded a question set *facepalm*
           - but now it gets as far as prning "empty!" then enters the debugger
+20/02/12: - putting (str ...) around (first q) worked!  but only with a set string...
+          - enters the debugger if we use the first question in current-qset
+          - gonna try passing a  string to it as an arg instead
+          - also renaming it string-to-panel
+          - ok, problem is that debugger is entered when we call (lisp-to-maths (eval (:q (first @current-qset))))
+          - looking at load-qset now, as keep throwing exceptions on using it
+          - other than that, seems to work (though debugger appeared for some reason)
+          - debugger seems to be appearing on using lisp-to-maths for some reason, will check that out
+          - debugger does *not* appear when going (lisp-to-maths '(+ 1 2 3 4 5)) or (lisp-to-maths '(+ 1 2 3 (+ 4 5)))
+          - debugger *does* appear when going (lisp-to-maths '(+ 1 (* 2 3 4) 5)) and (lisp-to-maths '(* 1 2 3 4 5))
+          - right!  seems to be that emacs doesn't like unicode.  ffs.
+          - even using unicode * it works, just opens debugger too
+          - changing test q in qstest.nqs to only have + and -
+          - yes!! it works! now to do the highlighting stuff

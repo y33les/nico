@@ -595,3 +595,11 @@
           - foolish, fucked up my brackets :P
           - works now, also have changed it so that the range extends one before the actual end of expression to avoid highlighting one bracket
           - weird, detects 2-4-6-8-10 on its own but won't detect 1+2+3+4+5 on the same canvas using the first q in the current revision of qstest.nqs
+21/02/12: - now using .setResizable in -main to stop the user resizing the window (until i sort the maximising bug)
+          - can't test on stumpwm annoyingly - trying to set it to fullscreen but no joy so far, see java.awt.GraphicsDevice/setFullScreenWindow
+          - giving up, turns out the normal-sized window works ok on stumpwm, bit dodgy but usable for testing
+          - need to sort out this flickering issue, need to detect passing the boundary rather than being in a circle
+          - adding fns circ-drag-begin and circ-drag-end to add circles as extra arguments to existing circles
+          - removed old question (as a string) code from main-window
+          - added an agent last-2-coords which will record the last two positions the mouse was in and compare them to see if the mouse has entered the circle
+          - adding a fn entered-left-circle? which uses last-2-coords to check if the mouse has entered or left a circle

@@ -5,7 +5,7 @@ post-meeting stuff to do:-
 - being able to change the operator (and args?)
 - basically lose the dialogue box
 / also have a submit button instead of automarking, allows them to break it and see what went wrong
-- highlighting the circle and the part of the sum it represents when the mouse hovers over
+/ highlighting the circle and the part of the sum it represents when the mouse hovers over
 - antialias canvas (and poss. text?)
 - get rid of names; user doesn't know why they need to name a circle
 / fix docstrings: they go before [& args], not after

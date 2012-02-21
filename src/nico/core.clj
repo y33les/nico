@@ -42,6 +42,10 @@
   ;; Agent containing an integer corresponding to the quesiton number.
   (agent 0))
 
+(def last-2-coords
+  ;; Agent containing a list of the last 2 co-ordinates (as maps) that the mouse has been at.
+  (agent '({:x 0 :y 0} {:x 0 :y 0})))
+
 (defn kill-used-circles
   "Empties used-circles.  For use in debugging; should be removed from finished program."
   []
@@ -423,6 +427,14 @@
 ;; (highlight-text 4 10 "#0000FF")
 ;; (highlight-text 0 (count (lisp-to-maths (eval (:q (first @current-qset))))) "#000000")
 
+(defn entered-left-circle?
+  "Checks whether the mouse has entered or left a circle by inspecting the contents of last-2-coords."
+  []
+  (let [p1 (not (nil? (point-in-circle (:x (nth @last-2-coords 0)) (:y (nth @last-2-coords 0)))))
+        p2 (not (nil? (point-in-circle (:x (nth @last-2-coords 1)) (:y (nth @last-2-coords 1)))))]
+    (cond (= p1 p2) false
+          :else true)))
+
 (defn clear-screen
   "Clears all visible drawings from the canvas."
   []
@@ -438,6 +450,14 @@
     (loop [u @used-circles]
       (cond (not (empty? u)) (do (draw-circle (first u))
                                  (recur (rest u)))))))
+
+(defn circ-drag-begin [e]
+  (let [x (.getX e)
+        y (.getY e)]
+    '()))
+
+(defn circ-drag-end [e]
+  '())
 
 (defn load-qset-init
   "Brings up a dialogue with a file chooser to specify where to load the question set from.  Sends off the contents of the chosen file to current-qset."
@@ -704,14 +724,6 @@
     (native!)
     (border-panel :id     :root
                   :west   (string-to-panel (lisp-to-maths (eval (:q (first @current-qset)))))
-                          ;; (label  :id     :question
-                          ;;         :text   (str
-                          ;;                  "Q"
-                          ;;                  (:n (first @current-qset))
-                          ;;                  ": "
-                          ;;                  (:q (first @current-qset)))
-                          ;;         :font   {:name :sans-serif :style :bold :size 18}
-                          ;;         :border "Question")
                   :center (label  :id     :answer
                                   :text   "0"
                                   :font   {:name :sans-serif :style :bold :size 18}
@@ -733,7 +745,22 @@
                                                                                             (del-circle x y) ;; (point-in-circle x y))
                                                                                             (render)
                                                                                             (check-answer)))))
-                                                     :mouse-moved (fn [e] (let [x  (.getX e)
+                                                     :mouse-moved (fn [e] (let [x (.getX e)
+                                                                               y (.getY e)
+                                                                               m {:x x :y y}
+                                                                               p (point-in-circle x y)
+                                                                               c (cond (not (nil? p)) (find-circle p)
+                                                                                       :else nil)]
+                                                                           (do
+                                                                             (send-off last-2-coords (fn [_] (butlast (cons m @last-2-coords))))
+                                                                             (cond (entered-left-circle?) (do
+                                                                                                            (clear-screen)
+                                                                                                            (render)
+                                                                                                            (highlight c)
+                                                                                                            (draw-circle c))))))]))))
+
+
+                                                     (comment (fn [e] (let [x  (.getX e)
                                                                                y  (.getY e)
                                                                                n  (point-in-circle x y)
                                                                                c  (cond (not (nil? n)) (find-circle n)
@@ -782,7 +809,7 @@
                                                                                                       e? (do
                                                                                                            (unhighlight-text)
                                                                                                            (clear-screen)
-                                                                                                           (render))))))]))))
+                                                                                                           (render)))))))
 
 (def open-action
   ;; Action for opening a new question set, for use in menus.
@@ -822,22 +849,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.")))
     (native!)
     (load-qset-init)
     (invoke-later
-     (do
-       (-> (frame :title "Nico v0.0.1",
-                  :menubar (menubar :items [(menu :text "File"
-                                                  :mnemonic \F
-                                                  :items [open-action exit-action])
-                                            (menu :text "Help"
-                                                  :mnemonic \H
-                                                  :items [about-action])])
-                  :content main-window,
-                  :on-close :exit)
-           pack!
-           show!)
-       (doto (.getGraphics (select main-window [:#canvas]))
-         (.setRenderingHint RenderingHints/KEY_ANTIALIASING RenderingHints/VALUE_ANTIALIAS_ON)
-         (.setRenderingHint RenderingHints/KEY_TEXT_ANTIALIASING RenderingHints/VALUE_TEXT_ANTIALIAS_ON)
-         (.setRenderingHint RenderingHints/KEY_RENDERING RenderingHints/VALUE_RENDER_QUALITY))
-       (config! (select main-window [:#question])
-                :items [(string-to-panel (lisp-to-maths (eval (:q (first @current-qset)))))]
-                :border (str "Question " (:n (first @current-qset))))))))
+      (do
+        (-> (frame :title "Nico v0.0.1",
+                   :menubar (menubar :items [(menu :text "File"
+                                                   :mnemonic \F
+                                                   :items [open-action exit-action])
+                                             (menu :text "Help"
+                                                   :mnemonic \H
+                                                   :items [about-action])])
+                   :content main-window,
+                   :on-close :exit)
+             pack!
+             show!)
+        (doto (.getGraphics (select main-window [:#canvas]))
+          (.setRenderingHint RenderingHints/KEY_ANTIALIASING RenderingHints/VALUE_ANTIALIAS_ON)
+          (.setRenderingHint RenderingHints/KEY_TEXT_ANTIALIASING RenderingHints/VALUE_TEXT_ANTIALIAS_ON)
+          (.setRenderingHint RenderingHints/KEY_RENDERING RenderingHints/VALUE_RENDER_QUALITY))
+        (config! (select main-window [:#question])
+                 :items [(string-to-panel (lisp-to-maths (eval (:q (first @current-qset)))))]
+                 :border (str "Question " (:n (first @current-qset))))))))

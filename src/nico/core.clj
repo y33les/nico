@@ -19,7 +19,7 @@
 (ns nico.core
   (:gen-class)
   (:use (seesaw core graphics chooser)
-        [clojure.string :only [split split-lines]])
+        [clojure.string :only [split split-lines escape]])
   (:import (java.awt RenderingHints)))
 
 (def screen-x
@@ -369,7 +369,7 @@
 (defn detect-subs
   "Returns a list of maps containing start and end indices showing where a substring c appears in the superstring q."
   [c q]
-  (loop [s (split q (re-pattern c))
+  (loop [s (split q (re-pattern (escape c {\+ "\\+"})))
          i 0
          l '()]
     (cond (empty? s) (reverse l)
@@ -757,6 +757,9 @@
                                                                                                             (clear-screen)
                                                                                                             (render)
                                                                                                             (highlight c)
+                                                                                                            (cond (nil? (point-in-circle
+                                                                                                                         (:x (first @last-2-coords))
+                                                                                                                         (:y (first @last-2-coords)))) (alert "lol")) ;; (unhighlight-text))
                                                                                                             (draw-circle c))))))]))))
 
 

@@ -603,3 +603,15 @@
           - removed old question (as a string) code from main-window
           - added an agent last-2-coords which will record the last two positions the mouse was in and compare them to see if the mouse has entered the circle
           - adding a fn entered-left-circle? which uses last-2-coords to check if the mouse has entered or left a circle
+22/02/12: - just realised i haven't told it how to unhighlight text, but the circle highlighting looks much better! :D
+          - hmmm, unhighlighting not working, must have the cond wrong
+          - also not highlighting 1+2+3+4+5 circs :\
+          - looks like the problem is with re-pattern - doing (split "((1+2+3+4+5)-1-2-(2-4-6-8-10))+(1+2+3+4+5)" (re-pattern "1+2+3+4+5")) just returns the original string, but doing the same with "2-4-6-8-10" is fine
+          - tried just using the regex #"+" but it complains about meta-characters
+          - works perfectly if i use #"+" :)
+          - writing a fn format-question to sort out the +s, have made it sort out the other 3 symbols too
+          - ...but for some reason it's not terminating :\
+          - ych a fi, just discovered the escape fn, rewriting format-question now
+          - annoyingly, that now works but i can't lein run the project anymore for some reason :\
+          - also, decided that format-question is stupid, just gonna do the escape as part of detect-subs
+          - removed format-question

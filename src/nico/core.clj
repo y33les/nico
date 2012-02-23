@@ -46,6 +46,10 @@
   ;; Agent containing a list of the last 2 co-ordinates (as maps) that the mouse has been at.
   (agent '({:x 0 :y 0} {:x 0 :y 0})))
 
+(def currently-dragging-circle
+  ;; Agent containing the name of the circle that is currently being dragged.
+  (agent nil))
+
 (defn kill-used-circles
   "Empties used-circles.  For use in debugging; should be removed from finished program."
   []
@@ -451,13 +455,35 @@
       (cond (not (empty? u)) (do (draw-circle (first u))
                                  (recur (rest u)))))))
 
-(defn circ-drag-begin [e]
-  (let [x (.getX e)
-        y (.getY e)]
-    '()))
+(defn add-arg
+  "Returns the value of a circle c with the argument a added."
+  [a c]
+  {:x (:x c)
+   :y (:y c)
+   :name (:name c)
+   :circ (concat (:circ c) (list a))})
 
-(defn circ-drag-end [e]
-  '())
+(defn circ-drag-begin
+  "Sends off the dragged circle to currently-dragging-circle."
+  [e]
+  (let [x  (.getX e)
+        y  (.getY e)
+        c  (point-in-circle x y)
+        c? (not (nil? c))]
+    (cond c? (send-off currently-dragging-circle (fn [_] c)))))
+
+(defn circ-drag-end
+  "Removes the target circle and replaces it with a similar circle with the circle in currently-dragging-circle added as an argument."
+  [e]
+  (let [x  (.getX e)
+        y  (.getY e)
+        c  (point-in-circle x y)
+        c' (add-arg (symbol @currently-dragging-circle) c)
+        c? (not (nil? c))]
+    (cond c? (do
+               (del-circle x y)
+               (send-off used-circles (fn [_] (cons c' @used-circles)))))))
+
 
 (defn load-qset-init
   "Brings up a dialogue with a file chooser to specify where to load the question set from.  Sends off the contents of the chosen file to current-qset."
@@ -735,7 +761,7 @@
                                         :background "#FFFFFF"
                                         :border     "Calculation"
                                         :size       [screen-x :by (- screen-y 100)]
-                                        :listen     [:mouse-clicked (fn [e] (let [x (.getX e)
+                                        :listen     [:mouse-clicked  (fn [e] (let [x (.getX e)
                                                                                   y (.getY e)]
                                                                               (cond (nil? (point-in-circle x y)) (do
                                                                                                                    (new-circle x y)
@@ -745,7 +771,7 @@
                                                                                             (del-circle x y) ;; (point-in-circle x y))
                                                                                             (render)
                                                                                             (check-answer)))))
-                                                     :mouse-moved (fn [e] (let [x (.getX e)
+                                                     :mouse-moved    (fn [e] (let [x (.getX e)
                                                                                y (.getY e)
                                                                                m {:x x :y y}
                                                                                p (point-in-circle x y)
@@ -760,7 +786,9 @@
                                                                                                             (cond (nil? (point-in-circle
                                                                                                                          (:x (first @last-2-coords))
                                                                                                                          (:y (first @last-2-coords)))) (alert "lol")) ;; (unhighlight-text))
-                                                                                                            (draw-circle c))))))]))))
+                                                                                                            (draw-circle c))))))
+                                                     :mouse-pressed  (fn [e] (circ-drag-begin e))
+                                                     :mouse-released (fn [e] (circ-drag-end e))]))))
 
 
                                                      (comment (fn [e] (let [x  (.getX e)

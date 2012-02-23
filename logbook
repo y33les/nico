@@ -615,3 +615,9 @@
           - annoyingly, that now works but i can't lein run the project anymore for some reason :\
           - also, decided that format-question is stupid, just gonna do the escape as part of detect-subs
           - removed format-question
+23/02/12: - wrote fns circ-drag-begin and circ-drag-end, added agent currently-dragging-circle
+          - circ-drag-begin sends off the dragged circle to currently-dragging-circle
+          - circ-drag-end deletes the target circle and replaces it with a similar circle with the dragged circle as an extra arg
+          - need to write a fn add-arg to add an argument to an existing circle
+          - done, annoyingly can't test it until back on klungo though :(
+          - all added to main-window though, hope :mouse-pressed and :mouse-released don't clash with :mouse-clicked

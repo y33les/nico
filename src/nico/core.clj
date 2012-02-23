@@ -688,14 +688,17 @@
   "Removes a circle from used-circles, such that it won't reappear on executing render."
   [x y & a]
   (do
-    (send-off used-circles (fn [_] (loop [in @used-circles
-                                          out '()
-                                          c (cond (string? (first a)) (first a)
-                                                  (instance? java.awt.event.ActionEvent (first a)) (point-in-circle x y);; (:x @current-click) (:y @current-click))
-                                                  :else (input "Remove:"))]
-                                     (cond (empty? in) (reverse out)
-                                           (= (:name (first in)) c) (recur (rest in) out c)
-                                           :else (recur (rest in) (cons (first in) out) c)))))
+    (send-off used-circles (fn [_] (loop [in  @used-circles
+                                         out '()
+                                         c   (point-in-circle x y)
+                                         c?  (not (nil? c))]
+                                         ;; c (cond (string? (first a)) (first a)
+                                         ;;         (instance? java.awt.event.ActionEvent (first a)) (point-in-circle x y);; (:x @current-click) (:y @current-click))
+                                         ;;         :else (input "Remove:"))]
+                                    (cond (not c?) (alert "Circle not found.")
+                                          :else (cond (empty? in) (reverse out)
+                                                      (= (:name (first in)) c) (recur (rest in) out c c?)
+                                                      :else (recur (rest in) (cons (first in) out) c c?))))))
     (render)
     (check-answer)))
 
@@ -747,6 +750,38 @@
         (= (eval (eval-circle (find-root))) (eval (eval (:q (get-q-no @current-question))))) (question-right)
         :else (question-wrong)))
 
+(defn new-circle-handler
+  "Handler for new-circle-action that gets rid of the ActionEvent and makes new-circle actually usable in a context menu."
+  [a]
+  (let [xy (first @last-2-coords)]
+    (new-circle (:x xy) (:y xy))))
+
+(defn del-circle-handler
+  "Handler for del-circle-action that gets rid of the ActionEvent and makes del-circle actually usable in a context menu."
+  [a]
+  (let [xy (first @last-2-coords)]
+    (del-circle (:x xy) (:y xy))))
+
+(def new-circle-action
+  ;; Action for adding a circle, for use in menus.
+  (action :handler new-circle-handler
+          :name "New circle"))
+
+(def del-circle-action
+  ;; Action for removing a circle, for use in menus.
+  (action :handler del-circle-handler
+          :name "Remove circle"))
+
+(defn canvas-selected [e]
+  "Handle a right mouse click on the canvas."
+  (let [xy (first @last-2-coords)
+        x  (:x xy) ;; (.getX e)
+        y  (:y xy) ;; (.getY e)
+        c  (point-in-circle x y)
+        c? (not (nil? c))]
+    (cond c? [del-circle-action]
+          :else [new-circle-action])))
+
 (def main-window
   ;; Creates the contents of Nico's main window.
   (do
@@ -764,8 +799,8 @@
                                         :background "#FFFFFF"
                                         :border     "Calculation"
                                         :size       [screen-x :by (- screen-y 100)]
-                                        :listen     [:key-typed (fn [e] (alert "lol"))
-                                                                     ;; (fn [e] (let [x (.getX e)
+                                        :popup      #(canvas-selected %)
+                                        :listen     [;; :mouse-clicked  (fn [e] (let [x (.getX e)
                                                                      ;;              y (.getY e)]
                                                                      ;;          (cond (nil? (point-in-circle x y)) (do
                                                                      ;;                                               (new-circle x y)

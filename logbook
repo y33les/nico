@@ -635,3 +635,10 @@
           - might as well try :key-typed...
           - ...nope, of course it doesn't work!
           - upgrading seesaw to 1.3.1-SNAPSHOT
+          - added new-circle-action, del-circle-action and canvas-selected back in, reverting to using context menus like a little bitch
+          - adding fns new-circle-handler and del-circle-handler to get rid of the ActionEvent bullshit
+          - right, new-circle and del-circle now usable from context menus
+          - ok, del-circle is still broken with the "Remove:" dialogue and shit, fixing it now
+          - yep, fixed, removed all that shit about ActionEvents and strings so it just works on an x- and y-coord now
+          - ...and it works!  brilliant
+          - hmmm, dnd stuff is pretty fucked, it gets as far as clearing the screen and removing the current circle but it doesn't add the edited version back in

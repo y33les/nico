@@ -621,3 +621,17 @@
           - need to write a fn add-arg to add an argument to an existing circle
           - done, annoyingly can't test it until back on klungo though :(
           - all added to main-window though, hope :mouse-pressed and :mouse-released don't clash with :mouse-clicked
+          - ...but they do, ffs
+          - also, del-circle wasn't defined at that point, so have added a dummy declaration just above add-arg
+          - now might actually be the time to reintroduce context menus
+          - seesaw has events called :drag-enter and :drag-exit, weirdly not recognising them though :(
+          - have tried importing seesaw.event, even replacing seesaw.core/listen with seesaw.event/listen but no joy :(
+          - currently :use-ing [seesaw.event :exclude [listen]]
+          - derp, was using :events not :named-events so it should be :ds-drag-enter and :dt-drag-exit
+          - as it happens they still don't work but at least it's finding them now
+          - those dnd events are trying to drag the panel to some other recipient field is why they don't work, hmmm...
+          - making the dnd stuff use :mouse-pressed and :mouse-released for now, will use keyboard temporarily for circle ops i reckon
+          - ffs who even fucking knows why :key-pressed doesn't react to keys being pressed
+          - might as well try :key-typed...
+          - ...nope, of course it doesn't work!
+          - upgrading seesaw to 1.3.1-SNAPSHOT

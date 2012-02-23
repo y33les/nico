@@ -18,7 +18,9 @@
 
 (ns nico.core
   (:gen-class)
-  (:use (seesaw core graphics chooser)
+  (:use [seesaw.core]
+        [seesaw.graphics]
+        [seesaw.chooser]
         [clojure.string :only [split split-lines escape]])
   (:import (java.awt RenderingHints)))
 
@@ -455,6 +457,8 @@
       (cond (not (empty? u)) (do (draw-circle (first u))
                                  (recur (rest u)))))))
 
+(def del-circle) ;; Declare del-circle, to be defined later
+
 (defn add-arg
   "Returns the value of a circle c with the argument a added."
   [a c]
@@ -483,7 +487,6 @@
     (cond c? (do
                (del-circle x y)
                (send-off used-circles (fn [_] (cons c' @used-circles)))))))
-
 
 (defn load-qset-init
   "Brings up a dialogue with a file chooser to specify where to load the question set from.  Sends off the contents of the chosen file to current-qset."
@@ -761,16 +764,17 @@
                                         :background "#FFFFFF"
                                         :border     "Calculation"
                                         :size       [screen-x :by (- screen-y 100)]
-                                        :listen     [:mouse-clicked  (fn [e] (let [x (.getX e)
-                                                                                  y (.getY e)]
-                                                                              (cond (nil? (point-in-circle x y)) (do
-                                                                                                                   (new-circle x y)
-                                                                                                                   (render)
-                                                                                                                   (check-answer))
-                                                                                    :else (do
-                                                                                            (del-circle x y) ;; (point-in-circle x y))
-                                                                                            (render)
-                                                                                            (check-answer)))))
+                                        :listen     [:key-typed (fn [e] (alert "lol"))
+                                                                     ;; (fn [e] (let [x (.getX e)
+                                                                     ;;              y (.getY e)]
+                                                                     ;;          (cond (nil? (point-in-circle x y)) (do
+                                                                     ;;                                               (new-circle x y)
+                                                                     ;;                                               (render)
+                                                                     ;;                                               (check-answer))
+                                                                     ;;                :else (do
+                                                                     ;;                        (del-circle x y) ;; (point-in-circle x y))
+                                                                     ;;                        (render)
+                                                                     ;;                        (check-answer)))))
                                                      :mouse-moved    (fn [e] (let [x (.getX e)
                                                                                y (.getY e)
                                                                                m {:x x :y y}
@@ -787,7 +791,7 @@
                                                                                                                          (:x (first @last-2-coords))
                                                                                                                          (:y (first @last-2-coords)))) (alert "lol")) ;; (unhighlight-text))
                                                                                                             (draw-circle c))))))
-                                                     :mouse-pressed  (fn [e] (circ-drag-begin e))
+                                                     :mouse-pressed (fn [e] (circ-drag-begin e))
                                                      :mouse-released (fn [e] (circ-drag-end e))]))))
 
 

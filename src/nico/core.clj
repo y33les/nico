@@ -415,6 +415,11 @@
                                                             (recur (rest r)))))
                                  (recur q (rest i))))))))
 
+;; (def tq (lisp-to-maths (eval (:q (first @current-qset)))))
+;; (subs tq (:s (nth (detect-subs "1+2" tq) 0)) (:e (nth (detect-subs "1+2" tq) 0)))
+;; (subs tq (:s (nth (detect-subs "1+2" tq) 1)) (:e (nth (detect-subs "1+2" tq) 1)))
+;; (subs tq (:s (nth (detect-subs "1+2" tq) 2)) (:e (nth (detect-subs "1+2" tq) 2)))
+
 (defn highlight-text
   "Change the colour of the question text to c between characters s and e inclusive."
   [s e c]
@@ -483,6 +488,8 @@
         c  (point-in-circle x y)
         c? (not (nil? c))]
     (cond c? (send-off currently-dragging-circle (fn [_] c)))))
+
+(def check-answer) ;; Declare check-answer, to be defined later
 
 (defn circ-drag-end
   "If dropped into another circle, removes the target circle and replaces it with a similar circle with the circle in currently-dragging-circle added as an argument.  Otherwise, moves the circle being dragged to the new position."
@@ -833,25 +840,29 @@
                                                                      ;;                        (del-circle x y) ;; (point-in-circle x y))
                                                                      ;;                        (render)
                                                                      ;;                        (check-answer)))))
-                                                     :mouse-moved    (fn [e] (let [x (.getX e)
-                                                                               y (.getY e)
-                                                                               m {:x x :y y}
-                                                                               p (point-in-circle x y)
-                                                                               c (cond (not (nil? p)) (find-circle p)
-                                                                                       :else nil)]
+                                                     :mouse-moved    (fn [e] (let [x  (.getX e)
+                                                                                  y  (.getY e)
+                                                                                  m  {:x x :y y}
+                                                                                  p  (point-in-circle x y)
+                                                                                  c  (cond (not (nil? p)) (find-circle p)
+                                                                                        :else nil)
+                                                                                  l? (nil? (point-in-circle
+                                                                                            (:x (first @last-2-coords))
+                                                                                            (:y (first @last-2-coords))))]
                                                                            (do
                                                                              (send-off last-2-coords (fn [_] (butlast (cons m @last-2-coords))))
-                                                                             (cond (entered-left-circle?) (do
-                                                                                                            (clear-screen)
-                                                                                                            (render)
-                                                                                                            (highlight c)
-                                                                                                            (cond (nil? (point-in-circle
-                                                                                                                         (:x (first @last-2-coords))
-                                                                                                                         (:y (first @last-2-coords)))) (alert "lol")) ;; (unhighlight-text))
-                                                                                                            (draw-circle c))))))
+                                                                             (await last-2-coords)
+                                                                             (cond (and (entered-left-circle?) l?) (do
+                                                                                                                           (clear-screen)
+                                                                                                                           (render)
+                                                                                                                           (highlight c)
+                                                                                                                           (draw-circle c))
+                                                                                   (and (entered-left-circle?) (not l?)) (do
+                                                                                                                     (clear-screen)
+                                                                                                                     (render)
+                                                                                                                     (unhighlight-text))))))
                                                      :mouse-pressed (fn [e] (circ-drag-begin e))
                                                      :mouse-released (fn [e] (circ-drag-end e))]))))
-
 
                                                      (comment (fn [e] (let [x  (.getX e)
                                                                                y  (.getY e)

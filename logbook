@@ -659,3 +659,14 @@
           - actually, fuck that, will just remove the (check-answer) from del-circle and put it somewhere else
           - namely in the code for moving the circle and in del-circle-handler
           - yay, moving is fixed :) turned out i was right about the order in which the old circle was deleted and the answer was checked in del-circle, w00t
+          - trying to fix highlighting now
+          - a circle representing 1+2 highlights the 1+2 bits, but also +(2
+          - also, getting a NullPointerException every time i try to unhighlight (i.e. when i leave the circle)
+          - not helped by adding an (await last-2-coords) to main-window
+          - also, have put in a dummy def for check-answer as used long before defined properly, cba to move things around atm
+          - put some helper/testing fns after highlight to sort out detect-subs
+          - not quite sure why i'm redrawing a circle on mousing-off, that's probs what's going wrong tbh
+          - ah, i see, it was my foolish unhighlighting hack, it tries to do bits of highlighting when you're not actually on a circle - restructuring the outer cond to fix it
+          - right, it's complaining about a NullPointerException at line 858 on leaving the circle, also it's not highlighting properly now :\
+          - ych a fi, had my l? and (not l?) the wrong way round *facepalm*
+          - however, it now ONLY FUCKING WORKS!! :D unhighlighting text, circles, everything!  it's like, usable now!  all that's left to do is to fix detect-subs and get rid of the dialogue box and we're sorted :D

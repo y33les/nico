@@ -679,3 +679,11 @@
           - time to sort out circle-autonaming
           - hmmm, new-circle is complaining about wrong number of args to invoke-later
           - yep, autonaming seems to work, just counts @used-circles and prefixes that number with "c" for each circle's name
+          - now going to sort out the check button, remove the "correct!" alert from check-answer and put it into the button's handler
+          - have moved some stuff out of question-wrong and question-right, namely the answer's running total config! bit
+          - have now moved that into its own fn, update-answer
+          - also added a dummy declare for upadate-answer
+          - replacing check-answer with update-answer in other fns so that the submit button has to be used
+          - there was an extra dummy declare for check-answer at line 674, have removed
+          - removed the Thread/sleep from new-dialogue - no longer needed if only doing update-answer rather than check-answer
+          - again, sadly will have to test when back on klungo

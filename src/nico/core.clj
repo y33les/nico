@@ -502,6 +502,8 @@
 
 (def check-answer) ;; Declare check-answer, to be defined later
 
+(def update-answer) ;; Declare update-answer, to be defined later
+
 (defn circ-drag-end
   "If dropped into another circle, removes the target circle and replaces it with a similar circle with the circle in currently-dragging-circle added as an argument.  Otherwise, moves the circle being dragged to the new position."
   [e]
@@ -516,7 +518,7 @@
                  (send-off used-circles (fn [_] (cons cp @used-circles)))
                  (clear-screen)
                  (render)
-                 (check-answer)))
+                 (update-answer)))
           :else (let [cm (mod-xy (find-circle @currently-dragging-circle) (- x 50) (- y 50))]
                   (do
                     (del-circle (+ 10 (:x (find-circle @currently-dragging-circle))) (+ 10 (:y (find-circle @currently-dragging-circle))))
@@ -524,7 +526,7 @@
                     (send-off used-circles (fn [_] (cons cm @used-circles)))
                     (clear-screen)
                     (render)
-                    (check-answer))))))
+                    (update-answer))))))
 
 (defn load-qset-init
   "Brings up a dialogue with a file chooser to specify where to load the question set from.  Sends off the contents of the chosen file to current-qset."
@@ -669,8 +671,6 @@
                                                           (new-arg-panel 6)
                                                           (new-arg-panel 8)])))
 
-(def check-answer) ;; Declare check-answer, to be defined later
-
 (defn new-circle
   "Brings up a dialogue box to configure a new circle.  Draws the circle on pressing 'OK'."
   [x y]
@@ -716,8 +716,8 @@
                                          (send-off used-circles #(cons circ %))
                                          (dispose! dlg)
                                          (render)
-                                         (Thread/sleep 500) ;; Give them a chance to see their answer
-                                         (check-answer))))
+                                         ;; (Thread/sleep 500) ;; Give them a chance to see their answer
+                                         (update-answer))))
                  :cancel-fn (fn [_] (dispose! dlg)))
           pack!
           show!))))
@@ -765,8 +765,7 @@
   (do
     (config!
      (select main-window [:#answer])
-     :text (str (eval (eval-circle (find-root))))
-     :foreground "#00FF00")
+     :foreground "#00BB00")
     (alert "Correct!")
     (next-question)
     (kill-used-circles)
@@ -778,15 +777,22 @@
   []
   (config!
    (select main-window [:#answer])
-   :text (str (eval (eval-circle (find-root))))
    :foreground "#FF0000"))
+
+(defn update-answer
+  "Update the text in the :answer field to the current value of the diagram."
+  []
+  (config! (select main-window [:#answer])
+           :text (str (eval (eval-circle (find-root))))))
 
 (defn check-answer
   "Evaluate the current root circle and check against the answer to the current question, displaying the result to the user."
   []
-  (cond (empty? @used-circles) (config! (select main-window [:#answer]) :text (str 0))
-        (= (eval (eval-circle (find-root))) (eval (eval (:q (get-q-no @current-question))))) (question-right)
-        :else (question-wrong)))
+  (do
+    (update-answer)
+    (cond (empty? @used-circles) (config! (select main-window [:#answer]) :text (str 0))
+          (= (eval (eval-circle (find-root))) (eval (eval (:q (get-q-no @current-question))))) (question-right)
+          :else (question-wrong))))
 
 (defn new-circle-handler
   "Handler for new-circle-action that gets rid of the ActionEvent and makes new-circle actually usable in a context menu."
@@ -801,7 +807,7 @@
     (do
       (del-circle (:x xy) (:y xy))
       (render)
-      (check-answer))))
+      (update-answer))))
 
 (def new-circle-action
   ;; Action for adding a circle, for use in menus.

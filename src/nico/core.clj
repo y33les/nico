@@ -497,14 +497,16 @@
                  (await used-circles)
                  (send-off used-circles (fn [_] (cons cp @used-circles)))
                  (clear-screen)
-                 (render)))
+                 (render)
+                 (check-answer)))
           :else (let [cm (mod-xy (find-circle @currently-dragging-circle) (- x 50) (- y 50))]
                   (do
                     (del-circle (+ 10 (:x (find-circle @currently-dragging-circle))) (+ 10 (:y (find-circle @currently-dragging-circle))))
                     ;; (await used-circles)
                     (send-off used-circles (fn [_] (cons cm @used-circles)))
                     (clear-screen)
-                    (render))))))
+                    (render)
+                    (check-answer))))))
 
 (defn load-qset-init
   "Brings up a dialogue with a file chooser to specify where to load the question set from.  Sends off the contents of the chosen file to current-qset."
@@ -716,9 +718,9 @@
                                     (cond (not c?) (alert "Circle not found.")
                                           :else (cond (empty? in) (reverse out)
                                                       (= (:name (first in)) c) (recur (rest in) out c c?)
-                                                      :else (recur (rest in) (cons (first in) out) c c?))))))
-    (render)
-    (check-answer)))
+                                                      :else (recur (rest in) (cons (first in) out) c c?))))))))
+    ;; (render)
+    ;; (check-answer)))
 
 (defn next-question
   "Loads the next question in the current question set."
@@ -778,7 +780,10 @@
   "Handler for del-circle-action that gets rid of the ActionEvent and makes del-circle actually usable in a context menu."
   [a]
   (let [xy (first @last-2-coords)]
-    (del-circle (:x xy) (:y xy))))
+    (do
+      (del-circle (:x xy) (:y xy))
+      (render)
+      (check-answer))))
 
 (def new-circle-action
   ;; Action for adding a circle, for use in menus.

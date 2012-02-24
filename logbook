@@ -655,3 +655,7 @@
           - yay, works :)
           - have also subtracted 50 from each target co-ord to centre the circle on the mouse cursor
           - hmmm, doesn't work if the circle being dragged is an arg of another circle (i.e. non-root)
+          - think this is because it re-evaluates on deleting a circle - will try rearranging the do to make the new one before deleting the old
+          - actually, fuck that, will just remove the (check-answer) from del-circle and put it somewhere else
+          - namely in the code for moving the circle and in del-circle-handler
+          - yay, moving is fixed :) turned out i was right about the order in which the old circle was deleted and the answer was checked in del-circle, w00t

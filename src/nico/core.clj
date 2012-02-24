@@ -112,7 +112,7 @@
   [name]
   (loop [n name
          u @used-circles]
-    (cond (empty? u) (alert "Circle not found.")
+    (cond (empty? u) nil ;; (alert "Circle not found.")
           (= n (:name (first u))) (first u)
           :else (recur n (rest u)))))
 
@@ -375,28 +375,50 @@
 (defn detect-subs
   "Returns a list of maps containing start and end indices showing where a substring c appears in the superstring q."
   [c q]
+  (loop [s (cond (= (subs q (- (count q) (count c)) (count q)) c) (split q (re-pattern (escape c {\+ "\\+" \( "\\(" \) "\\)"})))
+                 :else (butlast (split q (re-pattern (escape c {\+ "\\+" \( "\\(" \) "\\)"})))))
+         i 0
+         l '()]
+    (do (prn (str "s: " s)) (prn (str "i: " i)) (prn (str "l: " l))
+    (cond (empty? s) (reverse l)
+          (= c (subs q (+ (dec i) (count (first s))) (+ (dec i) (count c)))) (recur (rest s) (inc i) (cons {:s (+ i (count (first s))) :e (+ i (count c))} l))
+          :else (recur (rest s) (inc i) l)))))
+
+(comment
+(defn detect-subs
+  "Returns a list of maps containing start and end indices showing where a substring c appears in the superstring q."
+  [c q]
   (loop [s (cond (=
                   (subs q
-                   (- (dec (count q)) (count c))
-                   (dec (count q)))
-                  c) (split q (re-pattern (escape c {\+ "\\+"})))
-                 :else (butlast (split q (re-pattern (escape c {\+ "\\+"})))))
+                   (- (count q) (count c))
+                   (count q))
+                  c) (split q (re-pattern (escape c {\+ "\\+"
+                                                     \( "\\("
+                                                     \) "\\)"})))
+                 :else (butlast (split q (re-pattern (escape c {\+ "\\+"
+                                                                \( "\\("
+                                                                \) "\\)"})))))
          ;; i 0
          l '()]
+    (do (prn (str "s: " s)) (prn (str "l: " l))
     (cond (empty? s) (reverse l)
           :else (recur (rest s)
                        ;; (inc i)
                        (concat (loop [st (first s)
                                       j  0
                                       ms '()]
+                                 (do (prn (str "st: " st)) (prn (str "ms: " ms))
                                  (cond (zero? (- (count q) (+ j (count c)))) ms
                                        ;; (>= (+ j (count c)) (count q)) ms
-                                       (= (subs q j (+ j (count st))) st) (cons
-                                                                           {:s (+ j (count st))
-                                                                            :e (+ j (count st) (count c))}
-                                                                           ms)
-                                       :else (recur st (inc j) ms)))
-                               l)))))
+                                       (= (subs q j (+ j (count st))) st) (recur st
+                                                                                 (inc j)
+                                                                                 (cons
+                                                                                  {:s (+ j (count st))
+                                                                                   :e (+ j (count st) (count c))}
+                                                                                  ms))
+                                       :else (recur st (inc j) ms))))
+                               l))))))
+)
 
 ;; (let [s "0123456789" i (detect-subs "456" s)] (subs s (:s (first i)) (:e (first i))))
 ;; (let [s "roflolmaomglolwtf" i (detect-subs "lol" s)] (subs s (:s (first i)) (:e (first i))))
@@ -418,13 +440,15 @@
       (loop [q (lisp-to-maths (eval (:q (first @current-qset))))
              i (detect-subs (lisp-to-maths (eval-circle circ)) q)]
         (cond (not (empty? i)) (do
+                                 (prn (str "q: " q)) (prn (str "s: " (subs q (:s i) (:e i))))
                                  (loop [r (range (:s (first i)) (:e (first i)))]
                                    (cond (not (empty? r)) (do
                                                             (config!
                                                              (select main-window [(keyword (str "#l" (first r)))])
                                                              :foreground "#2ECCFA")
                                                             (recur (rest r)))))
-                                 (recur q (rest i))))))))
+                                 (recur q (rest i)))
+              :else (prn "i: empty"))))))
 
 ;; (def tq (lisp-to-maths (eval (:q (first @current-qset)))))
 ;; (subs tq (:s (nth (detect-subs "1+2" tq) 0)) (:e (nth (detect-subs "1+2" tq) 0)))
@@ -491,6 +515,10 @@
    :name (:name c)
    :circ (:circ c)})
 
+(def check-answer) ;; Declare check-answer, to be defined later
+
+(def update-answer) ;; Declare update-answer, to be defined later
+
 (defn circ-drag-begin
   "Sends off the dragged circle to currently-dragging-circle."
   [e]
@@ -499,10 +527,6 @@
         c  (point-in-circle x y)
         c? (not (nil? c))]
     (cond c? (send-off currently-dragging-circle (fn [_] c)))))
-
-(def check-answer) ;; Declare check-answer, to be defined later
-
-(def update-answer) ;; Declare update-answer, to be defined later
 
 (defn circ-drag-end
   "If dropped into another circle, removes the target circle and replaces it with a similar circle with the circle in currently-dragging-circle added as an argument.  Otherwise, moves the circle being dragged to the new position."
@@ -733,7 +757,7 @@
                                          ;; c (cond (string? (first a)) (first a)
                                          ;;         (instance? java.awt.event.ActionEvent (first a)) (point-in-circle x y);; (:x @current-click) (:y @current-click))
                                          ;;         :else (input "Remove:"))]
-                                    (cond (not c?) (alert "Circle not found.")
+                                    (cond (not c?) nil ;; (alert "Circle not found.")
                                           :else (cond (empty? in) (reverse out)
                                                       (= (:name (first in)) c) (recur (rest in) out c c?)
                                                       :else (recur (rest in) (cons (first in) out) c c?))))))))

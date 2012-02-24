@@ -687,3 +687,29 @@
           - there was an extra dummy declare for check-answer at line 674, have removed
           - removed the Thread/sleep from new-dialogue - no longer needed if only doing update-answer rather than check-answer
           - again, sadly will have to test when back on klungo
+          - made it such that find-circle just returns nil if circle isn't found
+          - same for del-circle actually
+          - POW! had some unnecessary decs in detect-subs
+          - hmmm, not detecting supercircle expressions in the text
+          - looks like it's because it's resolving nested circles to like "c0+c1", etc.
+          - added prns to highlight
+          - hmmm, when i highlight the root circle, it's not getting as far as prn-ing q
+          - it's getting an empty i for the nested circle
+          - detect-subs is returning '() for some reason
+          - it doesn't like splitting using #"(1+2+3+4+5)+(2-4-6-8-10)" for some reason, even if i escape the +s
+          - the new check button works, btw
+          - probs need to escape the brackets; let's try that
+          - yep, that was it :D
+          - ...except that's broken *all* the highlighting :\
+          - detect-subs still returning '()
+          - i is empty in every case
+          - hmmm, s is empty
+          - getting a NullPointerException sometime between the prns in the second iteration
+          - it also says "s: (\"(\")", which is weird
+          - when it's not butlast-ing it gives ["(" ")-1-2-(1+2+3+4+5)"], which is right
+          - when it is, it gives '("("), which is right, but odd that it's a list, rather than a vector
+          - weird, wasn't recursing at all on the maps bit, must've been a total fluke that it was working at all
+          - put recur in, now it's fucked
+          - looks like it's because "(" is what it's looking for and there are two of those at the start, even though only one is the substring we're trying to ignore
+          - looks like highlighting is also broken; the leaf circles are just getting a big blue circle over them rather than behind them
+          - thought it might be because (count c) was 1 too big; apparently not

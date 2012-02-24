@@ -1,6 +1,6 @@
 post-meeting stuff to do:-
 - improve number entry (spinners or text fields)
-- connecting circles without having to go through the settings (drag between circles)
+/ connecting circles without having to go through the settings (drag between circles)
 - allow users to move the circles (dnd)
 - being able to change the operator (and args?)
 - basically lose the dialogue box

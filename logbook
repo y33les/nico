@@ -642,3 +642,16 @@
           - yep, fixed, removed all that shit about ActionEvents and strings so it just works on an x- and y-coord now
           - ...and it works!  brilliant
           - hmmm, dnd stuff is pretty fucked, it gets as far as clearing the screen and removing the current circle but it doesn't add the edited version back in
+          - added an await to circ-drag-end, still no joy - getting NullPointerExceptions after it's deleted the circle
+          - added prns to drag-circle-end, seems to be replacing :circ with just a list of the target circle (i.e. '(0 0) -> (c0))
+          - looks like i'm passing a string to add-arg rather than an actual circle, adding a find-circle to circ-drag-end
+          - :O IT FUCKING WORKS, I CAN TOTALLY DRAG TO ADD CIRCLES NOW :O
+          - adding dnd functionality to drag-circle-end whereby circles can be moved as well as extended
+          - harrumph, dragging to a new space is crashing it - comes up with a message box that doesn't load, then app is frozen
+          - ok, turns out it was the await freezing it up, have commented it out, but getting "circle not found" alerts after each drag - re-renders properly though when mousing-over the prospective placement after closing the alert
+          - adding prns to drag-circle-end
+          - weird, drag-circle-end seems to delete the other circles in used-circles - looks like mod-xy is working though, and it's getting through all the prns
+          - right, commenting-out the del-circle line makes it work fine (apart from obvs. duplicating circles): problem is therefore with del-circle, maybe using the :x and :y fields of currently-dragging cirle is just outside of it?  will try adding, say, 10 to each co-ord
+          - yay, works :)
+          - have also subtracted 50 from each target co-ord to centre the circle on the mouse cursor
+          - hmmm, doesn't work if the circle being dragged is an arg of another circle (i.e. non-root)

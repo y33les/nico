@@ -467,6 +467,14 @@
    :name (:name c)
    :circ (concat (:circ c) (list a))})
 
+(defn mod-xy
+  "Returns the value of a circle c with the new co-ordinates x and y."
+  [c x y]
+  {:x x
+   :y y
+   :name (:name c)
+   :circ (:circ c)})
+
 (defn circ-drag-begin
   "Sends off the dragged circle to currently-dragging-circle."
   [e]
@@ -477,16 +485,26 @@
     (cond c? (send-off currently-dragging-circle (fn [_] c)))))
 
 (defn circ-drag-end
-  "Removes the target circle and replaces it with a similar circle with the circle in currently-dragging-circle added as an argument."
+  "If dropped into another circle, removes the target circle and replaces it with a similar circle with the circle in currently-dragging-circle added as an argument.  Otherwise, moves the circle being dragged to the new position."
   [e]
   (let [x  (.getX e)
         y  (.getY e)
         c  (point-in-circle x y)
-        c' (add-arg (symbol @currently-dragging-circle) c)
         c? (not (nil? c))]
-    (cond c? (do
-               (del-circle x y)
-               (send-off used-circles (fn [_] (cons c' @used-circles)))))))
+    (cond c? (let [cp (add-arg (symbol @currently-dragging-circle) (find-circle c))]
+               (do
+                 (del-circle x y)
+                 (await used-circles)
+                 (send-off used-circles (fn [_] (cons cp @used-circles)))
+                 (clear-screen)
+                 (render)))
+          :else (let [cm (mod-xy (find-circle @currently-dragging-circle) (- x 50) (- y 50))]
+                  (do
+                    (del-circle (+ 10 (:x (find-circle @currently-dragging-circle))) (+ 10 (:y (find-circle @currently-dragging-circle))))
+                    ;; (await used-circles)
+                    (send-off used-circles (fn [_] (cons cm @used-circles)))
+                    (clear-screen)
+                    (render))))))
 
 (defn load-qset-init
   "Brings up a dialogue with a file chooser to specify where to load the question set from.  Sends off the contents of the chosen file to current-qset."

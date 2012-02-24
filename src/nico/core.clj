@@ -627,9 +627,9 @@
     (native!)
     (border-panel :id :new-box
                   :north (horizontal-panel :id :name-op
-                                           :items [(horizontal-panel :id :name-panel
-                                                                     :border "Name"
-                                                                     :items [(text :id :name-field)])
+                                           :items [;; (horizontal-panel :id :name-panel
+                                                   ;;                   :border "Name"
+                                                   ;;                   :items [(text :id :name-field)])
                                                    (horizontal-panel :id :op-select
                                                                      :border "Operator"
                                                                      :items [(radio :id :plus
@@ -681,7 +681,7 @@
                  :on-close :dispose
                  :success-fn (fn [_] (let [circ {:x x
                                          :y y
-                                         :name (.getText (select dlg [:#name-field]))
+                                         :name (str "c" (count @used-circles)) ;; (.getText (select dlg [:#name-field]))
                                          :circ (loop [op   (cond
                                                             (.isSelected (select dlg [:#plus])) +
                                                             (.isSelected (select dlg [:#minus])) -

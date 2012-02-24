@@ -676,3 +676,6 @@
           - weird, getting an out-of-bounds complaint saying the index is -5
           - fucking moron, got the args to - the wrong way round! ffs
           - seems to be fixed :D will test on klungo later but the tests seem to work :)
+          - time to sort out circle-autonaming
+          - hmmm, new-circle is complaining about wrong number of args to invoke-later
+          - yep, autonaming seems to work, just counts @used-circles and prefixes that number with "c" for each circle's name

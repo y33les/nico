@@ -375,17 +375,26 @@
 (defn detect-subs
   "Returns a list of maps containing start and end indices showing where a substring c appears in the superstring q."
   [c q]
-  (loop [s (split q (re-pattern (escape c {\+ "\\+"})))
-         i 0
+  (loop [s (cond (=
+                  (subs q
+                   (- (dec (count q)) (count c))
+                   (dec (count q)))
+                  c) (split q (re-pattern (escape c {\+ "\\+"})))
+                 :else (butlast (split q (re-pattern (escape c {\+ "\\+"})))))
+         ;; i 0
          l '()]
     (cond (empty? s) (reverse l)
           :else (recur (rest s)
-                       (inc i)
+                       ;; (inc i)
                        (concat (loop [st (first s)
                                       j  0
                                       ms '()]
-                                 (cond (>= (+ j (count c)) (count q)) ms
-                                       (= (subs q j (+ j (count st))) st) (cons {:s (+ j (count st)) :e (dec (+ j (count st) (count c)))} ms)
+                                 (cond (zero? (- (count q) (+ j (count c)))) ms
+                                       ;; (>= (+ j (count c)) (count q)) ms
+                                       (= (subs q j (+ j (count st))) st) (cons
+                                                                           {:s (+ j (count st))
+                                                                            :e (+ j (count st) (count c))}
+                                                                           ms)
                                        :else (recur st (inc j) ms)))
                                l)))))
 
@@ -394,6 +403,8 @@
 ;; (let [s "fagaha" i (detect-subs "a" s)] (subs s (:s (first i)) (:e (first i))))
 ;; (let [s "lalala" i (detect-subs "a" s)] (subs s (:s (first i)) (:e (first i))))
 ;; (detect-subs (lisp-to-maths (eval-circle (find-circle "c0"))) (lisp-to-maths (eval (:q (first @current-qset)))))
+;; (let [s "dcbabcd" i (detect-subs "a" s)] (subs s (:s (first i)) (:e (first i))))
+;; (let [s "dcbabcd" i (detect-subs "a" s)] (subs s (:s (nth i 1)) (:e (nth i 1))))
 
 (defn highlight
   "Highlights the circle circ, and the section of the question it represents."
@@ -407,7 +418,7 @@
       (loop [q (lisp-to-maths (eval (:q (first @current-qset))))
              i (detect-subs (lisp-to-maths (eval-circle circ)) q)]
         (cond (not (empty? i)) (do
-                                 (loop [r (range (:s (first i)) (inc (:e (first i))))]
+                                 (loop [r (range (:s (first i)) (:e (first i)))]
                                    (cond (not (empty? r)) (do
                                                             (config!
                                                              (select main-window [(keyword (str "#l" (first r)))])

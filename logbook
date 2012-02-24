@@ -670,3 +670,9 @@
           - right, it's complaining about a NullPointerException at line 858 on leaving the circle, also it's not highlighting properly now :\
           - ych a fi, had my l? and (not l?) the wrong way round *facepalm*
           - however, it now ONLY FUCKING WORKS!! :D unhighlighting text, circles, everything!  it's like, usable now!  all that's left to do is to fix detect-subs and get rid of the dialogue box and we're sorted :D
+24/02/12: - replaced the >= bit in detect-subs with an easier-to-read zero? and subtraction
+          - fixed a problem with highlight, turns out i was dec-ing in detect-subs because i was randomly inc-ing in highlight! *facepalm*
+          - problem with detect-subs is that if the substring isn't at the end of the superstring, because it splits around the substring it has the end of the string as the last element in the split list s - need to check if the end is the substring and discard the last item if not
+          - weird, getting an out-of-bounds complaint saying the index is -5
+          - fucking moron, got the args to - the wrong way round! ffs
+          - seems to be fixed :D will test on klungo later but the tests seem to work :)

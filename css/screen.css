@@ -123,6 +123,7 @@ ul.posts {
   text-align: center;
   font-size: 600%;
   color: #fff
+  font-effect: engrave;
   /* text-shadow: #aaa 2px 2px 2px; */
 }
 
@@ -136,7 +137,10 @@ ul.posts {
 }
 
   .site .title a {
-    color: black;
+    text-align: center;
+    font-size: 600%;
+    color: #fff
+    font-effect: engrave;
     text-decoration: none;
     border-bottom: none;
     background-color: none;

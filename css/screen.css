@@ -17,9 +17,10 @@ html, body {
 
 body {
   background-color: white;
-  font: 13.34px helvetica, arial, clean, sans-serif;
+  /* font: 13.34px helvetica, arial, clean, sans-serif; */
+  font-family: 'Convergence', sans-serif;
   *font-size: small;
-  text-align: center;
+  text-align: left;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -28,6 +29,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   margin-bottom: 0.5em;
+  font-family: 'Carter One', cursive;
   font-size: 175%;
   text-shadow: #aaa 2px 2px 2px;
 }

@@ -4,6 +4,8 @@
 /*
 /*****************************************************************************/
 
+@import url(http://fonts.googleapis.com/css?family=Convergence|Carter+One);
+
 /* Global Reset */
 
 * {
@@ -87,14 +89,15 @@ ul.posts {
 }
 
 .title {
+  color: #fff;
   margin-bottom: 2em;
+  font-family: 'Carter One', sans-serif;
+  font-effect: engrave;
+  text-align: center;
 }
 
   .site .title a {
-    color: #fff;
-    font-family: 'Carter One', sans-serif;
-    font-effect: engrave;
-    text-align: center;
+    color: #a00;
     text-decoration: none;
   }
 

@@ -87,15 +87,14 @@ ul.posts {
 }
 
 .title {
-  color: #fff;
   margin-bottom: 2em;
-  font-family: 'Carter One', sans-serif;
-  font-effect: engrave;
-  text-align: center;
 }
 
   .site .title a {
-    color: #a00;
+    color: #fff;
+    font-family: 'Carter One', sans-serif;
+    font-effect: engrave;
+    text-align: center;
     text-decoration: none;
   }
 

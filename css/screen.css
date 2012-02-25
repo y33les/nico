@@ -113,10 +113,11 @@ ul.posts {
 
 .title {
   color: black;
-  /* font-weight: bold; */
+  font-family: 'Convergence', sans-serif;
+  /* font-weight: bold;
   font-weight: normal;
   margin-bottom: 1.25cm;
-  font-family: chunk;
+  font-family: chunk; */
   text-align: right;
   font-size: 600%;
   text-shadow: #aaa 2px 2px 2px;

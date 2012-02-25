@@ -120,9 +120,10 @@ ul.posts {
   font-weight: normal;
   margin-bottom: 1.25cm;
   font-family: chunk; */
-  text-align: right;
+  text-align: center;
   font-size: 600%;
-  text-shadow: #aaa 2px 2px 2px;
+  color: #fff
+  /* text-shadow: #aaa 2px 2px 2px; */
 }
 
 .header {

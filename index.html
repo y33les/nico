@@ -6,7 +6,7 @@ title: Nico.
 <div id="home">
   <!-- iterate through the posts on this page -->
   {% for page in paginator.posts %}
-    <div class="post" style="margin-bottom:2em;">
+    <div class="post" style="margin-bottom:2em; font-family: 'Convergence', sans-serif;">
 	  <p class="meta">{{ page.date | date: "%A, %d %B %Y" }}</p>
       <h1><a href="{{ page.url }}">{{ page.title }}</a></h1>
         {{ page.content | postmorefilter: page.url, "Read more" }}

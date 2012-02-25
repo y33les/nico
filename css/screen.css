@@ -16,11 +16,12 @@ html, body {
 }
 
 body {
-  background-color: white;
+  background-color: black;
   /* font: 13.34px helvetica, arial, clean, sans-serif; */
   font-family: 'Convergence', sans-serif;
   *font-size: small;
   text-align: left;
+  color: #fff
 }
 
 h1, h2, h3, h4, h5, h6 {

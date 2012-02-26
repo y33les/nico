@@ -16,7 +16,7 @@ html, body {
 }
 
 body {
-  background-color: black;
+  background-image:url('nico/images/nico_bg_lambda_tile_small.png');
   font-family: 'Convergence', sans-serif;
   *font-size: small;
   text-align: center;

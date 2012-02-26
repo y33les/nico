@@ -87,10 +87,11 @@ ul.posts {
 
 .header {
   width: 100%;
+  height: 200px;
   text-align: center;
   margin-top: 2em;
   margin-bottom: 1em;
-  background-color: #44bb44;
+  background-image:url('../images/header_bg_tile.png');
 }
 
   .header .title {

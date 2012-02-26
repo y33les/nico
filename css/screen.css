@@ -91,36 +91,36 @@ ul.posts {
   background-color: #44bb44;
 }
 
-.site .header.title {
-  color: #eee;
-  font-size: 500%;
-  font-family: 'Carter One', sans-serif;
-  text-shadow: 0px 1px 1px #bbb;
-}
+  .header.title {
+    color: #eee;
+    font-size: 500%;
+    font-family: 'Carter One', sans-serif;
+    text-shadow: 0px 1px 1px #bbb;
+  }
 
-  .site .header .links {
+  .header .links {
     color: #888;
     text-shadow: 0px 1px 0px #ccc;
     font-size: 100%;
     font-family: 'Convergence', sans-serif;
   }
 
-  .site .title a {
+  .header .title a {
     color: #eee;
     text-decoration: none;
   }
 
-  .site .title a:hover {
+  .header .title a:hover {
     color: #eee;
   }
 
-  .site .title a.extra {
+  .header .title a.extra {
     color: #eee;
     text-decoration: none;
     margin-left: 1em;
   }
 
-  .site .title a.extra:hover {
+  .header .title a.extra:hover {
     color: #eee;
   }
 

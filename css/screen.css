@@ -88,9 +88,10 @@ ul.posts {
 
 .title {
   color: #eee;
-  width: 100%
+  width: 100%;
   background-color: #44bb44;
   font-size: 500%;
+  margin-top: 1em;
   margin-bottom: 0.5em;
   font-family: 'Carter One', sans-serif;
   text-shadow: 0px 1px 1px #bbb;

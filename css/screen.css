@@ -96,22 +96,22 @@ ul.posts {
 }
 
   .site .title a {
-    color: #ddd;
+    color: #eee;
     text-decoration: none;
   }
 
   .site .title a:hover {
-    color: #ddd;
+    color: #eee;
   }
 
   .site .title a.extra {
-    color: #ddd;
+    color: #eee;
     text-decoration: none;
     margin-left: 1em;
   }
 
   .site .title a.extra:hover {
-    color: #aaa;
+    color: #eee;
   }
 
   .site .meta {

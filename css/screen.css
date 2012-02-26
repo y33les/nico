@@ -16,7 +16,7 @@ html, body {
 }
 
 body {
-  background-color: white;
+  background-color: black;
   font-family: 'Convergence', sans-serif;
   *font-size: small;
   text-align: center;
@@ -88,7 +88,6 @@ ul.posts {
 
 .title {
   color: #fff;
-  background-color: black;
   font-size: 500%;
   margin-bottom: 2em;
   font-family: 'Carter One', sans-serif;
@@ -97,22 +96,22 @@ ul.posts {
 }
 
   .site .title a {
-    /*color: #aaa;
-    text-decoration: none;*/
+    color: #aaa;
+    text-decoration: none;
   }
 
   .site .title a:hover {
-    /*color: #aaa;*/
+    color: #aaa;
   }
 
   .site .title a.extra {
-    /*color: #aaa;
+    color: #aaa;
     text-decoration: none;
-    margin-left: 1em;*/
+    margin-left: 1em;
   }
 
   .site .title a.extra:hover {
-    /*color: #aaa;*/
+    color: #aaa;
   }
 
   .site .meta {

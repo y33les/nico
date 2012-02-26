@@ -87,25 +87,25 @@ ul.posts {
 }
 
 .title {
-  color: #fff;
+  color: #ddd;
   font-size: 500%;
-  margin-bottom: 2em;
+  margin-bottom: 0.5em;
   font-family: 'Carter One', sans-serif;
-  text-shadow: 0px 1px 0px #ccc;
+  text-shadow: 0px 1px 0px #fff;
   text-align: center;
 }
 
   .site .title a {
-    color: #aaa;
+    color: #ddd;
     text-decoration: none;
   }
 
   .site .title a:hover {
-    color: #aaa;
+    color: #ddd;
   }
 
   .site .title a.extra {
-    color: #aaa;
+    color: #ddd;
     text-decoration: none;
     margin-left: 1em;
   }

@@ -94,6 +94,12 @@ ul.posts {
   text-align: center;
 }
 
+.header {
+  color: #bbb
+  text-shadow: 0px 1px 0px #fff
+  font-family: 'Convergence', sans-serif;
+}
+
   .site .title a {
     color: #eee;
     text-decoration: none;

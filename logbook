@@ -713,3 +713,4 @@
           - looks like it's because "(" is what it's looking for and there are two of those at the start, even though only one is the substring we're trying to ignore
           - looks like highlighting is also broken; the leaf circles are just getting a big blue circle over them rather than behind them
           - thought it might be because (count c) was 1 too big; apparently not
+27/02/12: - tidied up whitespace and shit in detect-subs rewrite

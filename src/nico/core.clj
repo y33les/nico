@@ -384,30 +384,33 @@
                                                  {\+ "\\+"
                                                   \( "\\("
                                                   \) "\\)"})))
-                 :else (butlast (split q
+                 :else (do (prn "ALT q") (butlast (split q
                                        (re-pattern
                                         (escape
                                          c
                                          {\+ "\\+"
                                           \( "\\("
-                                          \) "\\)"})))))
+                                          \) "\\)"}))))))
          i 0
          l '()]
     (do (prn (str "s: " s)) (prn (str "i: " i)) (prn (str "l: " l))
     (cond (empty? s) (reverse l)
           (= c (subs q
-                     (+ (dec i) (count (first s)))
-                     (+ (dec i) (count c)))) (recur (rest s)
+                     (+ i (count (first s)))
+                     (+ i (count (first s)) (count c)))) (do (prn "recur") (recur (rest s)
                                                     (inc i)
                                                     (cons {:s (+ i (count (first s)))
-                                                           :e (+ i (count c))}
-                                                          l))
-          :else (recur (rest s) (inc i) l)))))
+                                                           :e (+ i (count (first s)) (count c))}
+                                                          l)))
+          :else (do (prn "else recur") (recur s (inc i) l))))))
 
 ;; (def tq (lisp-to-maths (eval (:q (first @current-qset)))))
 ;; (subs tq (:s (nth (detect-subs "1+2" tq) 0)) (:e (nth (detect-subs "1+2" tq) 0)))
 ;; (subs tq (:s (nth (detect-subs "1+2" tq) 1)) (:e (nth (detect-subs "1+2" tq) 1)))
 ;; (subs tq (:s (nth (detect-subs "1+2" tq) 2)) (:e (nth (detect-subs "1+2" tq) 2)))
+;; (let [s "roflolmaomglolwtf" i (detect-subs "lol" s)] (subs s (:s (nth i 0)) (:e (nth i 0))))
+;; (let [s "roflolmaomglolwtf" i (detect-subs "lol" s)] (subs s (:s (nth i 1)) (:e (nth i 1))))
+;; (let [s "roflolmaomglolwtf" i (detect-subs "lol" s)] (subs s (:s (nth i 2)) (:e (nth i 2))))
 
 (comment
 (defn detect-subs

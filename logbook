@@ -714,3 +714,18 @@
           - looks like highlighting is also broken; the leaf circles are just getting a big blue circle over them rather than behind them
           - thought it might be because (count c) was 1 too big; apparently not
 27/02/12: - tidied up whitespace and shit in detect-subs rewrite
+01/03/12: - right, gonna sort out this detect-subs nonsense once and for all
+          - getting an StringIndexOutOfBoundsException saying some index of -24 is used
+          - looks like i've got my indices the wrong way round!  did a test with (subs "rofl" 1 3), returning "of", and (subs "rofl" 3 1), returning a similar exception complaining about an index of -2
+          - harrumph, now it's complaining about a -1 index on the first iteration (the -24 one was on the second iteration)
+          - nope, of course i haven't got my indices the wrong way round - i've not added (count (first s)) to the second one!
+          - ffs, now getting an IndexOutOfBoundsException with no message but the string problem seems to have been solved, i guess we'll see if it's actually right when i fix this one
+          - whoops, forgot to add (count (first s)) to :e, done
+          - yay!  it's now not crashing!  let's see if it's right...
+          - well the first result is right, but it *is* only getting one result...
+          - ...should be getting two results with the question i'm using
+          - tried removing that butlast crap from the start, still no joy, still only one result'
+          - maybe it's because i'm recurring with (rest s) even when i don't get a result...
+          - yay!  that seems to have done the trick, will put that butlast shit back in now as this version is giving me the last map twice, but it seems to be better now :)
+          - seems to be working now :D
+          - ...but highlighting isn't >:\

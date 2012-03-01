@@ -91,7 +91,7 @@ ul.posts {
     border-style: dotted;
     border-color: #555;
     border-width: 1px;
-    margin: 5% 5% 5% 5%;
+    padding: 5% 5% 5% 5%;
   }
 
 .header {

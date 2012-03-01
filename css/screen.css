@@ -19,7 +19,6 @@ body {
   background-image:url('../images/nico_bg_lambda_tile_small.png');
   font-family: 'Convergence', sans-serif;
   *font-size: small;
-  font-color: #000055;
   text-align: center;
 }
 
@@ -89,6 +88,10 @@ ul.posts {
   .site .content {
     background-color: #eee;
     font-size: small;
+    border-style: dotted;
+    border-color: #555;
+    border-width: 1px;
+    margin: 5% 5% 5% 5%;
   }
 
 .header {

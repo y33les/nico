@@ -88,7 +88,7 @@ ul.posts {
   .site .content {
     background-image:url('../images/content_bg_tile.png');
     font-size: small;
-    color: #005;
+    color: #555;
     border-style: dotted;
     border-color: #555;
     border-width: 1px;
@@ -96,7 +96,9 @@ ul.posts {
   }
 
   .site .content h1 {
-    font-size: 120%;
+    font-size: 125%;
+    font-weight: bold;
+    margin-bottom: 1em;
   }
 
 .header {

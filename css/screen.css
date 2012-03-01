@@ -88,10 +88,15 @@ ul.posts {
   .site .content {
     background-image:url('../images/content_bg_tile.png');
     font-size: small;
+    font-color: #005;
     border-style: dotted;
     border-color: #555;
     border-width: 1px;
     padding: 5% 5% 5% 5%;
+  }
+
+  .site .content h1 {
+    font-size: 110%;
   }
 
 .header {

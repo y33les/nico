@@ -85,6 +85,10 @@ ul.posts {
   margin: 3em auto 2em auto;
 }
 
+  .site .content {
+    background-color: #eee;
+  }
+
 .header {
   width: 100%;
   height: 200px;

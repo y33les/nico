@@ -384,25 +384,24 @@
                                                  {\+ "\\+"
                                                   \( "\\("
                                                   \) "\\)"})))
-                 :else (do (prn "ALT q") (butlast (split q
-                                       (re-pattern
-                                        (escape
-                                         c
-                                         {\+ "\\+"
-                                          \( "\\("
-                                          \) "\\)"}))))))
+                 :else (butlast (split q
+                         (re-pattern
+                          (escape
+                           c
+                           {\+ "\\+"
+                            \( "\\("
+                            \) "\\)"})))))
          i 0
          l '()]
-    (do (prn (str "s: " s)) (prn (str "i: " i)) (prn (str "l: " l))
     (cond (empty? s) (reverse l)
           (= c (subs q
                      (+ i (count (first s)))
-                     (+ i (count (first s)) (count c)))) (do (prn "recur") (recur (rest s)
-                                                    (inc i)
-                                                    (cons {:s (+ i (count (first s)))
-                                                           :e (+ i (count (first s)) (count c))}
-                                                          l)))
-          :else (do (prn "else recur") (recur s (inc i) l))))))
+                     (+ i (count (first s)) (count c)))) (recur (rest s)
+                                                                (inc i)
+                                                                (cons {:s (+ i (count (first s)))
+                                                                       :e (+ i (count (first s)) (count c))}
+                                                                      l))
+          :else (recur s (inc i) l))))
 
 ;; (def tq (lisp-to-maths (eval (:q (first @current-qset)))))
 ;; (subs tq (:s (nth (detect-subs "1+2" tq) 0)) (:e (nth (detect-subs "1+2" tq) 0)))
@@ -411,42 +410,6 @@
 ;; (let [s "roflolmaomglolwtf" i (detect-subs "lol" s)] (subs s (:s (nth i 0)) (:e (nth i 0))))
 ;; (let [s "roflolmaomglolwtf" i (detect-subs "lol" s)] (subs s (:s (nth i 1)) (:e (nth i 1))))
 ;; (let [s "roflolmaomglolwtf" i (detect-subs "lol" s)] (subs s (:s (nth i 2)) (:e (nth i 2))))
-
-(comment
-(defn detect-subs
-  "Returns a list of maps containing start and end indices showing where a substring c appears in the superstring q."
-  [c q]
-  (loop [s (cond (=
-                  (subs q
-                   (- (count q) (count c))
-                   (count q))
-                  c) (split q (re-pattern (escape c {\+ "\\+"
-                                                     \( "\\("
-                                                     \) "\\)"})))
-                 :else (butlast (split q (re-pattern (escape c {\+ "\\+"
-                                                                \( "\\("
-                                                                \) "\\)"})))))
-         ;; i 0
-         l '()]
-    (do (prn (str "s: " s)) (prn (str "l: " l))
-    (cond (empty? s) (reverse l)
-          :else (recur (rest s)
-                       ;; (inc i)
-                       (concat (loop [st (first s)
-                                      j  0
-                                      ms '()]
-                                 (do (prn (str "st: " st)) (prn (str "ms: " ms))
-                                 (cond (zero? (- (count q) (+ j (count c)))) ms
-                                       ;; (>= (+ j (count c)) (count q)) ms
-                                       (= (subs q j (+ j (count st))) st) (recur st
-                                                                                 (inc j)
-                                                                                 (cons
-                                                                                  {:s (+ j (count st))
-                                                                                   :e (+ j (count st) (count c))}
-                                                                                  ms))
-                                       :else (recur st (inc j) ms))))
-                               l))))))
-)
 
 ;; (let [s "0123456789" i (detect-subs "456" s)] (subs s (:s (first i)) (:e (first i))))
 ;; (let [s "roflolmaomglolwtf" i (detect-subs "lol" s)] (subs s (:s (first i)) (:e (first i))))
@@ -468,10 +431,9 @@
       (loop [q (lisp-to-maths (eval (:q (first @current-qset))))
              i (detect-subs (lisp-to-maths (eval-circle circ)) q)]
         (cond (not (empty? i)) (do
-                                 (prn (str "q: " q)) (prn (str "s: " (subs q (:s (first i)) (:e (first i)))))
                                  (highlight-text (:s (first i)) (:e (first i)) "#2ECCFA")
-                                 (recur q (rest i)))
-              :else (prn "i: empty"))))))
+                                 (recur q (rest i))))))))
+              ;; :else (prn "i: empty"))))))
 
 (defn highlight-text
   "Change the colour of the question text to c between characters s and e inclusive."

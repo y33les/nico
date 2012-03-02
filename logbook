@@ -732,4 +732,7 @@
 02/03/12: - turned out i was trying to get :s and :e of the entire list that is the output of detect-subs, fixed so it now calls (first i) in highlight
           - also changed it to use highlight-text, rather than that horrible extra loop with range and shit
           - works! :D
-          - tidying up shit
+          - tidying up shit, removing comments and prns
+          - leaving the detect-subs tests in so i can move them into the actual tests for leiningen at some point
+          - also moving highlight below un/highlight-text as it uses highlight-text
+          - still seems to work after tidying-up...

@@ -468,13 +468,8 @@
       (loop [q (lisp-to-maths (eval (:q (first @current-qset))))
              i (detect-subs (lisp-to-maths (eval-circle circ)) q)]
         (cond (not (empty? i)) (do
-                                 (prn (str "q: " q)) (prn (str "s: " (subs q (:s i) (:e i))))
-                                 (loop [r (range (:s (first i)) (:e (first i)))]
-                                   (cond (not (empty? r)) (do
-                                                            (config!
-                                                             (select main-window [(keyword (str "#l" (first r)))])
-                                                             :foreground "#2ECCFA")
-                                                            (recur (rest r)))))
+                                 (prn (str "q: " q)) (prn (str "s: " (subs q (:s (first i)) (:e (first i)))))
+                                 (highlight-text (:s (first i)) (:e (first i)) "#2ECCFA")
                                  (recur q (rest i)))
               :else (prn "i: empty"))))))
 

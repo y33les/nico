@@ -729,3 +729,7 @@
           - yay!  that seems to have done the trick, will put that butlast shit back in now as this version is giving me the last map twice, but it seems to be better now :)
           - seems to be working now :D
           - ...but highlighting isn't >:\
+02/03/12: - turned out i was trying to get :s and :e of the entire list that is the output of detect-subs, fixed so it now calls (first i) in highlight
+          - also changed it to use highlight-text, rather than that horrible extra loop with range and shit
+          - works! :D
+          - tidying up shit

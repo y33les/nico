@@ -419,22 +419,6 @@
 ;; (let [s "dcbabcd" i (detect-subs "a" s)] (subs s (:s (first i)) (:e (first i))))
 ;; (let [s "dcbabcd" i (detect-subs "a" s)] (subs s (:s (nth i 1)) (:e (nth i 1))))
 
-(defn highlight
-  "Highlights the circle circ, and the section of the question it represents."
-  [circ]
-  (let [x (:x circ)
-        y (:y circ)]
-    (do
-      (doto (.getGraphics (select main-window [:#canvas]))
-        (.setColor (java.awt.Color. 0x2ECCFA))
-        (.fillOval (- x 3) (- y 3) 106 106))
-      (loop [q (lisp-to-maths (eval (:q (first @current-qset))))
-             i (detect-subs (lisp-to-maths (eval-circle circ)) q)]
-        (cond (not (empty? i)) (do
-                                 (highlight-text (:s (first i)) (:e (first i)) "#2ECCFA")
-                                 (recur q (rest i))))))))
-              ;; :else (prn "i: empty"))))))
-
 (defn highlight-text
   "Change the colour of the question text to c between characters s and e inclusive."
   [s e c]
@@ -452,6 +436,22 @@
 
 ;; (highlight-text 4 10 "#0000FF")
 ;; (highlight-text 0 (count (lisp-to-maths (eval (:q (first @current-qset))))) "#000000")
+
+(defn highlight
+  "Highlights the circle circ, and the section of the question it represents."
+  [circ]
+  (let [x (:x circ)
+        y (:y circ)]
+    (do
+      (doto (.getGraphics (select main-window [:#canvas]))
+        (.setColor (java.awt.Color. 0x2ECCFA))
+        (.fillOval (- x 3) (- y 3) 106 106))
+      (loop [q (lisp-to-maths (eval (:q (first @current-qset))))
+             i (detect-subs (lisp-to-maths (eval-circle circ)) q)]
+        (cond (not (empty? i)) (do
+                                 (highlight-text (:s (first i)) (:e (first i)) "#2ECCFA")
+                                 (recur q (rest i))))))))
+              ;; :else (prn "i: empty"))))))
 
 (defn entered-left-circle?
   "Checks whether the mouse has entered or left a circle by inspecting the contents of last-2-coords."

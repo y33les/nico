@@ -1,12 +1,8 @@
-This is XeTeX, Version 3.1415926-2.2-0.9995.2 (TeX Live 2009/Debian) (format=xelatex 2012.3.2)  3 MAR 2012 17:21
+This is XeTeX, Version 3.1415926-2.2-0.9995.2 (TeX Live 2009/Debian) (format=xelatex 2012.3.2)  4 MAR 2012 13:03
 entering extended mode
  %&-line parsing enabled.
-**diss
-(./diss.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/report.cls
+**\input diss.tex
+(./diss.tex (/usr/share/texmf-texlive/tex/latex/base/report.cls
 Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texmf-texlive/tex/latex/base/size12.clo
 File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
@@ -429,6 +425,6 @@ Here is how much of TeX's memory you used:
  8282 multiletter control sequences out of 15000+50000
  9216 words of font info for 63 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 29i,11n,68p,503b,310s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,11n,68p,514b,310s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on diss.pdf (45 pages).

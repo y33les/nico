@@ -1,0 +1,497 @@
+This is XeTeX, Version 3.1415926-2.2-0.9995.2 (TeX Live 2009/Debian) (format=xelatex 2012.3.2)  4 MAR 2012 23:14
+entering extended mode
+ %&-line parsing enabled.
+**\input qs.tex
+(./qs.tex (/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf-texlive/tex/latex/preprint/fullpage.sty
+Package: fullpage 1999/02/23 1.1 (PWD)
+\FP@margin=\skip43
+)
+(/usr/share/texmf-texlive/tex/latex/fancyhdr/fancyhdr.sty
+\fancy@headwidth=\skip44
+\f@ncyO@elh=\skip45
+\f@ncyO@erh=\skip46
+\f@ncyO@olh=\skip47
+\f@ncyO@orh=\skip48
+\f@ncyO@elf=\skip49
+\f@ncyO@erf=\skip50
+\f@ncyO@olf=\skip51
+\f@ncyO@orf=\skip52
+)
+(/usr/share/texmf-texlive/tex/latex/setspace/setspace.sty
+Package: setspace 2000/12/01 6.7 Contributed and Supported LaTeX2e package
+
+Package: `setspace' 6.7 <2000/12/01>
+) (/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/etc/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: xetex.def on input line 91.
+
+(/usr/share/texmf-texlive/tex/xelatex/xetex-def/xetex.def
+File: xetex.def 2009/11/22 v0.94 LaTeX color/graphics driver for XeTeX (RRM/JK)
+
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/share/texmf-texlive/tex/xelatex/fontspec/fontspec.sty
+Package: fontspec 2008/08/09 v1.18 Advanced font selection for XeLaTeX
+
+(/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2009/01/23 v0.5 Provides ifxetex conditional
+)
+\c@zf@newff=\count88
+\c@zf@index=\count89
+\c@zf@script=\count90
+\c@zf@language=\count91
+
+(/usr/share/texmf-texlive/tex/latex/tools/calc.sty
+Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count92
+\calc@Bcount=\count93
+\calc@Adimen=\dimen105
+\calc@Bdimen=\dimen106
+\calc@Askip=\skip53
+\calc@Bskip=\skip54
+LaTeX Info: Redefining \setlength on input line 76.
+LaTeX Info: Redefining \addtolength on input line 77.
+\calc@Ccount=\count94
+\calc@Cskip=\skip55
+)
+(/usr/share/texmf-texlive/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2008/08/13 v2.6a package option processing (HA)
+
+(/usr/share/texmf-texlive/tex/generic/xkeyval/xkeyval.tex
+\XKV@toks=\toks15
+\XKV@tempa@toks=\toks16
+\XKV@depth=\count95
+File: xkeyval.tex 2008/08/13 v2.6a key=value parser (HA)
+))
+(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+(/usr/share/texmf-texlive/tex/xelatex/euenc/eu1enc.def
+File: eu1enc.def 2008/03/08 v0.1d Experimental unicode font encoding
+)
+LaTeX Font Info:    Try loading font information for EU1+lmr on input line 100.
+
+
+(/usr/share/texmf-texlive/tex/xelatex/euenc/eu1lmr.fd
+File: eu1lmr.fd 2007/01/14 v1.3 Font defs for Latin Modern
+))
+LaTeX Info: Redefining \itshape on input line 1163.
+LaTeX Info: Redefining \slshape on input line 1166.
+LaTeX Info: Redefining \scshape on input line 1169.
+LaTeX Info: Redefining \upshape on input line 1172.
+
+fontspec.cfg loaded.
+(/usr/share/texmf-texlive/tex/xelatex/fontspec/fontspec.cfg))
+(/usr/share/texmf-texlive/tex/xelatex/xunicode/xunicode.sty
+File: xunicode.sty 2008/02/08 v0.91 provides access to latin accents and many o
+ther characters in Unicode lower plane
+)
+Package fontspec Info: Linux Libertine O scale = 1 on input line 10.
+\c@zf@famc@Linux Libertine O=\count96
+Package fontspec Info: Defining font family for 'Linux Libertine O' with option
+s [Mapping=tex-text,Scale=MatchLowercase, Numbers=OldStyle,Scale=1] on input li
+ne 10.
+Package fontspec Info: Linux Libertine O scale = 1 on input line 10.
+Package fontspec Info: Linux Libertine O scale = 1 on input line 10.
+Package fontspec Info: Linux Libertine O/B scale = 0.98853 on input line 10.
+Package fontspec Info: Linux Libertine O/B scale = 0.98853 on input line 10.
+Package fontspec Info: Linux Libertine O/I scale = 0.98178 on input line 10.
+Package fontspec Info: Linux Libertine O/I scale = 0.98178 on input line 10.
+Package fontspec Info: Linux Libertine O/BI scale = 0.96854 on input line 10.
+LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/n' will be
+(Font)              scaled to size 10.0pt on input line 10.
+Package fontspec Info: Linux Biolinum O scale = 0.99768 on input line 11.
+\c@zf@famc@Linux Biolinum O=\count97
+Package fontspec Info: Defining font family for 'Linux Biolinum O' with options
+ [Mapping=tex-text,Scale=MatchLowercase, Numbers=OldStyle,] on input line 11.
+Package fontspec Info: Linux Biolinum O scale = 0.99768 on input line 11.
+Package fontspec Info: Linux Biolinum O scale = 0.99768 on input line 11.
+Package fontspec Info: Linux Biolinum O/B scale = 0.99768 on input line 11.
+Package fontspec Info: Linux Biolinum O/B scale = 0.99768 on input line 11.
+Package fontspec Info: Linux Biolinum O/I scale = 0.99768 on input line 11.
+Package fontspec Info: Linux Biolinum O/I scale = 0.99768 on input line 11.
+Package fontspec Info: Linux Biolinum O/BI scale = 0.99768 on input line 11.
+Package fontspec Info: Linux Biolinum O/BI scale = 0.99768 on input line 11.
+Package fontspec Info: Monaco scale = 0.79024 on input line 12.
+
+
+Package fontspec Warning: 
+    OpenType feature 'Numbers=OldStyle' (+onum) not available
+    for font "Monaco/ICU", 
+    with script 'Latin',
+    and language 'Default'.
+This warning occured on input line 12.
+
+\c@zf@famc@Monaco=\count98
+Package fontspec Info: Defining font family for 'Monaco' with options [Mapping=
+tex-text,Scale=MatchLowercase, Numbers=OldStyle,] on input line 12.
+Package fontspec Info: Monaco scale = 0.79024 on input line 12.
+
+Package fontspec Warning: 
+    OpenType feature 'Numbers=OldStyle' (+onum) not available
+    for font "Monaco/ICU", 
+    with script 'Latin',
+    and language 'Default'.
+This warning occured on input line 12.
+
+Package fontspec Info: Could not resolve font Monaco/B (it might not exist) on 
+input line 12.
+Package fontspec Info: Could not resolve font Monaco/I (it might not exist) on 
+input line 12.
+Package fontspec Info: Could not resolve font Monaco/BI (it might not exist) on
+ input line 12.
+(/usr/share/texmf-texlive/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen107
+\WF@size=\dimen108
+\c@WF@wrappedlines=\count99
+\WF@box=\box26
+\WF@everypar=\toks17
+Package: wrapfig 2003/01/31  v 3.6
+)
+
+LaTeX Warning: Unused global option(s):
+    [14pt].
+
+(./qs.aux)
+\openout1 = `qs.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid this).
+ on input line 24.
+\symlegacymaths=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 24.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 24.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 24.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 24.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 24.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 24.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 24.
+LaTeX Font Info:    Redeclaring math accent \check on input line 24.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 24.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 24.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 24.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 24.
+LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
+(Font)              `operators' in the math version `normal' on input line 24.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> EU1/LinuxLibertineO(0)/m/n on input lin
+e 24.
+LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
+(Font)              `operators' in the math version `bold' on input line 24.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> EU1/LinuxLibertineO(0)/m/n on input li
+ne 24.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  EU1/LinuxLibertineO(0)/m/n --> EU1/LinuxLibertineO(0)/m
+/n on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  EU1/LinuxLibertineO(0)/m/n --> EU1/LinuxLibertineO(0)/m
+/n on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> EU1/LinuxLibertineO(0)/m/it on input l
+ine 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> EU1/LinuxLibertineO(0)/bx/n on input l
+ine 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> EU1/LinuxBiolinumO(0)/m/n on input lin
+e 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> EU1/Monaco(0)/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  EU1/LinuxLibertineO(0)/m/n --> EU1/LinuxLibertineO(0)/b
+x/n on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
+(Font)                  EU1/LinuxLibertineO(0)/m/n --> EU1/LinuxLibertineO(0)/b
+x/n on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> EU1/LinuxLibertineO(0)/bx/it on input
+ line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> EU1/LinuxBiolinumO(0)/bx/n on input l
+ine 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> EU1/Monaco(0)/bx/n on input line 24.
+LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/n' will be
+(Font)              scaled to size 17.28pt on input line 28.
+LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/n' will be
+(Font)              scaled to size 17.28pt on input line 28.
+LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/it' will be
+(Font)              scaled to size 17.28pt on input line 28.
+LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/it' will be
+(Font)              scaled to size 10.0pt on input line 33.
+LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/n' will be
+(Font)              scaled to size 14.4pt on input line 42.
+LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/n' will be
+(Font)              scaled to size 14.4pt on input line 42.
+LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/it' will be
+(Font)              scaled to size 14.4pt on input line 42.
+LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/n' will be
+(Font)              scaled to size 12.0pt on input line 44.
+LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/n' will be
+(Font)              scaled to size 12.0pt on input line 44.
+File: fig1.png Graphic file (type QTm)
+ <use  "fig1.png" >
+LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/n' will be
+(Font)              scaled to size 10.0pt on input line 58.
+LaTeX Font Info:    Font shape `EU1/LinuxBiolinumO(0)/bx/n' will be
+(Font)              scaled to size 9.9768pt on input line 58.
+LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
+(Font)              scaled to size 7.90237pt on input line 66.
+File: fig2.png Graphic file (type QTm)
+ <use  "fig2.png" >
+Overfull \hbox (37.37096pt too wide) in paragraph at lines 77--78
+ [][] 
+ []
+
+File: fig3.png Graphic file (type QTm)
+<use  "fig3.png" >
+Overfull \hbox (17.5597pt too wide) in paragraph at lines 75--86
+[][]   [] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 12.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[1
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 135--136
+
+ []
+
+LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/n' will be
+(Font)              scaled to size 7.0pt on input line 141.
+LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/n' will be
+(Font)              scaled to size 5.0pt on input line 141.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 141.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 141.
+
+Underfull \hbox (badness 10000) in paragraph at lines 141--142
+
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 12.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 145--146
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 151--152
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 153--154
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 159--160
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--162
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--168
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 169--170
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 175--176
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
+
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 12.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 187--188
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 193--194
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 203--204
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 209--210
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 211--212
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--218
+
+ []
+
+LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/n' will be
+(Font)              scaled to size 24.88pt on input line 242.
+LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/n' will be
+(Font)              scaled to size 24.88pt on input line 242.
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 12.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 275--277
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--283
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 284--285
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 290--291
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 321--321
+
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 12.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[5] (./qs.aux) ) 
+Here is how much of TeX's memory you used:
+ 5190 strings out of 495724
+ 85774 string characters out of 1189347
+ 158868 words of memory out of 3000000
+ 8285 multiletter control sequences out of 15000+50000
+ 4385 words of font info for 43 fonts, out of 3000000 for 9000
+ 28 hyphenation exceptions out of 8191
+ 29i,10n,68p,512b,352s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on qs.pdf (5 pages).

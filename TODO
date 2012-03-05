@@ -1,3 +1,16 @@
+everything is shit! :'(
+- redo dnd rendering, apparently it doesn't matter if it's flickery
+- make it not print clojure.lang.PersistentList$EmptyList when it evaluates no circles
+- click to add a placeholder arg, drag circles to place holder or click on it to bring up a number input dialogue
+- fix highlighting issue where it gets stuck with a blue circle over it
+- fix that NullPointerException that keeps happening for no apparent reason
+- remove dialogue box as much as possible, if still keeping it have it dynamically expand and preview the circle being created
+- rethink or fix notation
+  = add arrows to circle, indicator of start/finish of args
+  = sam suggested expanding boxes
+- make circle-linking lines arrows
+- make circle-linking lines point to the arg, not the centre of the circle
+
 post-meeting stuff to do:-
 - improve number entry (spinners or text fields)
 / connecting circles without having to go through the settings (drag between circles)

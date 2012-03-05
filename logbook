@@ -736,3 +736,37 @@
           - leaving the detect-subs tests in so i can move them into the actual tests for leiningen at some point
           - also moving highlight below un/highlight-text as it uses highlight-text
           - still seems to work after tidying-up...
+05/03/12: - everything is shit :'( need to fix it by wednesday apparently
+          - removing commented-out shit from main-window
+          - rewriting circ-drag-begin to not use currently-dragging-circle, just edits used-circles as it goes
+          - modding del-circle to remove all that ActionEvent shit, changed args to x & y where (x,y) are co-ords or x alone is a circle name
+          - yep, that works
+          - changed last-2-coords to current-coords, an agent containing a map {:x x :y y} that gets updated on mouse motion
+          - commented-out entered-left-circle as no longer needed
+          - fixed new-circle-handler and del-circle-handler to use current-coords
+          - also canvas-selected
+          - need to fix drag-circle-end too, also drag-circle-begin isn't quite working
+          - yeah, drag-circle-end is complaining about a NullPointerException as it uses currently-dragging-circle which is no longer updated by drag-circle-begin
+          - coming back to that, working on link-circles now to get arrows happening and to get arrows pointing to args
+          - link-circles now draws to the arg, need to make it an arrow or some shit now
+          - weird, just had a ting where i had two linked circles; right-clicking on the arg one only gave a `New circle' option (not `Remove circle'), then everything got fucked up on clicking elsewhere
+          - link-circles now joining to arg placement with an indicator circle at the end of the line, draw-args no longer printing circle labels
+          - modding draw-circle to have arrows around the edges of the circle
+          - sorted, also added a line just before the first arg to show where the args start
+          - writing a fn add-placeholder-arg that adds a placeholder arg to an existing circle
+          - cool, that works; adds \P as an arg to any existing circle, up to 8 args
+          - whoops, off-by-one error - was able to have 9 args before the alert popped up
+          - cool, fixed
+          - though should probs fix check-answer, etc., so that they don't try to use \P for stuff
+          - writing a fn remove-placeholders to return a circ with placeholders removed, for use in calculations
+          - sorry, it's eval-circle that needed it, but it's done now
+          - seems to work :) (still need to make sure eval-circle works when placeholders are present but we can forego that for now and come back to it later; time to work on something else!)
+          - writing a fn arg-in-circle that returns the index of the arg you're hovering over
+          - changed arg-in-circle to check a 16x16px square around the co-ords of the arg
+          - tested arg-in-circle, seems to work for all numbers of args, bear in mind it returns a zero-indexed index
+          - adding a fn op-in-circle? to check if the mouse is over a circle's op
+          - seems to work
+          - will incorporate these into main-window in a bit; going to change the bg and stuff now, and remove the border from the calculation canvas
+          - sorted, now all white and no calculation border
+          - clear-screen modded accordingly; now clears the entire canvas
+          - need to decide on a unified control scheme incorporating circle creation, circle deletion, op and num input, dnd linking and dnd repositioning

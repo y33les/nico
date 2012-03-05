@@ -44,9 +44,9 @@
   ;; Agent containing an integer corresponding to the quesiton number.
   (agent 0))
 
-(def last-2-coords
-  ;; Agent containing a list of the last 2 co-ordinates (as maps) that the mouse has been at.
-  (agent '({:x 0 :y 0} {:x 0 :y 0})))
+(def current-coords
+  ;; Agent containing a map of the last co-ordinates the mouse was at.
+  (agent {:x 0 :y 0}))
 
 (def currently-dragging-circle
   ;; Agent containing the name of the circle that is currently being dragged.
@@ -81,7 +81,8 @@
 (defn string-to-panel
   "Breaks the string s down into a series of labels, one per character, contained within a horizontal-panel."
   [s]
-  (let [p (horizontal-panel :id :question)]
+  (let [p (horizontal-panel :id :question
+                            :background "#FFFFFF")]
     (loop [q s
            i []
            n 0]
@@ -153,10 +154,22 @@
                       (symbol? (first c)) true
                       :else (recur (rest c))))))
 
+(defn remove-placeholders
+  "Returns a circle c with its placeholder arguments removed."
+  [c]
+  {:x (:x c)
+   :y (:y c)
+   :name (:name c)
+   :circ (loop [in (:circ c)
+                out '()]
+           (cond (empty? in) (reverse out)
+                 (= \P (first in)) (recur (rest in) out)
+                 :else (recur (rest in) (cons (first in) out))))})
+
 (defn eval-circle
   "Iterates across a circle list, resolving symbols into their respective circles."
   [circ]
-  (loop [c (:circ circ)
+  (loop [c (remove-placeholders (:circ circ))
          out '()]
     (cond (empty? c) (reverse out)
           (symbol? (first c)) (cond (nested? (find-circle (str (first c)))) (recur (rest c) (cons (eval-circle (find-circle (str (first c)))) out))
@@ -193,6 +206,52 @@
                (> y (:y (first u)))
                (< y (+ (:y (first u)) 100))) (:name (first u))
           :else (recur (rest u)))))
+
+(defn arg-in-circle
+  "Checks if the supplied co-ordinates correspond to an argument within a circle and, if so, return the index of that argument."
+  [x y]
+  (let [c  (point-in-circle x y)
+        c? (not (nil? c))
+        a  (rest (:circ (find-circle c)))
+        xs (cond (= (count a) 2) '(48 48)
+                 (= (count a) 3) '(48 73 23)
+                 (= (count a) 4) '(48 83 48 13)
+                 (= (count a) 5) '(48 80 68 28 16)
+                 (= (count a) 6) '(48 79 79 48 17 17)
+                 (= (count a) 7) '(48 76 78 64 32 18 20)
+                 (= (count a) 8) '(48 73 83 73 48 23 13 23))
+        ys (cond (= (count a) 2) '(21 89)
+                 (= (count a) 3) '(21 80 80)
+                 (= (count a) 4) '(21 55 89 55)
+                 (= (count a) 5) '(21 43 82 82 43)
+                 (= (count a) 6) '(21 40 72 89 72 40)
+                 (= (count a) 7) '(21 37 66 86 86 66 37)
+                 (= (count a) 8) '(21 32 55 80 89 80 55 32))
+        cx (:x (find-circle c))
+        cy (:y (find-circle c))]
+    (cond c? (loop [lx xs
+                    ly ys
+                    n 0]
+               (cond (empty? lx) nil
+                     (and (>= x (+ cx (first lx)))
+                          (< x (+ cx (first lx) 16))
+                          (>= y (- (+ cy (first ly)) 16))
+                          (< y (+ cy (first ly)))) n
+                     :else (recur (rest lx) (rest ly) (inc n)))))))
+
+(defn op-in-circle?
+  "Returns true if the supplied co-ordinates are over the operator of a circle."
+  [x y]
+  (let [c  (point-in-circle x y)
+        c? (not (nil? c))
+        cx (:x (find-circle c))
+        cy (:y (find-circle c))]
+    (cond (and c?
+               (>= x (+ cx 46))
+               (< x (+ cx 46 16))
+               (>= y (- (+ cy 54) 16))
+               (< y (+ cy 54))) true
+          :else false)))
 
 (defn available?
   "Wrapper function for in-circle? that also checks if the generated co-ordinate will be out of bounds.  If x? is true it checks a x co-ordinate, if not it checks a y co-ordinate."
@@ -284,64 +343,92 @@
 (defn link-circles
   "Draws a lines from a nested circle to its circle-valued arguments."
   [circ]
-  (loop [c (rest (:circ circ))
-         x (+ (:x circ) 50)
-         y (+ (:y circ) 50)]
-    (cond (empty? c) nil
-          (symbol? (first c)) (do (let [t  (find-circle (str (first c)))
+  (let [x  (:x circ)
+        y  (:y circ)
+        cr (rest (:circ circ))
+        xs (cond (= (count cr) 2) '(48 48)
+                 (= (count cr) 3) '(48 73 23)
+                 (= (count cr) 4) '(48 83 48 13)
+                 (= (count cr) 5) '(48 80 68 28 16)
+                 (= (count cr) 6) '(48 79 79 48 17 17)
+                 (= (count cr) 7) '(48 76 78 64 32 18 20)
+                 (= (count cr) 8) '(48 73 83 73 48 23 13 23))
+        ys (cond (= (count cr) 2) '(21 89)
+                 (= (count cr) 3) '(21 80 80)
+                 (= (count cr) 4) '(21 55 89 55)
+                 (= (count cr) 5) '(21 43 82 82 43)
+                 (= (count cr) 6) '(21 40 72 89 72 40)
+                 (= (count cr) 7) '(21 37 66 86 86 66 37)
+                 (= (count cr) 8) '(21 32 55 80 89 80 55 32))]
+    (loop [c cr
+           n 0]
+           ;; x (+ (:x circ) 50)
+           ;; y (+ (:y circ) 50)]
+      (cond (empty? c) nil
+            (symbol? (first c)) (do
+                                  (let [t  (find-circle (str (first c)))
+                                        ox (+ x (nth xs n) 4)
+                                        oy (+ y (nth ys n) -4)
                                         tx (+ (:x t) 50)
                                         ty (+ (:y t) 50)]
-                                  (doto (.getGraphics (select main-window [:#canvas]))
-                                    (.drawLine x y tx ty)))
-                                  (recur (rest c) x y))
-          :else (recur (rest c) x y))))
+                                    (doto (.getGraphics (select main-window [:#canvas]))
+                                      (.setColor java.awt.Color/BLACK)
+                                      (.drawLine ox oy tx ty)
+                                      (.drawOval (- ox 8) (- oy 8) 16 16)))
+                                  (recur (rest c) (inc n)))
+            :else (recur (rest c) (inc n))))))
 
 (defn draw-args
   "Draws the arguments of an expression around its circle."
-  [g args x y]
-  (cond (= (count args) 2) (doto g
-                             (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
-                             (.drawString (str (nth args 1)) (+ x 48) (+ y 89)))
-        (= (count args) 3) (doto g
-                             (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
-                             (.drawString (str (nth args 1)) (+ x 73) (+ y 80))
-                             (.drawString (str (nth args 2)) (+ x 23) (+ y 80)))
-        (= (count args) 4) (doto g
-                             (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
-                             (.drawString (str (nth args 1)) (+ x 83) (+ y 55))
-                             (.drawString (str (nth args 2)) (+ x 48) (+ y 89))
-                             (.drawString (str (nth args 3)) (+ x 13) (+ y 55)))
-        (= (count args) 5) (doto g
-                             (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
-                             (.drawString (str (nth args 1)) (+ x 80) (+ y 43))
-                             (.drawString (str (nth args 2)) (+ x 68) (+ y 82))
-                             (.drawString (str (nth args 3)) (+ x 28) (+ y 82))
-                             (.drawString (str (nth args 4)) (+ x 16) (+ y 43)))
-        (= (count args) 6) (doto g
-                             (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
-                             (.drawString (str (nth args 1)) (+ x 79) (+ y 40))
-                             (.drawString (str (nth args 2)) (+ x 79) (+ y 72))
-                             (.drawString (str (nth args 3)) (+ x 48) (+ y 89))
-                             (.drawString (str (nth args 4)) (+ x 17) (+ y 72))
-                             (.drawString (str (nth args 5)) (+ x 17) (+ y 40)))
-        (= (count args) 7) (doto g
-                             (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
-                             (.drawString (str (nth args 1)) (+ x 76) (+ y 37))
-                             (.drawString (str (nth args 2)) (+ x 78) (+ y 66))
-                             (.drawString (str (nth args 3)) (+ x 64) (+ y 86))
-                             (.drawString (str (nth args 4)) (+ x 32) (+ y 86))
-                             (.drawString (str (nth args 5)) (+ x 18) (+ y 66))
-                             (.drawString (str (nth args 6)) (+ x 20) (+ y 37)))
-        (= (count args) 8) (doto g
-                             (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
-                             (.drawString (str (nth args 1)) (+ x 73) (+ y 32))
-                             (.drawString (str (nth args 2)) (+ x 83) (+ y 55))
-                             (.drawString (str (nth args 3)) (+ x 73) (+ y 80))
-                             (.drawString (str (nth args 4)) (+ x 48) (+ y 89))
-                             (.drawString (str (nth args 5)) (+ x 23) (+ y 80))
-                             (.drawString (str (nth args 6)) (+ x 13) (+ y 55))
-                             (.drawString (str (nth args 7)) (+ x 23) (+ y 32)))
-        :else nil))
+  [g a x y]
+  (let [args (loop [in  a
+                    out '()]
+               (cond (empty? in) (reverse out)
+                     (symbol? (first in)) (recur (rest in) (cons " " out))
+                     :else (recur (rest in) (cons (first in) out))))]
+    (cond (= (count args) 2) (doto g
+                               (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
+                               (.drawString (str (nth args 1)) (+ x 48) (+ y 89)))
+          (= (count args) 3) (doto g
+                               (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
+                               (.drawString (str (nth args 1)) (+ x 73) (+ y 80))
+                               (.drawString (str (nth args 2)) (+ x 23) (+ y 80)))
+          (= (count args) 4) (doto g
+                               (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
+                               (.drawString (str (nth args 1)) (+ x 83) (+ y 55))
+                               (.drawString (str (nth args 2)) (+ x 48) (+ y 89))
+                               (.drawString (str (nth args 3)) (+ x 13) (+ y 55)))
+          (= (count args) 5) (doto g
+                               (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
+                               (.drawString (str (nth args 1)) (+ x 80) (+ y 43))
+                               (.drawString (str (nth args 2)) (+ x 68) (+ y 82))
+                               (.drawString (str (nth args 3)) (+ x 28) (+ y 82))
+                               (.drawString (str (nth args 4)) (+ x 16) (+ y 43)))
+          (= (count args) 6) (doto g
+                               (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
+                               (.drawString (str (nth args 1)) (+ x 79) (+ y 40))
+                               (.drawString (str (nth args 2)) (+ x 79) (+ y 72))
+                               (.drawString (str (nth args 3)) (+ x 48) (+ y 89))
+                               (.drawString (str (nth args 4)) (+ x 17) (+ y 72))
+                               (.drawString (str (nth args 5)) (+ x 17) (+ y 40)))
+          (= (count args) 7) (doto g
+                               (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
+                               (.drawString (str (nth args 1)) (+ x 76) (+ y 37))
+                               (.drawString (str (nth args 2)) (+ x 78) (+ y 66))
+                               (.drawString (str (nth args 3)) (+ x 64) (+ y 86))
+                               (.drawString (str (nth args 4)) (+ x 32) (+ y 86))
+                               (.drawString (str (nth args 5)) (+ x 18) (+ y 66))
+                               (.drawString (str (nth args 6)) (+ x 20) (+ y 37)))
+          (= (count args) 8) (doto g
+                               (.drawString (str (nth args 0)) (+ x 48) (+ y 21))
+                               (.drawString (str (nth args 1)) (+ x 73) (+ y 32))
+                               (.drawString (str (nth args 2)) (+ x 83) (+ y 55))
+                               (.drawString (str (nth args 3)) (+ x 73) (+ y 80))
+                               (.drawString (str (nth args 4)) (+ x 48) (+ y 89))
+                               (.drawString (str (nth args 5)) (+ x 23) (+ y 80))
+                               (.drawString (str (nth args 6)) (+ x 13) (+ y 55))
+                               (.drawString (str (nth args 7)) (+ x 23) (+ y 32)))
+          :else nil)))
 
 (defn draw-circle
   "Draws a circle circ at co-ordinates ((:x circ),(:y circ)) on the canvas."
@@ -363,10 +450,19 @@
         (.fillOval x y 100 100)
         (.setColor java.awt.Color/BLACK)
         (.drawOval x y 100 100)
+        (.drawLine (+ x 30) (+ y 5) (+ x 50) (+ y 50))
         (.setColor (java.awt.Color. 0x44BB44))
         (.fillOval (+ x 30) (+ y 30) 40 40)
         (.setColor java.awt.Color/BLACK)
         (.drawOval (+ x 30) (+ y 30) 40 40)
+        (.drawLine (+ x 52) y (+ x 48) (- y 4)) ;; top arrow
+        (.drawLine (+ x 52) y (+ x 48) (+ y 4)) ;; top arrow
+        (.drawLine (+ x 100) (+ y 52) (+ x 96) (+ y 48)) ;; right arrow
+        (.drawLine (+ x 100) (+ y 52) (+ x 104) (+ y 48)) ;; right arrow
+        (.drawLine (+ x 48) (+ y 100) (+ x 52) (+ y 96)) ;; bottom arrow
+        (.drawLine (+ x 48) (+ y 100) (+ x 52) (+ y 104)) ;; bottom arrow
+        (.drawLine x (+ y 48) (- x 4) (+ y 52)) ;; left arrow
+        (.drawLine x (+ y 48) (+ x 4) (+ y 52)) ;; left arrow
         (.drawString sym x (+ y 110))
         (.drawString op (+ x 46) (+ y 54)))
       (draw-args g args x y)
@@ -453,6 +549,7 @@
                                  (recur q (rest i))))))))
               ;; :else (prn "i: empty"))))))
 
+(comment
 (defn entered-left-circle?
   "Checks whether the mouse has entered or left a circle by inspecting the contents of last-2-coords."
   []
@@ -460,13 +557,15 @@
         p2 (not (nil? (point-in-circle (:x (nth @last-2-coords 1)) (:y (nth @last-2-coords 1)))))]
     (cond (= p1 p2) false
           :else true)))
+)
 
 (defn clear-screen
   "Clears all visible drawings from the canvas."
   []
   (doto (.getGraphics (select main-window [:#canvas]))
     (.setColor java.awt.Color/WHITE)
-    (.fillRect 15 15 (- screen-x 30) (- screen-y 30))))
+    ;; (.fillRect 15 15 (- screen-x 30) (- screen-y 30))))
+    (.fillRect 0 0 screen-x screen-y)))
 
 (defn render
   "Clears the screen, then draws all circles currently in used-circles, linking nested circles together."
@@ -504,9 +603,13 @@
   [e]
   (let [x  (.getX e)
         y  (.getY e)
-        c  (point-in-circle x y)
-        c? (not (nil? c))]
-    (cond c? (send-off currently-dragging-circle (fn [_] c)))))
+        p  (point-in-circle x y)
+        p? (not (nil? p))]
+    (cond p? (do
+               (del-circle p)
+               (send-off used-circles (fn [a] (cons (mod-xy (find-circle p) (:x @current-coords) (:y @current-coords)) a)))))))
+
+    ;; (cond c? (send-off currently-dragging-circle (fn [_] c)))))
 
 (defn circ-drag-end
   "If dropped into another circle, removes the target circle and replaces it with a similar circle with the circle in currently-dragging-circle added as an argument.  Otherwise, moves the circle being dragged to the new position."
@@ -728,21 +831,30 @@
 
 (defn del-circle
   "Removes a circle from used-circles, such that it won't reappear on executing render."
-  [x y & a]
-  (do
-    (send-off used-circles (fn [_] (loop [in  @used-circles
-                                         out '()
-                                         c   (point-in-circle x y)
-                                         c?  (not (nil? c))]
-                                         ;; c (cond (string? (first a)) (first a)
-                                         ;;         (instance? java.awt.event.ActionEvent (first a)) (point-in-circle x y);; (:x @current-click) (:y @current-click))
-                                         ;;         :else (input "Remove:"))]
-                                    (cond (not c?) nil ;; (alert "Circle not found.")
-                                          :else (cond (empty? in) (reverse out)
-                                                      (= (:name (first in)) c) (recur (rest in) out c c?)
-                                                      :else (recur (rest in) (cons (first in) out) c c?))))))))
+  [x & y]
+  (cond (string? x) (send-off used-circles (fn [a] (loop [in a
+                                                         out '()]
+                                                    (cond (empty? in) (reverse out)
+                                                          (= x (:name (first in))) (recur (rest in) out)
+                                                          :else (recur (rest in) (cons (first in) out))))))
+        :else (send-off used-circles (fn [a] (loop [in  a
+                                                   out '()
+                                                   c   (point-in-circle x y)
+                                                   c?  (not (nil? c))]
+                                              (cond (not c?) nil ;; (alert "Circle not found.")
+                                                    :else (cond (empty? in) (reverse out)
+                                                                (= (:name (first in)) c) (recur (rest in) out c c?)
+                                                                :else (recur (rest in) (cons (first in) out) c c?))))))))
     ;; (render)
     ;; (check-answer)))
+
+(defn add-placeholder-arg
+  "Adds a placeholder argument to an existing circle c."
+  [c]
+  (cond (< (count (rest (:circ c))) 8) (do
+                                         (del-circle (:name c))
+                                         (send-off used-circles (fn [a] (cons (add-arg \P c) a))))
+        :else (alert "Each circle is allowed a maximum of 8 arguments.")))
 
 (defn next-question
   "Loads the next question in the current question set."
@@ -787,7 +899,8 @@
   "Update the text in the :answer field to the current value of the diagram."
   []
   (config! (select main-window [:#answer])
-           :text (str (eval (eval-circle (find-root))))))
+           :text (cond (empty? @used-circles) (str 0)
+                       :else (str (eval (eval-circle (find-root)))))))
 
 (defn check-answer
   "Evaluate the current root circle and check against the answer to the current question, displaying the result to the user."
@@ -801,13 +914,13 @@
 (defn new-circle-handler
   "Handler for new-circle-action that gets rid of the ActionEvent and makes new-circle actually usable in a context menu."
   [a]
-  (let [xy (first @last-2-coords)]
+  (let [xy @current-coords]
     (new-circle (:x xy) (:y xy))))
 
 (defn del-circle-handler
   "Handler for del-circle-action that gets rid of the ActionEvent and makes del-circle actually usable in a context menu."
   [a]
-  (let [xy (first @last-2-coords)]
+  (let [xy @current-coords]
     (do
       (del-circle (:x xy) (:y xy))
       (render)
@@ -825,7 +938,7 @@
 
 (defn canvas-selected [e]
   "Handle a right mouse click on the canvas."
-  (let [xy (first @last-2-coords)
+  (let [xy @current-coords
         x  (:x xy) ;; (.getX e)
         y  (:y xy) ;; (.getY e)
         c  (point-in-circle x y)
@@ -840,28 +953,36 @@
     (border-panel :id     :root
                   :west   (string-to-panel (lisp-to-maths (eval (:q (first @current-qset)))))
                   :center (label  :id     :answer
+                                  :background "#FFFFFF"
+                                  :foreground "#000000"
                                   :text   "0"
                                   :font   {:name :sans-serif :style :bold :size 18}
                                   :border "Answer")
                   :east   (button :id     :submit
+                                  :background "#FFFFFF"
                                   :text   "Check"
                                   :listen [:mouse-clicked (fn [e] (check-answer))])
                   :south  (canvas       :id         :canvas
                                         :background "#FFFFFF"
-                                        :border     "Calculation"
+                                        ;; :border     "Calculation"
                                         :size       [screen-x :by (- screen-y 100)]
                                         :popup      #(canvas-selected %)
-                                        :listen     [;; :mouse-clicked  (fn [e] (let [x (.getX e)
-                                                                     ;;              y (.getY e)]
-                                                                     ;;          (cond (nil? (point-in-circle x y)) (do
-                                                                     ;;                                               (new-circle x y)
-                                                                     ;;                                               (render)
-                                                                     ;;                                               (check-answer))
-                                                                     ;;                :else (do
-                                                                     ;;                        (del-circle x y) ;; (point-in-circle x y))
-                                                                     ;;                        (render)
-                                                                     ;;                        (check-answer)))))
-                                                     :mouse-moved    (fn [e] (let [x  (.getX e)
+                                        :listen     [:mouse-moved    (fn [e] (let [x (.getX e)
+                                                                                  y (.getY e)
+                                                                                  p (point-in-circle x y)]
+                                                                              (do
+                                                                                (send-off current-coords (fn [_] {:x x :y y}))
+                                                                                (clear-screen)
+                                                                                (render)
+                                                                                (cond (not (nil? p)) (do
+                                                                                                       (highlight (find-circle p))
+                                                                                                       (draw-circle (find-circle p)))
+                                                                                      :else (unhighlight-text)))))
+                                                     :mouse-pressed (fn [e] (circ-drag-begin e))
+                                                     :mouse-released (fn [e] (circ-drag-end e))]))))
+
+                                                                     (comment
+                                                                     (fn [e] (let [x  (.getX e)
                                                                                   y  (.getY e)
                                                                                   m  {:x x :y y}
                                                                                   p  (point-in-circle x y)
@@ -882,59 +1003,7 @@
                                                                                                                      (clear-screen)
                                                                                                                      (render)
                                                                                                                      (unhighlight-text))))))
-                                                     :mouse-pressed (fn [e] (circ-drag-begin e))
-                                                     :mouse-released (fn [e] (circ-drag-end e))]))))
-
-                                                     (comment (fn [e] (let [x  (.getX e)
-                                                                               y  (.getY e)
-                                                                               n  (point-in-circle x y)
-                                                                               c  (cond (not (nil? n)) (find-circle n)
-                                                                                        :else nil)
-                                                                               e? (cond (nil? c) false
-                                                                                        (or (and (>= x (:x c))
-                                                                                                 (<= x (+ (:x c) 16))
-                                                                                                 (>= y (:y c))
-                                                                                                 (<= y (+ (:y c) 100)))
-                                                                                            (and (>= x (+ (:x c) 84))
-                                                                                                 (<= x (+ (:x c) 100))
-                                                                                                 (>= y (:y c))
-                                                                                                 (<= y (+ (:y c) 100)))
-                                                                                            (and (>= y (:y c))
-                                                                                                 (<= y (+ (:y c) 16))
-                                                                                                 (>= x (:x c))
-                                                                                                 (<= x (+ (:x c) 100)))
-                                                                                            (and (>= y (+ (:y c) 84))
-                                                                                                 (<= y (+ (:y c) 100))
-                                                                                                 (>= x (:x c))
-                                                                                                 (<= x (+ (:x c) 100)))) true
-                                                                                                 :else false)
-                                                                               i? (cond (nil? c) false
-                                                                                        (or (and (>= x (+ (:x c) 17))
-                                                                                                 (<= x (+ (:x c) 32))
-                                                                                                 (>= y (+ (:y c) 17))
-                                                                                                 (<= y (+ (:y c) 84)))
-                                                                                            (and (>= x (+ (:x c) 68))
-                                                                                                 (<= x (+ (:x c) 91))
-                                                                                                 (>= y (+ (:y c) 17))
-                                                                                                 (<= y (+ (:y c) 84)))
-                                                                                            (and (>= y (+ (:y c) 17))
-                                                                                                 (<= y (+ (:y c) 32))
-                                                                                                 (>= x (+ (:x c) 17))
-                                                                                                 (<= x (+ (:x c) 84)))
-                                                                                            (and (>= y (+ (:y c) 68))
-                                                                                                 (<= y (+ (:y c) 91))
-                                                                                                 (>= x (+ (:x c) 17))
-                                                                                                 (<= x (+ (:x c) 84)))) true
-                                                                                        :else false)]
-                                                                           (cond (not (nil? c)) (cond i? (do
-                                                                                                           (clear-screen)
-                                                                                                           (render)
-                                                                                                           (highlight c)
-                                                                                                           (draw-circle c))
-                                                                                                      e? (do
-                                                                                                           (unhighlight-text)
-                                                                                                           (clear-screen)
-                                                                                                           (render)))))))
+                                                                     )
 
 (def open-action
   ;; Action for opening a new question set, for use in menus.

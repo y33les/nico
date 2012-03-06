@@ -1,0 +1,19 @@
+TOP
+===
+- menubar, click on menus as normal
+- question view, answer view, click
+  on check button to check
+
+ON CANVAS
+=========
+- double-click to init blank circle
+- right-drag circle to move
+- right-drag circle to bin to remove
+
+ON CIRCLE
+=========
+- left-click to add placeholder
+- right-click on arg to change
+- ctrl-drag another circle to arg
+  to join
+- click on op to change

@@ -770,3 +770,28 @@
           - sorted, now all white and no calculation border
           - clear-screen modded accordingly; now clears the entire canvas
           - need to decide on a unified control scheme incorporating circle creation, circle deletion, op and num input, dnd linking and dnd repositioning
+06/03/12: - working on revamping the control scheme according to the diagram on the whiteboard (controls.txt)
+          - changing :listen in main-window to just detect :mouse-clicked, checks x, y, if it's a double-click, if it's in a circle, if it's on an arg, if it's on a placeholder, if it's on the op
+          - have also commented all the lets, as they are many and varied (not to mention terse)
+          - revamped controls to try to avoid collisions
+          - also have separated :mouse-clicked and :mouse-pressed to see if i can separate drags
+          - have added tests for left-click, right-click and ctrl-click
+          - doing a fuckload of prns to check if any of these flags are set
+          - weird, apparently there isn't such a method as .getMouseModifiersText for a java.awt.event.MouseEvent :\ but it's in the api...
+          - oh, i see, it needs an int as an arg, i'm guessing this is supposed to be .getModifiersEx
+          - weird, still making the same complaint
+          - testing just prning the results of (.getModifiersEx e)
+          - weird, have commented out the lines using .getMouseModifiersText and it's *still* complaining about it
+          - also commenting-out :popup for testing purposes
+          - **MODIFIERS**
+            = left: 0
+            = ctrl: 128 (both ctrl-left and ctrl-right are 128)
+            = right: 256
+            = drag doesn't return anything
+            = no modifiers for double but it does do a single-click first, maybe add a timer?
+          - can distinguish drag and click because a click goes like this:-
+            = MOUSE_PRESSED
+            = MOUSE_RELEASED
+            = MOUSE-CLICKED
+          - but dragging doesn't issue MOUSE_CLICKED
+          - can use :mouse-dragged to track dragging, but dragging issues an event every time the mouse moves whilst dragging

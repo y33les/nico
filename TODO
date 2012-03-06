@@ -1,5 +1,6 @@
 everything is shit! :'(
 - redo dnd rendering, apparently it doesn't matter if it's flickery
+- make circles move out of the way if overlapping
 / make it not print clojure.lang.PersistentList$EmptyList when it evaluates no circles
 - click to add a placeholder arg, drag circles to placeholder or click on it to bring up a number input dialogue
 - fix highlighting issue where it gets stuck with a blue circle over it (poss. only on macs?)

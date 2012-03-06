@@ -966,8 +966,41 @@
                                         :background "#FFFFFF"
                                         ;; :border     "Calculation"
                                         :size       [screen-x :by (- screen-y 100)]
-                                        :popup      #(canvas-selected %)
-                                        :listen     [:mouse-moved    (fn [e] (let [x (.getX e)
+                                        ;; :popup      #(canvas-selected %)
+                                        :listen     [:mouse-moved   (fn [e] (let [x (.getX e)
+                                                                                  y (.getY e)
+                                                                                  p (point-in-circle x y)]
+                                                                              (do
+                                                                                (send-off current-coords (fn [_] {:x x :y y}))
+                                                                                (clear-screen)
+                                                                                (render)
+                                                                                (cond (not (nil? p)) (do
+                                                                                                       (highlight (find-circle p))
+                                                                                                       (draw-circle (find-circle p)))
+                                                                                      :else (unhighlight-text)))))
+                                                     :mouse-clicked (fn [e] (let [x     (.getX e) ;; x co-ord
+                                                                                 y     (.getY e) ;; y co-ord
+                                                                                 l?    (= (.getButton e) 1) ;; left-click?
+                                                                                 r?    (= (.getButton e) 3) ;; right-click?
+                                                                                 ctrl? (.isControlDown e) ;; ctrl-click?
+                                                                                 d?    (= (.getClickCount e) 2) ;; double-click?
+                                                                                 c     (point-in-circle x y) ;; circle at (x,y)
+                                                                                 c?    (not (nil? c)) ;; in a circle?
+                                                                                 a     (arg-in-circle x y) ;; arg index at (x,y)
+                                                                                 a?    (not (nil? a)) ;; on an arg?
+                                                                                 p?    (cond a? (cond (= \P (nth (rest (:circ (find-circle c))))) true
+                                                                                                      :else false)
+                                                                                             :else false) ;; on a placeholder?
+                                                                                 o?    (op-in-circle? x y)] ;; on the op?
+                                                                             (do
+                                                                               (prn (str "left? " l?))
+                                                                               (prn (str "right? " r?))
+                                                                               (prn (str "double? " d?))
+                                                                               (prn (str "ctrl? " ctrl?)))))
+                                                     :mouse-dragged (fn [e] (prn "dragged!"))]))))
+
+                                                     (comment
+                                                     :mouse-moved    (fn [e] (let [x (.getX e)
                                                                                   y (.getY e)
                                                                                   p (point-in-circle x y)]
                                                                               (do
@@ -979,7 +1012,7 @@
                                                                                                        (draw-circle (find-circle p)))
                                                                                       :else (unhighlight-text)))))
                                                      :mouse-pressed (fn [e] (circ-drag-begin e))
-                                                     :mouse-released (fn [e] (circ-drag-end e))]))))
+                                                     :mouse-released (fn [e] (circ-drag-end e)))
 
                                                                      (comment
                                                                      (fn [e] (let [x  (.getX e)

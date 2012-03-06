@@ -160,8 +160,8 @@
   {:x (:x c)
    :y (:y c)
    :name (:name c)
-   :circ (loop [in (:circ c)
-                out '()]
+   :circ (loop [in (rest (:circ c))
+                out (list (first (:circ c)))]
            (cond (empty? in) (reverse out)
                  (= \P (first in)) (recur (rest in) out)
                  :else (recur (rest in) (cons (first in) out))))})
@@ -169,7 +169,7 @@
 (defn eval-circle
   "Iterates across a circle list, resolving symbols into their respective circles."
   [circ]
-  (loop [c (remove-placeholders (:circ circ))
+  (loop [c (:circ (remove-placeholders circ))
          out '()]
     (cond (empty? c) (reverse out)
           (symbol? (first c)) (cond (nested? (find-circle (str (first c)))) (recur (rest c) (cons (eval-circle (find-circle (str (first c)))) out))
@@ -982,22 +982,31 @@
                                                                                  y     (.getY e) ;; y co-ord
                                                                                  l?    (= (.getButton e) 1) ;; left-click?
                                                                                  r?    (= (.getButton e) 3) ;; right-click?
-                                                                                 ctrl? (.isControlDown e) ;; ctrl-click?
                                                                                  d?    (= (.getClickCount e) 2) ;; double-click?
                                                                                  c     (point-in-circle x y) ;; circle at (x,y)
                                                                                  c?    (not (nil? c)) ;; in a circle?
                                                                                  a     (arg-in-circle x y) ;; arg index at (x,y)
                                                                                  a?    (not (nil? a)) ;; on an arg?
-                                                                                 p?    (cond a? (cond (= \P (nth (rest (:circ (find-circle c))))) true
+                                                                                 p?    (cond a? (cond (= \P (nth (rest (:circ (find-circle c))) a)) true
                                                                                                       :else false)
                                                                                              :else false) ;; on a placeholder?
                                                                                  o?    (op-in-circle? x y)] ;; on the op?
-                                                                             (do
-                                                                               (prn (str "left? " l?))
-                                                                               (prn (str "right? " r?))
-                                                                               (prn (str "double? " d?))
-                                                                               (prn (str "ctrl? " ctrl?)))))
-                                                     :mouse-dragged (fn [e] (prn "dragged!"))]))))
+                                                                             (cond c? (cond l? (add-placeholder-arg (find-circle c))
+                                                                                            r? (cond a? (prn "arg!")
+                                                                                                     o? (prn "op!")))
+                                                                                   :else (cond l? (new-circle x y)))))
+                                                     :mouse-dragged (fn [e] (let [x  (.getX e)
+                                                                                 y  (.getY e)
+                                                                                 c  (point-in-circle x y)
+                                                                                 l? (= (.getButton e) 1)
+                                                                                 r? (= (.getButton e) 3)]
+                                                                             (cond l? (cond (not (nil? c)) (do
+                                                                                                             (del-circle c)
+                                                                                                             (send-off used-circles (fn [a] (cons (mod-xy (find-circle c) x y) a)))
+                                                                                                             (clear-screen)
+                                                                                                             (render)
+                                                                                                             (link-circles (find-circle c))))
+                                                                                   :else (prn "right-drag!"))))]))))
 
                                                      (comment
                                                      :mouse-moved    (fn [e] (let [x (.getX e)

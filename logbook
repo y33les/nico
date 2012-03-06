@@ -795,3 +795,17 @@
             = MOUSE-CLICKED
           - but dragging doesn't issue MOUSE_CLICKED
           - can use :mouse-dragged to track dragging, but dragging issues an event every time the mouse moves whilst dragging
+          - discovered .isControlDown and .getButton, have switched to using them instead
+          - rewritten the controls a couple of times, no longer need ctrl+click or double-click, only need to distiguish left and right and click and drag
+          - have written the control structure for clicking in, dragging is a wip as need to sortout what happens on release
+          - click-to-add-circle works (though still using old dialogue)
+          - click-to-add-placeholder works
+          - thinks all dragging is right-dragging though, and complained about new-circle for some reason
+          - hmmm, eval-circle is fucked somehow
+          - ah, remove-placeholders is fucked
+          - hmmm, fixed remove-placeholders but it looks like eval-circle is fucked; it's making a list of vectors rather than a map for some reason
+          - ah, was doing (remove-placeholders (:circ circ)) rather than (:circ (remove-placeholders circ))
+          - sorted :)
+          - cool, fixed - only problem is it's complaining about a wrong number args pased to nth somewhere
+          - ah, had missed out a from the bit that checks p? in main-window
+          - arg- and op-detection now work :)

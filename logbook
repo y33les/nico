@@ -861,3 +861,69 @@
           - added a fn has-placeholders? that detects if a circle contains any \Ps (will use to prevent highlighting where there are placeholders)
           - works! :D
           - need to work on dnd stuff next
+07/03/12: - shuffled around the highlight code so it still highlights (but doesn't do detect-subs on) circles containing placeholders
+          - works! :)
+          - also shuffling around the :listen code in main-window; putting the new-circle stuff back into :mouse-clicked so it doesn't do that thing where ti adds an arg on creating a circle (:mouse-pressed registers for new-circle, then :mouse-clicked detects it and adds an arg)
+          - works! :)
+          - adding a timer to :mouse-pressed, so it send-offs a map {:c <name> :t <time>} to currently-dragging-circle
+          - stupid, forgot to only do it if currently-dragging-circle is non-nil, hence NullPointerException
+          - weird, not working, maybe currently-dragging-circle is non-nil on creating a circle?
+          - oh no, of course it only times when you are ON A CIRCLE.  LIKE I TOLD IT TO. *facepalm*
+          - ...but at least it works.  also, mouse-click seems to vary between ~10ms and ~60ms, so 100ms should be plenty of time, but not so much that it starts not detecting drags
+          - writing stuff in :mouse-released that checks if currently-dragging-circle is non-nil, then checks if the mouse has been held down long enough to count as a drag, then checks if we've landed ina  circle - if so, it mod-args the target circle to link it to the source circle; if not, it moves the source circle to the new position (need to add a check to see if it lands in the bin)
+          - weird, getting complaints about the agent being failed on line 1112 (so presumably used-circles needs a restart)
+          - added lines to :mouse-released to send-off nil to currently-dragging-circle, didn't help though :(
+          - oh, i see, i was referring to (:c p) on line 1111 (the mod-arg bit), which doesn't make any sense :P
+          - now getting a ClassCastException (PersistenArrayMap -> Number) on line 897
+          - ...which is a call t opoint-in-circle inside del-circle, so i guess i've referred to @currently-dragging-circle somewhere inappropriate
+          - yep, calling (del-circle (:c d)) where it should be (del-circle (:name (:c d)))
+          - w00t, it now moves circles - but it completely invalidates the contents, leaving a blank circle
+          - getting a NullPointerException ("String is null") when trying to render after moving the circle
+          - none of the agents are failed...
+          - ...but the moved circle does now have :name nil and :circ nil
+          - poss. because (find-circle (:c d)) isn't working for some reason
+          - interestingly, (mod-xy nil x y returns {:x x :y y :name nil :circ nil}, just like the sort-of-moved circle
+          - shit, just realised that i've overloaded a in the join-drag code, rectifying (changing to ag)
+          - shit, also realised i hadn't actually told it what to cons on to :\ also sorted now
+          - ok, so there's something fundamentally wrong with (mod-xy (find-circle (:c d)) x y), as prn-ing that reveals that it's nil
+          - omfg, it's because d contains the actual *map*, not the circle's name!  ffs
+          - ok, moving works now but joining them blanks the target arg and stops displaying the source circle (NullPointerException)
+          - added code to the add- and remove-arg bits, now clears, renders and links on adding or removing an arg
+          - added the right-click check to the join-drag code
+          - added prns for d and d_mod to join-drag for testing
+          - hmmm, mod-arg seems to be working fine but getting this NullPointerException at line 387 when it tries to link-circles in the draw-circle in the render at line 1043 afterwards
+          - hmmm, at line 387 it tries to access :x where the arg is a symbol
+          - guessing that c0 as an arg isn't quite right somehow then
+          - ok, now changing the arg with right-click is freezing up the whole app...
+          - ok, can mod one arg on one circle, then after that it freezes (NullPointerException when calling point-in-circle on it, line 1039)
+          - oh, i see, i must've accidentally dragged it - carry on then
+          - added a check to make sure you're not dragging a circle to one of its own args. that's solved it
+          - still need to sort out the circle-to-arg dnd though
+          - weird, also getting a thing where making a new circle drags the old one to its position (also need to offset the dragging by (50px,50px))
+          - ah, that's because it thinks it's dragging - will try increasing the drag threshold to 200ms
+          - ffs, still getting the dragging thing - it only happens after modding args so i guess it's not nil-ing currently-dragging-circle properly afterwards; will put the drag threshold back down to 100ms and investigate
+          - have added lines to the arg management bits that nil currently-dragging-circle before doing their stuff
+          - weird, it's *still* doing it
+          - added the nil-ing lines to the input bits now, see if that helps...
+          - that seems to have fixed it; how odd...
+          - ah, it didn't work before because i put the nil-ing lines into the arg-adding and removing bit.  like a fucking idiot.
+          - put nil-ing lines at the end of both the arg ading/removing and the arg/op modding bits, for safety
+          - weird, eval-ing the mod-arg'd version of the circle is fine from the repl
+          - oh, have also sorted the dragging offset now
+          - oops, or not, i +'d rather than -'d 50 *facepalm*
+          - sorted
+          - interestingly, both d_mod and new show an unchanged circle after join-dragging
+          - ...or not, must've been something i'd changed without updating the repl version; lein run shows the modded versions
+          - fuck it, gonna work on the drag rendering for a bit instead
+          - interestingly, (.getButton e) in :mouse-dragged gives 0 regardless of button; will add another field to currently-dragging circle indicating the button i think
+          - done, and :mouse-dragged now checks :m in currently-dragging-circle rather than (.getButton e)
+          - get NullPointerExceptions; same problem as before with getting confused between c and (:name c)
+          - w00t!!1  just need to fix that offset but left-dragging works :)
+          - sorted :)
+          - w00t!!1 line-drawing bit for right-dragging works too (bar an offset, again :P)! :D
+          - sorted :)
+          - only thing is, i'm getting the circle moving to where the mouse drops with a right-drag, must have an :else rather than an r? somewhere...
+          - yep, in :mouse-released.  have added a check for (= (.getButton e) 1) on line 1143
+          - whoops, accidentally wrote a load of bollocks on line 1143 - had written (= (.getButton 1)), now corrected to (= (.getButton e) 1)
+          - sorted :)
+          - guess i should get back to the join-dragging shit then...

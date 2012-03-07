@@ -62,6 +62,11 @@
   []
   (def current-qset (agent '())))
 
+(defn system-time
+  "Returns the current system time in ms."
+  []
+  (.getTimeInMillis (java.util.Calendar/getInstance)))
+
 (defn lisp-to-maths
   "Translates a sexp into a string of child-readable maths."
   [sexp]
@@ -547,18 +552,18 @@
 (defn highlight
   "Highlights the circle circ, and the section of the question it represents."
   [circ]
-  (cond (not (has-placeholders? circ))
   (let [x (:x circ)
         y (:y circ)]
     (do
       (doto (.getGraphics (select main-window [:#canvas]))
         (.setColor (java.awt.Color. 0x2ECCFA))
         (.fillOval (- x 3) (- y 3) 106 106))
-      (loop [q (lisp-to-maths (eval (:q (first @current-qset))))
-             i (detect-subs (lisp-to-maths (eval-circle circ)) q)]
-        (cond (not (empty? i)) (do
-                                 (highlight-text (:s (first i)) (:e (first i)) "#2ECCFA")
-                                 (recur q (rest i)))))))))
+      (cond (not (has-placeholders? circ))
+            (loop [q (lisp-to-maths (eval (:q (first @current-qset))))
+                   i (detect-subs (lisp-to-maths (eval-circle circ)) q)]
+              (cond (not (empty? i)) (do
+                                       (highlight-text (:s (first i)) (:e (first i)) "#2ECCFA")
+                                       (recur q (rest i)))))))))
               ;; :else (prn "i: empty"))))))
 
 (comment
@@ -1053,8 +1058,18 @@
                                                                                                        :else false)
                                                                                               :else false) ;; on a placeholder?
                                                                                   o?    (op-in-circle? x y)] ;; on the op?
-                                                                              (cond c? (cond l? (cond ctrl? (remove-last-arg (find-circle c))
-                                                                                                      :else (add-placeholder-arg (find-circle c)))
+                                                                              (cond c? (cond l? (cond ctrl? (do
+                                                                                                              (remove-last-arg (find-circle c))
+                                                                                                              (clear-screen)
+                                                                                                              (render)
+                                                                                                              (link-circles (find-circle c))
+                                                                                                              (send-off currently-dragging-circle (fn [_] nil)))
+                                                                                                      :else (do
+                                                                                                              (add-placeholder-arg (find-circle c))
+                                                                                                              (clear-screen)
+                                                                                                              (render)
+                                                                                                              (link-circles (find-circle c))
+                                                                                                              (send-off currently-dragging-circle (fn [_] nil))))
                                                                                              r? (cond a? (let [cc (find-circle c)
                                                                                                                in (eval (read-string (input "Number:")))]
                                                                                                            (do
@@ -1062,7 +1077,8 @@
                                                                                                              (send-off used-circles (fn [ag] (cons (mod-arg cc a in) ag)))
                                                                                                              (clear-screen)
                                                                                                              (render)
-                                                                                                             (check-answer)))
+                                                                                                             (check-answer)
+                                                                                                             (send-off currently-dragging-circle (fn [_] nil))))
                                                                                                       o? (let [cc (find-circle c)
                                                                                                                in (eval (read-string (input "Operator:")))]
                                                                                                            (do
@@ -1070,26 +1086,75 @@
                                                                                                              (send-off used-circles (fn [ag] (cons (mod-op cc in) ag)))
                                                                                                              (clear-screen)
                                                                                                              (render)
-                                                                                                             (check-answer))))))))
-                                                                                    ;; :else (cond l? (new-circle x y)))))
-                                                     ;; :mouse-dragged  (fn [e] (let [x  (.getX e)
-                                                     ;;                              y  (.getY e)
-                                                     ;;                              c  (point-in-circle x y)
-                                                     ;;                              l? (= (.getButton e) 1)
-                                                     ;;                              r? (= (.getButton e) 3)]
-                                                     ;;                          (cond l? (cond (not (nil? c)) (do
-                                                     ;;                                                          (del-circle c)
-                                                     ;;                                                          (send-off used-circles (fn [a] (cons (mod-xy (find-circle c) x y) a)))
-                                                     ;;                                                          (clear-screen)
-                                                     ;;                                                          (render)
-                                                     ;;                                                          (link-circles (find-circle c))))
-                                                     ;;                                :else (prn "right-drag!"))))
+                                                                                                             (check-answer)
+                                                                                                             (send-off currently-dragging-circle (fn [_] nil))))))
+                                                                                    :else (cond l? (new-circle x y)))))
+                                                     :mouse-dragged  (fn [e] (let [x   (.getX e)
+                                                                                  y   (.getY e)
+                                                                                  cdc @currently-dragging-circle
+                                                                                  c   (:c cdc)
+                                                                                  l?  (= (:m cdc) 1)
+                                                                                  r?  (= (:m cdc) 3)]
+                                                                              (do (prn (.getButton e))
+                                                                              (cond l? (cond (not (nil? c)) (do
+                                                                                                              (del-circle (:name c))
+                                                                                                              (send-off used-circles (fn [a] (cons (mod-xy c (- x 50) (- y 50)) a)))
+                                                                                                              (clear-screen)
+                                                                                                              (render)
+                                                                                                              (link-circles c)))
+                                                                                    r? (cond (not (nil? c)) (do
+                                                                                                              (clear-screen)
+                                                                                                              (render)
+                                                                                                              (link-circles c)
+                                                                                                              (doto (.getGraphics (select main-window [:#canvas]))
+                                                                                                                (.setColor java.awt.Color/BLACK)
+                                                                                                                (.drawLine (+ (:x c) 50) (+ (:y c) 50) x y)
+                                                                                                                (.drawOval (- x 8) (- y 8) 16 16))))))))
+
                                                      :mouse-pressed  (fn [e] (let [x (.getX e)
                                                                                   y (.getY e)
                                                                                   c (point-in-circle x y)
                                                                                   c? (not (nil? c))]
-                                                                              (cond c? (send-off currently-dragging-circle (fn [_] (find-circle c)))
-                                                                                    :else (new-circle x y))))]))))
+                                                                              (cond c? (send-off currently-dragging-circle (fn [_] {:c (find-circle c) :t (system-time) :m (.getButton e)})))))
+                                                     :mouse-released (fn [e] (let [x  (.getX e)
+                                                                                  y  (.getY e)
+                                                                                  d  @currently-dragging-circle
+                                                                                  d? (not (nil? d))
+                                                                                  p  (point-in-circle x y)
+                                                                                  p? (not (nil? p))]
+                                                                              (cond d? (let [t  (- (system-time) (:t d))
+                                                                                             m? (> t 100)]
+                                                                                         (cond m? (cond p? (let [a  (arg-in-circle x y)
+                                                                                                                 a? (not (nil? a))
+                                                                                                                 r? (= (.getButton e) 3)
+                                                                                                                 s? (= (:name (:c d)) p)]
+                                                                                                             (cond (and r? (not s?)) (do
+                                                                                                                                       (prn "join-drag!")
+                                                                                                                                       (del-circle (:name (:c d)))
+                                                                                                                                       (prn "del'd!")
+                                                                                                                                       (prn (str "d: " d))
+                                                                                                                                       (prn (str "d_mod: " (mod-arg (find-circle p) a (symbol (:name (:c d))))))
+                                                                                                                                       (send-off used-circles (fn [ag] (cons (mod-arg (find-circle p) a (symbol (:name (:c d)))) ag)))
+                                                                                                                                       (prn "send-off'd!")
+                                                                                                                                       (send-off currently-dragging-circle (fn [_] nil))
+                                                                                                                                       (prn "nil'd!")
+                                                                                                                                       (prn (str "cdc: " @currently-dragging-circle))
+                                                                                                                                       (prn (str "new: " (first @used-circles))))))
+                                                                                                        :else (cond (= (.getButton e) 1) (do
+                                                                                                                                           (prn "move-drag!")
+                                                                                                                                           (del-circle (:name (:c d)))
+                                                                                                                                           (prn "del'd!")
+                                                                                                                                           (prn (str "d: " d))
+                                                                                                                                           (prn (str "d_mod: " (mod-xy (find-circle (:c d)) x y)))
+                                                                                                                                           (send-off used-circles (fn [ag] (cons (mod-xy (:c d) (- x 50) (- y 50)) ag)))
+                                                                                                                                           (prn "send-off'd!")
+                                                                                                                                           (send-off currently-dragging-circle (fn [_] nil))
+                                                                                                                                           (prn "nil'd!")
+                                                                                                                                           (clear-screen)
+                                                                                                                                           (render)
+                                                                                                                                           (link-circles (:c d))))))))))]))))
+
+                                                                                    ;; :else (new-circle x y))))]))))
                                                      ;; :mouse-released (fn [e] (let [x (.getX e)
                                                      ;;                              y (.getY e)
                                                      ;;                              c @currently-dragging-circle]

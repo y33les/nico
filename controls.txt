@@ -17,3 +17,4 @@ ON CIRCLE
 - right-drag another circle to arg
   to join
 - right-click on op to change
+- ctrl-click to remove last arg

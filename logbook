@@ -809,3 +809,55 @@
           - cool, fixed - only problem is it's complaining about a wrong number args pased to nth somewhere
           - ah, had missed out a from the bit that checks p? in main-window
           - arg- and op-detection now work :)
+          - removed d?, missed it before
+          - added fns mod-arg and mod-op to replace individual args in a circle or replace the operator
+          - commenting-out all the crap in :mouse-moved; strongly suspect that current-coords is no longer needed - currently used in circ-drag-begin, new-circle-handler, del-circle-handler and canvas-selected
+          - ooh, actually no - still reckon we can lose current-coords but need the :mouse-moved shit to do highlighting so will leave it there for now
+          - ok, so it's now the case that it can do the op input, but when it then tries to render it fucks up
+          - same problem for args
+          - weird, works fine just doing the replacement from the repl then calling render (without the input box)
+          - even works fine with the input box from the repl
+          - think it might be that i was using c, not cc, in the send-offs used in the arg- and op-modding bits (have also moved the input bit into the let, looks much nicer now)
+          - cool, modding args seems to work now (though it doesn't check the answer, wil add that) - modding the op, however, gives "error" as the new op
+          - ...because it's just evaluating to the symbol * (or whatever) - adding an eval seems to work in the repl, trying...
+          - awesome!  that works now, just need to add hte check-answer bit
+          - have added a bin image to images/ (images/bin.png), working on drawing that now
+          - rewritten clear-screen such that it draws a bin icon on the screen at ((- screen-x 100),(- screen-y 200))
+          - wrote a load of stuff to do on :mouse-released that moves the circle but it's now acting weird (and not moving the circle) - getting a NullPointerException saying that the string is null when calling draw-circle in render: it's complaining that the circle's name is null
+          - i guess it's because i refer to currently-dragging-circle but i haven't written back in the stuff that handles that
+          - adding some stuff to do on :mouse-pressed, namely sending-off the circle to currently-dragging-circle
+          - complaining about an agent needing a restart, presumably used-circles as it's crashing on line 1058, where there's a del-circle
+          - commented-out the :mouse-dragged stuff for testing for now
+          - no better, but looks like it's adding something to used-circles before it's done making the new circle as it shows a blank one and has an unnamed one on the list in the dialogue
+          - moved new-circle to :mouse-pressed as it's the only thing that happens on a press on the canvas
+          - rewriting new-circle to just add a circle with op placeholder and two placeholder args
+          - ok so that works but it's fucked highlighting, weirdly getting a StringIndexOutOfBoundsError; reckon it's because i haven't handled placeholder ops/args properly
+          - yeah, eval-circle evaluates to \P
+          - ...because remove-placeholders gives {... :circ (\P)}
+          - ok so have disabled highlighting where the op is \P, but it's not liking changing args or ops now: it brings up the input box but changes nowt
+          - nothing wrong per se seems to be happening, but nothing is changing with the contents of used-circles, maybe a problem with mod-op or mod-arg handling the \Ps?
+          - nope, mod-op is fine on the repl
+          - an so is mod-arg, hmmm...
+          - not able to add extra args to it either
+          - ...because used-circles needs a restart!
+          - yep, new-circle kills used-circles for some reason
+          - fine if i just run the send-off line from new-circle with (x,y)=(100,100)
+          - ...but trying to mod-op it also kills used-circles
+          - as does trying to mod-arg it
+          - deleting it and sending-off the mod-arged version from the repl works fine
+          - ok, looks like i'm getting a NullPointerException when point-in-circle is called for some reason
+          - ok, looks like used-circles is failing on creating a new circle
+          - and trying to mod-arg it only gets as far as just before (del-circle c), getting a ClassCastException because del-circle takes a name, not a circle!
+          - no wait, c *is* a name...
+          - getting a NullPointerException on creating a new-circle when point-in-circle is called
+          - thinking it might be the :mouse-released code that's doing it, commenting out now for testing
+          - yep, that's it! :D
+          - wtf, it just added a placeholder to the circle then fucked up the highlighting again!
+          - also thinking i should have ctrl+click to remove an arg
+          - thinking this is something to do with it not handling placeholders properly
+          - yeah, it's another StringIndexOutOfBoundsException
+          - have written a fn remove-last-arg that removes the last arg from a circle
+          - and have reintroduced crtl? so it happens on ctrl-clicking a circle
+          - added a fn has-placeholders? that detects if a circle contains any \Ps (will use to prevent highlighting where there are placeholders)
+          - works! :D
+          - need to work on dnd stuff next

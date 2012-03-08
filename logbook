@@ -927,3 +927,44 @@
           - whoops, accidentally wrote a load of bollocks on line 1143 - had written (= (.getButton 1)), now corrected to (= (.getButton e) 1)
           - sorted :)
           - guess i should get back to the join-dragging shit then...
+          - ...or, i could sort the bin out
+          - added a cond to the move-dragging stuff, checks the new position and dels if it's over the bin
+          - ...except it doesn't for some reason
+          - weird, getting the "bin!" message on the click after dragging it to the bin, and it doesn't delete
+          - probs didn't help that i had my x and y comparisons the wrong way round *facepalm*
+          - even weirder, it didn't print "bin!", did the same weird thing with the clicking and deleted the *other* circle :\
+          - ah, the lack of a do around all those functions in the :else bit might have /something/ to do with it... *facepalm*
+          - actually, as they're all prns except the send-off i'll just lose the prns
+          - weird, still doing that odd clicking thing
+          - moved the bin-checking code into the let, cond is now on b?
+          - whoops, moved it into the wrong let :$ fixed, moved it into the outermost let now
+          - reckon this is due to :mouse-dragged - must be absorbing the :mouse-released event, so the next one is on the next click
+          - moving everything into :mouse-dragged, will have to just have it so that drags gravitate towards the bin or other args (i.e. as soon as you go over them, rather than releasing the mouse button)
+          - only problem with this is when we can nil currently-dragging-circle...
+          - ...though it looks like :mouse-dragged doesn't also execute the code in :mouse-moved, which is handy; will nil it in :mouse-moved
+          - weird, dragging completely not working now, suspect nil-ing in :mouse-moved
+          - nope, i guess that's quite handy but still...
+          - removing all those fucking prns to make things a bit clearer (ironically)
+          - this may well have something to do with the entire :mouse-pressed section that i excluded *facepalm*
+          - ok, move-dragging is sorted, bit jerkier than before but it's ok
+          - wow, even binning works, though i might change the catchment area for the bin as it's pretty wide atm
+          - much better, reduced it by 25px in each direction, now to fix the r-dragging shit - AGAIN
+          - weird, it now draws the line and circle when r-dragging, but only registers a few events before freezing until you release the right mouse button
+          - added the s? check back in, no joy
+          - suspect :mouse-moved, will add a prn to check
+          - hmmm, hadn't uncommented the nil-ing line in :mouse-moved, maybe that's responsible?
+          - ok so that's seemingly got nothing to do with it, though i notice that it only stops when you try to leave the bounds of the circle; removed "nil'd!" prn
+          - hmmm, hadn't changed the r-drag checks back to (and r? (not s?)) (was still on (and r? d?)), maybe that's related?
+          - ffs, now i remember why i removed the s? check, it just kills r-dragging completely
+          - gonna try just checking for r?
+          - thinking it may be the check for p? now - when you drag outside the circle, p? goes false
+          - sorted :) still got that problem with it crashing on reaching the target though...
+          - same symptoms too, the modded circle looks fine to me...
+          - just realised there's a potential bug: if you make two circles, then delete the first, then create a new one then they have the same name :\ will add another agent tracking circle numbers for naming
+          - sorted :)
+          - :O breakthrough (hopefully)!  i think join-dragging is fucking everything up because i'm deleting the source circle, not the target circle!
+          - hmmm, that's completely frozen the app...
+          - probs because i'm deleting the old circle and then using it
+          - have put (find-circle p) in a let, it now joins the circles but fails at clearing the screen after that until you release the button, and doesn't update the circles, also getting NullPointerExceptions when rendering afterwards - also an agent has failed
+          - w00t!!1 apparently it just works now! :D
+          - adding colour to the circles - changing draw-circle to allocate colours based on the circle's number

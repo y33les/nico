@@ -480,23 +480,26 @@
         c    circ
         x    (:x circ)
         y    (:y circ)
-        op    (cond (= (first (:circ circ)) +) "+"
-                    (= (first (:circ circ)) -) "-"
-                    (= (first (:circ circ)) *) (str \u00d7)
-                    (= (first (:circ circ)) /) (str \u00f7)
-                    (= (first (:circ circ)) \?) (str \?)
+        o    (first (:circ circ))
+        op    (cond (= o +) "+"
+                    (= o -) "-"
+                    (= o *) (str \u00d7)
+                    (= o /) (str \u00f7)
+                    (= o \?) (str \?)
                     :else "error")
         args (rest (:circ circ))
         sym  (:name circ)
         n    (mod (read-string (subs sym 1)) 4)
-        cola (cond (= n 0) 0x88FF88
-                   (= n 1) 0xFF8888
-                   (= n 2) 0x8888FF
-                   (= n 3) 0xFFFF88)
-        colb (cond (= n 0) 0x44BB44
-                   (= n 1) 0xBB4444
-                   (= n 2) 0x4444BB
-                   (= n 3) 0xBBBB44)]
+        cola (cond (= o +) 0x88FF88
+                   (= o -) 0xFF8888
+                   (= o *) 0x8888FF
+                   (= o /) 0xFFFF88
+                   :else   0xDDDDDD)
+        colb (cond (= o +) 0x44BB44
+                   (= o -) 0xBB4444
+                   (= o *) 0x4444BB
+                   (= o /) 0xBBBB44
+                   :else   0x999999)]
     (do
       (doto g
         (.setColor (java.awt.Color. cola))
@@ -592,9 +595,13 @@
   (let [x (:x circ)
         y (:y circ)]
     (do
-      (doto (.getGraphics (select main-window [:#canvas]))
-        (.setColor (java.awt.Color. 0x2ECCFA))
-        (.fillOval (- x 3) (- y 3) 106 106))
+      (let [old (.getStroke (.getGraphics (select main-window [:#canvas])))
+            new (java.awt.BasicStroke. 4 java.awt.BasicStroke/CAP_ROUND java.awt.BasicStroke/JOIN_ROUND)]
+        (doto (.getGraphics (select main-window [:#canvas]))
+          (.setStroke new)
+          (.setColor (java.awt.Color. 0x2ECCFA))
+          (.drawOval (- x 2) (- y 2) 105 105)
+          (.setStroke old)))
       (cond (not (has-placeholders? circ))
             (loop [q (lisp-to-maths (eval (:q (first @current-qset))))
                    i (detect-subs (lisp-to-maths (eval-circle circ)) q)]
@@ -1222,24 +1229,42 @@
                                                                                                               (render)
                                                                                                               (link-circles (find-circle c))
                                                                                                               (send-off currently-dragging-circle (fn [_] nil))))
-                                                                                             l? (cond a? (let [cc (find-circle c)
-                                                                                                               in (mod-arg-dialogue)] ;; (eval (read-string (input "Number:")))]
-                                                                                                           (do
-                                                                                                             (del-circle c)
-                                                                                                             (send-off used-circles (fn [ag] (cons (mod-arg cc a in) ag)))
-                                                                                                             (clear-screen)
-                                                                                                             (render)
-                                                                                                             (update-answer)
-                                                                                                             (send-off currently-dragging-circle (fn [_] nil))))
-                                                                                                      o? (let [cc (find-circle c)
-                                                                                                               in (mod-op-dialogue)] ;; (eval (read-string (input "Operator:")))]
-                                                                                                           (do
-                                                                                                             (del-circle c)
-                                                                                                             (send-off used-circles (fn [ag] (cons (mod-op cc in) ag)))
-                                                                                                             (clear-screen)
-                                                                                                             (render)
-                                                                                                             (update-answer)
-                                                                                                             (send-off currently-dragging-circle (fn [_] nil))))))
+                                                                                             l? (cond a? (do
+                                                                                                           (let [old (.getStroke (.getGraphics (select main-window [:#canvas])))
+                                                                                                                 new (java.awt.BasicStroke. 2 java.awt.BasicStroke/CAP_ROUND java.awt.BasicStroke/JOIN_ROUND)]
+                                                                                                             (doto (.getGraphics (select main-window [:#canvas]))
+                                                                                                               (.setStroke new)
+                                                                                                               (.setColor (java.awt.Color. 0x2ECCFA))
+                                                                                                               (.drawOval (- x 9) (- y 11) 16 16)
+                                                                                                               (.setColor java.awt.Color/BLACK)
+                                                                                                               (.setStroke old)))
+                                                                                                           (let [cc (find-circle c)
+                                                                                                                 in (mod-arg-dialogue)] ;; (eval (read-string (input "Number:")))]
+                                                                                                             (do
+                                                                                                               (del-circle c)
+                                                                                                               (send-off used-circles (fn [ag] (cons (mod-arg cc a in) ag)))
+                                                                                                               (clear-screen)
+                                                                                                               (render)
+                                                                                                               (update-answer)
+                                                                                                               (send-off currently-dragging-circle (fn [_] nil)))))
+                                                                                                      o? (do
+                                                                                                           (let [old (.getStroke (.getGraphics (select main-window [:#canvas])))
+                                                                                                                 new (java.awt.BasicStroke. 2 java.awt.BasicStroke/CAP_ROUND java.awt.BasicStroke/JOIN_ROUND)]
+                                                                                                             (doto (.getGraphics (select main-window [:#canvas]))
+                                                                                                               (.setStroke new)
+                                                                                                               (.setColor (java.awt.Color. 0x2ECCFA))
+                                                                                                               (.drawOval (- x 9) (- y 11) 16 16)
+                                                                                                               (.setColor java.awt.Color/BLACK)
+                                                                                                               (.setStroke old)))
+                                                                                                           (let [cc (find-circle c)
+                                                                                                                 in (mod-op-dialogue)] ;; (eval (read-string (input "Operator:")))]
+                                                                                                             (do
+                                                                                                               (del-circle c)
+                                                                                                               (send-off used-circles (fn [ag] (cons (mod-op cc in) ag)))
+                                                                                                               (clear-screen)
+                                                                                                               (render)
+                                                                                                               (update-answer)
+                                                                                                               (send-off currently-dragging-circle (fn [_] nil)))))))
                                                                                     :else (cond l? (new-circle x y)))))
                                                      :mouse-dragged  (fn [e] (let [x  (.getX e)
                                                                                   y  (.getY e)

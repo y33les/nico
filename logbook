@@ -1046,4 +1046,18 @@
           - cool, that works now but forgot the \ns -.-
           - done, testing...
           - yep, works :) - timers on session start, question right, question wrong, next question and qset finished
-          - interesting (but awful), using the menubar to laod a new qset crashes one of the agents, needs further investigation
+          - interesting (but awful), using the menubar to load a new qset crashes one of the agents, needs further investigation
+09/03/12: - circles now colour-coded by operator
+          - working on redoing highlight now so it draws a thick ring around a circle, rather than a big circle under it
+          - ok, works but getting exceptions thrown
+          - ah, typo on (.setStroke old) - hadn't capitalised the second s
+          - works :)
+          - working on adding arg highlighting now
+          - whoops, just realised the circle-highlighting is a bit off, fixing
+          - sorted, much neater now :)
+          - arg highlighting (rough - needs tweaking to look neat) works now :) gonna reshuffle it a bit though so i don't have to code it twice for ops too
+          - actually, no, that's effort; would have to reqrite the rerendering bit
+          - cool, works now, but white looks crap (read: invisible) on the yellow circles, changing to purple
+          - have made the circles thicker too, though that purple looks crap; making it a bit brighter
+          - harrumph, that's even less visible - maybe the blue from highlight?
+          - cool, that works! :D sorted :)

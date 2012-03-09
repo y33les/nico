@@ -968,3 +968,81 @@
           - have put (find-circle p) in a let, it now joins the circles but fails at clearing the screen after that until you release the button, and doesn't update the circles, also getting NullPointerExceptions when rendering afterwards - also an agent has failed
           - w00t!!1 apparently it just works now! :D
           - adding colour to the circles - changing draw-circle to allocate colours based on the circle's number
+08/03/12: - replaced all instances of \P with \?
+          - ok, so that fucking blue circle bug with the highlighting is back - happens when you try to highlight a circle with soemthing linked to it - complaining that the string index -9 is out of range
+          - also a bug where if you delete a nested circle before the circle that uses it, shit gets fucked up
+          - added loads to del-circle that checks for nestedness and replaces the args using the deleted circle with \?
+          - ok, so now it just dies on joining circles (where there aren't \?s)
+          - thinking this is probs because del-circle is used in joining circles
+          - moving stuff into a new fn, del-circle-safe
+          - ok, have now reverted del-circle to its old form whilst shifting all the nested checks into del-circle-safe
+          - have split up del-circle now; binning uses del-circle-safe, whereas everything else uses del-circle
+          - fucked up, deleting joined circles is buggered now, both arg circles and root circles, also it doesn't update the answer after binning
+          - ok, so used-circles dies on doing del-circle on line 932
+          - might be because it's del-circle, not del-circle-safe
+          - ok, still failing - complaining that a map can't be cast to a number at line 933
+          - ah, had mislabelled the arg field in the map i was creating was using :n but it should be :a
+          - ok, so it hangs - probs the recursion on line 932
+          - because i'm doing it the wrong way round :$ was modding the circle i'm trying to delete!
+          - have written a new fn is-arg-of that returns a list of the names of the circles that use a given circle
+          - incorporating into del-circle-safe...
+          - modding is-arg-of such that it now returns a map of the circle's name and the arg's index
+          - also adding a modded version of is-arg?, arg-is, that returns the arg index where a given arg appears
+          - changing so that arg-is returns a list of where it appears, just in case
+          - works :)
+          - incorporated all this shit into del-circle-safe, it now works!! :D
+          - fuck, now it's dying for some reason :\
+          - not freezing, just dying somehow :\
+          - ah, complaining about wrong no. of args passed to arg-is
+          - weird, had somehow managed to pass only one arg to arg-is in is-arg-of, fixed
+          - hmmm, still dying
+          - complaining about the del-circle on line 931
+          - maybe its that it's not the safe ver.?
+          - weird, it's now dying on the point-in-circle within del-circle-safe at line 985, but that's the (x,y) bit
+          - might have something to do with that let that comes before the string check, moving inside
+          - hmmm, still got a problem at line 985
+          - ok, looks like we've got another failed agent
+          - ok, so some agent fails at line 952 where del-circle-safe is called within itself
+          - ...and it's used-circles
+          - interestingly, running that loop with i and rc in it from the repl returns a nil circle
+          - fuck it, coming back to this shit, doing the dialogue boxes for now
+          - have written fns mod-op-dialogue and show-mod-op that generate and show a dialogue for choosing an operator respectively
+          - have done the same for new fns mod-arg-dialogue and show-mod-arg
+          - weird, they both seem to return nil regardless of what i enter
+          - have specified an :option-type of :ok-cancel for both boxes now
+          - weird, they def. enter the :success-fn (have added prns), but stil returning nil
+          - ok, so prn-ing show-mod-op immediately shows nil upon showing the box
+          - yeah, even doing it in a let returns nil before the box has been completed
+          - grrr, changing the dialogue definitions to defs rather than defns doesn't help either
+          - have changed them back
+          - ah, i see, i need to use return-from-dialog now
+          - am also incorporating the contents of the dialogues into their show functions as they're small
+          - ok, this seems to be a seesaw thing, even the example in the api doesn't work :\
+          - horrible hack whereby i redefine two variables arg-res and op-res before returning nil
+          - no, this is stupid and it won't even help - reverting to how it was
+          - maybe it's the invoke-later?  who even knows anymore
+          - fucking hell that was it ffs
+          - sorted now though :)
+          - ...although mod-arg-dialogue is still returning nil, but at least it blocks
+          - whoops, hadn't removed the arg-res shit, done now, sorted and works :)
+          - incorporating all this back into main-window...
+          - done! have also swapped right and left clicks for adding/remove and modding args/ops
+          - cool, works :) but noticed that cancelling the op makes it use 'error - will change the :cancel-fn to return \?
+          - ok, that's cool but just realised it \?s an existing arg/op - will just change the :cancel-fns to not do anything other than dispose
+          - hmmm, that returns nil or something (op becomes 'error) - might just not have a cancel button
+          - ych, closing still has the same problem: probs better of \?ing them than nil-ing them
+          - actually, if i just change the contents so they return \? rather than nil or error, this should be fine :D
+          - ooh, i can specify :on-close :nothing, then they *can't* close it other than via cancel :D
+          - ...or maybe not, that's fucked up on pressing ok somehow
+          - have changed it back, will just have to leave closing for args i guess
+          - have also specified main-window as the :parent for both
+          - ok, seems to be sorted then, will just have to bear in mind about closing the mod-arg box
+          - have changed a load of check-answers in main-window to update-answers
+          - right, time to add timers; easiest way seems to be to spit system-times out to a text file at opportune moments, so i'll do that
+          - have added that to the session start
+          - going to change logfile so it points to a new file in a subdir logs/
+          - blue circle bug with many-linked circles on checking answer, first q of qstest.nqs
+          - oops, forgot to add :append true to the spits, doing it now
+          - cool, that works now but forgot the \ns -.-
+          - done, testing...
+          - yep, works :) - timers on session start, question right, question wrong, next question and qset finished

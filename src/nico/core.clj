@@ -71,6 +71,10 @@
   []
   (.getTimeInMillis (java.util.Calendar/getInstance)))
 
+(def logfile
+  ;; File to whcih question completion times are written, named "nico_<system-time>.log".
+  (java.io.File. (str "logs/nico_" (system-time) ".log")))
+
 (defn lisp-to-maths
   "Translates a sexp into a string of child-readable maths."
   [sexp]
@@ -83,7 +87,7 @@
          out ""
          n 0]
     (cond (empty? s) (str out "")
-          (= (first sexp) \P) \P
+          (= (first sexp) \?) \?
           (odd? n) (recur s op (str out op) (inc n))
           (list? (first s)) (recur (rest s) op (str out "(" (lisp-to-maths (first s)) ")") (inc n))
           :else (recur (rest s) op (str out (first s)) (inc n)))))
@@ -169,7 +173,7 @@
   [circ]
   (loop [c (:circ circ)]
     (cond (empty? c) false
-          (= (first c) \P) true
+          (= (first c) \?) true
           :else (recur (rest c)))))
 
 (defn remove-placeholders
@@ -181,7 +185,7 @@
    :circ (loop [in (rest (:circ c))
                 out (list (first (:circ c)))]
            (cond (empty? in) (reverse out)
-                 (= \P (first in)) (recur (rest in) out)
+                 (= \? (first in)) (recur (rest in) out)
                  :else (recur (rest in) (cons (first in) out))))})
 
 (defn eval-circle
@@ -190,7 +194,7 @@
   (loop [c (:circ (remove-placeholders circ))
          out '()]
     (cond (empty? c) (reverse out)
-          (= (first c) \P) 0
+          (= (first c) \?) 0
           (symbol? (first c)) (cond (nested? (find-circle (str (first c)))) (recur (rest c) (cons (eval-circle (find-circle (str (first c)))) out))
                                     :else (recur (rest c) (cons (:circ (find-circle (str (first c)))) out)))
           :else (recur (rest c) (cons (first c) out)))))
@@ -318,6 +322,26 @@
     (cond (empty? c) a
           (= n (str (first c))) true
           :else (recur n (rest c) a))))
+
+(defn arg-is
+  "Returns the list of argument indices in circ2 of where circ1 appears, else nil."
+  [circ1 circ2]
+  (loop [n (:name circ1)
+         c (rest (:circ circ2))
+         l '()
+         a 0]
+    (cond (empty? c) (reverse l)
+          (= n (str (first c))) (recur n (rest c) (cons a l) (inc a))
+          :else (recur n (rest c) l (inc a)))))
+
+(defn is-arg-of
+  "Returns a list of the names of all the circles currently in used-circles that contain c as an argument."
+  [c]
+  (loop [in  @used-circles
+         out '()]
+    (cond (empty? in) (reverse out)
+          (is-arg? c (first in)) (recur (rest in) (cons {:c (:name (first in)) :a (arg-is c (first in))} out))
+          :else (recur (rest in) out))))
 
 (defn root?
   "Returns true if circ is not used as an argument to any other circle."
@@ -460,7 +484,7 @@
                     (= (first (:circ circ)) -) "-"
                     (= (first (:circ circ)) *) (str \u00d7)
                     (= (first (:circ circ)) /) (str \u00f7)
-                    (= (first (:circ circ)) \P) (str \P)
+                    (= (first (:circ circ)) \?) (str \?)
                     :else "error")
         args (rest (:circ circ))
         sym  (:name circ)
@@ -734,7 +758,8 @@
                                 :items [(string-to-panel (lisp-to-maths (eval (:q (get-q-no @current-question)))))]
                                 :border (str "Question " @current-question))
                                (kill-used-circles)
-                               (render)))))
+                               (render)
+                               (spit logfile (str "qset loaded: " (system-time) "\n") :append true)))))
 
 (defn gen-circ-radios
   "Returns a horizontal-panel containing one radio button for each circle currently in used-circles.  Each radio button has the :id :(str pfx :name), and is in the button-group gp."
@@ -839,7 +864,7 @@
   "Brings up a dialogue box to configure a new circle.  Draws the circle on pressing 'OK'."
   [x y]
   (do
-    (send-off used-circles (fn [a] (cons {:x (- x 50) :y (- y 50) :name (str "c" @circle-number) :circ '(\P \P \P)} a)))
+    (send-off used-circles (fn [a] (cons {:x (- x 50) :y (- y 50) :name (str "c" @circle-number) :circ '(\? \? \?)} a)))
     (await used-circles)
     (send-off circle-number (fn [a] (inc a)))
     (clear-screen)
@@ -898,6 +923,55 @@
           show!))))
 )
 
+(defn mod-op-dialogue
+  "Brings up a dialogue box to change a circle's operator."
+  []
+  (-> (dialog :title "Change Operator"
+              :parent main-window
+              :content (border-panel :id :mod-op-box
+                                     :north  (label "Choose an operator:")
+                                     :center (horizontal-panel :id :op-select
+                                                               :items [(radio :id :plus
+                                                                              :text "+"
+                                                                              :group op
+                                                                              :selected? true)
+                                                                       (radio :id :minus
+                                                                              :text "-"
+                                                                              :group op)
+                                                                       (radio :id :mul
+                                                                              :text (str \u00d7)
+                                                                              :group op)
+                                                                       (radio :id :div
+                                                                              :text (str \u00f7)
+                                                                              :group op)]))
+              :option-type :ok-cancel
+              :on-close :dispose
+              :success-fn (fn [p] (cond
+                                   (.isSelected (select (to-root p) [:#plus])) +
+                                   (.isSelected (select (to-root p) [:#minus])) -
+                                   (.isSelected (select (to-root p) [:#mul])) *
+                                   (.isSelected (select (to-root p) [:#div])) /
+                                   :else \?))
+              :cancel-fn (fn [p] (do (dispose! p) \?)))
+      pack!
+      show!))
+
+(defn mod-arg-dialogue
+  "Brings up a dialogue box to change an argument within a circle."
+  []
+  (-> (dialog :title "Change Argument"
+              :parent main-window
+              :content (border-panel :id :mod-arg-box
+                                     :north  (label "Enter a number:")
+                                     :center (spinner :id :spin
+                                                      :model (spinner-model 0 :from -10 :to 10 :by 1)))
+              :option-type :ok-cancel
+              :on-close :dispose
+              :success-fn (fn [p] (value (select (to-root p) [:#spin]))) ;; (.getValue (select dlg [:#spin])))
+              :cancel-fn (fn [p] (do (dispose! p) \?)))
+      pack!
+      show!))
+
 (defn del-circle
   "Removes a circle from used-circles, such that it won't reappear on executing render."
   [x & y]
@@ -914,6 +988,61 @@
                                                     :else (cond (empty? in) (reverse out)
                                                                 (= (:name (first in)) c) (recur (rest in) out c c?)
                                                                 :else (recur (rest in) (cons (first in) out) c c?))))))))
+
+(defn del-circle-safe
+  "Removes a circle from used-circles, such that it won't reappear on executing render - safe to use on nested circles for binning."
+  [x & y]
+  (cond (string? x) (let [c    (find-circle x)
+                          args (is-arg-of c)
+                          arg? (not (empty? args))]
+                      (cond arg? (loop [cs args]
+                                   (cond (not (empty? cs)) (let [cc (find-circle (first cs))
+                                                                 is (arg-is c cc)
+                                                                 nc (loop [i  is
+                                                                           rc cc]
+                                                                      (cond (empty? i) rc
+                                                                            :else (recur (rest i) (mod-arg rc (first i) \?))))]
+                                                             (do
+                                                               (del-circle-safe (:name cc))
+                                                               (send-off used-circles (fn [a] (cons nc a)))
+                                                               (await used-circles)
+                                                               (send-off used-circles (fn [a] (loop [in  a
+                                                                                                    out '()]
+                                                                                               (cond (empty? in) (reverse out)
+                                                                                                     (= x (:name (first in))) (recur (rest in) out)
+                                                                                                     :else (recur (rest in) (cons (first in) out))))))))))
+;;                                          (let [cs (loop [in (rest (:circ c))
+;;                                                  out '()
+;;                                                  n 0]
+;;                                             (cond (empty? in) (reverse out)
+;;                                                   (symbol? (first in)) (recur (rest in) (cons {:c (str (first in)) :a n} out) (inc n))
+;;                                                   :else (recur (rest in) out (inc n))))]
+;;                                    (do
+;;                                      (loop [l cs]
+;;                                        (cond (not (empty? cs)) (let [cc (find-circle (:c (first l)))]
+;;                                                                  (do
+;;                                                                    (del-circle-safe (first l))
+;;                                                                    (send-off used-circles (fn [a] (cons (mod-arg cc (:a (first l)) \?) a)))
+;;                                                                    (recur (rest l))))))
+;;                                      (send-off used-circles (fn [a] (loop [in a
+;;                                                                           out '()]
+;;                                                                      (cond (empty? in) (reverse out)
+;;                                                                            (= x (:name (first in))) (recur (rest in) out)
+                            ;;                                                                            :else (recur (rest in) (cons (first in) out))))))))
+                            :else (send-off used-circles (fn [a] (loop [in a
+                                                                       out '()]
+                                                                  (cond (empty? in) (reverse out)
+                                                                        (= x (:name (first in))) (recur (rest in) out)
+                                                                        :else (recur (rest in) (cons (first in) out))))))))
+        :else (send-off used-circles (fn [a] (loop [in  a
+                                                   out '()
+                                                   c   (point-in-circle x y)
+                                                   c?  (not (nil? c))]
+                                              (cond (not c?) nil ;; (alert "Circle not found.")
+                                                    :else (cond (empty? in) (reverse out)
+                                                                (= (:name (first in)) c) (recur (rest in) out c c?)
+                                                                :else (recur (rest in) (cons (first in) out) c c?))))))))
+
     ;; (render)
     ;; (check-answer)))
 
@@ -922,7 +1051,7 @@
   [c]
   (cond (< (count (rest (:circ c))) 8) (do
                                          (del-circle (:name c))
-                                         (send-off used-circles (fn [a] (cons (add-arg \P c) a))))
+                                         (send-off used-circles (fn [a] (cons (add-arg \? c) a))))
         :else (alert "Each circle is allowed a maximum of 8 arguments.")))
 
 (defn remove-last-arg
@@ -941,6 +1070,7 @@
   "Loads the next question in the current question set."
   []
   (do
+    (spit logfile (str "next question: " (system-time) "\n") :append true)
     (send-off current-question #(inc %))
     (await current-question)
     (get-q-no @current-question)
@@ -953,6 +1083,7 @@
                                                          :text "0"
                                                          :foreground "#000000"))
           :else (do
+                  (spit logfile (str "qset finished: " (system-time) "\n") :append true)
                   (alert "Well done!  Please choose another question set.")
                   (load-qset)))))
 
@@ -960,6 +1091,7 @@
   "To be executed when a question is answered correctly."
   []
   (do
+    (spit logfile (str "question right: " (system-time) "\n") :append true)
     (config!
      (select main-window [:#answer])
      :foreground "#00BB00")
@@ -972,9 +1104,11 @@
 (defn question-wrong
   "To be executed when a question is answered incorrectly."
   []
-  (config!
-   (select main-window [:#answer])
-   :foreground "#FF0000"))
+  (do
+    (spit logfile (str "question wrong: " (system-time) "\n") :append true)
+    (config!
+     (select main-window [:#answer])
+     :foreground "#FF0000")))
 
 (defn update-answer
   "Update the text in the :answer field to the current value of the diagram."
@@ -1027,6 +1161,9 @@
     (cond c? [del-circle-action]
           :else [new-circle-action])))
 
+;; more timer results?
+;; e.g. when adding, binning?
+
 (def main-window
   ;; Creates the contents of Nico's main window.
   (do
@@ -1069,11 +1206,11 @@
                                                                                   c?    (not (nil? c)) ;; in a circle?
                                                                                   a     (arg-in-circle x y) ;; arg index at (x,y)
                                                                                   a?    (not (nil? a)) ;; on an arg?
-                                                                                  p?    (cond a? (cond (= \P (nth (rest (:circ (find-circle c))) a)) true
+                                                                                  p?    (cond a? (cond (= \? (nth (rest (:circ (find-circle c))) a)) true
                                                                                                        :else false)
                                                                                               :else false) ;; on a placeholder?
                                                                                   o?    (op-in-circle? x y)] ;; on the op?
-                                                                              (cond c? (cond l? (cond ctrl? (do
+                                                                              (cond c? (cond r? (cond ctrl? (do
                                                                                                               (remove-last-arg (find-circle c))
                                                                                                               (clear-screen)
                                                                                                               (render)
@@ -1085,23 +1222,23 @@
                                                                                                               (render)
                                                                                                               (link-circles (find-circle c))
                                                                                                               (send-off currently-dragging-circle (fn [_] nil))))
-                                                                                             r? (cond a? (let [cc (find-circle c)
-                                                                                                               in (eval (read-string (input "Number:")))]
+                                                                                             l? (cond a? (let [cc (find-circle c)
+                                                                                                               in (mod-arg-dialogue)] ;; (eval (read-string (input "Number:")))]
                                                                                                            (do
                                                                                                              (del-circle c)
                                                                                                              (send-off used-circles (fn [ag] (cons (mod-arg cc a in) ag)))
                                                                                                              (clear-screen)
                                                                                                              (render)
-                                                                                                             (check-answer)
+                                                                                                             (update-answer)
                                                                                                              (send-off currently-dragging-circle (fn [_] nil))))
                                                                                                       o? (let [cc (find-circle c)
-                                                                                                               in (eval (read-string (input "Operator:")))]
+                                                                                                               in (mod-op-dialogue)] ;; (eval (read-string (input "Operator:")))]
                                                                                                            (do
                                                                                                              (del-circle c)
                                                                                                              (send-off used-circles (fn [ag] (cons (mod-op cc in) ag)))
                                                                                                              (clear-screen)
                                                                                                              (render)
-                                                                                                             (check-answer)
+                                                                                                             (update-answer)
                                                                                                              (send-off currently-dragging-circle (fn [_] nil))))))
                                                                                     :else (cond l? (new-circle x y)))))
                                                      :mouse-dragged  (fn [e] (let [x  (.getX e)
@@ -1133,14 +1270,21 @@
                                                                                                                                            (del-circle p)
                                                                                                                                            (prn (str "new: " (mod-arg fp a (symbol (:name c)))))
                                                                                                                                            (send-off used-circles (fn [ag] (cons (mod-arg fp a (symbol (:name c))) ag))))))
-                                                                                                               (check-answer))
-                                                                                                          l? (do
-                                                                                                               (del-circle (:name (:c d)))
-                                                                                                               (cond b? (prn "bin!") ;; play sound
-                                                                                                                     :else (send-off used-circles (fn [ag] (cons (mod-xy c (- x 50) (- y 50)) ag))))
-                                                                                                               (clear-screen)
-                                                                                                               (render)
-                                                                                                               (link-circles c)))))))))
+                                                                                                               (update-answer))
+                                                                                                          l? (cond b? (do
+                                                                                                                        (del-circle-safe (:name (:c d)))
+                                                                                                                        (prn "bin!")
+                                                                                                                        (clear-screen)
+                                                                                                                        (render)
+                                                                                                                        (link-circles c)
+                                                                                                                        (update-answer))
+                                                                                                                   :else (do
+                                                                                                                           (del-circle (:name (:c d)))
+                                                                                                                           (send-off used-circles (fn [ag] (cons (mod-xy c (- x 50) (- y 50)) ag)))
+                                                                                                                           (clear-screen)
+                                                                                                                           (render)
+                                                                                                                           (link-circles c)
+                                                                                                                           (update-answer))))))))))
                                                      :mouse-pressed  (fn [e] (let [x (.getX e)
                                                                                   y (.getY e)
                                                                                   c (point-in-circle x y)
@@ -1321,4 +1465,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.")))
                  :items [(string-to-panel (lisp-to-maths (eval (:q (first @current-qset)))))]
                  :border (str "Question " (:n (first @current-qset))))
         (clear-screen)
-        (render)))))
+        (render))))
+  (spit logfile (str "session start: " (system-time) "\n")))

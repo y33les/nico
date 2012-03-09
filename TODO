@@ -1,3 +1,13 @@
+everything is less shit! :D
+- fix that deletion bug
+- fix that highlighting bug
+- fix that maximising bug
+- change highlighting to draw a thick ring around a circle, rather than a filled circle underneath it
+- change colouring to colour-coding by operation
+- have it so that arg or op currently being edited is highlighted somehow (e.g. bolded)
+- reword declaration in questionnaire
+- make tutorial video
+
 everything is shit! :'(
 - redo dnd rendering, apparently it doesn't matter if it's flickery
 - make circles move out of the way if overlapping

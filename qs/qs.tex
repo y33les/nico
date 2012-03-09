@@ -44,6 +44,24 @@
 \end{center}
 }
 
+\newcommand{\percentbox}{
+% box to write a percentage answer in
+\setlength{\unitlength}{5mm}
+\begin{picture}(1,1)
+\put(0,0){\line(1,0){1}}
+\put(0,0){\line(0,1){1}}
+\put(0,1){\line(1,0){1}}
+\put(1,0){\line(0,1){1}}
+\end{picture} \%}
+
+\newcommand{\answerbox}{
+\fbox{
+\begin{minipage}{16cm}
+\hfill\vspace{2cm}
+\end{minipage}
+}\\
+}
+
 \begin{document}
 
 \begin{center}
@@ -166,6 +184,8 @@ Let us begin.
 \end{minipage}
 }\\
 
+\pagebreak
+
 \item \emph{((3×4)÷(3+3))×8}\\
 
 \fbox{
@@ -205,6 +225,8 @@ Let us begin.
 \hfill\vspace{3cm}
 \end{minipage}
 }\\
+
+\pagebreak
 
 \item \emph{((2+5)×(6÷2)×(9-8))+((3+4)-(5×6))+120}\\
 
@@ -223,265 +245,176 @@ Thank you very much.
 \item If you are in Group 2, please continue to Section 1.1
 \end{itemize}
 
-\section{Feedback}
+\section{Questions}
 
-lol
+\subsection{Notation}
+
+When using the system, what proportion of your time (as a rough percentage) do you spend:
+
+\begin{enumerate}
+\item Searching for information within the notation \percentbox
+\item Translating substantial amounts of information from some other source into the system \percentbox
+\item Adding small bits of information to a description that you have previously created \percentbox
+\item Reorganising and restructuring descriptions that you have previously created \percentbox
+\item Playing around with new ideas in the notation, without being sure what will result \percentbox
+\end{enumerate}
+
+\subsection{Cognitive Dimensions}
+
+\subsubsection{Visibility and Juxtaposability}
+
+\begin{enumerate}
+\item How easy is it to see or find the various parts of the notation while it is being created or changed? Why?\\
+\answerbox
+\item What kind of things are more difficult to see or find?\\
+\answerbox
+\item If you need to compare or combine different parts, can you see them at the same time? If not, why not?\\
+\answerbox
+\end{enumerate}
+
+\subsubsection{Viscosity}
+
+\begin{enumerate}
+\item When you need to make changes to previous work, how easy is it to make the change? Why?\\
+\answerbox
+\item Are there particular changes that are more difficult or especially difficult to make? Which ones?\\
+\answerbox
+\end{enumerate}
+
+%\subsubsection{Diffuseness}
+%
+%\begin{enumerate}
+%\item Does the notation let you say what you want reasonably briefly, or is it long-winded? Why?\\
+%\answerbox
+%\item What sorts of things take more space to describe?\\
+%\answerbox
+%\end{enumerate}
+
+%\subsubsection{Hard Mental Operations}
+%
+%\begin{enumerate}
+%\item What kind of things require the most mental effort with this notation?\\
+%\answerbox
+%\item Do some things seem especially complex or difficult to work out in your head (e.g. when combining several things)?  What are they?\\
+%\answerbox
+%\end{enumerate}
+
+\subsubsection{Error Proneness}
+
+\begin{enumerate}
+\item Do some kinds of mistake seem particularly common or easy to make? Which ones?\\
+\answerbox
+\item Do you often find yourself making small slips that irritate you or make you feel stupid? What are some examples?\\
+\answerbox
+\end{enumerate}
+
+\subsubsection{Closeness of Mapping}
+
+\begin{enumerate}
+\item How closely related is the notation to the result that you are describing? Why?\\ % (Note that in a sub-device, the result may be part of another notation, rather than the end product).
+\answerbox
+
+\pagebreak
+
+\item Which parts seem to be a particularly strange way of doing or describing something?\\
+\answerbox
+\end{enumerate}
+
+\subsubsection{Role Expressiveness}
+
+\begin{enumerate}
+\item When reading the notation, is it easy to tell what each part is for in the overall scheme? Why?\\
+\answerbox
+\item Are there some parts that are particularly difficult to interpret? Which ones?\\
+\answerbox
+\item Are there parts that you really don’t know what they mean, but you put them in just because it’s always been that way? What are they?\\
+\answerbox
+\end{enumerate}
+
+\subsubsection{Hidden Dependencies}
+
+\begin{enumerate}
+\item If the structure of the product means some parts are closely related to other parts, and changes to one may affect the other, are those dependencies visible? What kind of dependencies are hidden?\\
+\answerbox
+\item In what ways can it get worse when you are creating a particularly large description?\\
+\answerbox
+
+\pagebreak
+
+\item Do these dependencies stay the same, or are there some actions that cause them to get frozen? If so, what are they?\\
+\answerbox
+\end{enumerate}
+
+\subsubsection{Progressive Evaluation}
+
+\begin{enumerate}
+\item How easy is it to stop in the middle of creating some notation, and check your work so far? Can you do this any time you like? If not, why not?\\
+\answerbox
+\item Can you find out how much progress you have made, or check what stage in your work you are up to? If not, why not?\\
+\answerbox
+\item Can you try out partially-completed versions of the product? If not, why not?\\
+\answerbox
+\end{enumerate}
+
+\subsubsection{Provisionality}
+
+\begin{enumerate}
+\item Is it possible to sketch things out when you are playing around with ideas, or when you aren’t sure which way to proceed? What features of the notation help you to do this?\\
+\answerbox
+\item What sort of things can you do when you don’t want to be too precise about the exact result you are trying to get?\\
+\answerbox
+\end{enumerate}
+
+%\subsubsection{Premature Commitment}
+%
+%\begin{enumerate}
+%\item When you are working with the notation, can you go about the job in any order you like, or does the system force you to think ahead and make certain decisions first?\\
+%\answerbox
+%\item If so, what decisions do you need to make in advance? What sort of problems can this cause in your work?\\
+%\answerbox
+%\end{enumerate}
+
+%\subsubsection{Consistency}
+%
+%\begin{enumerate}
+%\item Where there are different parts of the notation that mean similar things, is the similarity clear from the way they appear? Please give examples.\\
+%\answerbox
+%\item Are there places where some things ought to be similar, but the notation makes them different? What are they?\\
+%\answerbox
+%\end{enumerate}
+
+\subsubsection{Secondary Notation}
+
+\begin{enumerate}
+\item Is it possible to make notes to yourself, or express information that is not really recognised as part of the notation?\\
+\answerbox
+\item If it was printed on a piece of paper that you could annotate or scribble on, what would you write or draw?\\
+\answerbox
+\item Do you ever add extra marks (or colours or format choices) to clarify, emphasise or repeat what is there already?\\ % [If yes: does this constitute a helper device? If so, please fill in one of the section 5 sheets describing it]
+\answerbox
+\end{enumerate}
+
+%\subsubsection{Abstraction Management}
+%
+%\begin{enumerate}
+%\item Does the system give you any way of defining new facilities or terms within the notation, so that you can extend it to describe new things or to express your ideas more clearly or succinctly? What are they?\\
+%\answerbox
+%\item Does the system insist that you start by defining new terms before you can do anything else? What sort of things?\\
+%\answerbox
+%\item If you wrote here, you have a redefinition device: please fill in one of the section 5 sheets describing it.\\
+%\answerbox
+%\end{enumerate}
+
+\subsection{Feedback}
+
+\begin{enumerate}
+\item Do you find yourself using this notation in ways that are unusual, or ways that the designer might not have intended? If so, what are some examples?\\
+\answerbox
+\item After completing this questionnaire, can you think of obvious ways that the design of the system could be improved? What are they? Could it be improved specifically for your own requirements?\\
+\answerbox
+\end{enumerate}
 
 \section{Statement of Informed Consent}
-
-lol
-
-\section*{Welcome to \emph{Nico}!}
-
-\subsection*{Introduction}
-
-\emph{Nico} works by representing the constituent parts of a calculation as
-circles containing an operator with arguments orbiting it.  The value of a circle
-can be passed to other circles to be used in further calculations, and this is
-indicated on-screen by means of a line going from from the edge of the argument
-circle to the centre of the circle using it (\emph{Fig. 1}).
-
-\begin{figure}[htb]
-\centering
-\includegraphics[scale=0.75]{fig1.png}
-\caption{Nested circles, representing the calculation \emph{(1+2+3)×4×5×6×7×8}.}
-\end{figure}
-
-As the user builds up a diagram, the {\bf {\sffamily Answer}} field in the top
-right-hand corner keeps a running total of the calculation, evaluating the circle
-that does not use any others as arguments as the root.  Mousing-over a circle
-currently in the diagram highlights that circle, and the relevant part of the
-{\bf {\sffamily Question}} field that it represents, in blue.
-
-\subsection*{Usage}
-
-Begin by executing either the \verb¬nico¬ (for UNIX-like systems) or
-\verb¬nico.bat¬ (for Microsoft Windows systems) file to open the application.
-Upon opening the application, you will be presented with a file-chooser dialogue.
-Use this to choose a set of questions (a file ending in \verb¬.nqs¬) to complete
-using \emph{Nico}.
-
-You are then presented with a screen akin to the one below (\emph{Fig. 2}).
-
-\begin{figure}[!htb]
-\begin{minipage}[b]{0.5\linewidth}
-\centering
-\includegraphics[scale=0.75]{fig2.png}
-\caption{The initial state of the application upon loading a new question set.}
-\end{minipage}
-\hspace{0.5cm}
-\begin{minipage}[b]{0.5\linewidth}
-\centering
-\includegraphics[scale=0.75]{fig3.png}
-\caption{The dialogue box used for creating a new circle.}
-\end{minipage}
-\end{figure}
-
-To create a circle, right-click on a blank section of the canvas.  A context menu
-will appear, with a {\bf {\sffamily New circle}} option.  Select this option, and
-you will be presented with a dialogue box, as depicted in \emph{Fig. 3}.
-
-This dialogue box allows one to initialise a circle with up to eight arguments.
-The operator is chosen with the radio buttons in the {\bf {\sffamily Operator}}
-field.  The arguments are then set using the {\bf {\sffamily Argument}} fields.
-Click on the {\bf {\sffamily Enabled?}} checkbox to use that argument in the
-circle.  Choose either the radio button next to the slider or next to the list
-of existing circles to specify whether the argument should be a number or
-another circle.  If you select the slider, set the slider to the number (limited
-to a minimum of -10 and a maximum of 10) you wish to use.  If you select the
-list of existing circles, choose the radio button next to the label corresponding
-to the circle that you wish to use.  Finally, click on the {\bf {\sffamily OK}}
-button to create your circle.
-
-You can add other circles as extra arguments by left-clicking and dragging between
-the two circles: from the circle you wish to use to the circle you wish to use it
-in.  To remove a circle, simply right-click on a circle and select
-{\bf {\sffamily Remove circle}}.  Circles can be repositioned by left-clicking on
-a circle and dragging it to the desired new position.
-
-To check your answer, click the {\bf {\sffamily Check}} button in the top right-
-hand corner of the window.  If the answer is correct, the {\bf {\sffamily Answer}}
-text will turn green, a congratulatory message will pop up, and \emph{Nico} will
-move on to the next question.  If your answer is incorrect, the
-{\bf {\sffamily Answer}} text will turn red, and you will have the opportunity
-to resubmit.
-
-\section*{Exercises}
-
-\begin{enumerate}
-
-\item Open \emph{Nico} by executing the appropriate file for your system (either
-\verb¬nico¬ or \verb¬nico.bat¬).  Open the question set
-\verb¬user-study.nqs¬, which is in the subdirectory \verb¬qs/¬ of the main
-application directory.
-
-\item Work through the ten questions in the question set.
-
-\item On completion of the question set, you will be presented with
-another file-chooser dialogue.  Close this, and exit the application.
-
-\item Complete the following questions (and please show your working!):--
-
-\begin{enumerate}
-
-\item \emph{2+3}\\
-
-\fbox{
-\begin{minipage}{16cm}
-\hfill\vspace{3cm}
-\end{minipage}
-}\\
-
-\pagebreak
-
-\item \emph{9÷3}\\
-
-\fbox{
-\begin{minipage}{16cm}
-\hfill\vspace{3cm}
-\end{minipage}
-}\\
-
-\item \emph{1+2+3+4+5}\\
-
-\fbox{
-\begin{minipage}{16cm}
-\hfill\vspace{3cm}
-\end{minipage}
-}\\
-
-\item \emph{(2×4)+(3-5)}\\
-
-\fbox{
-\begin{minipage}{16cm}
-\hfill\vspace{3cm}
-\end{minipage}
-}\\
-
-\item \emph{((3×4)÷(3+3))×8}\\
-
-\fbox{
-\begin{minipage}{16cm}
-\hfill\vspace{3cm}
-\end{minipage}
-}\\
-
-\item \emph{((1+2+3+4+5)+(2×4×6×8×10))×1×2×(1+2+3+4+5)}\\
-
-\fbox{
-\begin{minipage}{16cm}
-\hfill\vspace{3cm}
-\end{minipage}
-}\\
-
-\pagebreak
-
-\item \emph{12+14}\\
-
-\fbox{
-\begin{minipage}{16cm}
-\hfill\vspace{3cm}
-\end{minipage}
-}\\
-
-\item \emph{247×35}\\
-
-\fbox{
-\begin{minipage}{16cm}
-\hfill\vspace{3cm}
-\end{minipage}
-}\\
-
-\item \emph{120÷((2×10)+5+5)}\\
-
-\fbox{
-\begin{minipage}{16cm}
-\hfill\vspace{3cm}
-\end{minipage}
-}\\
-
-\item \emph{((2+5)×(6÷2)×(9-8))+((3+4)-(5×6))+120}\\
-
-\fbox{
-\begin{minipage}{16cm}
-\hfill\vspace{3cm}
-\end{minipage}
-}\\
-
-\end{enumerate}
-
-\item Fill out the feedback section below.
-
-\end{enumerate}
-
-\section*{Feedback}
-
-% is it intuitive?
-% is it easy to use?
-% is it clear what the syntax means?
-% is it any better than just doing maths on paper?
-% what could be improved?
-% any other thoughts?
-
-
-
-\begin{enumerate}
-
-\item Please circle on the scale below how easy-to-use you felt \emph{Nico}
-was.
-
-\begin{center}
-{\Huge \vspace{-0.5cm}☹\hspace{0.25cm}{\bf ·}\hspace{0.25cm}{\bf ·}\hspace{0.25cm}{\bf ·}\hspace{0.25cm}☺\\}
-\end{center}
-
-\item Please circle on the scale below how intuitive you found using \emph{Nico}
-to be.
-
-\begin{center}
-{\Huge \vspace{-0.5cm}☹\hspace{0.25cm}{\bf ·}\hspace{0.25cm}{\bf ·}\hspace{0.25cm}{\bf ·}\hspace{0.25cm}☺\\}
-
-\end{center}
-
-\pagebreak
-
-\item Did you prefer working with \emph{Nico} to working the answers out on
-paper (circle as appropriate)?
-
-\begin{center}
-Yes\hspace{1cm}No\\
-\end{center}
-
-\fbox{
-\begin{minipage}{17cm}
-Why?\hfill\vspace{2cm}
-\end{minipage}
-}\\
-
-\item Please circle on the scale below how clearly you felt the circle notation
-illustrated the flow of information throughout the calculation.
-
-\begin{center}
-{\Huge \vspace{-0.5cm}☹\hspace{0.25cm}{\bf ·}\hspace{0.25cm}{\bf ·}\hspace{0.25cm}{\bf ·}\hspace{0.25cm}☺\\}
-\end{center}
-
-\item How could \emph{Nico} be improved?  Would you add any features?  Would you
-take any features away?\\
-
-\fbox{
-\begin{minipage}{17cm}
-\hfill\vspace{3cm}
-\end{minipage}
-}\\
-
-\item Any other thoughts?\\
-
-\fbox{
-\begin{minipage}{17cm}
-\hfill\vspace{3cm}
-\end{minipage}
-}\\
-
-\end{enumerate}
 
 Thank you very much for your help with my project!  Your responses will remain
 confidential, although they are liable to appear in an anonymised form

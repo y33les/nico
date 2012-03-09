@@ -21,6 +21,29 @@
 \setlength{\parindent}{0cm}
 \setlength{\parskip}{0.25cm}
 
+\newcommand{\likert}{
+\begin{center}
+% likert scale
+\setlength{\unitlength}{5mm}
+\begin{picture}(18,2)
+\put(0,1.5){\circle{1}}
+\put(0.5,1.5){\line(1,0){4}}
+\put(5,1.5){\circle{1}}
+\put(5.5,1.5){\line(1,0){4}}
+\put(10,1.5){\circle{1}}
+\put(10.5,1.5){\line(1,0){4}}
+\put(15,1.5){\circle{1}}
+\put(15.5,1.5){\line(1,0){4}}
+\put(20,1.5){\circle{1}}
+\put(-2.25,0){{\small Strongly disagree}}
+\put(4,0){{\small Disagree}}
+\put(9,0){{\small Neutral}}
+\put(14.25,0){{\small Agree}}
+\put(18,0){{\small Strongly agree}}
+\end{picture}
+\end{center}
+}
+
 \begin{document}
 
 \begin{center}
@@ -29,15 +52,184 @@
 
 \end{center}
 
-Thank you for agreeing to participate in the user study for my Part II Project!
+Thank you for agreeing to participate in the user study for my Part II Project.
 \emph{Nico} is a piece of educational software designed to aid learners in the
 visualisation of mathematical problems, by separating out the constituent parts
-of a calculation into distinct units on-screen.
+of a calculation into distinct visual units on-screen.
 
 The purpose of this study is to ascertain how well \emph{Nico} achieves its goal
 of providing a clear, accessible, interactive means of calculation, and to gather
-feedback on how the application could be improved, by means of a few short
-exercises.  Let us begin.
+feedback on how the application could be improved.  The study also aims to compare
+\emph{Nico} to traditional mathematical methods.
+
+Please review and sign the attached Statement of Informed Consent (Section 3)
+and please feel free to ask any questions you may have about it.
+
+Before we begin, please answer the following questions.
+
+\begin{itemize}
+
+\item Have you used \emph{Nico} before?
+
+\begin{center}
+Yes\hspace{1cm}No\\
+\end{center}
+
+\item How well do you agree with the following statement (cross as appropriate)?\\
+\emph{I am confident in my ability to calculate answers to simple mathematical problems.}
+
+\likert
+
+\end{itemize}
+
+Thank you.  Let us begin.
+
+\section{Study}
+
+You will now be issued a group number.  If you are in Group 1, please proceed to
+Section 1.1.  If you are in Group 2, please proceed to Section 1.2.  If you would
+like to stop at any point, please don't hesitate to let me know.
+
+\subsection{\emph{Nico}}
+
+In this section, you will use \emph{Nico} to solve some simple mathematical
+problems.  The purpose of this section is to evaluate how well \emph{Nico}
+performs in comparison with manual calculation.  We will be keeping a record of
+the time taken to complete each problem, but please do not let this make you feel
+rushed.  Work at a pace that is normal and comfortable for you.
+
+Before we begin the tasks, please watch the instructional video
+\verb¬qs/tut.avi¬ for a briefing on how to use \emph{Nico} and an explanation
+of its controls.
+
+Now that you have done this, please spend 5 minutes experimenting with
+\emph{Nico}.  Open the application and load the file \verb¬qs/blank.nqs¬ using
+the file chooser.  As you explore, please tell me your thoughts about the
+application.
+
+Now, let us move on to the problems.  Please use the {\sffamily {\bf File}} menu
+at the top of the screen to load the file \verb¬qs/user-study.nqs¬.  You will
+be presented with a series of problems to solve using \emph{Nico}; please solve
+them.
+
+Thank you very much.
+
+\begin{itemize}
+\item If you are in Group 1, please continue to Section 1.2
+\item If you are in Group 2, please continue to Section 2
+\end{itemize}
+
+\subsection{Manual Calculation}
+
+In this section, you will solve some simple mathematical problems using pen
+and paper.  The purpose of this section is as a control, to compare to your
+results using \emph{Nico}.  Once again, we will be keeping a record of the time
+you take to complete each question, but please do not let this make you feel
+rushed.  Work at a pace that is normal and comfortable for you, and don't forget
+to show your working.
+
+Let us begin.
+
+% possibly present on a separate sheet so they can't look ahead and cheat?
+
+\begin{enumerate}
+
+\item \emph{2+3}\\
+
+\fbox{
+\begin{minipage}{16cm}
+\hfill\vspace{3cm}
+\end{minipage}
+}\\
+
+\item \emph{9÷3}\\
+
+\fbox{
+\begin{minipage}{16cm}
+\hfill\vspace{3cm}
+\end{minipage}
+}\\
+
+\item \emph{1+2+3+4+5}\\
+
+\fbox{
+\begin{minipage}{16cm}
+\hfill\vspace{3cm}
+\end{minipage}
+}\\
+
+\item \emph{(2×4)+(3-5)}\\
+
+\fbox{
+\begin{minipage}{16cm}
+\hfill\vspace{3cm}
+\end{minipage}
+}\\
+
+\item \emph{((3×4)÷(3+3))×8}\\
+
+\fbox{
+\begin{minipage}{16cm}
+\hfill\vspace{3cm}
+\end{minipage}
+}\\
+
+\item \emph{((1+2+3+4+5)+(2×4×6×8×10))×1×2×(1+2+3+4+5)}\\
+
+\fbox{
+\begin{minipage}{16cm}
+\hfill\vspace{3cm}
+\end{minipage}
+}\\
+
+\item \emph{12+14}\\
+
+\fbox{
+\begin{minipage}{16cm}
+\hfill\vspace{3cm}
+\end{minipage}
+}\\
+
+\item \emph{247×35}\\
+
+\fbox{
+\begin{minipage}{16cm}
+\hfill\vspace{3cm}
+\end{minipage}
+}\\
+
+\item \emph{120÷((2×10)+5+5)}\\
+
+\fbox{
+\begin{minipage}{16cm}
+\hfill\vspace{3cm}
+\end{minipage}
+}\\
+
+\item \emph{((2+5)×(6÷2)×(9-8))+((3+4)-(5×6))+120}\\
+
+\fbox{
+\begin{minipage}{16cm}
+\hfill\vspace{3cm}
+\end{minipage}
+}\\
+
+\end{enumerate}
+
+Thank you very much.
+
+\begin{itemize}
+\item If you are in Group 1, please continue to Section 2
+\item If you are in Group 2, please continue to Section 1.1
+\end{itemize}
+
+\section{Feedback}
+
+lol
+
+\section{Statement of Informed Consent}
+
+lol
 
 \section*{Welcome to \emph{Nico}!}
 
@@ -292,10 +484,11 @@ take any features away?\\
 \end{enumerate}
 
 Thank you very much for your help with my project!  Your responses will remain
-confidential, although they are liable to appear in the final report, of which a
-copy will be retained by the University of Cambridge Computer Laboratory Library\\
+confidential, although they are liable to appear in an anonymised form
+in the final report, of which a copy will be retained by the University of
+Cambridge Computer Laboratory Library
 (\verb¬http://www.cl.cam.ac.uk/library/¬).  The final report will also be
-available via my repository at GitHub\\
+available via my repository at GitHub
 (\verb¬http://github.com/loomcore/nico¬).
 
 \begin{center}
@@ -303,13 +496,29 @@ available via my repository at GitHub\\
 \fbox{
 \parbox{18cm}{
 \begin{center}
-{\large {\bf Declaration}}\\\vspace{0.5cm}
-I hereby authorise the use of my responses to this study in the author's Part II
-Project for the University of Cambridge Computer Science Tripos.  I acknowledge
-that my responses may be published in the final report, and that this report will
-be made publicly available from the Univeristy of Cambridge Computer Laboratory
-Library and from GitHub.\\
+{\large {\bf Statement of Informed Consent}}\\\vspace{0.5cm}
 \end{center}
+
+I state that I am over 18 years of age and wish to participate in a program of
+research being conducted by Philip Yeeles at the University of Cambridge. I
+acknowledge that this study has been approved by the University of Cambridge
+Computer Laboratory Ethics Committee.\\
+
+The purpose of this research is to assess the usability of a prototype user
+interface for representing mathematical calculations in a graphical manner.\\
+
+The procedures involve the monitored use of the interface.  I will be asked to
+perform specific tasks using the tools.  I will also be asked open-ended
+questions about the tools and my experience using them.\\
+
+All information collected in the study is confidential, and my name will not
+be identified at any time.  I understand that I am free to ask questions or to
+withdraw from participation at any time without penalty.\\
+
+I acknowledge that my (anonymised) responses may be published in the final
+report, and that this report will be made publicly available from the University
+of Cambridge Computer Laboratory Library and from GitHub.\\
+
 \begin{spacing}{2}
 {\bf Signed:}
 \end{spacing}

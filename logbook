@@ -1046,3 +1046,4 @@
           - cool, that works now but forgot the \ns -.-
           - done, testing...
           - yep, works :) - timers on session start, question right, question wrong, next question and qset finished
+          - interesting (but awful), using the menubar to laod a new qset crashes one of the agents, needs further investigation

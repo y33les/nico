@@ -1017,7 +1017,8 @@
                                                                                                     out '()]
                                                                                                (cond (empty? in) (reverse out)
                                                                                                      (= x (:name (first in))) (recur (rest in) out)
-                                                                                                     :else (recur (rest in) (cons (first in) out))))))))))
+                                                                                                     :else (recur (rest in) (cons (first in) out))))))
+                                                               (recur (rest cs))))))
                             ;; old code was here
                             :else (send-off used-circles (fn [a] (loop [in a
                                                                        out '()]

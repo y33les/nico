@@ -1090,3 +1090,6 @@
           - altogether possible that the multilink problem is related to it trying to remove the other links, like c0->c1->c2<-c0, removing c0 causes it to crash, poss. something to do with trying to remove c1->c2 at the same time as c0->c1 and c0->c2?
           - then again, maybe it could be something to do with the fact that i don't seem to be recurring at all in the loop starting at line 1005, so i only deal with the first link
           - will commit/push before i change this, as lots of potential for fuck-ups methinks
+          - hmmm, have added a recur but still no joy re the chaining problem; let's try the multilinks...
+          - omg fixed! awesome! :D it really is amazing how much difference getting some sleep can make :P
+          - chaining thing still a problem though, investigating (but committing/pushing first)...

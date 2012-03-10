@@ -1003,7 +1003,7 @@
                           args (is-arg-of c)
                           arg? (not (empty? args))]
                       (cond arg? (loop [cs args]
-                                   (cond (not (empty? cs)) (let [cc (find-circle (first cs))
+                                   (cond (not (empty? cs)) (let [cc (find-circle (:c (first cs)))
                                                                  is (arg-is c cc)
                                                                  nc (loop [i  is
                                                                            rc cc]
@@ -1018,6 +1018,24 @@
                                                                                                (cond (empty? in) (reverse out)
                                                                                                      (= x (:name (first in))) (recur (rest in) out)
                                                                                                      :else (recur (rest in) (cons (first in) out))))))))))
+                            ;; old code was here
+                            :else (send-off used-circles (fn [a] (loop [in a
+                                                                       out '()]
+                                                                  (cond (empty? in) (reverse out)
+                                                                        (= x (:name (first in))) (recur (rest in) out)
+                                                                        :else (recur (rest in) (cons (first in) out))))))))
+        :else (send-off used-circles (fn [a] (loop [in  a
+                                                   out '()
+                                                   c   (point-in-circle x y)
+                                                   c?  (not (nil? c))]
+                                              (cond (not c?) nil ;; (alert "Circle not found.")
+                                                    :else (cond (empty? in) (reverse out)
+                                                                (= (:name (first in)) c) (recur (rest in) out c c?)
+                                                                :else (recur (rest in) (cons (first in) out) c c?))))))))
+
+    ;; (render)
+    ;; (check-answer)))
+
 ;;                                          (let [cs (loop [in (rest (:circ c))
 ;;                                                  out '()
 ;;                                                  n 0]
@@ -1036,22 +1054,7 @@
 ;;                                                                      (cond (empty? in) (reverse out)
 ;;                                                                            (= x (:name (first in))) (recur (rest in) out)
                             ;;                                                                            :else (recur (rest in) (cons (first in) out))))))))
-                            :else (send-off used-circles (fn [a] (loop [in a
-                                                                       out '()]
-                                                                  (cond (empty? in) (reverse out)
-                                                                        (= x (:name (first in))) (recur (rest in) out)
-                                                                        :else (recur (rest in) (cons (first in) out))))))))
-        :else (send-off used-circles (fn [a] (loop [in  a
-                                                   out '()
-                                                   c   (point-in-circle x y)
-                                                   c?  (not (nil? c))]
-                                              (cond (not c?) nil ;; (alert "Circle not found.")
-                                                    :else (cond (empty? in) (reverse out)
-                                                                (= (:name (first in)) c) (recur (rest in) out c c?)
-                                                                :else (recur (rest in) (cons (first in) out) c c?))))))))
 
-    ;; (render)
-    ;; (check-answer)))
 
 (defn add-placeholder-arg
   "Adds a placeholder argument to an existing circle c."

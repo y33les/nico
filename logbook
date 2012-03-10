@@ -1061,3 +1061,32 @@
           - have made the circles thicker too, though that purple looks crap; making it a bit brighter
           - harrumph, that's even less visible - maybe the blue from highlight?
           - cool, that works! :D sorted :)
+10/03/12: - harrumph, seesaw is weird so can't easily do double-buffering to reduce flicker; can just set a number of buffers with a java.awt.Canvas, but a seesaw convas is a javax.swing.JPanel with paintComponent overridden
+          - ok... binning a new (blank) circle just works :\
+          - as does a non-blank one...
+          - oh no, wait, i remember now - it's connected ones that are the problem *facepalm*
+          - wtf, i was able to bin a non-dependent linked circle :O
+          - ok, so dpendent linked circles are still a problem; i must've just forgotten what i'd fixed, how embarrassing...:$
+           have shifted all that commented-out crap to just below del-circle-safe, have left a comment saying so
+          - weird, it's crashing on the point-in-circle call on line 1029, which is in the non-string bit
+          - apparently an agent is failed; guessing that this is used-circles, so (:name cc) on line 1013 is returning nil (which is non-string)
+          - yep, used-circles is failed
+          - but calling :name on a result of find-circle still gives its name as a string; weird
+          - yep, upon closer inspection of the error trace it's failing at the invocation of del-circle safe on line 1013, which somehow is going to the non-string bit
+          - weird, it's also complaining about the update fn at line 1300, which is the mod-arg fn
+          - hmmm, tried separating del-circle and del-circle-safe for the recursion on line 1013, but still complaining about point-in-circle (except now it's the one in the non-string bit of del-circle), and also that used-circles has failed
+          - oh, is-arg-of returns a list of maps!  on line 1006 we do (find-circle (first cs)), where (first cs) is a map - have made it now call (find-circle (:c (first cs))), which makes sense
+          - AWWWWWWWW YEEEEEEEEEEAAAAAAAAAAHHHHHHHHHH, that seems to have fixed it!  will still do more tests with more circles, but for now, YAY!!1 :D
+          - works with the same circle linked multiple times :D
+          - works with many circles linked to one :D
+          - works with many circle and many links :D
+          - dies with many links between circles, i.e. a circle linked to several things is binned (NullPointerException)
+          - chained circles also slightly weird; binning one on the end of a chain (i.e. c0 of c0->c1->c2<-c3) disconnects the next one (i.e. c1 in this example)
+          - binning c1 in that example is fine though
+          - binning c2 is also fine
+          - as is binning c3
+          - yeah, with the chained thing; it deletes all the links along the chain so like with c0->c1->c2->c3
+, deleting c0 removes the links from c0->c1, but also c1->c2 and c2->c3 for some reason
+          - altogether possible that the multilink problem is related to it trying to remove the other links, like c0->c1->c2<-c0, removing c0 causes it to crash, poss. something to do with trying to remove c1->c2 at the same time as c0->c1 and c0->c2?
+          - then again, maybe it could be something to do with the fact that i don't seem to be recurring at all in the loop starting at line 1005, so i only deal with the first link
+          - will commit/push before i change this, as lots of potential for fuck-ups methinks

@@ -1093,3 +1093,17 @@
           - hmmm, have added a recur but still no joy re the chaining problem; let's try the multilinks...
           - omg fixed! awesome! :D it really is amazing how much difference getting some sleep can make :P
           - chaining thing still a problem though, investigating (but committing/pushing first)...
+          - trying replacing the binding to args with a fresh instance of (is-arg-of c), maybe that'll help?
+          - nope, no worse, but no better
+          - w00t, just noticed that i can make the frame not-resizable :P that solves that problem then :P
+          - yep, that works :P temporary hack solutions ftw
+          - back to the chain-deletion problem...
+          - well, arg-is doesn't think c0 is an arg of c2 (in c0->c1->c2)
+          - and nor does is-arg-of
+          - oh, i see; i call del-circle-safe on the second circle, which replaces the arg in the circle that uses it with a \?, then it's put back on to used-circles but not rejoined
+          - going to have to write a cond for that
+          - i also note that in the first q of qstest.nqs, 1+2+3+4+5 and 2-4-6-8-10 highlight the relevant bits of the question, but their sum doesn't (i.e. the + circle that has both as arguments)
+          - i also also note that the highlighting bug only occurs where the same circle is linked twice; the bug occurs in the target circle (e.g. with c0->c1->c2<-c0 it occurs with c2), but we don't appear to lose any functionality
+          - have commented out line 522 just to record the video, so it won't print the circles' names
+          - interestingly, the highlighting breaks for the question 1+2+3+4+5 where i put 1+2+3+4+8
+          - right, video filmed, time to edit this bitch

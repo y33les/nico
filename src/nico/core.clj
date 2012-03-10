@@ -519,7 +519,7 @@
         (.drawLine (+ x 48) (+ y 100) (+ x 52) (+ y 104)) ;; bottom arrow
         (.drawLine x (+ y 48) (- x 4) (+ y 52)) ;; left arrow
         (.drawLine x (+ y 48) (+ x 4) (+ y 52)) ;; left arrow
-        (.drawString sym x (+ y 110))
+        ;; (.drawString sym x (+ y 110))
         (.drawString op (+ x 46) (+ y 54)))
       (draw-args g args x y)
       (link-circles c))))
@@ -1002,7 +1002,7 @@
   (cond (string? x) (let [c    (find-circle x)
                           args (is-arg-of c)
                           arg? (not (empty? args))]
-                      (cond arg? (loop [cs args]
+                      (cond arg? (loop [cs (is-arg-of c)]
                                    (cond (not (empty? cs)) (let [cc (find-circle (:c (first cs)))
                                                                  is (arg-is c cc)
                                                                  nc (loop [i  is
@@ -1476,6 +1476,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.")))
     (invoke-later
       (do
         (-> (frame :title "Nico v0.0.1",
+                   :resizable? false
                    :menubar (menubar :items [(menu :text "File"
                                                    :mnemonic \F
                                                    :items [open-action exit-action])

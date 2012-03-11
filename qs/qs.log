@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.2-0.9995.2 (TeX Live 2009/Debian) (format=xelatex 2012.3.2)  9 MAR 2012 16:18
+This is XeTeX, Version 3.1415926-2.2-0.9995.2 (TeX Live 2009/Debian) (format=xelatex 2012.3.2)  11 MAR 2012 17:21
 entering extended mode
  %&-line parsing enabled.
 **\input qs.tex
@@ -294,10 +294,6 @@ LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/it' will be
 (Font)              scaled to size 12.0pt on input line 111.
 LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
 (Font)              scaled to size 7.90237pt on input line 120.
-LaTeX Font Info:    Font shape `EU1/LinuxBiolinumO(0)/m/n' will be
-(Font)              scaled to size 9.9768pt on input line 128.
-LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/n' will be
-(Font)              scaled to size 10.0pt on input line 128.
 
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
@@ -427,6 +423,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 237--238
 
  []
 
+LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/n' will be
+(Font)              scaled to size 10.0pt on input line 264.
 
 Underfull \hbox (badness 10000) in paragraph at lines 267--269
 
@@ -577,32 +575,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 413--415
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 463--463
+Underfull \hbox (badness 10000) in paragraph at lines 465--465
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 463--463
+Underfull \hbox (badness 10000) in paragraph at lines 465--465
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 463--463
+Underfull \hbox (badness 10000) in paragraph at lines 465--465
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 463--463
+Underfull \hbox (badness 10000) in paragraph at lines 465--465
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 463--463
+Underfull \hbox (badness 10000) in paragraph at lines 465--465
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 463--463
+Underfull \hbox (badness 10000) in paragraph at lines 465--465
 
  []
 
@@ -621,11 +619,11 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
 
 [9] (./qs.aux) ) 
 Here is how much of TeX's memory you used:
- 5183 strings out of 495724
- 85645 string characters out of 1189347
+ 5181 strings out of 495724
+ 85573 string characters out of 1189347
  158868 words of memory out of 3000000
- 8284 multiletter control sequences out of 15000+50000
- 4377 words of font info for 42 fonts, out of 3000000 for 9000
+ 8283 multiletter control sequences out of 15000+50000
+ 4369 words of font info for 41 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  29i,10n,68p,512b,287s stack positions out of 5000i,500n,10000p,200000b,50000s
 

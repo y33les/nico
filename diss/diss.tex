@@ -18,13 +18,13 @@
 \setmonofont{Monaco}
 \allsectionsfont{\sffamily}
 
+\newfontinstance\bigsf[Color=000000,Scale=1.25]{Myriad Pro Light}
+
 \input{epsf}                            % to allow postscript inclusions
 % On thor and CUS read top of file:
 %     /opt/TeX/lib/texmf/tex/dvips/epsf.sty
 % On CL machines read:
 %     /usr/lib/tex/macros/dvips/epsf.tex
-
-
 
 \raggedbottom                           % try to avoid widows and orphans
 \sloppy
@@ -48,18 +48,18 @@
 
 \pagestyle{empty}
 
-\hfill{\LARGE \bf Philip Yeeles}
+\hfill{\LARGE \bf \sffamily Philip Yeeles}
 
 \vspace*{60mm}
 \begin{center}
 \Huge
-{\bf Nico: An Environment for Mathematical Expression in Schools} \\
+{\bf \bigsf Nico: An Environment for Mathematical Expression in Schools} \\
 \vspace*{5mm}
-Computer Science Tripos \\
+{\sffamily Computer Science Tripos} \\
 \vspace*{5mm}
-Selwyn College \\
+{\sffamily Selwyn College} \\
 \vspace*{5mm}
-\today  % today's date
+{\sffamily \today}  % today's date
 \end{center}
 
 \cleardoublepage
@@ -75,15 +75,15 @@ Selwyn College \\
 
 {\large
 \begin{tabular}{ll}
-Name:               & \bf Philip Yeeles                                               \\
-College:            & \bf Selwyn College                                              \\
-Project Title:      & \bf Nico: An Environment for Mathematical\\
-                    & \bf Expression in Schools \\
-Examination:        & \bf Computer Science Tripos, May 2012                           \\
-Word Count:         & \bf TBC\footnotemark[1]
+\bf Name:               & Philip Yeeles                                                   \\
+\bf College:            & Selwyn College                                                  \\
+\bf Project Title:      & Nico: An Environment for Mathematical\\
+                        & Expression in Schools \\
+\bf Examination:        & Computer Science Tripos, May 2012                               \\
+\bf Word Count:         & TBC\footnotemark[1]
 (well less than the 12000 limit) \\
-Project Originator: & P.~M.~Yeeles (\verb¬pmy22¬)                                    \\
-Supervisors:        & Dr S.~J.~Aaron (\verb¬sja55¬), A.~G.~Stead (\verb¬ags46¬)     \\
+\bf Project Originator: & P.~M.~Yeeles (\verb¬pmy22¬)                                    \\
+\bf Supervisors:        & Dr S.~J.~Aaron (\verb¬sja55¬), A.~G.~Stead (\verb¬ags46¬)     \\
 \end{tabular}
 }
 \footnotetext[1]{This word count was computed
@@ -93,6 +93,10 @@ by {\tt detex diss.tex | tr -cd '0-9A-Za-z $\tt\backslash$n' | wc -w}
 
 
 \section*{Original Aims of the Project}
+
+To develop a piece of educational software in the Clojure programming language
+that allows the user to express a series of mathematical calculations in a
+graphical manner, making the method by which the answer was reached clear
 
 To write a demonstration dissertation\footnote{A normal footnote without the
 complication of being in a table.} using \LaTeX\ to save

@@ -12,7 +12,7 @@
 \contentsline {chapter}{\numberline {4}Evaluation}{13}
 \contentsline {section}{\numberline {4.1}Printing and binding}{13}
 \contentsline {subsection}{\numberline {4.1.1}Things to note}{13}
-\contentsline {section}{\numberline {4.2}Further information}{14}
+\contentsline {section}{\numberline {4.2}Further information}{13}
 \contentsline {chapter}{\numberline {5}Conclusion}{15}
 \contentsline {chapter}{Bibliography}{17}
 \contentsline {chapter}{\numberline {A}Latex source}{19}

@@ -1,0 +1,699 @@
+%% This is file `sectsty.sty',
+
+%% generated with the docstrip utility.
+
+%%
+
+%% The original source files were:
+
+%%
+
+%% sectsty.dtx  (with options: `package')
+
+%% 
+
+%% IMPORTANT NOTICE:
+
+%% 
+
+%% For the copyright see the source file.
+
+%% 
+
+%% You are *not* allowed to modify this file.
+
+%% 
+
+%% You are *not* allowed to distribute this file.
+
+%% For distribution of the original source see the terms
+
+%% for copying and modification in the file sectsty.dtx.
+
+%% 
+
+%%
+
+%% \CheckSum{757}
+
+%% \CharacterTable
+
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+
+%%   Asterisk      \*     Plus          \+     Comma         \,
+
+%%   Minus         \-     Point         \.     Solidus       \/
+
+%%   Colon         \:     Semicolon     \;     Less than     \<
+
+%%   Equals        \=     Greater than  \>     Question mark \?
+
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+
+%%   Right brace   \}     Tilde         \~}
+
+\ProvidesPackage{sectsty}[1999/01/06 v1.8.7 Commands to change all
+
+sectional heading styles]
+
+\NeedsTeXFormat{LaTeX2e}[1998/06/01]
+
+\let\@svsec\relax
+
+\newcommand{\nohang}{\let\@hangfrom\@empty}
+
+\newcommand*{\SS@ulemsectuline}[2]{%
+
+\ifhmode% run-in head
+
+\begingroup%
+
+\def\hskip##1\relax##2\@@par{\endgroup\@@hskip##1\relax#1{##2}}%
+
+\else% stand alone head
+
+\protected@edef\@svsec{\noexpand#1{\@svsec\strut}}% added strut
+
+\def\interlinepenalty##1##2\@@par{\@@interlinepenalty##1#1{##2}\@@par}%
+
+\fi%
+
+#2\@@par}% added strut here then removed it (stupid boy)
+
+\let\@@hskip\hskip
+
+\let\@@interlinepenalty\interlinepenalty
+
+\def\SS@chapuline#1\par{\uline{#1}\par}
+
+\CheckCommand*{\underline}[1]{%
+
+  \relax
+
+  \ifmmode\@@underline{#1}%
+
+  \else $\@@underline{\hbox{#1}}\m@th$\relax\fi}
+
+\def\SS@underline#1{%
+
+  \relax
+
+  \ifmmode\@@underline{\strut#1}%
+
+  \else $\@@underline{\hbox{\strut#1}}\m@th$\relax\fi}
+
+\AtBeginDocument{\@ifundefined{UL@box}%
+
+{% if ulem has not been loaded
+
+\def\SS@makeulinesect{%
+
+\def\underline{\SS@ulemsectuline{\SS@underline}}%
+
+\def\ulemheading##1{\SS@ulemsectuline{\SS@underline}}}%
+
+\def\SS@makeulinepartchap{%
+
+\def\underline##1\par{\SS@underline{##1}\par}
+
+\def\ulemheading##1##2\par{\SS@underline{##2}\par}}%
+
+}% endif ulem has not been loaded
+
+{% If ulem has been loaded
+
+\def\SS@makeulinesect{%
+
+\def\underline{\SS@ulemsectuline{\uline}}%
+
+\def\ulemheading##1##2{\SS@ulemsectuline{##1}{##2}}}
+
+\def\SS@makeulinepartchap{%
+
+\let\underline\SS@chapuline
+
+\def\ulemheading##1##2\par{##1{##2}\par}}%
+
+}% endif ulem has been loaded
+
+}% end \AtBeginDocument
+
+\def\SS@rr{\def\raggedright{%
+
+  \let\\\@centercr\@rightskip\@flushglue \rightskip\@rightskip}}
+
+\newcommand{\SS@sectid}[1]{\gdef\SS@sectlevel{#1}}
+
+\def\ifraggedleft#1#2{%
+
+\edef\@tempcmda{\the\rightskip}%
+
+\edef\@tempcmdb{\the\z@skip}%
+
+\ifx\@tempcmda\@tempcmdb\@tempswatrue\else\@tempswafalse\fi
+
+\edef\@tempcmda{\the\leftskip}%
+
+\edef\@tempcmdb{\the\@flushglue}%
+
+\if@tempswa
+
+\ifx\@tempcmda\@tempcmdb\@tempswatrue\else\@tempswafalse\fi
+
+\fi
+
+\if@tempswa#1\else#2\fi}
+
+\def\ifcentering#1#2{%
+
+\edef\@tempcmda{\the\rightskip}%
+
+\edef\@tempcmdb{\the\@flushglue}%
+
+\ifx\@tempcmda\@tempcmdb\@tempswatrue\else\@tempswafalse\fi
+
+\edef\@tempcmda{\the\leftskip}%
+
+\edef\@tempcmdb{\the\@flushglue}%
+
+\if@tempswa
+
+\ifx\@tempcmda\@tempcmdb\@tempswatrue\else\@tempswafalse\fi
+
+\fi
+
+\if@tempswa#1\else#2\fi}
+
+\newcommand{\sectionrule}[5]{
+
+\ifcentering{\PackageError{sectsty}%
+
+{Can't use \protect\sectionrule\space with \protect\centering}%
+
+{The \protect\sectionrule\space command doesn't work properly
+
+with sectional headings that\MessageBreak are centred, so I'll
+
+carry on as if you'd not used the \protect\sectionrule\space
+
+command.}#5}
+
+{\ifnum\SS@sectlevel>1
+
+\SS@sectionrule{#1}{#2}{#3}{#4}{#5}%
+
+\else
+
+\SS@partchaprule{#1}{#2}{#3}{#4}{#5}%
+
+\fi
+
+}}
+
+\def\SS@sectionrule#1#2#3#4#5{%
+
+\ifraggedleft{\SS@rlsectionrule{#1}{#2}{#3}{#4}{#5}}%
+
+{\SS@normsectionrule{#1}{#2}{#3}{#4}{#5}}}
+
+\def\SS@normsectionrule#1#2#3#4#5{%
+
+\let\SS@@par\@@par\let\@@par\relax% very dodgy
+
+\noindent\makebox[0pt][l]{\rule[#1]{\hsize}{#2}}%
+
+#5\hfill\makebox[0pt][r]{\rule[#3]{\hsize}{#4}}%
+
+\let\@@par\SS@@par\@@par}
+
+\def\SS@rlsectionrule#1#2#3#4#5{%
+
+\let\SS@@par\@@par\let\@@par\relax% very dodgy
+
+\noindent\makebox[0pt][l]{\rule[#1]{\hsize}{#2}}\hfill%
+
+#5\makebox[0pt][r]{\rule[#3]{\hsize}{#4}}%
+
+\let\@@par\SS@@par\@@par}
+
+\def\SS@partchaprule#1#2#3#4#5{%
+
+\ifraggedleft{\SS@rlpartchaprule{#1}{#2}{#3}{#4}{#5}}%
+
+{\SS@normpartchaprule{#1}{#2}{#3}{#4}{#5}}}
+
+\def\SS@normpartchaprule#1#2#3#4#5\par{%
+
+\noindent\makebox[0pt][l]{\rule[#1]{\hsize}{#2}}%
+
+#5%
+
+\hfill\makebox[0pt][r]{\rule[#3]{\hsize}{#4}}%
+
+\par}
+
+\def\SS@rlpartchaprule#1#2#3#4#5\par{%
+
+\noindent\makebox[0pt][l]{\rule[#1]{\hsize}{#2}}\hfill%
+
+#5%
+
+\makebox[0pt][r]{\rule[#3]{\hsize}{#4}}%
+
+\par}
+
+\newcommand*{\partfont}          [1]
+
+   {\gdef\SE@partnumberfont{\SS@sectid{0}\SS@makeulinepartchap#1}
+
+    \gdef\SE@parttitlefont{\SS@sectid{0}\SS@makeulinepartchap#1}}
+
+\newcommand*{\partnumberfont}    [1]
+
+   {\gdef\SE@partnumberfont{\SS@sectid{0}\SS@makeulinepartchap#1}}
+
+\newcommand*{\parttitlefont}     [1]
+
+   {\gdef\SE@parttitlefont{\SS@sectid{0}\SS@makeulinepartchap#1}}
+
+\newcommand*{\chapterfont}       [1]
+
+   {\gdef\SE@chapnumfont{\SS@sectid{1}\SS@makeulinepartchap#1}
+
+    \gdef\SE@chaptitlefont{\SS@sectid{1}\SS@makeulinepartchap#1}}
+
+\newcommand*{\chapternumberfont} [1]
+
+   {\gdef\SE@chapnumfont{\SS@sectid{1}\SS@makeulinepartchap#1}}
+
+\newcommand*{\chaptertitlefont}  [1]
+
+   {\gdef\SE@chaptitlefont{\SS@sectid{1}\SS@makeulinepartchap#1}}
+
+\newcommand*{\sectionfont}       [1]
+
+   {\gdef\SE@sectfont{\SS@sectid{2}\SS@rr\SS@makeulinesect#1}}
+
+\newcommand*{\subsectionfont}    [1]
+
+   {\gdef\SE@subsectfont{\SS@sectid{3}\SS@rr\SS@makeulinesect#1}}
+
+\newcommand*{\subsubsectionfont} [1]
+
+   {\gdef\SE@subsubsectfont{\SS@sectid{4}\SS@rr\SS@makeulinesect#1}}
+
+\newcommand*{\paragraphfont}     [1]
+
+   {\gdef\SE@parafont{\SS@sectid{5}\SS@rr\SS@makeulinesect#1}}
+
+\newcommand*{\subparagraphfont}  [1]
+
+   {\gdef\SE@subparafont{\SS@sectid{6}\SS@rr\SS@makeulinesect#1}}
+
+
+
+\newcommand*{\allsectionsfont}   [1] {\partfont{#1}
+
+                                      \chapterfont{#1}
+
+                                      \sectionfont{#1}
+
+                                      \subsectionfont{#1}
+
+                                      \subsubsectionfont{#1}
+
+                                      \paragraphfont{#1}
+
+                                      \subparagraphfont{#1}}
+
+\allsectionsfont{\relax}
+
+\@tempswafalse
+
+\@ifclassloaded{article} {\@tempswatrue} {}
+
+\@ifclassloaded{report}  {\@tempswatrue} {}
+
+\@ifclassloaded{book}    {\@tempswatrue} {}
+
+\@ifclassloaded{letter}  {}              {}
+
+\@ifclassloaded{slides}  {}              {}
+
+\if@tempswa
+
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+
+      {-3.5ex \@plus -1ex \@minus -.2ex}%
+
+      {2.3ex \@plus.2ex}%
+
+      {\normalfont\Large\bfseries\SE@sectfont}}
+
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+
+      {-3.25ex\@plus -1ex \@minus -.2ex}%
+
+      {1.5ex \@plus .2ex}%
+
+      {\normalfont\large\bfseries\SE@subsectfont}}
+
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+
+      {-3.25ex\@plus -1ex \@minus -.2ex}%
+
+      {1.5ex \@plus .2ex}%
+
+      {\normalfont\normalsize\bfseries\SE@subsubsectfont}}
+
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+
+      {3.25ex \@plus1ex \@minus.2ex}%
+
+      {-1em}%
+
+      {\normalfont\normalsize\bfseries\SE@parafont}}
+
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+
+      {3.25ex \@plus1ex \@minus .2ex}%
+
+      {-1em}%
+
+      {\normalfont\normalsize\bfseries\SE@subparafont}}
+
+\else
+
+\PackageError{sectsty}%
+
+{The sectsty package doesn't work with\MessageBreak
+
+this document class}%
+
+{The sectsty package only works with the standard LaTeX document
+
+classes:\MessageBreak article, report, and book.}
+
+\fi
+
+%% Code from |report.cls| June 1996
+
+\@ifclassloaded{report}{%
+
+\def\@makechapterhead#1{%
+
+  \vspace*{50\p@}%
+
+  {\parindent \z@ \raggedright \normalfont
+
+    \ifnum \c@secnumdepth >\m@ne
+
+        \huge\bfseries\SE@chapnumfont \@chapapp\space \thechapter
+
+        \par\nobreak
+
+        \vskip 20\p@
+
+    \fi
+
+    \interlinepenalty\@M
+
+    \raggedright \normalfont
+
+    \Huge \bfseries \SE@chaptitlefont #1\par\nobreak
+
+    \vskip 40\p@
+
+  }}
+
+\def\@makeschapterhead#1{%
+
+  \vspace*{50\p@}%
+
+  {\parindent \z@ \raggedright
+
+    \normalfont
+
+    \interlinepenalty\@M
+
+    \Huge \bfseries \SE@chaptitlefont #1\par\nobreak
+
+    \vskip 40\p@
+
+  }}%
+
+}{}
+
+%% End code re-defining chapter stuff for report class
+
+%% Chapter code from |book.cls| 1997/10/10 v1.3x
+
+\@ifclassloaded{book}{%
+
+\def\@makechapterhead#1{%
+
+  \vspace*{50\p@}%
+
+  {\parindent \z@ \raggedright \normalfont
+
+    \ifnum \c@secnumdepth >\m@ne
+
+      \if@mainmatter
+
+        \huge\bfseries\SE@chapnumfont \@chapapp\space \thechapter
+
+        \par\nobreak
+
+        \vskip 20\p@
+
+      \fi
+
+    \fi
+
+    \interlinepenalty\@M
+
+    \raggedright \normalfont
+
+    \Huge \bfseries \SE@chaptitlefont #1\par\nobreak
+
+    \vskip 40\p@
+
+  }}
+
+\def\@makeschapterhead#1{%
+
+  \vspace*{50\p@}%
+
+  {\parindent \z@ \raggedright
+
+    \normalfont
+
+    \interlinepenalty\@M
+
+    \Huge \bfseries \SE@chaptitlefont  #1\par\nobreak
+
+    \vskip 40\p@
+
+  }}%
+
+}{}
+
+%% End code redefining chapter stuff from book.cls
+
+%% Part code from book.cls 1997/10/10 v1.3x
+
+\@ifclassloaded{book}{%
+
+\def\@part[#1]#2{%
+
+    \ifnum \c@secnumdepth >-2\relax
+
+      \refstepcounter{part}%
+
+      \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+
+    \else
+
+      \addcontentsline{toc}{part}{#1}%
+
+    \fi
+
+    \markboth{}{}%
+
+    {\centering
+
+     \interlinepenalty \@M
+
+     \normalfont
+
+     \ifnum \c@secnumdepth >-2\relax
+
+       \huge\bfseries\SE@partnumberfont \partname~\thepart
+
+       \par
+
+       \vskip 20\p@
+
+     \fi
+
+     \centering \normalfont
+
+     \Huge \bfseries \SE@parttitlefont #2\par}%
+
+    \@endpart}
+
+\def\@spart#1{%
+
+    {\centering
+
+     \interlinepenalty \@M
+
+     \normalfont \Huge \bfseries \SE@parttitlefont #1\par}%
+
+    \@endpart}
+
+}{}
+
+%% End code redefining part stuff from |book.cls|
+
+%% Part code from |article.cls| 1997/10/10 v1.3x
+
+\@ifclassloaded{article}{%
+
+\def\@part[#1]#2{%
+
+    \ifnum \c@secnumdepth >\m@ne
+
+      \refstepcounter{part}%
+
+      \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+
+    \else
+
+      \addcontentsline{toc}{part}{#1}%
+
+    \fi
+
+    {\parindent \z@ \raggedright
+
+     \interlinepenalty \@M
+
+     \normalfont
+
+     \ifnum \c@secnumdepth >\m@ne
+
+       \Large\bfseries\SE@partnumberfont \partname~\thepart
+
+       \par\nobreak
+
+     \fi
+
+     \raggedright \normalfont
+
+     \huge \bfseries \SE@parttitlefont #2%
+
+     \markboth{}{}\par}%
+
+    \nobreak
+
+    \vskip 3ex
+
+    \@afterheading}
+
+\def\@spart#1{%
+
+    {\parindent \z@ \raggedright
+
+     \interlinepenalty \@M
+
+     \normalfont
+
+     \huge \bfseries \SE@parttitlefont #1\par}%
+
+     \nobreak
+
+     \vskip 3ex
+
+     \@afterheading}
+
+}{}
+
+%% End code redefining part stuff from |article.cls|
+
+%% Part code from |report.cls| 1997/10/10 v1.3x
+
+\@ifclassloaded{report}{%
+
+\def\@part[#1]#2{%
+
+    \ifnum \c@secnumdepth >-2\relax
+
+      \refstepcounter{part}%
+
+      \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+
+    \else
+
+      \addcontentsline{toc}{part}{#1}%
+
+    \fi
+
+    \markboth{}{}%
+
+    {\centering
+
+     \interlinepenalty \@M
+
+     \normalfont
+
+     \ifnum \c@secnumdepth >-2\relax
+
+       \huge\bfseries\SE@partnumberfont \partname~\thepart
+
+       \par
+
+       \vskip 20\p@
+
+     \fi
+
+     \centering \normalfont
+
+     \Huge \bfseries \SE@parttitlefont #2\par}%
+
+    \@endpart}
+
+\def\@spart#1{%
+
+    {\centering
+
+     \interlinepenalty \@M
+
+     \normalfont
+
+     \Huge \bfseries \SE@parttitlefont #1\par}%
+
+    \@endpart}
+
+}{}
+
+%% End code redefining part stuff from report.cls
+
+\endinput
+
+%%
+
+%% End of file `sectsty.sty'.

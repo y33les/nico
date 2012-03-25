@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (TeX Live 2012/dev/Arch Linux) (format=xelatex 2012.2.27)  25 MAR 2012 13:12
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (TeX Live 2012/dev/Arch Linux) (format=xelatex 2012.2.27)  25 MAR 2012 13:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -44,13 +44,69 @@ This is `epsf.tex' v2.7k <10 July 1997>
 ) (./sectsty.sty
 Package: sectsty 1999/04/12 v2.0.1 Commands to change all sectional heading sty
 les
-) (/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+) (/usr/share/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+Package: pdfpages 2011/07/31 v0.4p Insert pages of external PDF documents (AM)
 
+(/usr/share/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count89
+\calc@Bcount=\count90
+\calc@Adimen=\dimen111
+\calc@Bdimen=\dimen112
+\calc@Askip=\skip43
+\calc@Bskip=\skip44
+LaTeX Info: Redefining \setlength on input line 76.
+LaTeX Info: Redefining \addtolength on input line 77.
+\calc@Ccount=\count91
+\calc@Cskip=\skip45
+)
+(/usr/share/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2010/10/06 v2.0c eso-pic (RN)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/atbegshi.sty
+Package: atbegshi 2011/01/30 v1.15 At begin shipout hook (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
+)
+(/usr/share/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is not detected.
+))
 (/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks17
 )
+(/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(/usr/share/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: xetex.def on input line 225.
+
+(/usr/share/texmf-dist/tex/xelatex/xetex-def/xetex.def
+File: xetex.def 2009/11/22 v0.94 LaTeX color/graphics driver for XeTeX (RRM/JK)
+
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+))
+(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
 (/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
@@ -61,13 +117,17 @@ Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
 Package graphics Info: Driver file: xetex.def on input line 91.
-
-(/usr/share/texmf-dist/tex/xelatex/xetex-def/xetex.def
-File: xetex.def 2009/11/22 v0.94 LaTeX color/graphics driver for XeTeX (RRM/JK)
-
-))
-\Gin@req@height=\dimen111
-\Gin@req@width=\dimen112
+)
+\Gin@req@height=\dimen113
+\Gin@req@width=\dimen114
+)
+(/usr/share/texmf-dist/tex/latex/pdfpages/ppxetex.def
+File: ppxetex.def 2011/07/31 v0.4p Pdfpages driver for XeTeX (AM)
+)
+\AM@pagebox=\box26
+\AM@toc@title=\toks18
+\c@AM@survey=\count92
+\AM@templatesizebox=\box27
 )
 (/usr/share/texmf-dist/tex/latex/fontspec/fontspec.sty
 Package: fontspec 2011/09/18 v2.2a Advanced font selection for XeLaTeX/LuaLaTeX
@@ -82,31 +142,10 @@ Package: l3names 2011/11/11 v2944 L3 Experimental namespace for primitives
 )
 (/usr/share/texmf-dist/tex/latex/etex-pkg/etex.sty
 Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
-\et@xins=\count89
-)
-(/usr/share/texmf-dist/tex/latex/tools/calc.sty
-Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count90
-\calc@Bcount=\count91
-\calc@Adimen=\dimen113
-\calc@Bdimen=\dimen114
-\calc@Askip=\skip43
-\calc@Bskip=\skip44
-LaTeX Info: Redefining \setlength on input line 76.
-LaTeX Info: Redefining \addtolength on input line 77.
-\calc@Ccount=\count92
-\calc@Cskip=\skip45
+\et@xins=\count93
 )
 Package: expl3 2011/11/19 v2966 L3 Experimental code bundle wrapper
 
-(/usr/share/texmf-dist/tex/latex/graphics/color.sty
-Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
-
-(/usr/share/texmf-dist/tex/latex/latexconfig/color.cfg
-File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
-)
-Package color Info: Driver file: xetex.def on input line 130.
-)
 (/usr/share/texmf-dist/tex/latex/l3kernel/l3basics.sty
 Package: l3basics 2011/10/15 v2915 L3 Experimental basic definitions
 )
@@ -121,44 +160,44 @@ Package: l3seq 2011/10/09 v2896 L3 Experimental sequences and stacks
 )
 (/usr/share/texmf-dist/tex/latex/l3kernel/l3int.sty
 Package: l3int 2011/10/22 v2928 L3 Experimental integers
-\c_max_int=\count93
-\l_tmpa_int=\count94
-\l_tmpb_int=\count95
-\l_tmpc_int=\count96
-\g_tmpa_int=\count97
-\g_tmpb_int=\count98
-\g_seq_nesting_depth_int=\count99
-\g_tl_inline_level_int=\count100
+\c_max_int=\count94
+\l_tmpa_int=\count95
+\l_tmpb_int=\count96
+\l_tmpc_int=\count97
+\g_tmpa_int=\count98
+\g_tmpb_int=\count99
+\g_seq_nesting_depth_int=\count100
+\g_tl_inline_level_int=\count101
 )
 (/usr/share/texmf-dist/tex/latex/l3kernel/l3quark.sty
 Package: l3quark 2011/10/09 v2896 L3 Experimental quarks
 )
 (/usr/share/texmf-dist/tex/latex/l3kernel/l3prg.sty
 Package: l3prg 2011/10/15 v2915 L3 Experimental control structures
-\g_prg_stepwise_level_int=\count101
+\g_prg_stepwise_level_int=\count102
 )
 (/usr/share/texmf-dist/tex/latex/l3kernel/l3clist.sty
 Package: l3clist 2011/10/09 v2896 L3 Experimental comma separated lists
-\g_clist_map_inline_int=\count102
+\g_clist_map_inline_int=\count103
 )
 (/usr/share/texmf-dist/tex/latex/l3kernel/l3token.sty
 Package: l3token 2011/10/22 v2931 L3 Experimental token manipulation
 )
 (/usr/share/texmf-dist/tex/latex/l3kernel/l3prop.sty
 Package: l3prop 2011/09/17 v2839 L3 Experimental property lists
-\g_prop_map_inline_int=\count103
+\g_prop_map_inline_int=\count104
 )
 (/usr/share/texmf-dist/tex/latex/l3kernel/l3msg.sty
 Package: l3msg 2011/10/09 v2896 L3 Experimental messages
 )
 (/usr/share/texmf-dist/tex/latex/l3kernel/l3io.sty
 Package: l3io 2011/10/09 v2896 L3 Experimental input-output operations
-\l_iow_stream_int=\count104
-\l_iow_line_length_int=\count105
-\l_iow_target_length_int=\count106
-\l_iow_current_line_int=\count107
-\l_iow_current_word_int=\count108
-\l_iow_current_indentation_int=\count109
+\l_iow_stream_int=\count105
+\l_iow_line_length_int=\count106
+\l_iow_target_length_int=\count107
+\l_iow_current_line_int=\count108
+\l_iow_current_word_int=\count109
+\l_iow_current_indentation_int=\count110
 )
 (/usr/share/texmf-dist/tex/latex/l3kernel/l3file.sty
 Package: l3file 2011/10/09 v2896 L3 Experimental file operations
@@ -178,69 +217,69 @@ Package: l3skip 2011/11/14 v2959 L3 Experimental dimensions and skips
 )
 (/usr/share/texmf-dist/tex/latex/l3kernel/l3keys.sty
 Package: l3keys 2011/09/10 v2800 L3 Experimental key-value interfaces
-\g_keyval_level_int=\count110
-\l_keys_choice_int=\count111
+\g_keyval_level_int=\count111
+\l_keys_choice_int=\count112
 )
 (/usr/share/texmf-dist/tex/latex/l3kernel/l3fp.sty
 Package: l3fp 2011/09/26 v2857 L3 Experimental floating-point operations
-\c_one_million=\count112
-\c_one_hundred_million=\count113
-\c_five_hundred_million=\count114
-\c_one_thousand_million=\count115
-\c_fp_pi_by_four_decimal_int=\count116
-\c_fp_pi_by_four_extended_int=\count117
-\c_fp_pi_decimal_int=\count118
-\c_fp_pi_extended_int=\count119
-\c_fp_two_pi_decimal_int=\count120
-\c_fp_two_pi_extended_int=\count121
-\l_fp_count_int=\count122
-\l_fp_div_offset_int=\count123
-\l_fp_exp_integer_int=\count124
-\l_fp_exp_decimal_int=\count125
-\l_fp_exp_extended_int=\count126
-\l_fp_exp_exponent_int=\count127
-\l_fp_input_a_sign_int=\count128
-\l_fp_input_a_integer_int=\count129
-\l_fp_input_a_decimal_int=\count130
-\l_fp_input_a_exponent_int=\count131
-\l_fp_input_b_sign_int=\count132
-\l_fp_input_b_integer_int=\count133
-\l_fp_input_b_decimal_int=\count134
-\l_fp_input_b_exponent_int=\count135
-\l_fp_input_a_extended_int=\count136
-\l_fp_input_b_extended_int=\count137
-\l_fp_mul_a_i_int=\count138
-\l_fp_mul_a_ii_int=\count139
-\l_fp_mul_a_iii_int=\count140
-\l_fp_mul_a_iv_int=\count141
-\l_fp_mul_a_v_int=\count142
-\l_fp_mul_a_vi_int=\count143
-\l_fp_mul_b_i_int=\count144
-\l_fp_mul_b_ii_int=\count145
-\l_fp_mul_b_iii_int=\count146
-\l_fp_mul_b_iv_int=\count147
-\l_fp_mul_b_v_int=\count148
-\l_fp_mul_b_vi_int=\count149
-\l_fp_mul_output_int=\count150
-\l_fp_output_sign_int=\count151
-\l_fp_output_integer_int=\count152
-\l_fp_output_decimal_int=\count153
-\l_fp_output_exponent_int=\count154
-\l_fp_output_extended_int=\count155
-\l_fp_round_position_int=\count156
-\l_fp_round_target_int=\count157
-\l_fp_split_sign_int=\count158
-\l_fp_tmp_int=\count159
-\l_fp_trig_octant_int=\count160
-\l_fp_trig_sign_int=\count161
-\l_fp_trig_decimal_int=\count162
-\l_fp_trig_extended_int=\count163
+\c_one_million=\count113
+\c_one_hundred_million=\count114
+\c_five_hundred_million=\count115
+\c_one_thousand_million=\count116
+\c_fp_pi_by_four_decimal_int=\count117
+\c_fp_pi_by_four_extended_int=\count118
+\c_fp_pi_decimal_int=\count119
+\c_fp_pi_extended_int=\count120
+\c_fp_two_pi_decimal_int=\count121
+\c_fp_two_pi_extended_int=\count122
+\l_fp_count_int=\count123
+\l_fp_div_offset_int=\count124
+\l_fp_exp_integer_int=\count125
+\l_fp_exp_decimal_int=\count126
+\l_fp_exp_extended_int=\count127
+\l_fp_exp_exponent_int=\count128
+\l_fp_input_a_sign_int=\count129
+\l_fp_input_a_integer_int=\count130
+\l_fp_input_a_decimal_int=\count131
+\l_fp_input_a_exponent_int=\count132
+\l_fp_input_b_sign_int=\count133
+\l_fp_input_b_integer_int=\count134
+\l_fp_input_b_decimal_int=\count135
+\l_fp_input_b_exponent_int=\count136
+\l_fp_input_a_extended_int=\count137
+\l_fp_input_b_extended_int=\count138
+\l_fp_mul_a_i_int=\count139
+\l_fp_mul_a_ii_int=\count140
+\l_fp_mul_a_iii_int=\count141
+\l_fp_mul_a_iv_int=\count142
+\l_fp_mul_a_v_int=\count143
+\l_fp_mul_a_vi_int=\count144
+\l_fp_mul_b_i_int=\count145
+\l_fp_mul_b_ii_int=\count146
+\l_fp_mul_b_iii_int=\count147
+\l_fp_mul_b_iv_int=\count148
+\l_fp_mul_b_v_int=\count149
+\l_fp_mul_b_vi_int=\count150
+\l_fp_mul_output_int=\count151
+\l_fp_output_sign_int=\count152
+\l_fp_output_integer_int=\count153
+\l_fp_output_decimal_int=\count154
+\l_fp_output_exponent_int=\count155
+\l_fp_output_extended_int=\count156
+\l_fp_round_position_int=\count157
+\l_fp_round_target_int=\count158
+\l_fp_split_sign_int=\count159
+\l_fp_tmp_int=\count160
+\l_fp_trig_octant_int=\count161
+\l_fp_trig_sign_int=\count162
+\l_fp_trig_decimal_int=\count163
+\l_fp_trig_extended_int=\count164
 \l_fp_tmp_dim=\dimen120
 \l_fp_tmp_skip=\skip51
 )
 (/usr/share/texmf-dist/tex/latex/l3kernel/l3box.sty
 Package: l3box 2011/11/15 v2960 L3 Experimental boxes
-\l_tmpb_box=\box26
+\l_tmpb_box=\box28
 \l_box_top_dim=\dimen121
 \l_box_bottom_dim=\dimen122
 \l_box_left_dim=\dimen123
@@ -249,11 +288,11 @@ Package: l3box 2011/11/15 v2960 L3 Experimental boxes
 \l_box_bottom_new_dim=\dimen126
 \l_box_left_new_dim=\dimen127
 \l_box_right_new_dim=\dimen128
-\l_box_tmp_box=\box27
+\l_box_tmp_box=\box29
 )
 (/usr/share/texmf-dist/tex/latex/l3kernel/l3coffins.sty
 Package: l3coffins 2011/11/15 v2963 L3 Experimental coffin code layer
-\l_coffin_tmp_box=\box28
+\l_coffin_tmp_box=\box30
 \l_coffin_tmp_dim=\dimen129
 \l_coffin_offset_x_dim=\dimen130
 \l_coffin_offset_y_dim=\dimen131
@@ -265,9 +304,9 @@ Package: l3coffins 2011/11/15 v2963 L3 Experimental coffin code layer
 \l_coffin_Height_dim=\dimen137
 \l_coffin_TotalHeight_dim=\dimen138
 \l_coffin_Width_dim=\dimen139
-\c_empty_coffin=\box29
-\l_coffin_aligned_coffin=\box30
-\l_coffin_aligned_internal_coffin=\box31
+\c_empty_coffin=\box31
+\l_coffin_aligned_coffin=\box32
+\l_coffin_aligned_internal_coffin=\box33
 \l_coffin_bounding_shift_dim=\dimen140
 \l_coffin_left_corner_dim=\dimen141
 \l_coffin_right_corner_dim=\dimen142
@@ -275,9 +314,9 @@ Package: l3coffins 2011/11/15 v2963 L3 Experimental coffin code layer
 \l_coffin_top_corner_dim=\dimen144
 \l_coffin_scaled_total_height_dim=\dimen145
 \l_coffin_scaled_width_dim=\dimen146
-\l_coffin_display_coffin=\box32
-\l_coffin_display_coord_coffin=\box33
-\l_coffin_display_pole_coffin=\box34
+\l_coffin_display_coffin=\box34
+\l_coffin_display_coord_coffin=\box35
+\l_coffin_display_pole_coffin=\box36
 \l_coffin_display_offset_dim=\dimen147
 \l_coffin_display_x_dim=\dimen148
 \l_coffin_display_y_dim=\dimen149
@@ -287,20 +326,20 @@ Package: l3color 2011/09/07 v2776 L3 Experimental colour support
 )
 (/usr/share/texmf-dist/tex/latex/l3kernel/l3luatex.sty
 Package: l3luatex 2011/09/10 v2798 L3 Experimental LuaTeX-specific functions
-\g_cctab_allocate_int=\count164
-\g_cctab_stack_int=\count165
+\g_cctab_allocate_int=\count165
+\g_cctab_stack_int=\count166
 ))
 (/usr/share/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 Package: xparse 2011/11/19 v2966 L3 Experimental document command parser
-\l_xparse_m_args_int=\count166
-\l_xparse_mandatory_args_int=\count167
-\l_xparse_processor_int=\count168
-\l_xparse_total_args_int=\count169
-\l_xparse_v_nesting_int=\count170
+\l_xparse_m_args_int=\count167
+\l_xparse_mandatory_args_int=\count168
+\l_xparse_processor_int=\count169
+\l_xparse_total_args_int=\count170
+\l_xparse_v_nesting_int=\count171
 )
-\l_fontspec_script_int=\count171
-\l_fontspec_language_int=\count172
-\l_fontspec_strnum_int=\count173
+\l_fontspec_script_int=\count172
+\l_fontspec_language_int=\count173
+\l_fontspec_strnum_int=\count174
 \l_fontspec_tmpa_dim=\dimen150
 \l_fontspec_tmpb_dim=\dimen151
 \l_fontspec_tmpc_dim=\dimen152
@@ -351,9 +390,9 @@ LaTeX Font Info:    Try loading font information for EU1+lmss on input line 357
 (/usr/share/texmf-dist/tex/latex/euenc/eu1lmss.fd
 File: eu1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ))
-\tipaTiiicode=\count174
-\tipasavetokens=\toks18
-\tipachecktokens=\toks19
+\tipaTiiicode=\count175
+\tipasavetokens=\toks19
+\tipachecktokens=\toks20
 )
 .................................................
 . xparse info: "define-command"
@@ -462,7 +501,7 @@ File: eu1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 Variant \prop_gput:cnV already defined; not changing it on line 485
 Variant \prop_gput:cnx already defined; not changing it on line 486
 Variant \keys_set:nx already defined; not changing it on line 963
-\c@fontspec_tmp_int=\count175
+\c@fontspec_tmp_int=\count176
 LaTeX Info: Redefining \itshape on input line 1881.
 LaTeX Info: Redefining \slshape on input line 1885.
 LaTeX Info: Redefining \scshape on input line 1889.
@@ -474,7 +513,7 @@ LaTeX Info: Redefining \upshape on input line 1893.
 . 
 . Sabon MT Std scale = 1.053789731.
 .................................................
-\g_fontspec_family_Sabon MT Std_int=\count176
+\g_fontspec_family_Sabon MT Std_int=\count177
 .................................................
 . fontspec info: "set-scale"
 . 
@@ -524,13 +563,13 @@ LaTeX Info: Redefining \upshape on input line 1893.
 . <->s*[1]"Sabon MT Std/BI/ICU:script=latn;language=DFLT;mapping=tex-text;"
 .................................................
 LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 16.
+(Font)              scaled to size 10.0pt on input line 18.
 .................................................
 . fontspec info: "set-scale"
 . 
 . Myriad Pro Light scale = 0.8520833330.
 .................................................
-\g_fontspec_family_Myriad Pro Light_int=\count177
+\g_fontspec_family_Myriad Pro Light_int=\count178
 .................................................
 . fontspec info: "set-scale"
 . 
@@ -585,7 +624,7 @@ LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/n' will be
 . 
 . Monaco scale = 0.7498945740.
 .................................................
-\g_fontspec_family_Monaco_int=\count178
+\g_fontspec_family_Monaco_int=\count179
 .................................................
 . fontspec info: "set-scale"
 . 
@@ -681,28 +720,29 @@ This is `epsf.tex' v2.7.4 <14 February 2011>
 ) (./diss.aux)
 \openout1 = `diss.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 40.
-LaTeX Font Info:    Try loading font information for T3+cmr on input line 40.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 42.
+LaTeX Font Info:    Try loading font information for T3+cmr on input line 42.
  (/usr/share/texmf-dist/tex/latex/tipa/t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
-LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    ... okay on input line 42.
 LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/n' will be
-(Font)              scaled to size 12.0pt on input line 40.
+(Font)              scaled to size 12.0pt on input line 42.
+\AtBeginShipoutBox=\box37
 .................................................
 . fontspec info: "setup-math"
 . 
@@ -710,121 +750,121 @@ LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/n' will be
 .................................................
 \symlegacymaths=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 40.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 40.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 40.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 40.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 40.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 40.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 40.
-LaTeX Font Info:    Redeclaring math accent \check on input line 40.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 40.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 40.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \colon on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 40.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 40.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 40.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 42.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 42.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 42.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 42.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 42.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 42.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 42.
+LaTeX Font Info:    Redeclaring math accent \check on input line 42.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 42.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 42.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 42.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 42.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 42.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 42.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 42.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 42.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 42.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 42.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 42.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 42.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 42.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 42.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 42.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 42.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 42.
 LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
-(Font)              `operators' in the math version `normal' on input line 40.
+(Font)              `operators' in the math version `normal' on input line 42.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> EU1/SabonMTStd(0)/m/n on input line 40.
+(Font)                  OT1/cmr/m/n --> EU1/SabonMTStd(0)/m/n on input line 42.
 
 LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
-(Font)              `operators' in the math version `bold' on input line 40.
+(Font)              `operators' in the math version `bold' on input line 42.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> EU1/SabonMTStd(0)/m/n on input line 40
+(Font)                  OT1/cmr/bx/n --> EU1/SabonMTStd(0)/m/n on input line 42
 .
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  EU1/SabonMTStd(0)/m/n --> EU1/SabonMTStd(0)/m/n on inpu
-t line 40.
+t line 42.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
 (Font)                  EU1/SabonMTStd(0)/m/n --> EU1/SabonMTStd(0)/m/n on inpu
-t line 40.
+t line 42.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 (Font)                  OT1/cmr/m/it --> EU1/SabonMTStd(0)/m/it on input line 4
-0.
+2.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
 (Font)                  OT1/cmr/bx/n --> EU1/SabonMTStd(0)/bx/n on input line 4
-0.
+2.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
 (Font)                  OT1/cmss/m/n --> EU1/MyriadProLight(0)/m/n on input lin
-e 40.
+e 42.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> EU1/Monaco(0)/m/n on input line 40.
+(Font)                  OT1/cmtt/m/n --> EU1/Monaco(0)/m/n on input line 42.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  EU1/SabonMTStd(0)/m/n --> EU1/SabonMTStd(0)/bx/n on inp
-ut line 40.
+ut line 42.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
 (Font)                  EU1/SabonMTStd(0)/m/n --> EU1/SabonMTStd(0)/bx/n on inp
-ut line 40.
+ut line 42.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> EU1/SabonMTStd(0)/bx/it on input line
- 40.
+ 42.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
 (Font)                  OT1/cmss/bx/n --> EU1/MyriadProLight(0)/bx/n on input l
-ine 40.
+ine 42.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> EU1/Monaco(0)/bx/n on input line 40.
+(Font)                  OT1/cmtt/m/n --> EU1/Monaco(0)/bx/n on input line 42.
 LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/n' will be
-(Font)              scaled to size 20.74pt on input line 51.
+(Font)              scaled to size 20.74pt on input line 53.
 LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/bx/n' will be
-(Font)              scaled to size 20.74pt on input line 51.
+(Font)              scaled to size 20.74pt on input line 53.
 LaTeX Font Info:    Font shape `EU1/MyriadProLight(0)/bx/n' will be
-(Font)              scaled to size 17.41805pt on input line 51.
+(Font)              scaled to size 17.41805pt on input line 53.
 LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/n' will be
-(Font)              scaled to size 24.88pt on input line 55.
+(Font)              scaled to size 24.88pt on input line 57.
 LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/bx/n' will be
-(Font)              scaled to size 24.88pt on input line 56.
+(Font)              scaled to size 24.88pt on input line 58.
 LaTeX Font Info:    Font shape `EU1/MyriadProLight(1)/bx/n' will be
-(Font)              scaled to size 31.1pt on input line 56.
+(Font)              scaled to size 31.1pt on input line 58.
 LaTeX Font Info:    Font shape `EU1/MyriadProLight(0)/m/n' will be
-(Font)              scaled to size 21.19978pt on input line 58.
+(Font)              scaled to size 21.19978pt on input line 60.
  [1
 
 ] [2
 
 ]
 LaTeX Font Info:    Font shape `EU1/MyriadProLight(0)/bx/n' will be
-(Font)              scaled to size 20.89493pt on input line 74.
+(Font)              scaled to size 20.89493pt on input line 76.
 LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 76.
-LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 77.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 77.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 77.
-LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/bx/n' will be
 (Font)              scaled to size 14.4pt on input line 78.
-LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 10.79845pt on input line 85.
 LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 91.
+(Font)              scaled to size 7.0pt on input line 79.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 91.
-LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 7.49893pt on input line 91.
-LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 5.24925pt on input line 91.
-LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 3.74947pt on input line 91.
-LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/n' will be
-(Font)              scaled to size 17.28pt on input line 95.
+(Font)              <14.4> on input line 79.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 79.
 LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/bx/n' will be
-(Font)              scaled to size 17.28pt on input line 95.
+(Font)              scaled to size 14.4pt on input line 80.
+LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
+(Font)              scaled to size 10.79845pt on input line 87.
+LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/n' will be
+(Font)              scaled to size 5.0pt on input line 93.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 93.
+LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
+(Font)              scaled to size 7.49893pt on input line 93.
+LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
+(Font)              scaled to size 5.24925pt on input line 93.
+LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
+(Font)              scaled to size 3.74947pt on input line 93.
+LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/n' will be
+(Font)              scaled to size 17.28pt on input line 97.
+LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/bx/n' will be
+(Font)              scaled to size 17.28pt on input line 97.
 LaTeX Font Info:    Font shape `EU1/MyriadProLight(0)/bx/n' will be
-(Font)              scaled to size 14.51222pt on input line 95.
+(Font)              scaled to size 14.51222pt on input line 97.
  [1
 
 ]
@@ -833,129 +873,129 @@ LaTeX Font Info:    Font shape `EU1/MyriadProLight(0)/bx/n' will be
 ] (./diss.toc
 LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/bx/n' will be
 (Font)              scaled to size 12.0pt on input line 1.
-LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 2.
-LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 2.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 2.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 2.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 2.
-LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 8.99872pt on input line 2.
-LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 5.99915pt on input line 2.
-LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 4.49936pt on input line 2.
- [5
-
-])
+)
 \tf@toc=\write3
 \openout3 = `diss.toc'.
 
- [6] (./diss.lof)
+ [5
+
+] (./diss.lof)
 \tf@lof=\write4
 \openout4 = `diss.lof'.
 
- [7
+ [6
 
-] [8
+] [7] [8
 
 ]
 Chapter 1.
-LaTeX Font Info:    Font shape `EU1/MyriadProLight(0)/bx/n' will be
-(Font)              scaled to size 12.09352pt on input line 211.
 [1
 
 ]
 
 LaTeX Font Warning: Font shape `EU1/SabonMTStd(0)/m/sl' undefined
-(Font)              using `EU1/SabonMTStd(0)/m/n' instead on input line 270.
+(Font)              using `EU1/SabonMTStd(0)/m/n' instead on input line 185.
 
-[2]
-LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/sl' will be
-(Font)              scaled to size 12.0pt on input line 270.
- [3] [4
+[2
 
 ]
 Chapter 2.
+[3
+
+]
+LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/sl' will be
+(Font)              scaled to size 12.0pt on input line 194.
+ [4
+
+]
+Chapter 3.
 [5
 
 ] [6
 
 ]
-Chapter 3.
-LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/n' will be
-(Font)              scaled to size 10.95pt on input line 288.
-LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 8.21132pt on input line 288.
+Chapter 4.
 [7
 
-]
-(figs/cuarms.eps
-)
-(figs/diagram.eps
-)
-[8] [9] [10] [11] [12
+] [8
 
 ]
-Chapter 4.
-[13
-
-] [14]
 Chapter 5.
-[15
+[9
 
-
-] [16
+] [10
 
 ] (./diss.bbl
 LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/it' will be
 (Font)              scaled to size 12.0pt on input line 5.
-) [17
+) [11
 
-] [18
+] [12
 
 ]
 Appendix A.
-File: diss.tex  (verbatim)
-[19
-
-] [20] [21] [22] [23] [24] [25] [26] [27]
-File: proposal.tex  (verbatim)
-File: propbody.tex  (verbatim)
- [28] [29] [30]
-Appendix B.
-File: makefile.txt  (verbatim)
-[31
-
+[13
 
 ]
-File: refs.bib  (verbatim)
- [32]
-Appendix C.
-(./propbody.tex
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <17.28> on input line 8.
-LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 12.95815pt on input line 8.
- [33
+File: proposal_rev04.pdf Graphic file (type QTm)
+ <use  "proposal_rev04.pdf"  page1>
+
+Package pdfpages Warning: Erroneous page width of 0.0pt is corrected.
 
 
-] [34]) [35] (./diss.aux)
+Package pdfpages Warning: Erroneous page height of 0.0pt is corrected.
+
+File: proposal_rev04.pdf Graphic file (type QTm)
+<use  "proposal_rev04.pdf"  page1>
+File: proposal_rev04.pdf Graphic file (type QTm)
+ <use  "proposal_rev04.pdf"  page1>
+File: proposal_rev04.pdf Graphic file (type QTm)
+
+<use  "proposal_rev04.pdf"  page1>
+File: proposal_rev04.pdf Graphic file (type QTm)
+ <use  "proposal_rev04.pdf"  page1> [14]
+File: proposal_rev04.pdf Graphic file (type QTm)
+
+<use  "proposal_rev04.pdf"  page2>
+File: proposal_rev04.pdf Graphic file (type QTm)
+ <use  "proposal_rev04.pdf"  page2>
+File: proposal_rev04.pdf Graphic file (type QTm)
+
+<use  "proposal_rev04.pdf"  page2> [15]
+File: proposal_rev04.pdf Graphic file (type QTm)
+ <use  "proposal_rev04.pdf"  page3>
+File: proposal_rev04.pdf Graphic file (type QTm)
+
+<use  "proposal_rev04.pdf"  page3>
+File: proposal_rev04.pdf Graphic file (type QTm)
+ <use  "proposal_rev04.pdf"  page3> [16]
+File: proposal_rev04.pdf Graphic file (type QTm)
+
+<use  "proposal_rev04.pdf"  page4>
+File: proposal_rev04.pdf Graphic file (type QTm)
+ <use  "proposal_rev04.pdf"  page4>
+File: proposal_rev04.pdf Graphic file (type QTm)
+
+<use  "proposal_rev04.pdf"  page4> [17]
+File: proposal_rev04.pdf Graphic file (type QTm)
+ <use  "proposal_rev04.pdf"  page5>
+File: proposal_rev04.pdf Graphic file (type QTm)
+
+<use  "proposal_rev04.pdf"  page5>
+File: proposal_rev04.pdf Graphic file (type QTm)
+ <use  "proposal_rev04.pdf"  page5> [18]
+(./diss.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 13544 strings out of 494146
- 296459 string characters out of 3157637
- 293446 words of memory out of 3000000
- 16624 multiletter control sequences out of 15000+200000
- 8595 words of font info for 78 fonts, out of 3000000 for 9000
+ 14753 strings out of 494146
+ 313342 string characters out of 3157637
+ 318744 words of memory out of 3000000
+ 17828 multiletter control sequences out of 15000+200000
+ 5171 words of font info for 58 fonts, out of 3000000 for 9000
  1018 hyphenation exceptions out of 8191
- 36i,11n,46p,639b,321s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,18n,46p,639b,414s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on diss.pdf (45 pages).
+Output written on diss.pdf (28 pages).

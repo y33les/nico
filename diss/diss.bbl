@@ -1,13 +1,22 @@
 \begin{thebibliography}{1}
 
-\bibitem{Lamport86}
-L.~Lamport.
-\newblock {\em {LaTeX} --- a document preparation system --- user's guide and
-  reference manual}.
-\newblock Addison-Wesley, 1986.
+\bibitem{Blackwell1998}
+A.~F. Blackwell and T.~R.~G. Green.
+\newblock Cognitive dimensions of information artefacts: a tutorial, 1998.
 
-\bibitem{Moore95}
-S.W. Moore.
-\newblock How to prepare a dissertation in latex, 1995.
+\bibitem{PiCubed}
+Sunset Lake~Software LLC.
+\newblock {P}i {C}ubed | {S}unset {L}ake {S}oftware.
+\newblock \url{http://www.sunsetlakesoftware.com/picubed}, 2012.
+
+\bibitem{Soulver}
+Acqualia Software~Pty. Ltd.
+\newblock {S}oulver | {A}cqualia.
+\newblock \url{http://www.acqualia.com/soulver/}, 2011.
+
+\bibitem{ScrubCalc}
+B.~Victor.
+\newblock {S}crubbing {C}alculator.
+\newblock \url{http://worrydream.com/ScrubbingCalculator/}, 2011.
 
 \end{thebibliography}

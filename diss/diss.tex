@@ -10,17 +10,28 @@
 \usepackage{epsf}
 \usepackage{sectsty}
 
+\usepackage{url}
+\usepackage{parskip}
 \usepackage{pdfpages}
+\usepackage{wrapfig}
+\usepackage{subfig}
+\usepackage[normalem]{ulem}
+\usepackage{caption}
+\usepackage{color}
 
-\usepackage{graphicx} % [xetex]
+\usepackage{graphicx}
 \usepackage{fontspec,xunicode}
-\defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}% , Numbers=OldStyle}
+\defaultfontfeatures{Mapping=tex-text}% ,Scale=MatchLowercase}% , Numbers=OldStyle}
 \setmainfont[Scale=1]{Sabon MT Std}% {Linux Libertine O}
 \setsansfont{Myriad Pro Light}
 \setmonofont{Monaco}
 \allsectionsfont{\sffamily}
 
 \newfontinstance\bigsf[Color=000000,Scale=1.25]{Myriad Pro Light}
+
+\definecolor{red}{rgb}{0.80,0.00,0.00}
+\definecolor{green}{rgb}{0.00,0.80,0.00}
+\definecolor{blue}{rgb}{0.00,0.00,0.80}
 
 \input{epsf}                            % to allow postscript inclusions
 % On thor and CUS read top of file:
@@ -29,6 +40,7 @@
 %     /usr/lib/tex/macros/dvips/epsf.tex
 
 \raggedbottom                           % try to avoid widows and orphans
+\raggedright                            % left-aligned, not justified
 \sloppy
 \clubpenalty1000%
 \widowpenalty1000%
@@ -39,9 +51,11 @@
 \renewcommand{\baselinestretch}{1.1}    % adjust line spacing to make
                                         % more readable
 
+\renewcommand{\captionfont}{\footnotesize}
+
 \begin{document}
 
-\bibliographystyle{plain}
+\bibliographystyle{unsrt}% {plain}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -179,16 +193,201 @@ Stead and Sam Aaron for their encouragement and patience.
 \chapter{Introduction}
 
 The aim of this project has been to design and develop a notation and
-accompanying application such that the user is presented with a series of
-mathematical problems to solve using the notation.  The motivation behind
-developing a new notation rather than using the normal means of writing down
-calculations was
+accompanying application to act as a learning aid for pre-algebra arithmetic by
+increasing visibility, reducing the number of hidden dependencies and making the
+flow of data obvious to the user.  I have successfully developed such a system,
+intended initially for pupils in Year 5 (though extensible, through the creation
+of alternative question sets, to other age groups), and, as an extension,
+conducted a user study to assess its utility.
+
+In this chapter, I will discuss my motivations for choosing this project, the
+pros and cons of the handwritten system it is attempting to augment, the
+technical challenges involved in developing such a system and related work that
+has previously been conducted with similar goals.
+
+\section{Motivations}
+% evaluation of problems with writing it down on paper
+% cogdims of handwritten method(s)
+% system requirements (cogdims)
+
+My motivations behind this project lay in the limitations of the handwritten
+approach to solving mathematical problems that I had observed both in my own
+learning and in my own teaching experience.  What follows is an evaluation of
+the pros and cons of the handwritten method of performing arithmetic
+calculations according to Blackwell and Green's ``Cognitive Dimensions''
+framework \cite{Blackwell1998}, and a discussion of the properties a useful
+alternative notation should have.
+
+\pagebreak
+
+\subsection{Evaluation of the Handwritten Approach}
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{center}
+\subfloat[]{
+\parbox{2cm}{
+\begin{center}
+{\small
+24+35=59\\
+12+48=60\\
+59+72=131\\
+1+60=61\\
+131+61=192}
+\end{center}}}
+\subfloat[]{
+\parbox{2cm}{
+\begin{center}
+{\small
+24+35={\color{green}59}\\
+12+48={\color{blue}60}\\
+{\color{green}59}+72={\color{green}131}\\
+1+{\color{blue}60}={\color{blue}61}\\
+{\color{green}131}+{\color{blue}61}=192}
+\end{center}}}
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+{\small
+24+35= {\color{red}\sout{59}} {\color{green}49}\\
+12+48={\color{blue}60}\\
+{\color{red}\sout{59}} {\color{green}49}+72= {\color{red}\sout{131}} {\color{green}121}\\
+1+{\color{blue}60}={\color{blue}61}\\
+{\color{red}\sout{131}} {\color{green}121}+{\color{blue}61}= {\color{red}\sout{192}} 182}
+\end{center}}}
+\end{center}
+\caption{Illustrating the hidden dependencies and viscosity inherent in pre-algebra, handwritten arithmetic.  The original calculation is shown in (a), has its otherwise-hidden dependencies highlighted in (b), and is altered slightly in (c).}
+\end{wrapfigure}
+% cogdims
+% taught method without being taught *why* it works
+% high viscosity - have to cross things out or start again
+% high repetition viscosity
+% low knock-on viscosity
+% viscosity is acceptable in transcription and incrementation, but harmful to modification and exploration
+% hidden dependencies -
+% premature commitment - made worse by high repetition viscosity; have to start again if a mistake is made
+% premature commitment is certainly very high for traditional calculators
+% algebra is abstraction-hungry, arthimetic is abstraction-hating, though can use secondary notation to construct abstractions
+% no abstraction barrier to arithmetic though
+% secondary notation - notes around calculations
+% visibility - visible, but only juxtaposable if juxtaposed at the start (premature commitment) or with the help of secondary notation
+There are a number of problems with handwritten, pre-algebra arithmetic that
+this project seeks to rectify.  First of all, the fact that it is handwritten
+entails a high level of viscosity: it is difficult to make changes to a written
+calculation without sacrificing clarity.  In particular, there is a lot of
+repetition viscosity involved in the modification of an existing piece of work;
+if a number is changed that is used in several calculations, then it is time-
+consuming to change it everywhere it appears in the working.  If several
+calculations are dependent upon each other, then this entails a lot of knock-on
+viscosity in recalculating each stage after changing the number.  This is
+exacerbated by the hidden dependencies between chained calculations in
+handwritten arithmetic (\emph{Fig. 1.1}).
+
+\subsection{Requirements of a Replacement System}
+% cogdims!!
+% need to develop useful notation - early studies, talk about other notations we came up with, notations looked at with alistair (get link)
+% hidden dependencies - nico shows a data flow representation (p19, blackwell1998) to make dependencies explicit
+
+\section{Technical Challenges}
+% need first-class functions
+% need to be able to pass expressions around to evaluate at will: hence functional, hence lisp - homoiconicity
+% also need good gui libraries for app - familiar with java/swing so that works (esp. with seesaw), also the option of jfx2 and swt/guiftw
+% difficulty of learning clojure over summer in preparation
+
+Developing such an application comprises two main challenges: developing a
+backend that is capable of creating, storing, editing, deleting, evaluating,
+nesting and calculations, and a graphical, user-facing frontend that is able to
+render calculations into the devised notation, and allow the user to perform
+operations upon the notation that affect the underlying calculation.
+
+I chose to use the Clojure language as it provided many features that would
+prove to be useful over the course of the application's development.  As a
+dialect of LISP, Clojure is a homoiconic programming language -- that is, a
+programming language in which code is represented as a data structure -- which
+made passing around and performing operations upon calculations themselves,
+rather than just their results, considerably easier.  A calculation can simply
+be represented as a piece of code, which can then be utilised as needed.
+
+As the user experience is so crucial to the success of the application, it was
+also important that there be well-established GUI libraries available.  Clojure
+runs on the Java Virtual Machine (JVM), which puts Java's considerable standard
+library at one's disposal, whilst still being able to program in a LISP.  As I
+am familiar with Java and the Swing GUI libraries, it was advantageous to be
+able to leverage this knowledge in designing the application's interface.
+
+\section{Previous Work}
+% scrubbing calculator http://worrydream.com/ScrubbingCalculator/
+% soulver http://www.acqualia.com/soulver/
+% neither really targeted at education
+% cool stuff at http://worrydream.com/KillMath/ though
+% maybe refer to this? http://betterexplained.com/articles/rethinking-arithmetic-a-visual-guide/
+% also, this: http://www.ralph-abraham.org/articles/Blurbs/blurb126.shtml
+% also, check out espresso and education city stuff, log in to fronter via st. mary's site, uname jyeele1.314, pword b3ach7
+% plenty of work been done in making computer maths like paper maths, but not so much the reverse, case in point: http://www.macresearch.org/showcase-review-pi-cubed-iphone-ipod-touch
+% also a lot of crap maths games that are essentially a series of qs in disguise, see http://www.time4learning.com/curriculum/try_demos.html
+% nico is unabashedly *not* a game, rather a tool, much like a pen or calculator
+% problem with calculators?
+
+There already exists a wide variety of educational software for mathematics, but
+much of this is in the form of ``games'', in which a series of mathematical
+problems to be solved is poorly disguised as a game -- indeed, such problems
+would be more accurately said to be embedded into a game, rather than becoming
+the game themselves.  Thus, the object becomes not to solve the problems, but to
+play the game that happens to surround the problems.  Such software also does
+not often offer any means of solving the problems, other than the traditional
+pen-and-paper method (with a piece of paper next to the computer screen), or
+the mental approach.  Hence, what the user is then presented with is essentially
+a game and a worksheet, awkwardly interleaved.  In some cases, it is even
+possible for the user to simply press arbitrary buttons until they pass the
+questions, effectively removing the maths element of the game and replacing it
+with a series of short breaks in gameplay. % citations!
+
+There also exist a few applications intended to represent calculations on a
+computer in novel ways.  A relatively common approach to this has been to try
+to make on-screen calculations more like on-paper calculations.  \emph{Pi Cubed}
+takes this approach by trying to make complex calculations appear as they would
+be written in an exam or exercise book \cite{PiCubed}.  \emph{Soulver},
+conversely, tries to achieve this by simulating ``back-of-the-envelope''
+calculations, whereby notes in English augment the calculation \cite{Soulver}.
+Another approach is that of the \emph{Scrubbing Calculator} \cite{ScrubCalc},
+which extends the \emph{Soulver}-style environment by helping the user to solve
+equations by dragging values to increase and decrease them, showing how changing
+a value affects the overall result.  Values can be linked by dragging a line
+between them, which means that they are two instances of the same value -- hence
+dragging one changes the value at every location in which it appears.  This is a
+neat means of visualising equations, but it, too, is not intended for use in
+education, and still requires the user to be able to formulate some kind of
+equation.  The \emph{Scrubbing Calculator} is more a tool for facilitating
+algebraic understanding, as opposed to arithmetic understanding; indeed, it is
+inherently a {\bf calculator}, and so does not encourage thinking about how to
+work out the arithmetic parts of a calculation manually.
+
+\section{Summary}
+% need a system that incorporates these features: foo, bar, baz, quux
+
+Existing educational ``games'' for mathematics either have too much focus on
+being a game, rather than helping to learn mathematics, or are such that the
+mathematical element is circumventable.  There exists software to aid in
+calculation and arithmetic by representing it clearly, but it is not intended
+for educational use, and often its purpose is to make on-screen calculations
+appear as one would handwrite them.
+
+There is a niche for a tool for use in education that represents calculations in
+a visual manner, with a particular focus on making the method by which arithmetic
+problems are solved clear.  My project aims to provide an environment in which
+the user can explore the many ways in which a problem can be solved using a
+novel graphical notation.
 
 \cleardoublepage
 
 
 
 \chapter{Preparation}
+
+\section{Overview}
+
+lol
+
+\section{User Interface}
 
 lol
 

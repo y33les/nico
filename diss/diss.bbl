@@ -19,4 +19,9 @@ B.~Victor.
 \newblock {S}crubbing {C}alculator.
 \newblock \url{http://worrydream.com/ScrubbingCalculator/}, 2011.
 
+\bibitem{OvertoneEmacsD}
+jlr samaaron.
+\newblock overtone/live-coding-emacs.
+\newblock \url{https://github.com/overtone/live-coding-emacs}, 2011.
+
 \end{thebibliography}

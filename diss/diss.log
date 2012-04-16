@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.2-0.9995.2 (TeX Live 2009/Debian) (format=xelatex 2012.3.2)  15 APR 2012 12:16
+This is XeTeX, Version 3.1415926-2.2-0.9995.2 (TeX Live 2009/Debian) (format=xelatex 2012.3.2)  16 APR 2012 21:08
 entering extended mode
  %&-line parsing enabled.
 **\input diss.tex
@@ -210,17 +210,81 @@ fontspec.cfg loaded.
 File: xunicode.sty 2008/02/08 v0.91 provides access to latin accents and many o
 ther characters in Unicode lower plane
 )
+
+Package fontspec Warning: 
+    OpenType feature 'Numbers=Monospaced' (+tnum) not available
+    for font "Sabon MT Std/ICU", 
+    with script 'Latin',
+    and language 'Default'.
+This warning occured on input line 25.
+
 \c@zf@famc@Sabon MT Std=\count108
 Package fontspec Info: Defining font family for 'Sabon MT Std' with options [Ma
-pping=tex-text,Scale=1] on input line 25.
+pping=tex-text, Numbers=Monospaced,Scale=1] on input line 25.
+
+Package fontspec Warning: 
+    OpenType feature 'Numbers=Monospaced' (+tnum) not available
+    for font "Sabon MT Std/ICU", 
+    with script 'Latin',
+    and language 'Default'.
+This warning occured on input line 25.
+
+
+Package fontspec Warning: 
+    OpenType feature 'Numbers=Monospaced' (+tnum) not available
+    for font "Sabon MT Std/ICU", 
+    with script 'Latin',
+    and language 'Default'.
+This warning occured on input line 25.
+
+
+Package fontspec Warning: 
+    OpenType feature 'Numbers=Monospaced' (+tnum) not available
+    for font "Sabon MT Std Semibold/ICU", 
+    with script 'Latin',
+    and language 'Default'.
+This warning occured on input line 25.
+
+
+Package fontspec Warning: 
+    OpenType feature 'Numbers=Monospaced' (+tnum) not available
+    for font "Sabon MT Std Italic/ICU", 
+    with script 'Latin',
+    and language 'Default'.
+This warning occured on input line 25.
+
+
+Package fontspec Warning: 
+    OpenType feature 'Numbers=Monospaced' (+tnum) not available
+    for font "Sabon MT Std Semibold Italic/ICU", 
+    with script 'Latin',
+    and language 'Default'.
+This warning occured on input line 25.
+
 LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/n' will be
 (Font)              scaled to size 10.0pt on input line 25.
 \c@zf@famc@Myriad Pro Light=\count109
 Package fontspec Info: Defining font family for 'Myriad Pro Light' with options
- [Mapping=tex-text,] on input line 26.
+ [Mapping=tex-text, Numbers=Monospaced,] on input line 26.
+
+Package fontspec Warning: 
+    OpenType feature 'Numbers=Monospaced' (+tnum) not available
+    for font "Monaco/ICU", 
+    with script 'Latin',
+    and language 'Default'.
+This warning occured on input line 27.
+
 \c@zf@famc@Monaco=\count110
 Package fontspec Info: Defining font family for 'Monaco' with options [Mapping=
-tex-text,] on input line 27.
+tex-text, Numbers=Monospaced,Scale=0.8] on input line 27.
+
+Package fontspec Warning: 
+    OpenType feature 'Numbers=Monospaced' (+tnum) not available
+    for font "Monaco/ICU", 
+    with script 'Latin',
+    and language 'Default'.
+This warning occured on input line 27.
+
 Package fontspec Info: Could not resolve font Monaco/B (it might not exist) on 
 input line 27.
 Package fontspec Info: Could not resolve font Monaco/I (it might not exist) on 
@@ -228,11 +292,11 @@ input line 27.
 Package fontspec Info: Could not resolve font Monaco/BI (it might not exist) on
  input line 27.
 Package fontspec Info: Defining font family for 'Myriad Pro Light' with options
- [Mapping=tex-text,Color=000000,Scale=1.25] on input line 30.
+ [Mapping=tex-text, Numbers=Monospaced,Color=000000,Scale=1.25] on input line 3
+0.
 Package color Info: Redefining color red on input line 32.
 Package color Info: Redefining color green on input line 33.
 Package color Info: Redefining color blue on input line 34.
-
 (/usr/share/texmf-texlive/tex/generic/epsf/epsf.tex
 This is `epsf.tex' v2.7.3 <23 July 2005>
 \epsffilein=\read3
@@ -363,10 +427,18 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 93.
 LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/bx/n' will be
 (Font)              scaled to size 14.4pt on input line 94.
+LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
+(Font)              scaled to size 11.52003pt on input line 101.
 LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/n' will be
 (Font)              scaled to size 5.0pt on input line 107.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 107.
+LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
+(Font)              scaled to size 8.00003pt on input line 107.
+LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
+(Font)              scaled to size 5.60002pt on input line 107.
+LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
+(Font)              scaled to size 4.00002pt on input line 107.
 LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/n' will be
 (Font)              scaled to size 17.28pt on input line 111.
 LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/bx/n' will be
@@ -389,6 +461,12 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 2.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 2.
+LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
+(Font)              scaled to size 9.60004pt on input line 2.
+LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
+(Font)              scaled to size 6.40002pt on input line 2.
+LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
+(Font)              scaled to size 4.80002pt on input line 2.
 )
 \tf@toc=\write3
 \openout3 = `diss.toc'.
@@ -420,41 +498,41 @@ LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/it' will be
 LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/sl' in size <12> not availa
 ble
 (Font)              Font shape `EU1/SabonMTStd(0)/m/it' tried instead on input 
-line 316.
+line 317.
 LaTeX Font Info:    Font shape `EU1/SabonMTStd(0)/m/it' will be
-(Font)              scaled to size 12.0pt on input line 316.
+(Font)              scaled to size 12.0pt on input line 317.
 [2] [3] [4]
 Chapter 2.
 [5
 
 
-] [6
+] [6] [7] [8
 
 ]
 Chapter 3.
-[7
-
-] [8
-
-]
-Chapter 4.
 [9
 
 ] [10
 
 ]
-Chapter 5.
+Chapter 4.
 [11
 
 ] [12
 
-] (./diss.bbl) [13
+]
+Chapter 5.
+[13
 
 ] [14
 
+] (./diss.bbl) [15
+
+] [16
+
 ]
 Appendix A.
-[15
+[17
 
 ]
 File: proposal_rev04.pdf Graphic file (type QTm)
@@ -473,7 +551,7 @@ File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page1>
 File: proposal_rev04.pdf Graphic file (type QTm)
- <use  "proposal_rev04.pdf"  page1> [16]
+ <use  "proposal_rev04.pdf"  page1> [18]
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page2>
@@ -481,14 +559,14 @@ File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page2>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
-<use  "proposal_rev04.pdf"  page2> [17]
+<use  "proposal_rev04.pdf"  page2> [19]
 File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page3>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page3>
 File: proposal_rev04.pdf Graphic file (type QTm)
- <use  "proposal_rev04.pdf"  page3> [18]
+ <use  "proposal_rev04.pdf"  page3> [20]
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page4>
@@ -496,22 +574,22 @@ File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page4>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
-<use  "proposal_rev04.pdf"  page4> [19]
+<use  "proposal_rev04.pdf"  page4> [21]
 File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page5>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page5>
 File: proposal_rev04.pdf Graphic file (type QTm)
- <use  "proposal_rev04.pdf"  page5> [20]
+ <use  "proposal_rev04.pdf"  page5> [22]
 (./diss.aux) ) 
 Here is how much of TeX's memory you used:
- 7193 strings out of 495724
- 118660 string characters out of 1189347
- 202120 words of memory out of 3000000
- 10212 multiletter control sequences out of 15000+50000
- 7739 words of font info for 70 fonts, out of 3000000 for 9000
+ 7197 strings out of 495724
+ 118896 string characters out of 1189347
+ 202490 words of memory out of 3000000
+ 10214 multiletter control sequences out of 15000+50000
+ 7747 words of font info for 71 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 44i,16n,83p,520b,489s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,16n,83p,540b,489s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on diss.pdf (30 pages).
+Output written on diss.pdf (32 pages).

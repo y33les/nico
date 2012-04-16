@@ -21,10 +21,10 @@
 
 \usepackage{graphicx}
 \usepackage{fontspec,xunicode}
-\defaultfontfeatures{Mapping=tex-text}% ,Scale=MatchLowercase}% , Numbers=OldStyle}
+\defaultfontfeatures{Mapping=tex-text, Numbers=Monospaced}% ,Scale=MatchLowercase}% , Numbers=OldStyle}
 \setmainfont[Scale=1]{Sabon MT Std}% {Linux Libertine O}
-\setsansfont{Myriad Pro Light}
-\setmonofont{Monaco}
+\setsansfont{Myriad Pro Light}% {Roboto Bold}
+\setmonofont[Scale=0.8]{Monaco}% {Droid Sans Mono}
 \allsectionsfont{\sffamily}
 
 \newfontinstance\bigsf[Color=000000,Scale=1.25]{Myriad Pro Light}
@@ -287,6 +287,14 @@ handwritten arithmetic (\emph{Fig. 1.1}).
 % need to develop useful notation - early studies, talk about other notations we came up with, notations looked at with alistair (get link)
 % hidden dependencies - nico shows a data flow representation (p19, blackwell1998) to make dependencies explicit
 
+% TODO: this bit.  not even sure if it should be in the intro...
+
+To improve upon the standard approach of listing the steps comprising a
+calculation, a system must acknowledge and try to overcome the drawbacks listed
+above.  To this end, I have designed and developed a system that aims to
+eliminate in particular the many hidden dependencies of traditional, handwritten
+arithmetic.
+
 \section{Technical Challenges}
 % need first-class functions
 % need to be able to pass expressions around to evaluate at will: hence functional, hence lisp - homoiconicity
@@ -383,13 +391,80 @@ novel graphical notation.
 
 \chapter{Preparation}
 
-\section{Overview}
+In this chapter I will discuss the work that was done prior to beginning the
+project proper.  This includes learning the Clojure programming language and
+researching and auditioning graphical metaphors for calculation.  This chapter
+comprises a requirements analysis, followed by an overview of the system
+architecture and a discussion of the additional tools used in the development of
+the project.
 
-lol
+\section{Requirements Analysis}
+% http://www.cs.fsu.edu/~lacher/courses/COP3331/rad.html
+% http://www.nd.gov/itd/files/services/pm/requirements-analysis-guidebook.pdf
+
+\subsection{Current System}
+% move evaluation of handwritten arithmetic from chapter 1 here?
+
+\subsection{Proposed System}
+
+\subsubsection{Overview}
+
+\subsubsection{Functional Requirements}
+
+To be an improvement upon the current system detailed above, the new system must
+satisfy the following properties:--
+\begin{itemize}
+\item lol
+\end{itemize}
+
+\subsubsection{Non-Functional Requirements}
+
+The system must also satisfy a number of requirements outside of its basic
+functionality.  These are listed below.
+\begin{itemize}
+\item lol
+\end{itemize}
+
+\subsubsection{Use Case}
+% diagram?  see wikipedia "use case"
+
+% \section{System Overview}
+% % do we need if in req. analysis?
+%
+% lol
 
 \section{User Interface}
+% section rather than subsection?  def. section if we don't have system overview
 
 lol
+
+\section{Additional Tools}
+
+lol
+
+\subsection{Third-Party Tools}
+
+What follows is a list of the third-party tools that were used in the
+development of the project.
+\begin{itemize}
+\item Ubuntu Linux 10.04, Arch Linux 2010.05, Microsoft Windows 7
+\item Clojure 1.2.0
+\item Leiningen 1.6.1.1
+\item OpenJDK 6
+\item Seesaw 1.3.1-SNAPSHOT
+\item swank-clojure 1.3.4-SNAPSHOT
+\item GNU Emacs 23.1.1
+\item A modified version of Overtone's Emacs configuration \cite{OvertoneEmacsD}, including:--
+\begin{itemize}
+\item SLIME/SWANK (revision as of 15/10/2009)
+\item clojure-mode 1.11.5
+\item undo-tree 0.3.3
+\end{itemize}
+\item Git 1.7.0.4
+\item GitHub
+\end{itemize}
+
+\section{Summary}
 
 
 \cleardoublepage

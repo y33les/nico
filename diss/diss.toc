@@ -6,10 +6,19 @@
 \contentsline {section}{\numberline {1.3}Previous Work}{3}
 \contentsline {section}{\numberline {1.4}Summary}{4}
 \contentsline {chapter}{\numberline {2}Preparation}{5}
-\contentsline {section}{\numberline {2.1}Overview}{5}
-\contentsline {section}{\numberline {2.2}User Interface}{5}
-\contentsline {chapter}{\numberline {3}Implementation}{7}
-\contentsline {chapter}{\numberline {4}Evaluation}{9}
-\contentsline {chapter}{\numberline {5}Conclusion}{11}
-\contentsline {chapter}{Bibliography}{13}
-\contentsline {chapter}{\numberline {A}Project Proposal}{15}
+\contentsline {section}{\numberline {2.1}Requirements Analysis}{5}
+\contentsline {subsection}{\numberline {2.1.1}Current System}{5}
+\contentsline {subsection}{\numberline {2.1.2}Proposed System}{5}
+\contentsline {subsubsection}{Overview}{5}
+\contentsline {subsubsection}{Functional Requirements}{5}
+\contentsline {subsubsection}{Non-Functional Requirements}{6}
+\contentsline {subsubsection}{Use Case}{6}
+\contentsline {section}{\numberline {2.2}User Interface}{6}
+\contentsline {section}{\numberline {2.3}Additional Tools}{6}
+\contentsline {subsection}{\numberline {2.3.1}Third-Party Tools}{6}
+\contentsline {section}{\numberline {2.4}Summary}{7}
+\contentsline {chapter}{\numberline {3}Implementation}{9}
+\contentsline {chapter}{\numberline {4}Evaluation}{11}
+\contentsline {chapter}{\numberline {5}Conclusion}{13}
+\contentsline {chapter}{Bibliography}{15}
+\contentsline {chapter}{\numberline {A}Project Proposal}{17}

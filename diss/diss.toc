@@ -18,7 +18,16 @@
 \contentsline {subsection}{\numberline {2.3.1}Third-Party Tools}{6}
 \contentsline {section}{\numberline {2.4}Summary}{7}
 \contentsline {chapter}{\numberline {3}Implementation}{9}
+\contentsline {section}{\numberline {3.1}Backend}{9}
+\contentsline {section}{\numberline {3.2}User Interface}{9}
+\contentsline {subsection}{\numberline {3.2.1}Metaphor}{9}
+\contentsline {subsection}{\numberline {3.2.2}Application}{9}
+\contentsline {section}{\numberline {3.3}Summary}{9}
 \contentsline {chapter}{\numberline {4}Evaluation}{11}
-\contentsline {chapter}{\numberline {5}Conclusion}{13}
+\contentsline {section}{\numberline {4.1}Backend Testing}{11}
+\contentsline {section}{\numberline {4.2}UI Evaluation}{11}
+\contentsline {section}{\numberline {4.3}Language Evaluation}{11}
+\contentsline {section}{\numberline {4.4}Summary}{11}
+\contentsline {chapter}{\numberline {5}Conclusions}{13}
 \contentsline {chapter}{Bibliography}{15}
 \contentsline {chapter}{\numberline {A}Project Proposal}{17}

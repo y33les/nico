@@ -18,16 +18,17 @@
 \usepackage[normalem]{ulem}
 \usepackage{caption}
 \usepackage{color}
+\usepackage{float}
 
 \usepackage{graphicx}
 \usepackage{fontspec,xunicode}
 \defaultfontfeatures{Mapping=tex-text, Numbers=Monospaced}% ,Scale=MatchLowercase}% , Numbers=OldStyle}
-\setmainfont[Scale=1]{Sabon MT Std}% {Linux Libertine O}
-\setsansfont{Myriad Pro Light}% {Roboto Bold}
+\setmainfont[Scale=1]{Linux Libertine O}% {Sabon MT Std}
+\setsansfont{Roboto Bold}% {Myriad Pro Light}
 \setmonofont[Scale=0.8]{Monaco}% {Droid Sans Mono}
 \allsectionsfont{\sffamily}
 
-\newfontinstance\bigsf[Color=000000,Scale=1.25]{Myriad Pro Light}
+\newfontinstance\bigsf[Color=000000,Scale=1.25]{Roboto Bold}% {Myriad Pro Light}
 
 \definecolor{red}{rgb}{0.80,0.00,0.00}
 \definecolor{green}{rgb}{0.00,0.80,0.00}
@@ -53,9 +54,11 @@
 
 \renewcommand{\captionfont}{\footnotesize}
 
-\begin{document}
+\setcounter{secnumdepth}{5}
 
-\bibliographystyle{unsrt}% {plain}
+\begin{document}
+\nocite{*}
+\bibliographystyle{plain}% {unsrt}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -64,18 +67,22 @@
 
 \pagestyle{empty}
 
-\hfill{\LARGE \bf \sffamily Philip Yeeles}
+% \hfill{\LARGE \bf \sffamily Philip Yeeles}
+\hfill{\Large Philip Yeeles}
 
 \vspace*{60mm}
 \begin{center}
-\Huge
-{\bf \bigsf Nico: An Environment for Mathematical Expression in Schools} \\
+\LARGE
+{\bf \bigsf Nico: An Environment for Mathematical Expression in Schools}\\
 \vspace*{5mm}
-{\sffamily Computer Science Tripos} \\
+% {\sffamily Computer Science Tripos} \\
+Computer Science Tripos\\
 \vspace*{5mm}
-{\sffamily Selwyn College} \\
+% {\sffamily Selwyn College} \\
+Selwyn College\\
 \vspace*{5mm}
-{\sffamily \today}  % today's date
+% {\sffamily \today}  % today's date
+\today % today's date
 \end{center}
 
 \cleardoublepage
@@ -437,8 +444,85 @@ functionality.  These are listed below.
 
 \section{User Interface}
 % section rather than subsection?  def. section if we don't have system overview
+% prototypes!  dig out the preliminary drawings, take screenshots of old versions for later
 
 lol
+
+\subsection{Prototyping}
+
+\subsubsection{Low-Fidelity Prototyping}
+% drawings 'n' shit
+
+\begin{figure}[H]
+% \begin{wrapfigure}{r}{0.5\textwidth}
+\begin{center}
+\subfloat[]{
+\parbox{6cm}{
+\begin{center}
+\includegraphics[width=6cm]{figs/lol.jpg}
+\end{center}}}
+\subfloat[]{
+\parbox{6cm}{
+\begin{center}
+\includegraphics[width=6cm]{figs/lol.jpg}
+\end{center}}}\\
+\subfloat[]{
+\parbox{6cm}{
+\begin{center}
+\includegraphics[width=6cm]{figs/lol.jpg}
+\end{center}}}
+\subfloat[]{
+\parbox{6cm}{
+\begin{center}
+\includegraphics[width=6cm]{figs/lol.jpg}
+\end{center}}}
+\end{center}
+\caption{Empress Alexandra II Sexah}
+% \end{wrapfigure}
+\end{figure}
+
+\subsubsection{Preliminary Designs}
+% examples done using that prototyping software - balsamiq mockups
+% draft designs on pwf
+
+Some preliminary designs for the application and graphical language follow.
+First is a combined flowgraph representation and Read-Evaluate-Print-Loop (REPL)
+design.  The second design uses the Sierpiński triangle as a basis for the
+visual metaphor.  The final design is the circle-based language that eventually
+became the basis for the rest of the project.
+
+\paragraph{Flowgraph Metaphor}\hfill
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-4cm]{figs/mockups/flowgraph/img/fg-000.jpg}
+\caption{The prototype flowgraph-style language.}
+\end{center}
+\end{figure}
+
+lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol
+
+\paragraph{Sierpiński Triangle Metaphor}\hfill
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{figs/mockups/sierp/sierp_mockup_full.png}
+\caption{The prototype Sierpiński-triangle-based language.}
+\end{center}
+\end{figure}
+
+lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol
+
+\paragraph{Circle Metaphor}\hfill
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{figs/mockups/circles/nico_circmock.png}
+\caption{The prototype circle-based language.}
+\end{center}
+\end{figure}
+
+lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol
 
 \section{Additional Tools}
 
@@ -464,6 +548,8 @@ development of the project.
 \end{itemize}
 \item Git 1.7.0.4
 \item GitHub
+\item Balsamiq Mockups
+\item Google Docs
 \end{itemize}
 
 \section{Summary}
@@ -486,6 +572,7 @@ lol
 \section{User Interface}
 % target audience - children (year 5), but also applications in remedial adult learning (i.e. can't be too childish)
 % hence must be appealing, clear, easy-to-read, not too verbose
+% prototypes! take screenshots of old versions
 
 \subsection{Metaphor}
 % graphical language itself
@@ -512,18 +599,27 @@ lol
 lol
 
 \section{Backend Testing}
-% slime/swank to have test lines as comments to be evaluated
+% used slime/swank with test lines as comments to be evaluated with C-x C-e
+% emacs/slime/swank as ide; ideal for lisps!
 % lein test framework - need to actually set up some tests first though!
 
 \section{UI Evaluation}
+% user testing
+% graphs
 
 \section{Language Evaluation}
+% user testing
+% graphs
 
 \section{Summary}
 
 
 \cleardoublepage
 \chapter{Conclusions}
+% did it achieve what was set out in the proposal?  300ms, etc.?
+% does it work?
+% what could be improved?
+% overall, is it actually useful?
 
 lol
 

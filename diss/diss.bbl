@@ -1,8 +1,29 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{Abraham2010}
+R.~Abraham.
+\newblock {T}he {T}rouble with {M}ath.
+\newblock {\em Educating the Whole Child for the Whole World: The Ross School
+  Model and Education for the Global Era}, pages 125--137, 2010.
 
 \bibitem{Blackwell1998}
 A.~F. Blackwell and T.~R.~G. Green.
 \newblock Cognitive dimensions of information artefacts: a tutorial, 1998.
+
+\bibitem{Blackwell1999}
+A.~F. Blackwell and T.~R.~G. Green.
+\newblock Does metaphor increase visual language usability?, 1999.
+
+\bibitem{Blackwell2000}
+A.~F. Blackwell and T.~R.~G. Green.
+\newblock A cognitive dimensions questionnaire optimised for users, 2000.
+
+\bibitem{Blackwell2003}
+A.~F. Blackwell and T.~R.~G. Green.
+\newblock Notational systems -- the cognitive dimensions of notations
+  framework.
+\newblock {\em HCI Models, Theories, and Frameworks: Toward a Multidisciplinary
+  Science}, 2003.
 
 \bibitem{PiCubed}
 Sunset Lake~Software LLC.
@@ -14,34 +35,24 @@ Acqualia Software~Pty. Ltd.
 \newblock {S}oulver | {A}cqualia.
 \newblock \url{http://www.acqualia.com/soulver/}, 2011.
 
-\bibitem{ScrubCalc}
-B.~Victor.
-\newblock {S}crubbing {C}alculator.
-\newblock \url{http://worrydream.com/ScrubbingCalculator/}, 2011.
+\bibitem{Myers1990}
+B.~A. Myers.
+\newblock Taxonomies of visual programming and program visualization.
+\newblock {\em Journal of Visual Languages and Computing}, 1:97--123, 1990.
 
 \bibitem{OvertoneEmacsD}
 samaaron and jlr.
 \newblock overtone/live-coding-emacs.
 \newblock \url{https://github.com/overtone/live-coding-emacs}, 2011.
 
-\bibitem{Blackwell2003}
-A.~F. Blackwell and T.~R.~G. Green.
-\newblock Notational systems -- the cognitive dimensions of notations
-  framework.
-\newblock {\em HCI Models, Theories, and Frameworks: Toward a Multidisciplinary
-  Science}, 2003.
+\bibitem{KillMath}
+B.~Victor.
+\newblock {K}ill {M}ath.
+\newblock \url{http://worrydream.com/KillMath/}, 2011.
 
-\bibitem{Blackwell2000}
-A.~F. Blackwell and T.~R.~G. Green.
-\newblock A cognitive dimensions questionnaire optimised for users, 2000.
-
-\bibitem{Blackwell1999}
-A.~F. Blackwell and T.~R.~G. Green.
-\newblock Does metaphor increase visual language usability?, 1999.
-
-\bibitem{Myers1990}
-B.~A. Myers.
-\newblock Taxonomies of visual programming and program visualization.
-\newblock {\em Journal of Visual Languages and Computing}, 1:97--123, 1990.
+\bibitem{ScrubCalc}
+B.~Victor.
+\newblock {S}crubbing {C}alculator.
+\newblock \url{http://worrydream.com/ScrubbingCalculator/}, 2011.
 
 \end{thebibliography}

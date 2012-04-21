@@ -18,7 +18,7 @@
 \contentsline {subsubsection}{\numberline {2.2.1.1}Low-Fidelity Prototyping}{7}
 \contentsline {subsubsection}{\numberline {2.2.1.2}Preliminary Designs}{7}
 \contentsline {paragraph}{\numberline {2.2.1.2.1}Flowgraph Metaphor}{7}
-\contentsline {paragraph}{\numberline {2.2.1.2.2}Sierpiński Triangle Metaphor}{8}
+\contentsline {paragraph}{\numberline {2.2.1.2.2}Sierpiński Triangle Metaphor}{9}
 \contentsline {paragraph}{\numberline {2.2.1.2.3}Circle Metaphor}{9}
 \contentsline {section}{\numberline {2.3}Additional Tools}{10}
 \contentsline {subsection}{\numberline {2.3.1}Third-Party Tools}{10}

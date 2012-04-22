@@ -25,10 +25,11 @@
 \defaultfontfeatures{Mapping=tex-text, Numbers=Monospaced}% ,Scale=MatchLowercase}% , Numbers=OldStyle}
 \setmainfont[Scale=1]{Linux Libertine O}% {Sabon MT Std}
 \setsansfont{Roboto Bold}% {Myriad Pro Light}
-\setmonofont[Scale=0.8]{Monaco}% {Droid Sans Mono}
+\setmonofont[Scale=0.82]{Monaco}% {Droid Sans Mono}
 \allsectionsfont{\sffamily}
 
 \newfontinstance\bigsf[Color=000000,Scale=1.25]{Roboto Bold}% {Myriad Pro Light}
+\newfontinstance\sfapp[Color=000000,Scale=0.82]{Roboto Regular}% {Myriad Pro Light}
 
 \definecolor{red}{rgb}{0.80,0.00,0.00}
 \definecolor{green}{rgb}{0.00,0.80,0.00}
@@ -511,13 +512,53 @@ comfortable with writing than the visual metaphor.
 
 The application
 
-The graphical language
+Of all the prototypes shown here, this version of the graphical language is the
+most like a traditional programming language, in that it allows the user to
+define reusable functions, and includes functionality similar to print
+statements.  The icons at the side of the application are used to select the
+desired function, from a set that includes addition, subtraction,
+multiplication, division, exponentiation, number input, {\sfapp Show},
+{\sfapp Define} and {\sfapp Join}.  Addition, subtraction, multiplication,
+division and exponentiation are all dragged-and-dropped from the icons at the
+side to a point on the canvas, causing a box containing their respective
+functions to appear at that point.  Number input ({\sfapp \#}) is similar, but
+the user inputs a number using the keyboard after the box is created.  The box
+then contains that number.  {\sfapp Show} displays the output of the junction to
+which its arrow points, in the output box at the top of the screen with the label
+input by the user after placing it.  If the box with the label does not yet
+exist, it is created next to the existing output boxes.  {\sfapp Define} and
+{\sfapp Join} are not boxes to be dragged-and-dropped; they are modes of
+operation.  When {\sfapp Define} is activated, dragging the mouse on the canvas
+draws a box around sections of the diagram -- the user is able to define
+functions by doing so, and by providing a label for the section of diagram that
+has been highlighted, a corresponding box can be dragged-and-dropped from the
+list of icons (as show in \emph{Fig. 2.2} with the {\sfapp times ten}
+function).  When {\sfapp Join} is active, dragging between two points on the
+canvas creates an arrow between them that means that the source of the arrow is
+used as an argument to the destination of the arrow.  In defining functions,
+if arrows cross the boundary of the definition box and they are incoming, input
+is required to future uses of the function.  One outgong arrow is allowed to
+indicate the output of the function.  Using this notation, answers are submitted
+by {\sfapp Show}ing the output at a point in the calculation to the output box
+{\sfapp ANS}.
 
 The textual language improves upon the traditional means of handwriting
 arithmetic by revealing otherwise-hidden dependencies using references to line
-numbers.  As the target audience is not yet requierd to have formally learnt
-(or, indeed, encountered) algebra, this notation uses line numbers to refer to
-the results of the calculation performed on that line.
+numbers.  As the target audience is not yet required to have formally learnt
+(or, indeed, encountered) algebra, this notation includes a function \verb¬:¬,
+which takes a single number \emph{n} as an argument and returns the result of the
+calculation performed on line \emph{n}.  Answers are submitted using a function
+\verb¬answer¬ that takes a single number (shown here using a line reference that
+is resolved to a number) as an argument.  Other functions include addition,
+subtraction, multiplication, division and exponentiation, all of which take two
+or more numerical arguments and are used in the familiar infix form.  A function
+\verb¬define¬ is also included, although not shown here.  Finally, there is the
+\verb¬show¬ function, which behaves similarly to a print statement.  It takes a
+numerical argument \emph{n} followed by a string argument \verb¬str¬, and
+displays \emph{n} in the output box named \verb¬str¬ at the top of the screen.
+If there exists no such output box, it is created next to the existing boxes.
+Note that \verb¬answer n¬ is logically equivalent to \verb¬show n "ANS"¬; the
+\verb¬answer¬ function was included here to increase clarity.
 
 \paragraph{Sierpiński Triangle Metaphor}\hfill
 

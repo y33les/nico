@@ -18,11 +18,11 @@
 \contentsline {subsubsection}{\numberline {2.2.1.1}Low-Fidelity Prototyping}{7}
 \contentsline {subsubsection}{\numberline {2.2.1.2}Preliminary Designs}{7}
 \contentsline {paragraph}{\numberline {2.2.1.2.1}Flowgraph Metaphor}{7}
-\contentsline {paragraph}{\numberline {2.2.1.2.2}Sierpiński Triangle Metaphor}{9}
-\contentsline {paragraph}{\numberline {2.2.1.2.3}Circle Metaphor}{9}
-\contentsline {section}{\numberline {2.3}Additional Tools}{10}
-\contentsline {subsection}{\numberline {2.3.1}Third-Party Tools}{10}
-\contentsline {section}{\numberline {2.4}Summary}{11}
+\contentsline {paragraph}{\numberline {2.2.1.2.2}Sierpiński Triangle Metaphor}{10}
+\contentsline {paragraph}{\numberline {2.2.1.2.3}Circle Metaphor}{10}
+\contentsline {section}{\numberline {2.3}Additional Tools}{11}
+\contentsline {subsection}{\numberline {2.3.1}Third-Party Tools}{11}
+\contentsline {section}{\numberline {2.4}Summary}{12}
 \contentsline {chapter}{\numberline {3}Implementation}{13}
 \contentsline {section}{\numberline {3.1}Backend}{13}
 \contentsline {section}{\numberline {3.2}User Interface}{13}

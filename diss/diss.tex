@@ -291,7 +291,31 @@ consuming to change it everywhere it appears in the working.  If several
 calculations are dependent upon each other, then this entails a lot of knock-on
 viscosity in recalculating each stage after changing the number.  This is
 exacerbated by the hidden dependencies between chained calculations in
-handwritten arithmetic (\emph{Fig. 1.1}).
+handwritten arithmetic (\emph{Fig. 1.1}).  The problem of hidden dependencies
+is made worse by the low juxtaposability of the system; although the notation
+is quite visible, in that every calculation can be seen easily on the page,
+juxtaposing two sets of calculations entails considerable premature commitment
+on the part of the user, as components cannot easily be edited or relocated due
+to the system's high viscosity.  Whilst viscosity can be acceptable in some
+situations, it is harmful with regard to modification and exploration within a
+notational system, once again requiring a non-trivial amount of premature
+commitment on the part of the user.  In many cases, it can actually quicker for
+the user to start all over again, as opposed to making the changes required to
+rectify their calculations.
+
+Handwritten arithmetic does have one key advantage: it has a very low initial
+abstraction barrier.  Other than learning the appropriate symbols for each
+operation and digit, and how to combine them, the traditional system of
+arithmetic allows a learner to begin using it almost immediately.  Algebra, on
+the other hand, has a much higher abstraction barrier, requiring the much more
+abstract concept of a variable, rather than a set quantity, to be used
+effectively.  Although it is possible to add abstractions to arithmetic by the
+use of secondary notation, there is no provision for abstraction included in
+the primary notation.  It can, therefore, be said that algebra is an
+\emph{abstraction-hungry} system, whereas arithmetic is an
+\emph{abstraction-hating} system.  Without abstractions, arithmetic is easy to
+get started with, but can be a very verbose and inefficient notation with low
+visibility, as outlined above.
 
 \subsection{Requirements of a Replacement System}
 % cogdims!!
@@ -302,9 +326,11 @@ handwritten arithmetic (\emph{Fig. 1.1}).
 
 To improve upon the standard approach of listing the steps comprising a
 calculation, a system must acknowledge and try to overcome the drawbacks listed
-above.  To this end, I have designed and developed a system that aims to
-eliminate in particular the many hidden dependencies of traditional, handwritten
-arithmetic.
+above.  To this end, I have designed and developed a notational system and
+accompanying applciation that aims to overcome many of the disadvantages
+inherent in traditional, handwritten arithmetic.  The intention of the system
+is to reduce viscosity, increase visibility and to remove many of the hidden
+dependencies that beleaguer the traditional method.
 
 \section{Technical Challenges}
 % need first-class functions
@@ -492,7 +518,7 @@ Some preliminary designs for the application and graphical language follow.
 First is a combined flowgraph representation and Read-Evaluate-Print-Loop (REPL)
 design.  The second design uses the Sierpiński triangle as a basis for the
 visual metaphor.  The final design is the circle-based language that eventually
-became the basis for the rest of the project.
+became the foundation for the rest of the project.
 
 \paragraph{Flowgraph Metaphor}\hfill
 
@@ -510,7 +536,29 @@ the proposed application manipulating the graphical language, whilst the bottom
 screen shows a REPL utilising a simple text-based language for users more
 comfortable with writing than the visual metaphor.
 
-The application
+% TODO: add scroll bar to box selection panel?  have claimed that it's scrollable but it's not showing it!
+% TODO: similarly for the canvas
+The application is comprised of one window containing several panels.  The
+current question being answered is displayed in the top left-hand corner.
+Below this, a scrollable panel running down the left side of the window
+contains the fundamental components of the notation: boxes representing numbers
+and operations, both provided and user-defined, with two buttons below to
+change the action of clicking the mouse (explained in greater detail below).  A
+panel that runs along the top of the window contains output boxes, areas that
+display the result of a calculation at a user-determined point in the
+application.  Further boxes appear here as the user demands them, by using the
+{\sfapp Show} function.  The {\sfapp ANS} box is a specialised case of this,
+which displays what the user currently wishes to submit as the answer to the
+question.  The canvas panel occupies the majority of the window, and this is
+the area in which the answer is constructed using the various components of the
+graphical language.  In the top right-hand corner of the canvas are three
+buttons, to zoom in and out of the current calculation and to bring up a help
+window.  For especially large or zoomed-in calculations, the canvas is
+scrollable.  At the bottom of the window are two tabs, {\sfapp Flow} and
+{\sfapp Worksheet}.  When {\sfapp Flow} is selected, the graphical language is
+available for use in answering the question.  When {\sfapp Worksheet} is
+selected, the user is able to use a simple textual language in a REPL to answer
+the question.
 
 Of all the prototypes shown here, this version of the graphical language is the
 most like a traditional programming language, in that it allows the user to
@@ -542,6 +590,18 @@ indicate the output of the function.  Using this notation, answers are submitted
 by {\sfapp Show}ing the output at a point in the calculation to the output box
 {\sfapp ANS}.
 
+This particular graphical language tries to have a very high visibility,
+minimising the number of hidden dependencies between calculations by making
+every connection explicit: as a dataflow representation of a calculation
+\cite{Blackwell1998}, the flow of information through the diagram is made very
+clear.  This language is considerably less viscous than the handwritten method,
+as it is trivial (albeit not demonstrated in \emph{Fig. 2.2}) to remove and
+replace a box or arrow in the diagram, as opposed to writing out a new set of
+calculations or replacing several instances of a component by crossing them
+out.  Each box is able to be relocated on the canvas, increasing the
+juxtaposability of the system, and the user is able to define their own
+abstractions.
+
 The textual language improves upon the traditional means of handwriting
 arithmetic by revealing otherwise-hidden dependencies using references to line
 numbers.  As the target audience is not yet required to have formally learnt
@@ -560,6 +620,18 @@ If there exists no such output box, it is created next to the existing boxes.
 Note that \verb¬answer n¬ is logically equivalent to \verb¬show n "ANS"¬; the
 \verb¬answer¬ function was included here to increase clarity.
 
+This design was abandoned as it was deemed to be too complex for the target
+audience (Year 5).  The intention of this project is not to implement yet
+another programming language for learners, and by providing features like the
+REPL and function definition, the system unnecessarily overprovides.  In
+addition to this, the flowgraph representation had a number of shortcomings.
+For example, it is not immediately clear in what order the arguments feed into
+an operation, which is confusing for non-commutative functions such as
+subtraction.  Furthermore, the language is quite verbose.  Although this is not
+inherently a disadvantage, a more compact representation would be preferable,
+in order to make expressions written in the notations more readable to people
+other than the author.
+
 \paragraph{Sierpiński Triangle Metaphor}\hfill
 
 \begin{figure}[H]
@@ -569,7 +641,63 @@ Note that \verb¬answer n¬ is logically equivalent to \verb¬show n "ANS"¬; th
 \end{center}
 \end{figure}
 
-lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol
+This prototype uses a zooming instance of the Sierpiński triangle fractal as
+the basis of its notation.  It is shown here manipulating a simple calculation.
+
+The application consists of a single window containing two panels and a canvas
+area.  The right-hand panel displays the current total of the calculation,
+and the other panel displays the question currently being answered.  In the
+canvas area, there are buttons for zooming in and out, a help button and
+buttons controlling the composition of structures within the language.  When a
+triangle has been selected by clicking on it, clicking the {\sfapp Op} button
+presents the user with a choice of operations (namely +, -, × and ÷) to use in
+the bottom segment of the triangle.  Clicking either of the {\sfapp Input}
+buttons allows the user to input a value into their respective sections, and
+clicking on the {\sfapp Split} button creates a new triangle expression within
+the left-hand triangle.
+
+This notational system is based around binary operations represented as the
+component triangles of a Sierpiński fractal, the logic behind this being that
+the fractal structure emphasises that each calculation is part of a larger
+whole.  The notation is read by using the left and right sub-triangles as
+arguments (left first, right second) to the operation in the bottom triangle.
+The structure is colour-coded, such that each subexpression is a different
+colour to its precedent superexpression.  This allows the user to abstract away
+subexpressions as units to be manipulated as any other input to an operation
+would be.  The hidden dependencies of the handwritten method are greatly
+diminished in this manner, as viewing the internal structure of a
+calculation's subexpressions is simply a matter of zooming-in to the
+appropriate triangle.  Viscosity is also considerably reduced, as making a
+change in one expression does not require the change to made anywhere else, as
+the results of that expression are passed to the rest of the calculation.  This
+does not completely remove viscosity, as a misresrepresented value still has to
+be replaced several times if it appears in several different expressions, but
+this is still an improvement over handwriting.  Indeed, the fact that
+calculations are editable more than once, by virtue of using a computer rather
+than paper, makes this less viscous than pen and paper.  The system is quite
+visible, but has a very low juxtaposability, as all calculations are restricted
+to their respective places in the triangle template.
+
+This design was ultimately abandoned as it was deemed to be awkward for a
+number of reasons, not least because it was based solely around binary
+operations, meaning that to solve the simple question 1+2+3+4, one has to either
+calculate ((1+2)+3)+4, which is inefficient, or mentally calculate that
+1+2+3=6, and then calculate 6+4, which is obviously unacceptable for a system
+that intends to help the user express themselves mathematically.  The severe
+lack of juxtaposability is also a problem: as each expression must fit into the
+larger structure, it is not possible to reorder them at will, without
+fundamentally altering the calculation being performed.  In addition to this, a
+somewhat-informal survey of potential notations was conducted, asking
+approximately ten subjects to answer some sample questions in this notation and
+the circle-based notation (below).  Subjects found this notation less clear,
+and were much better able to complete questions correctly using the circle
+notation.
+% survey
+
+% what/mockup
+% application
+% language
+% abandoned
 
 \paragraph{Circle Metaphor}\hfill
 
@@ -580,10 +708,25 @@ lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol
 \end{center}
 \end{figure}
 
-lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol
+This prototype
+
+The application
+
+This notational system
+
+This design was the one that was ultimately chosen as % survey
+
+% what/mockup
+% application
+% language
+% chosen
 
 \section{Additional Tools}
 
+% Luke's:
+% Throughout the project, I developed additional support tools to assist with
+% design, development and testing. These will be described at the relevant place
+% in the implementation chapter.
 lol
 
 \subsection{Third-Party Tools}

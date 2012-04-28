@@ -1,39 +1,39 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}
 \contentsline {section}{\numberline {1.1}Motivations}{1}
 \contentsline {subsection}{\numberline {1.1.1}Evaluation of the Handwritten Approach}{2}
-\contentsline {subsection}{\numberline {1.1.2}Requirements of a Replacement System}{2}
-\contentsline {section}{\numberline {1.2}Technical Challenges}{2}
-\contentsline {section}{\numberline {1.3}Previous Work}{3}
+\contentsline {subsection}{\numberline {1.1.2}Requirements of a Replacement System}{3}
+\contentsline {section}{\numberline {1.2}Technical Challenges}{3}
+\contentsline {section}{\numberline {1.3}Previous Work}{4}
 \contentsline {section}{\numberline {1.4}Summary}{4}
-\contentsline {chapter}{\numberline {2}Preparation}{5}
-\contentsline {section}{\numberline {2.1}Requirements Analysis}{5}
-\contentsline {subsection}{\numberline {2.1.1}Current System}{5}
-\contentsline {subsection}{\numberline {2.1.2}Proposed System}{5}
-\contentsline {subsubsection}{\numberline {2.1.2.1}Overview}{5}
-\contentsline {subsubsection}{\numberline {2.1.2.2}Functional Requirements}{5}
-\contentsline {subsubsection}{\numberline {2.1.2.3}Non-Functional Requirements}{6}
-\contentsline {subsubsection}{\numberline {2.1.2.4}Use Case}{6}
-\contentsline {section}{\numberline {2.2}User Interface}{6}
-\contentsline {subsection}{\numberline {2.2.1}Prototyping}{7}
-\contentsline {subsubsection}{\numberline {2.2.1.1}Low-Fidelity Prototyping}{7}
-\contentsline {subsubsection}{\numberline {2.2.1.2}Preliminary Designs}{7}
-\contentsline {paragraph}{\numberline {2.2.1.2.1}Flowgraph Metaphor}{7}
-\contentsline {paragraph}{\numberline {2.2.1.2.2}Sierpiński Triangle Metaphor}{10}
-\contentsline {paragraph}{\numberline {2.2.1.2.3}Circle Metaphor}{10}
-\contentsline {section}{\numberline {2.3}Additional Tools}{11}
-\contentsline {subsection}{\numberline {2.3.1}Third-Party Tools}{11}
-\contentsline {section}{\numberline {2.4}Summary}{12}
-\contentsline {chapter}{\numberline {3}Implementation}{13}
-\contentsline {section}{\numberline {3.1}Backend}{13}
-\contentsline {section}{\numberline {3.2}User Interface}{13}
-\contentsline {subsection}{\numberline {3.2.1}Metaphor}{13}
-\contentsline {subsection}{\numberline {3.2.2}Application}{13}
-\contentsline {section}{\numberline {3.3}Summary}{13}
-\contentsline {chapter}{\numberline {4}Evaluation}{15}
-\contentsline {section}{\numberline {4.1}Backend Testing}{15}
-\contentsline {section}{\numberline {4.2}UI Evaluation}{15}
-\contentsline {section}{\numberline {4.3}Language Evaluation}{15}
-\contentsline {section}{\numberline {4.4}Summary}{15}
-\contentsline {chapter}{\numberline {5}Conclusions}{17}
-\contentsline {chapter}{Bibliography}{19}
-\contentsline {chapter}{\numberline {A}Project Proposal}{21}
+\contentsline {chapter}{\numberline {2}Preparation}{7}
+\contentsline {section}{\numberline {2.1}Requirements Analysis}{7}
+\contentsline {subsection}{\numberline {2.1.1}Current System}{7}
+\contentsline {subsection}{\numberline {2.1.2}Proposed System}{7}
+\contentsline {subsubsection}{\numberline {2.1.2.1}Overview}{7}
+\contentsline {subsubsection}{\numberline {2.1.2.2}Functional Requirements}{7}
+\contentsline {subsubsection}{\numberline {2.1.2.3}Non-Functional Requirements}{8}
+\contentsline {subsubsection}{\numberline {2.1.2.4}Use Case}{8}
+\contentsline {section}{\numberline {2.2}User Interface}{8}
+\contentsline {subsection}{\numberline {2.2.1}Prototyping}{9}
+\contentsline {subsubsection}{\numberline {2.2.1.1}Low-Fidelity Prototyping}{9}
+\contentsline {subsubsection}{\numberline {2.2.1.2}Preliminary Designs}{9}
+\contentsline {paragraph}{\numberline {2.2.1.2.1}Flowgraph Metaphor}{9}
+\contentsline {paragraph}{\numberline {2.2.1.2.2}Sierpiński Triangle Metaphor}{13}
+\contentsline {paragraph}{\numberline {2.2.1.2.3}Circle Metaphor}{14}
+\contentsline {section}{\numberline {2.3}Additional Tools}{15}
+\contentsline {subsection}{\numberline {2.3.1}Third-Party Tools}{16}
+\contentsline {section}{\numberline {2.4}Summary}{16}
+\contentsline {chapter}{\numberline {3}Implementation}{17}
+\contentsline {section}{\numberline {3.1}Backend}{17}
+\contentsline {section}{\numberline {3.2}User Interface}{17}
+\contentsline {subsection}{\numberline {3.2.1}Metaphor}{17}
+\contentsline {subsection}{\numberline {3.2.2}Application}{17}
+\contentsline {section}{\numberline {3.3}Summary}{17}
+\contentsline {chapter}{\numberline {4}Evaluation}{19}
+\contentsline {section}{\numberline {4.1}Backend Testing}{19}
+\contentsline {section}{\numberline {4.2}UI Evaluation}{19}
+\contentsline {section}{\numberline {4.3}Language Evaluation}{19}
+\contentsline {section}{\numberline {4.4}Summary}{19}
+\contentsline {chapter}{\numberline {5}Conclusions}{21}
+\contentsline {chapter}{Bibliography}{23}
+\contentsline {chapter}{\numberline {A}Project Proposal}{25}

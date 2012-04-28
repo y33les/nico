@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.2-0.9995.2 (TeX Live 2009/Debian) (format=xelatex 2012.3.2)  22 APR 2012 16:34
+This is XeTeX, Version 3.1415926-2.2-0.9995.2 (TeX Live 2009/Debian) (format=xelatex 2012.3.2)  28 APR 2012 20:13
 entering extended mode
  %&-line parsing enabled.
 **\input diss.tex
@@ -568,13 +568,14 @@ LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/it' will be
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/sl' in size <12> not a
 vailable
 (Font)              Font shape `EU1/LinuxLibertineO(0)/m/it' tried instead on i
-nput line 328.
+nput line 319.
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/it' will be
-(Font)              scaled to size 12.0pt on input line 328.
- [2] [3] [4]
-Chapter 2.
-[5
+(Font)              scaled to size 12.0pt on input line 319.
+ [2] [3] [4] [5] [6
 
+]
+Chapter 2.
+[7
 
 ]
 File: figs/lol.jpg Graphic file (type QTm)
@@ -585,43 +586,43 @@ File: figs/lol.jpg Graphic file (type QTm)
  <use  "figs/lol.jpg" >
 File: figs/lol.jpg Graphic file (type QTm)
 
-<use  "figs/lol.jpg" > [6]
+<use  "figs/lol.jpg" > [8]
 File: figs/mockups/flowgraph/img/fg-000.jpg Graphic file (type QTm)
  <use  "figs/mockups/flowgraph/img/fg-000.jpg" >
-[7]
+[9]
 LaTeX Font Info:    Font shape `EU1/RobotoRegular(0)/m/n' will be
-(Font)              scaled to size 9.84009pt on input line 520.
- [8] [9]
+(Font)              scaled to size 9.84009pt on input line 550.
+ [10] [11] [12]
 File: figs/mockups/sierp/sierp_mockup_full.png Graphic file (type QTm)
- <use  "figs/mockups/sierp/sierp_mockup_full.png" >
+ <use  "figs/mockups/sierp/sierp_mockup_full.png" > [13]
 File: figs/mockups/circles/nico_circmock.png Graphic file (type QTm)
 
-<use  "figs/mockups/circles/nico_circmock.png" > [10] [11] [12]
+<use  "figs/mockups/circles/nico_circmock.png" > [14] [15] [16]
 Chapter 3.
-[13
-
-
-] [14
-
-]
-Chapter 4.
-[15
-
-] [16
-
-]
-Chapter 5.
 [17
+
 
 ] [18
 
-] (./diss.bbl) [19
+]
+Chapter 4.
+[19
 
 ] [20
 
 ]
-Appendix A.
+Chapter 5.
 [21
+
+] [22
+
+] (./diss.bbl) [23
+
+] [24
+
+]
+Appendix A.
+[25
 
 ]
 File: proposal_rev04.pdf Graphic file (type QTm)
@@ -640,7 +641,7 @@ File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page1>
 File: proposal_rev04.pdf Graphic file (type QTm)
- <use  "proposal_rev04.pdf"  page1> [22]
+ <use  "proposal_rev04.pdf"  page1> [26]
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page2>
@@ -648,14 +649,14 @@ File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page2>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
-<use  "proposal_rev04.pdf"  page2> [23]
+<use  "proposal_rev04.pdf"  page2> [27]
 File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page3>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page3>
 File: proposal_rev04.pdf Graphic file (type QTm)
- <use  "proposal_rev04.pdf"  page3> [24]
+ <use  "proposal_rev04.pdf"  page3> [28]
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page4>
@@ -663,14 +664,14 @@ File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page4>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
-<use  "proposal_rev04.pdf"  page4> [25]
+<use  "proposal_rev04.pdf"  page4> [29]
 File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page5>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page5>
 File: proposal_rev04.pdf Graphic file (type QTm)
- <use  "proposal_rev04.pdf"  page5> [26]
+ <use  "proposal_rev04.pdf"  page5> [30]
 (./diss.aux)
 LaTeX Font Info:    Some font shapes were not available, defaults substituted.
  ) 
@@ -683,4 +684,4 @@ Here is how much of TeX's memory you used:
  28 hyphenation exceptions out of 8191
  44i,16n,83p,540b,527s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on diss.pdf (36 pages).
+Output written on diss.pdf (40 pages).

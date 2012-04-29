@@ -19,21 +19,20 @@
 \contentsline {subsubsection}{\numberline {2.2.1.2}Preliminary Designs}{9}
 \contentsline {paragraph}{\numberline {2.2.1.2.1}Flowgraph Metaphor}{9}
 \contentsline {paragraph}{\numberline {2.2.1.2.2}Sierpiński Triangle Metaphor}{13}
-\contentsline {paragraph}{\numberline {2.2.1.2.3}Circle Metaphor}{14}
-\contentsline {section}{\numberline {2.3}Additional Tools}{15}
-\contentsline {subsection}{\numberline {2.3.1}Third-Party Tools}{16}
-\contentsline {section}{\numberline {2.4}Summary}{16}
-\contentsline {chapter}{\numberline {3}Implementation}{17}
-\contentsline {section}{\numberline {3.1}Backend}{17}
-\contentsline {section}{\numberline {3.2}User Interface}{17}
-\contentsline {subsection}{\numberline {3.2.1}Metaphor}{17}
-\contentsline {subsection}{\numberline {3.2.2}Application}{17}
-\contentsline {section}{\numberline {3.3}Summary}{17}
-\contentsline {chapter}{\numberline {4}Evaluation}{19}
-\contentsline {section}{\numberline {4.1}Backend Testing}{19}
-\contentsline {section}{\numberline {4.2}UI Evaluation}{19}
-\contentsline {section}{\numberline {4.3}Language Evaluation}{19}
-\contentsline {section}{\numberline {4.4}Summary}{19}
-\contentsline {chapter}{\numberline {5}Conclusions}{21}
-\contentsline {chapter}{Bibliography}{23}
-\contentsline {chapter}{\numberline {A}Project Proposal}{25}
+\contentsline {paragraph}{\numberline {2.2.1.2.3}Circle Metaphor}{15}
+\contentsline {section}{\numberline {2.3}Third-Party Tools}{17}
+\contentsline {section}{\numberline {2.4}Summary}{17}
+\contentsline {chapter}{\numberline {3}Implementation}{19}
+\contentsline {section}{\numberline {3.1}Backend}{19}
+\contentsline {section}{\numberline {3.2}User Interface}{19}
+\contentsline {subsection}{\numberline {3.2.1}Metaphor}{19}
+\contentsline {subsection}{\numberline {3.2.2}Application}{19}
+\contentsline {section}{\numberline {3.3}Summary}{19}
+\contentsline {chapter}{\numberline {4}Evaluation}{21}
+\contentsline {section}{\numberline {4.1}Backend Testing}{21}
+\contentsline {section}{\numberline {4.2}UI Evaluation}{21}
+\contentsline {section}{\numberline {4.3}Language Evaluation}{21}
+\contentsline {section}{\numberline {4.4}Summary}{21}
+\contentsline {chapter}{\numberline {5}Conclusions}{23}
+\contentsline {chapter}{Bibliography}{25}
+\contentsline {chapter}{\numberline {A}Project Proposal}{27}

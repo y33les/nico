@@ -19,6 +19,7 @@
 \usepackage{caption}
 \usepackage{color}
 \usepackage{float}
+% \usepackage{lettrine} % dropped capitals at start of chapter
 
 \usepackage{graphicx}
 \usepackage{fontspec,xunicode}
@@ -201,6 +202,7 @@ Stead and Sam Aaron for their encouragement and patience.
 
 \chapter{Introduction}
 
+% \lettrine{T}{he}
 The aim of this project has been to design and develop a notation and
 accompanying application to act as a learning aid for pre-algebra arithmetic by
 increasing visibility, reducing the number of hidden dependencies and making the
@@ -686,13 +688,17 @@ calculate ((1+2)+3)+4, which is inefficient, or mentally calculate that
 that intends to help the user express themselves mathematically.  The severe
 lack of juxtaposability is also a problem: as each expression must fit into the
 larger structure, it is not possible to reorder them at will, without
-fundamentally altering the calculation being performed.  In addition to this, a
+fundamentally altering the calculation being performed.  It also enforces a top-
+down approach to calculation: one is required by the system to begin with the
+outermost calculation and work inwards.  There is no provision for putting a
+larger triangle around an existing calculation.  In addition to this, a
 somewhat-informal survey of potential notations was conducted, asking
 approximately ten subjects to answer some sample questions in this notation and
 the circle-based notation (below).  Subjects found this notation less clear,
 and were much better able to complete questions correctly using the circle
 notation.
 % survey
+% TODO: can't put subexpressions into right-hand triangle
 
 % what/mockup
 % application
@@ -713,26 +719,84 @@ calculation, linked in such a way as to indicate the flow of information.
 Although it is related to the flowgraph metaphor (above), it has a number of
 key differences.
 
-The application
+The application comprises, similarly to the Sierpiński model above, a single
+window with two panels and a scrollable canvas area, with some buttons to
+control the input of data.  The right-hand panel shows a running total of the
+user's calculation, and the other panel shows the question currently being
+answered.  The canvas area has three buttons at the bottom: zoom in, zoom out
+and help.  The larger buttons above these control the action that clicking the
+mouse on the canvas performs.  When {\sfapp New} is active, clicking on the
+canvas creates a new circle at that location.  When {\sfapp Split} is active,
+clicking on a circle increases the number of arguments it has (initially two,
+up to a maximum of eight).  When {\sfapp Function} is selected, clicking on a
+circle presents the user with a choice of +, -, × and ÷ to use as that circle's
+operation.  When {\sfapp Input} is selected, as shown in \emph{Fig. 2.4}, the
+user is presented with two further options, {\sfapp Number} and
+{\sfapp Circle}.  When {\sfapp Number} is active, clicking on a circle's
+argument allows the user to change the value of that argument.  When
+{\sfapp Circle} is active, the user is able to click and drag from one circle
+to an argument of another, indicating that they wish to use the results of one
+circle's calculation as the argument to another circle's calculation.  Finally,
+the {\sfapp Answer} button submits the current total as the answer to the
+current question.
 
-This notational system
+This notational system uses linked circles representing individual expressions
+as its primary metaphor for constructing calculations.  It is similar to the
+flowgraph metaphor presented above, except that instead of boxes for each
+argument and operation all linked together, single, linkable objects in this
+system are complete expressions, rather than components.  Also, there is only
+one visible output, namely the overall result of the calculation as a whole.
+As for the circles themselves, they consist of an operation at the centre,
+orbited by arguments, which are evaluated clockwise from 0°.  Each argument can
+either be a number or the tail of another circle, representing the result of
+the calculation that that circle stands for.  The circles are colour-coded,
+with each `layer' having its own colour.  In this case, the root circle is red,
+the circles feeding directly into it are yellow, the circles feeding into those
+circles are green and the circles feeding into those are blue.  It is possible
+to move circles around the canvas by clicking and dragging them to the desired
+location.  Compared to the handwritten approach, this notational system is much
+more visible, and very much more juxtaposable, allowing the user to construct
+the diagram in a way that is comfortable for them, and allowing them to compare
+elements side-by-side if they need to.  Unlike with the Sierpiński metaphor,
+the user is not restricted to one order or pattern of constructing a
+calculation: calculations can be performed bottom-up, top-down or a mixture of
+both, as is comfortable for the individual user.  The system of tails feeding
+into other circles also makes the dataflow clear, eliminating many of the
+hidden dependencies of handwritten calculation.  For similar reasons to the
+flowgraph metaphor, the circle notation also reduces viscosity, as changing a
+subexpression automatically alters all of its superexpressions.  Finally, the
+system requires little premature commitment, as piece of the diagram can be
+created, deleted and swapped in and out at will, so it is ideal for
+exploration, allowing the user to try many ways of solving a problem within the
+application, rather than having to use a secondary notation or device to help
+work through a problem in a more familiar manner and then transcripting that
+solution into the new notation.
 
-This design was the one that was ultimately chosen as % survey
+This design was the one that was ultimately chosen as the basis for the project
+as it neatly solved, or at least ameliorated, many of the problems listed with
+handwritten arithmetic, without being too complex for the target audience (as
+with the flowgraph system), and without being too restrictive with regard to
+mathematical expression.  In addition to this, the results of the survey
+mentioned above also indicated that people got on well with this notation; the
+test subjects found it considerably easier to use than the Sierpiński notation,
+and made fewer mistakes in handwriting this notation than the alternative.
+% survey
 
 % what/mockup
 % application
 % language
 % chosen
 
-\section{Additional Tools}
+% \section{Additional Tools}
 
 % Luke's:
 % Throughout the project, I developed additional support tools to assist with
 % design, development and testing. These will be described at the relevant place
 % in the implementation chapter.
-lol
+% lol
 
-\subsection{Third-Party Tools}
+% \subsection{Third-Party Tools}
+\section{Third-Party Tools}
 
 What follows is a list of the third-party tools that were used in the
 development of the project.

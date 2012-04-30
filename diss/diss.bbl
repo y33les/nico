@@ -40,6 +40,12 @@ B.~A. Myers.
 \newblock Taxonomies of visual programming and program visualization.
 \newblock {\em Journal of Visual Languages and Computing}, 1:97--123, 1990.
 
+\bibitem{Roca2004}
+A.~Roca and F.~Rousseau.
+\newblock Interactive multimedia and next generation networks.
+\newblock In {\em MIPS 2004: Second International Workshop on Multimedia
+  Interactive Protocols and Systems}, Grenoble, France, November 2004. ACM.
+
 \bibitem{OvertoneEmacsD}
 samaaron and jlr.
 \newblock overtone/live-coding-emacs.

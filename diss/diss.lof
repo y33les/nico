@@ -1,32 +1,52 @@
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Illustrating the hidden dependencies and viscosity inherent in pre-algebra, handwritten arithmetic. The original calculation is shown in (a), has its otherwise-hidden dependencies highlighted in (b), and is altered slightly in (c).\relax }}{2}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{2}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{2}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{2}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Early designs for flowgraph-based calculation metaphors.\relax }}{9}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Illustrating the hidden dependencies and viscosity inherent in pre-algebra, handwritten arithmetic. The original calculation is shown in (a), has its otherwise-hidden dependencies highlighted in (b), and is altered slightly in (c).\relax }}{5}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{5}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{5}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{5}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Early designs for flowgraph-based calculation metaphors.\relax }}{8}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{8}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{8}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces A more refined sketch of a flowgraph-based language and application.\relax }}{9}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Early designs for triangle-based calculation metaphors.\relax }}{9}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{9}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{9}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{9}
 \contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{9}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Early designs for flowgraph-based calculation metaphors.\relax }}{10}
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {}}}{9}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces A more refined sketch of a triangle-based language.\relax }}{10}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Early designs for circle-based calculation metaphors.\relax }}{10}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{10}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{10}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{10}
 \contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{10}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Early designs for flowgraph-based calculation metaphors.\relax }}{11}
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {}}}{10}
+\contentsline {subfigure}{\numberline {(f)}{\ignorespaces {}}}{10}
+\contentsline {subfigure}{\numberline {(g)}{\ignorespaces {}}}{10}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces A more refined sketch of a circle-based language.\relax }}{11}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{11}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{11}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{11}
 \contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{11}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Early designs for flowgraph-based calculation metaphors.\relax }}{12}
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {}}}{11}
+\contentsline {subfigure}{\numberline {(f)}{\ignorespaces {}}}{11}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Assorted early designs for other calculation metaphors.\relax }}{12}
+\contentsline {subfigure}{\numberline {(g)}{\ignorespaces {}}}{12}
+\contentsline {subfigure}{\numberline {(h)}{\ignorespaces {}}}{12}
+\contentsline {subfigure}{\numberline {(i)}{\ignorespaces {}}}{12}
+\contentsline {subfigure}{\numberline {(j)}{\ignorespaces {}}}{12}
+\contentsline {subfigure}{\numberline {(k)}{\ignorespaces {}}}{12}
+\contentsline {subfigure}{\numberline {(l)}{\ignorespaces {}}}{12}
+\contentsline {subfigure}{\numberline {(m)}{\ignorespaces {}}}{12}
+\contentsline {figure}{\numberline {2.8}{\ignorespaces A sample progression of a calculation in a language based around infinitely halving a rectangle.\relax }}{12}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{12}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{12}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{12}
 \contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{12}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces The prototype flowgraph-style language.\relax }}{13}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces The prototype Sierpiński-triangle-based language.\relax }}{15}
-\contentsline {figure}{\numberline {2.7}{\ignorespaces The prototype circle-based language.\relax }}{17}
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {}}}{12}
+\contentsline {figure}{\numberline {2.9}{\ignorespaces The prototype flowgraph-style language.\relax }}{14}
+\contentsline {figure}{\numberline {2.10}{\ignorespaces The prototype Sierpiński-triangle-based language.\relax }}{17}
+\contentsline {figure}{\numberline {2.11}{\ignorespaces The prototype circle-based language.\relax }}{19}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -231,108 +231,11 @@ alternative notation should have.
 
 \pagebreak
 
-\subsection{Evaluation of the Handwritten Approach}
+% \subsection{Evaluation of the Handwritten Approach}
+% % moved to chapter 2 requirements analysis
 
-\begin{figure}
-% \begin{wrapfigure}{r}{0.5\textwidth}
-\begin{center}
-\subfloat[]{
-\parbox{2cm}{
-\begin{center}
-{\small
-24+35=59\\
-12+48=60\\
-59+72=131\\
-1+60=61\\
-131+61=192}
-\end{center}}}
-\subfloat[]{
-\parbox{2cm}{
-\begin{center}
-{\small
-24+35={\color{green}59}\\
-12+48={\color{blue}60}\\
-{\color{green}59}+72={\color{green}131}\\
-1+{\color{blue}60}={\color{blue}61}\\
-{\color{green}131}+{\color{blue}61}=192}
-\end{center}}}
-\subfloat[]{
-\parbox{4cm}{
-\begin{center}
-{\small
-24+35= {\color{red}\sout{59}} {\color{green}49}\\
-12+48={\color{blue}60}\\
-{\color{red}\sout{59}} {\color{green}49}+72= {\color{red}\sout{131}} {\color{green}121}\\
-1+{\color{blue}60}={\color{blue}61}\\
-{\color{red}\sout{131}} {\color{green}121}+{\color{blue}61}= {\color{red}\sout{192}} 182}
-\end{center}}}
-\end{center}
-\caption{Illustrating the hidden dependencies and viscosity inherent in pre-algebra, handwritten arithmetic.  The original calculation is shown in (a), has its otherwise-hidden dependencies highlighted in (b), and is altered slightly in (c).}
-% \end{wrapfigure}
-\end{figure}
-% cogdims
-% taught method without being taught *why* it works
-% high viscosity - have to cross things out or start again
-% high repetition viscosity
-% low knock-on viscosity
-% viscosity is acceptable in transcription and incrementation, but harmful to modification and exploration
-% hidden dependencies -
-% premature commitment - made worse by high repetition viscosity; have to start again if a mistake is made
-% premature commitment is certainly very high for traditional calculators
-% algebra is abstraction-hungry, arthimetic is abstraction-hating, though can use secondary notation to construct abstractions
-% no abstraction barrier to arithmetic though
-% secondary notation - notes around calculations
-% visibility - visible, but only juxtaposable if juxtaposed at the start (premature commitment) or with the help of secondary notation
-There are a number of problems with handwritten, pre-algebra arithmetic that
-this project seeks to rectify.  First of all, the fact that it is handwritten
-entails a high level of viscosity: it is difficult to make changes to a written
-calculation without sacrificing clarity.  In particular, there is a lot of
-repetition viscosity involved in the modification of an existing piece of work;
-if a number is changed that is used in several calculations, then it is time-
-consuming to change it everywhere it appears in the working.  If several
-calculations are dependent upon each other, then this entails a lot of knock-on
-viscosity in recalculating each stage after changing the number.  This is
-exacerbated by the hidden dependencies between chained calculations in
-handwritten arithmetic (\emph{Fig. 1.1}).  The problem of hidden dependencies
-is made worse by the low juxtaposability of the system; although the notation
-is quite visible, in that every calculation can be seen easily on the page,
-juxtaposing two sets of calculations entails considerable premature commitment
-on the part of the user, as components cannot easily be edited or relocated due
-to the system's high viscosity.  Whilst viscosity can be acceptable in some
-situations, it is harmful with regard to modification and exploration within a
-notational system, once again requiring a non-trivial amount of premature
-commitment on the part of the user.  In many cases, it can actually quicker for
-the user to start all over again, as opposed to making the changes required to
-rectify their calculations.
-
-Handwritten arithmetic does have one key advantage: it has a very low initial
-abstraction barrier.  Other than learning the appropriate symbols for each
-operation and digit, and how to combine them, the traditional system of
-arithmetic allows a learner to begin using it almost immediately.  Algebra, on
-the other hand, has a much higher abstraction barrier, requiring the much more
-abstract concept of a variable, rather than a set quantity, to be used
-effectively.  Although it is possible to add abstractions to arithmetic by the
-use of secondary notation, there is no provision for abstraction included in
-the primary notation.  It can, therefore, be said that algebra is an
-\emph{abstraction-hungry} system, whereas arithmetic is an
-\emph{abstraction-hating} system.  Without abstractions, arithmetic is easy to
-get started with, but can be a very verbose and inefficient notation with low
-visibility, as outlined above.
-
-\subsection{Requirements of a Replacement System}
-% cogdims!!
-% need to develop useful notation - early studies, talk about other notations we came up with, notations looked at with alistair (get link)
-% hidden dependencies - nico shows a data flow representation (p19, blackwell1998) to make dependencies explicit
-
-% TODO: this bit.  not even sure if it should be in the intro...
-
-To improve upon the standard approach of listing the steps comprising a
-calculation, a system must acknowledge and try to overcome the drawbacks listed
-above.  To this end, I have designed and developed a notational system and
-accompanying applciation that aims to overcome many of the disadvantages
-inherent in traditional, handwritten arithmetic.  The intention of the system
-is to reduce viscosity, increase visibility and to remove many of the hidden
-dependencies that beleaguer the traditional method.
+% \subsection{Requirements of a Replacement System}
+% % moved to chapter 2 requirements analysis
 
 \section{Technical Challenges}
 % need first-class functions
@@ -430,30 +333,144 @@ novel graphical notation.
 
 \chapter{Preparation}
 
-In this chapter I will discuss the work that was done prior to beginning the
-project proper.  This includes learning the Clojure programming language and
-researching and auditioning graphical metaphors for calculation.  This chapter
-comprises a requirements analysis, followed by an overview of the system
-architecture and a discussion of the additional tools used in the development of
-the project.
+% In this chapter I will discuss the work that was done prior to beginning the
+% project proper.  This includes learning the Clojure programming language and
+% researching and auditioning graphical metaphors for calculation.  This chapter
+% comprises a requirements analysis, followed by an overview of the system
+% architecture and a discussion of the additional tools used in the development of
+% the project.
+This chapter concerns the work that was completed prior to beginning the
+project proper.  It comprises a requirements analysis, followed by a discussion
+of the prototyping process of the graphical notation to be implemented in the
+final application.  Finally, there will be a brief examination of the tools
+used in the development of the project.
 
 \section{Requirements Analysis}
 % http://www.cs.fsu.edu/~lacher/courses/COP3331/rad.html
 % http://www.nd.gov/itd/files/services/pm/requirements-analysis-guidebook.pdf
 
+% TODO: write about the requirements analysis and why we're doing one
+
 \subsection{Current System}
 % move evaluation of handwritten arithmetic from chapter 1 here?
+
+\begin{figure}
+% \begin{wrapfigure}{r}{0.5\textwidth}
+\begin{center}
+\subfloat[]{
+\parbox{2cm}{
+\begin{center}
+{\small
+24+35=59\\
+12+48=60\\
+59+72=131\\
+1+60=61\\
+131+61=192}
+\end{center}}}
+\subfloat[]{
+\parbox{2cm}{
+\begin{center}
+{\small
+24+35={\color{green}59}\\
+12+48={\color{blue}60}\\
+{\color{green}59}+72={\color{green}131}\\
+1+{\color{blue}60}={\color{blue}61}\\
+{\color{green}131}+{\color{blue}61}=192}
+\end{center}}}
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+{\small
+24+35= {\color{red}\sout{59}} {\color{green}49}\\
+12+48={\color{blue}60}\\
+{\color{red}\sout{59}} {\color{green}49}+72= {\color{red}\sout{131}} {\color{green}121}\\
+1+{\color{blue}60}={\color{blue}61}\\
+{\color{red}\sout{131}} {\color{green}121}+{\color{blue}61}= {\color{red}\sout{192}} 182}
+\end{center}}}
+\end{center}
+\caption{Illustrating the hidden dependencies and viscosity inherent in pre-algebra, handwritten arithmetic.  The original calculation is shown in (a), has its otherwise-hidden dependencies highlighted in (b), and is altered slightly in (c).}
+% \end{wrapfigure}
+\end{figure}
+% cogdims
+% taught method without being taught *why* it works
+% high viscosity - have to cross things out or start again
+% high repetition viscosity
+% low knock-on viscosity
+% viscosity is acceptable in transcription and incrementation, but harmful to modification and exploration
+% hidden dependencies -
+% premature commitment - made worse by high repetition viscosity; have to start again if a mistake is made
+% premature commitment is certainly very high for traditional calculators
+% algebra is abstraction-hungry, arthimetic is abstraction-hating, though can use secondary notation to construct abstractions
+% no abstraction barrier to arithmetic though
+% secondary notation - notes around calculations
+% visibility - visible, but only juxtaposable if juxtaposed at the start (premature commitment) or with the help of secondary notation
+There are a number of problems with handwritten, pre-algebra arithmetic that
+this project seeks to rectify.  First of all, the fact that it is handwritten
+entails a high level of viscosity: it is difficult to make changes to a written
+calculation without sacrificing clarity.  In particular, there is a lot of
+repetition viscosity involved in the modification of an existing piece of work;
+if a number is changed that is used in several calculations, then it is
+time-consuming to change it everywhere it appears in the working.  If several
+calculations are dependent upon each other, then this entails a lot of knock-on
+viscosity in recalculating each stage after changing the number.  This is
+exacerbated by the hidden dependencies between chained calculations in
+handwritten arithmetic (\emph{Fig. 2.1}).  The problem of hidden dependencies
+is made worse by the low juxtaposability of the system; although the notation
+is quite visible, in that every calculation can be seen easily on the page,
+juxtaposing two sets of calculations entails considerable premature commitment
+on the part of the user, as components cannot easily be edited or relocated due
+to the system's high viscosity.  Whilst viscosity can be acceptable in some
+situations, it is harmful with regard to modification and exploration within a
+notational system, once again requiring a non-trivial amount of premature
+commitment on the part of the user.  In many cases, it can actually quicker for
+the user to start all over again, as opposed to making the changes required to
+rectify their calculations.
+
+Handwritten arithmetic does have one key advantage: it has a very low initial
+abstraction barrier.  Other than learning the appropriate symbols for each
+operation and digit, and how to combine them, the traditional system of
+arithmetic allows a learner to begin using it almost immediately.  Algebra, on
+the other hand, has a much higher abstraction barrier, requiring the much more
+abstract concept of a variable, rather than a set quantity, to be used
+effectively.  Although it is possible to add abstractions to arithmetic by the
+use of secondary notation, there is no provision for abstraction included in
+the primary notation.  It can, therefore, be said that algebra is an
+\emph{abstraction-hungry} system, whereas arithmetic is an
+\emph{abstraction-hating} system.  Without abstractions, arithmetic is easy to
+get started with, but can be a very verbose and inefficient notation with low
+visibility, as outlined above.
 
 \subsection{Proposed System}
 
 \subsubsection{Overview}
+% cogdims!!
+% need to develop useful notation - early studies, talk about other notations we came up with, notations looked at with alistair (get link)
+% hidden dependencies - nico shows a data flow representation (p19, blackwell1998) to make dependencies explicit
+
+% TODO: this bit.  not even sure if it should be in the intro...
+
+To improve upon the standard approach of listing the steps comprising a
+calculation, a system must acknowledge and try to overcome the drawbacks listed
+above.  To this end, I have designed and developed a notational system and
+accompanying applciation that aims to overcome many of the disadvantages
+inherent in traditional, handwritten arithmetic.  The intention of the system
+is to reduce viscosity, increase visibility and to remove many of the hidden
+dependencies that beleaguer the traditional method. % TODO: not ahppy with this; not sure it counts as an overview
+
 
 \subsubsection{Functional Requirements}
 
 To be an improvement upon the current system detailed above, the new system must
-satisfy the following properties:--
+satisfy the following properties:-- % TODO: not happy with this
 \begin{itemize}
-\item lol
+\item Allows the user to create graphical structures representative of complex calculations
+\item Provides the user with a suitable environment in which to do so
+\item Allows the user to reposition elements of the structure at will
+\item Displays the user's current progress
+\item Is able to evaluate the correctness of the user's answer
+\item Accepts a file containing a set of questions to be answered
+\item Displays the current question being answered
+\item Progresses through the current question set as the user answers each question correctly
 \end{itemize}
 
 \subsubsection{Non-Functional Requirements}
@@ -461,11 +478,17 @@ satisfy the following properties:--
 The system must also satisfy a number of requirements outside of its basic
 functionality.  These are listed below.
 \begin{itemize}
-\item lol
+\item Offers a significant improvement in visibility over handwritten arithmetic
+\item Offers a significant improvement in juxtaposability over handwritten arithmetic
+\item Reduces premature commitment relative to handwritten arithmetic
+\item Reduces hidden dependencies relative to handwritten arithmetic
+\item Is interactive: is able to pass results back to the user in less than 300ms\footnote{Roca and Rousseau \cite{Roca2004} have this to say on the subject of interactivity: ``An abundance of studies into user tolerance of round-trip latency [...] has been conducted and generally agrees upon the following levels of tolerance: excellent, 0-300ms; good, 300-600ms; poor, 600-700ms; and quality becomes unacceptable [...] in excess of 700ms.''}
 \end{itemize}
 
-\subsubsection{Use Case}
-% diagram?  see wikipedia "use case"
+% \subsubsection{Use Case}
+%
+% % diagram?  see wikipedia "use case"
+% lol
 
 % \section{System Overview}
 % % do we need if in req. analysis?
@@ -476,7 +499,12 @@ functionality.  These are listed below.
 % section rather than subsection?  def. section if we don't have system overview
 % prototypes!  dig out the preliminary drawings, take screenshots of old versions for later
 
-lol
+As this project is primarily concerned with human-computer interaction, the
+user interface and experience, and the design thereof, constitutes a
+significant part of this project.  As such, this section outlines the initial
+development stages of the user interface, first introducing several designs for
+the graphical notation, and then discussing in more detail three that were
+developed further.
 
 \subsection{Prototyping}
 
@@ -491,10 +519,11 @@ sketches, a few of which were refined in larger examples, and three of which
 were deemed good enough to warrant an application mockup, as detailed in
 \emph{Sec. 2.2.1.2}.
 
-\newpage
+% \newpage
 
-\paragraph{Flowgraphs}\hfill
+% \paragraph{Flowgraphs}\hfill
 
+\begin{center}
 \begin{figure}[H]
 % \begin{wrapfigure}{r}{0.5\textwidth}
 \begin{center}
@@ -502,135 +531,269 @@ were deemed good enough to warrant an application mockup, as detailed in
 \parbox{4cm}{
 \begin{center}
 \includegraphics[width=4cm]{figs/mockups/sketches/11/11a.jpg}
-\end{center}}}\hfill
+\end{center}}}
 \subfloat[]{
 \parbox{4cm}{
 \begin{center}
-\includegraphics[width=4cm]{figs/mockups/sketches/11/11a.jpg}
-\end{center}}}\\
-\subfloat[]{
-\parbox{4cm}{
-\begin{center}
-\includegraphics[width=4cm]{figs/mockups/sketches/11/11a.jpg}
-\end{center}}}\hfill
-\subfloat[]{
-\parbox{4cm}{
-\begin{center}
-\includegraphics[width=4cm]{figs/mockups/sketches/11/11a.jpg}
+\includegraphics[width=4cm]{figs/mockups/sketches/11/11b.jpg}
 \end{center}}}
 \end{center}
 \caption{Early designs for flowgraph-based calculation metaphors.}
 % \end{wrapfigure}
 \end{figure}
+\end{center}
 
-\newpage
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{figs/mockups/sketches/11/11jii.jpg}
+\end{center}
+\caption{A more refined sketch of a flowgraph-based language and application.}
+\end{figure}
+\end{center}
 
-\paragraph{Triangles}\hfill
+% \newpage
 
+% \paragraph{Triangles}\hfill
+
+\begin{center}
 \begin{figure}[H]
 % \begin{wrapfigure}{r}{0.5\textwidth}
 \begin{center}
 \subfloat[]{
 \parbox{4cm}{
 \begin{center}
-\includegraphics[width=4cm]{figs/mockups/sketches/11/11a.jpg}
-\end{center}}}\hfill
+\includegraphics[width=4cm]{figs/mockups/sketches/21/21b.jpg}
+\end{center}}}
 \subfloat[]{
 \parbox{4cm}{
 \begin{center}
-\includegraphics[width=4cm]{figs/mockups/sketches/11/11a.jpg}
+\includegraphics[width=4cm]{figs/mockups/sketches/22/22a.jpg}
+\end{center}}}
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[width=4cm]{figs/mockups/sketches/22/22b.jpg}
 \end{center}}}\\
 \subfloat[]{
 \parbox{4cm}{
 \begin{center}
-\includegraphics[width=4cm]{figs/mockups/sketches/11/11a.jpg}
-\end{center}}}\hfill
+\includegraphics[width=4cm]{figs/mockups/sketches/42/42a.jpg}
+\end{center}}}
 \subfloat[]{
 \parbox{4cm}{
 \begin{center}
-\includegraphics[width=4cm]{figs/mockups/sketches/11/11a.jpg}
+\includegraphics[width=4cm]{figs/mockups/sketches/42/42b.jpg}
 \end{center}}}
 \end{center}
-\caption{Early designs for flowgraph-based calculation metaphors.}
+\caption{Early designs for triangle-based calculation metaphors.}
 % \end{wrapfigure}
 \end{figure}
+\end{center}
 
-\newpage
+\begin{center}
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{figs/mockups/sketches/31/31a.jpg}
+\end{center}
+\caption{A more refined sketch of a triangle-based language.}
+\end{figure}
+\end{center}
 
-\paragraph{Circles}\hfill
+% \newpage
 
+% \paragraph{Circles}\hfill
+
+\begin{center}
 \begin{figure}[H]
 % \begin{wrapfigure}{r}{0.5\textwidth}
 \begin{center}
 \subfloat[]{
 \parbox{4cm}{
 \begin{center}
-\includegraphics[width=4cm]{figs/mockups/sketches/11/11a.jpg}
-\end{center}}}\hfill
+\includegraphics[width=4cm]{figs/mockups/sketches/12/12a.jpg}
+\end{center}}}
 \subfloat[]{
 \parbox{4cm}{
 \begin{center}
-\includegraphics[width=4cm]{figs/mockups/sketches/11/11a.jpg}
+\includegraphics[width=4cm]{figs/mockups/sketches/12/12b.jpg}
+\end{center}}}
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[width=4cm]{figs/mockups/sketches/12/12c.jpg}
+\end{center}}}
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[width=4cm]{figs/mockups/sketches/12/12f.jpg}
 \end{center}}}\\
 \subfloat[]{
 \parbox{4cm}{
 \begin{center}
-\includegraphics[width=4cm]{figs/mockups/sketches/11/11a.jpg}
-\end{center}}}\hfill
+\includegraphics[width=4cm]{figs/mockups/sketches/12/12h.jpg}
+\end{center}}}
 \subfloat[]{
 \parbox{4cm}{
 \begin{center}
-\includegraphics[width=4cm]{figs/mockups/sketches/11/11a.jpg}
+\includegraphics[width=4cm]{figs/mockups/sketches/41/41a.jpg}
+\end{center}}}
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[width=4cm]{figs/mockups/sketches/41/41b.jpg}
 \end{center}}}
 \end{center}
-\caption{Early designs for flowgraph-based calculation metaphors.}
+\caption{Early designs for circle-based calculation metaphors.}
 % \end{wrapfigure}
 \end{figure}
+\end{center}
 
-\newpage
+\begin{center}
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{figs/mockups/sketches/21/21a.jpg}
+\end{center}
+\caption{A more refined sketch of a circle-based language.}
+\end{figure}
+\end{center}
 
-\paragraph{Other}\hfill
+% \newpage
 
+% \paragraph{Other}\hfill
+
+\begin{center}
 \begin{figure}[H]
 % \begin{wrapfigure}{r}{0.5\textwidth}
 \begin{center}
 \subfloat[]{
 \parbox{4cm}{
 \begin{center}
-\includegraphics[width=4cm]{figs/mockups/sketches/11/11a.jpg}
-\end{center}}}\hfill
+\includegraphics[width=4cm]{figs/mockups/sketches/11/11c.jpg}
+\end{center}}}
 \subfloat[]{
 \parbox{4cm}{
 \begin{center}
-\includegraphics[width=4cm]{figs/mockups/sketches/11/11a.jpg}
+\includegraphics[width=4cm]{figs/mockups/sketches/11/11d.jpg}
+\end{center}}}
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[width=4cm]{figs/mockups/sketches/11/11e.jpg}
 \end{center}}}\\
 \subfloat[]{
 \parbox{4cm}{
 \begin{center}
-\includegraphics[width=4cm]{figs/mockups/sketches/11/11a.jpg}
-\end{center}}}\hfill
+\includegraphics[width=4cm]{figs/mockups/sketches/11/11f.jpg}
+\end{center}}}
 \subfloat[]{
 \parbox{4cm}{
 \begin{center}
-\includegraphics[width=4cm]{figs/mockups/sketches/11/11a.jpg}
+\includegraphics[width=4cm]{figs/mockups/sketches/11/11g.jpg}
+\end{center}}}
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[width=4cm]{figs/mockups/sketches/11/11h.jpg}
 \end{center}}}
 \end{center}
-\caption{Early designs for flowgraph-based calculation metaphors.}
+\end{figure}
+\newpage
+\begin{figure}
+\ContinuedFloat
+\begin{center}
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[width=4cm]{figs/mockups/sketches/11/11i.jpg}
+\end{center}}}
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[width=4cm]{figs/mockups/sketches/11/11k.jpg}
+\end{center}}}
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[width=4cm]{figs/mockups/sketches/11/11li.jpg}
+\end{center}}}\\
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[width=4cm]{figs/mockups/sketches/11/11lii.jpg}
+\end{center}}}
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[width=4cm]{figs/mockups/sketches/11/11m.jpg}
+\end{center}}}
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[width=4cm]{figs/mockups/sketches/12/12d.jpg}
+\end{center}}}\\
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[width=4cm]{figs/mockups/sketches/12/12e.jpg}
+\end{center}}}
+\end{center}
+\caption{Assorted early designs for other calculation metaphors.}
 % \end{wrapfigure}
 \end{figure}
+\end{center}
 
-\newpage
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[width=4cm]{figs/mockups/sketches/12/12gi.jpg}
+\end{center}}}
+{\Huge $ \rightarrow $}% arrow
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[width=4cm]{figs/mockups/sketches/12/12gii.jpg}
+\end{center}}}
+{\Huge $ \rightarrow $}\\% arrow
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[width=4cm]{figs/mockups/sketches/12/12giii.jpg}
+\end{center}}}
+{\Huge $ \rightarrow $}% arrow
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[width=4cm]{figs/mockups/sketches/12/12giv.jpg}
+\end{center}}}
+{\Huge $ \rightarrow $}% arrow
+\subfloat[]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[width=4cm]{figs/mockups/sketches/12/12gv.jpg}
+\end{center}}}
+\end{center}
+\caption{A sample progression of a calculation in a language based around infinitely halving a rectangle.}
+\end{figure}
+\end{center}
 
-\subsubsection{Preliminary Designs}
+% \newpage
+
+% \subsubsection{Preliminary Designs}
+\subsubsection{Detailed Mockups}
 % examples done using that prototyping software - balsamiq mockups
 % draft designs on pwf
 
 Some preliminary designs for the application and graphical language follow,
 being more mature versions of three of the low-fidelity prototypes presented
-above.  First is a combined flowgraph representation and Read-Evaluate-Print-
-Loop (REPL) design.  The second design uses the Sierpiński triangle as a basis
-for the visual metaphor.  The final design is the circle-based language that
-eventually became the foundation for the rest of the project.
+above.  First is a combined flowgraph representation and
+Read-Evaluate-Print-Loop (REPL) design.  The second design uses the Sierpiński
+triangle as a basis for the visual metaphor.  The final design is the
+circle-based language that eventually became the foundation for the rest of the
+project.
 
 \paragraph{Flowgraph Metaphor}\hfill
 
@@ -798,8 +961,8 @@ calculate ((1+2)+3)+4, which is inefficient, or mentally calculate that
 that intends to help the user express themselves mathematically.  The severe
 lack of juxtaposability is also a problem: as each expression must fit into the
 larger structure, it is not possible to reorder them at will, without
-fundamentally altering the calculation being performed.  It also enforces a top-
-down approach to calculation: one is required by the system to begin with the
+fundamentally altering the calculation being performed.  It also enforces a
+top-down approach to calculation: one is required by the system to begin with the
 outermost calculation and work inwards.  There is no provision for putting a
 larger triangle around an existing calculation.  In addition to this, a
 somewhat-informal survey of potential notations was conducted, asking
@@ -928,10 +1091,19 @@ development of the project.
 \item GitHub
 \item Balsamiq Mockups
 \item Google Docs
+\item R 2.15.0
 \end{itemize}
 
 \section{Summary}
 
+In this chapter, the work done in preparation for beginning the main
+implementation of the project was detailed.  A thorough requriements analysis
+has been conducted to outline the expected behaviour of the product,
+contrasting it with the existing system of handwritten calculations.  In
+\emph{Sec. 2.2}, prototype designs for a suitable graphical notation were
+introduced.  Three in particular were explored in detail, before deciding on
+the final notation upon which to base the project.  The next chapter contains a
+detailed analysis of the work completed to implement the project.
 
 \cleardoublepage
 \chapter{Implementation}

@@ -484,6 +484,8 @@ functionality.  These are listed below.
 \item Reduces hidden dependencies relative to handwritten arithmetic
 \item Is interactive: is able to pass results back to the user in less than 300ms\footnote{Roca and Rousseau \cite{Roca2004} have this to say on the subject of interactivity: ``An abundance of studies into user tolerance of round-trip latency [...] has been conducted and generally agrees upon the following levels of tolerance: excellent, 0-300ms; good, 300-600ms; poor, 600-700ms; and quality becomes unacceptable [...] in excess of 700ms.''}
 \end{itemize}
+% talk about needing to be appealing, etc.?
+% more details in notes on user interface subsection in chapter 3
 
 % \subsubsection{Use Case}
 %
@@ -1097,7 +1099,7 @@ development of the project.
 \section{Summary}
 
 In this chapter, the work done in preparation for beginning the main
-implementation of the project was detailed.  A thorough requriements analysis
+implementation of the project was detailed.  A thorough requirements analysis
 has been conducted to outline the expected behaviour of the product,
 contrasting it with the existing system of handwritten calculations.  In
 \emph{Sec. 2.2}, prototype designs for a suitable graphical notation were
@@ -1121,7 +1123,40 @@ namely:--
 In addition to this, an extension to the project was completed, in the form of
 a study that tested the software on real people.
 
-\section{Backend}
+\section{System Architecture}
+% TODO: intro?
+
+% \subsection{Overview}
+% overview of the system architecture
+% diagram kinda replaces this section; will keep the diagram and just launch straight into the detailed subsections
+
+% TODO: sort out all the pictures, pdfxetex just can't handle that shit (i.e. scaling images - do it in gimp or something)
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\subfloat[Clojure backend]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[height=4cm]{figs/clj.png}
+\end{center}}}
+{\Huge $ \leftrightarrow $}% arrow
+\subfloat[Swing/Seesaw interaction handler]{
+\parbox{4cm}{
+\begin{center}
+\includegraphics[height=4cm]{figs/duke.png}
+\end{center}}}
+{\Huge $ \leftrightarrow $}% arrow
+\subfloat[User interface]{
+\parbox{5cm}{
+\begin{center}
+\includegraphics[height=4cm]{figs/nico_screen_01.png}
+\end{center}}}
+\caption{An overview of the system architecture.  \emph{Nico} is divided into three logically-separate units: the user-facing application, the interaction handler and the backend.}
+\end{center}
+\end{figure}
+\end{center}
+
+\subsection{Backend}
 % calculations as data structures (lists to be evaled)
 % rendering engine
 % questions and marking
@@ -1130,24 +1165,50 @@ a study that tested the software on real people.
 % the fact that they are essentially answers means that answers can easily be compared to them, as well as manipulated and stuff - case in point, all the question-highlighting bullshit
 % interactivity (300ms rule, see proposal for citation)
 
-\section{User Interface}
+\subsection{Interaction Handler}
+% the bit that handles all the application shit: render, main-window, etc.
+% talk about jfx2 vs. guiftw/swt vs. seesaw/swing
+
+% TODO: more!  this shouldn't be the first (or last) paragraph in this section
+My original intention was to develop \emph{Nico} using the JavaFX library.
+However, a number of difficulties were encountered with this: firstly, JavaFX
+version 2.0 was not available for Linux, my primary development environment, at
+the time of beginning the project.  Although I had access to Windows machines,
+this was not an ideal situation.  Regardless, I tried to begin development on a
+Windows machine, using JavaFX, but faced a number of problems with
+installation.  Deciding that it would be better to get on with the project
+rather than spending any more time installing a library, I decided to proceed
+using the Eclipse Foundation's SWT toolkit and Szymon Witamborski's (santamon)
+corresponding Clojure bindings, GUI FTW!, to interface with it.  After spending
+some time developing the backend, I began work on the user interface.  I
+encountered many problems with SWT and GUI FTW!, particularly regarding drawing
+arbitrary shapes on the canvas area and regarding extracting user input from
+dialogue boxes.  Admittedly, this was most likely due to my unfamiliarity with
+SWT, but in the interests of keeping the project on-schedule, I decided to
+migrate what I had already constructed of the interface over to Java Swing,
+using David Ray's (daveray) Seesaw library to provide convenient bindings for
+Clojure.  Ray's excellent bindings, coupled with my own previous experience
+with Swing from earlier in the tripos, served to greatly assist development,
+overcome what had become one of the larger stumbling blocks in this project.
+
+\subsection{User Interface}
 % target audience - children (year 5), but also applications in remedial adult learning (i.e. can't be too childish)
 % hence must be appealing, clear, easy-to-read, not too verbose
 % prototypes! take screenshots of old versions
 
-\subsection{Metaphor}
-% graphical language itself
-% show previous versions
-% talk about how the circles have to make clear e.g. arg order
-% talk about how circles had to be improved, show iterations
-
-\subsection{Application}
+\section{Application}
 % application in which the language is manipulated
 % talk about how the app has changed, show screenshots
 % talk about how the app becamse more minimalist, to focus on the language itself
 % language as a main focus, with useful information n shit around it in the app
 % colour-coding text (though consider colour-blindness with the red and green text)
 % question highlighting - talk about troubles with it, but also merits of including it
+
+\subsection{Notation}%metaphor?
+% graphical language itself
+% show previous versions
+% talk about how the circles have to make clear e.g. arg order
+% talk about how circles had to be improved, show iterations
 
 \section{Summary}
 
@@ -1171,6 +1232,12 @@ lol
 \section{Language Evaluation}
 % user testing
 % graphs
+
+\section{User Study}
+% results
+
+\section{Goals}
+% did it succeed?
 
 \section{Summary}
 

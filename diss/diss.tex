@@ -20,6 +20,8 @@
 \usepackage{color}
 \usepackage{float}
 % \usepackage{lettrine} % dropped capitals at start of chapter
+\usepackage{fancyvrb}
+% \usepackage{cprotect}
 
 \usepackage{graphicx}
 \usepackage{fontspec,xunicode}
@@ -1164,6 +1166,84 @@ a study that tested the software on real people.
 % questions as data structures (lists to be evaled)
 % the fact that they are essentially answers means that answers can easily be compared to them, as well as manipulated and stuff - case in point, all the question-highlighting bullshit
 % interactivity (300ms rule, see proposal for citation)
+% very little mutable state
+
+The application backend handles the mathematical aspect of the application;
+that is, it is able to interpret data gathered from the user's input and
+process it as a calculation.  Each circle is represented by an associative map,
+of the form \verb¬{:x 123 :y 234 :name "c0" :circ (+ 1 2 3 4)}¬, where the
+\verb¬:x¬ and \verb¬:y¬ fields are numbers representative of the circle's
+co-ordinates on the canvas, the \verb¬:name¬ field is a string used to refer to
+the circle and the \verb¬:circ¬ field is an S-expression representative of the
+calculation that the circle contains.  This S-expression can use any of five
+operators: \verb¬+¬, \verb¬-¬, \verb¬*¬, \verb¬/¬ and finally \verb¬\?¬, a
+placeholder for initialising circles.  Similarly, the arguments to the operator
+can be either numbers or the placeholder character \verb¬\?¬.  A Clojure agent,
+\verb¬used-circles¬,  stores a list of all the circles currently in use.
+
+To determine the current value of the user's calculation, two functions are
+used: \verb¬find-root¬ and \verb¬eval-circle¬.
+
+\verb¬find-root¬ finds the circle that is not used as an argument to any other
+circle.  If there are two circles that match this criterion, \verb¬find-root¬
+returns the first instance that it encounters; that is, the first instance of
+a `root' circle.  As a complete calculation must only have one root circle
+(else it would be two separate calculations), this is not problematic for
+answer-checking.  However, it can be mildly confusing for the user if they are
+constructing a calculation by constructing two subexpressions and merging them
+at the end, and a future improvement to this design could be to find the root
+of the calculation that the mouse is hovering over.  Regardless,
+\verb¬find-root¬ works by iterating across \verb¬used-circles¬ and returning
+the first circle that causes another function, \verb¬root?¬, to return the
+value \verb¬true¬.  \verb¬root?¬ iterates across \verb¬used-circles¬, comparing
+its single argument, a circle, to each of the other available circles in turn
+using another function, \verb¬is-arg?¬, which takes the \verb¬:name¬ field of
+its first argument and returns \verb¬true¬ if that name appears as a symbol
+anywhere in the \verb¬:circ¬ field of its second argument.
+
+\verb¬eval-circle¬ takes a circle as its argument and returns an S-expression
+representative of the calculation that that circle represents, recursively
+evaluating any circles that are contained within the argument circle.
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\begin{minipage}{\textwidth-2cm}
+\begin{Verbatim}[fontsize=\small,numbers=left]
+(defn eval-circle
+  "Iterates across a circle list, resolving
+   symbols into their respective circles."
+  [circ]
+  (loop [c (:circ (remove-placeholders circ))
+         out '()]
+    (cond (empty? c) (reverse out)
+          (= (first c) \?) 0
+          (symbol? (first c)) (cond
+                                (nested?
+                                  (find-circle
+                                    (str
+                                      (first c))))
+                                  (recur (rest c)
+                                         (cons (eval-circle
+                                                 (find-circle
+                                                   (str
+                                                     (first c))))
+                                               out))
+                                :else (recur (rest c)
+                                             (cons (:circ
+                                                     (find-circle
+                                                       (str
+                                                         (first c))))
+                                                   out)))
+          :else (recur (rest c)
+                       (cons (first c)
+                             out)))))
+\end{Verbatim}
+\end{minipage}
+\end{center}
+\caption{The {\ttfamily eval-circle} source.}
+\end{figure}
+\end{center}
 
 \subsection{Interaction Handler}
 % the bit that handles all the application shit: render, main-window, etc.

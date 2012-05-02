@@ -485,6 +485,7 @@ functionality.  These are listed below.
 \item Reduces premature commitment relative to handwritten arithmetic
 \item Reduces hidden dependencies relative to handwritten arithmetic
 \item Is interactive: is able to pass results back to the user in less than 300ms\footnote{Roca and Rousseau \cite{Roca2004} have this to say on the subject of interactivity: ``An abundance of studies into user tolerance of round-trip latency [...] has been conducted and generally agrees upon the following levels of tolerance: excellent, 0-300ms; good, 300-600ms; poor, 600-700ms; and quality becomes unacceptable [...] in excess of 700ms.''}
+\item Is appealing to the target audience of 9- to 10-year-olds without being childish -- must be applicable to a wider audience if needed (e.g. could it be extended for use in adult education?)
 \end{itemize}
 % talk about needing to be appealing, etc.?
 % more details in notes on user interface subsection in chapter 3
@@ -1132,6 +1133,8 @@ a study that tested the software on real people.
 % overview of the system architecture
 % diagram kinda replaces this section; will keep the diagram and just launch straight into the detailed subsections
 
+\emph{{\sc Note:} Bit stuck with this chapter; I feel like I'm just writing down arbitrary bits of things that happened during the project without any overall feel for how this fits together as a chapter.}
+
 % TODO: sort out all the pictures, pdfxetex just can't handle that shit (i.e. scaling images - do it in gimp or something)
 \begin{center}
 \begin{figure}[H]
@@ -1158,6 +1161,8 @@ a study that tested the software on real people.
 \end{figure}
 \end{center}
 
+\emph{{\sc Note:} Not sure about the ordering of these subsections; this may change.}
+
 \subsection{Backend}
 % calculations as data structures (lists to be evaled)
 % rendering engine
@@ -1167,6 +1172,7 @@ a study that tested the software on real people.
 % the fact that they are essentially answers means that answers can easily be compared to them, as well as manipulated and stuff - case in point, all the question-highlighting bullshit
 % interactivity (300ms rule, see proposal for citation)
 % very little mutable state
+% placeholders?  why were they introduced?  how did they make things easier?  what problems did they solve?
 
 The application backend handles the mathematical aspect of the application;
 that is, it is able to interpret data gathered from the user's input and
@@ -1203,7 +1209,17 @@ anywhere in the \verb¬:circ¬ field of its second argument.
 
 \verb¬eval-circle¬ takes a circle as its argument and returns an S-expression
 representative of the calculation that that circle represents, recursively
-evaluating any circles that are contained within the argument circle.
+evaluating any circles that are contained within the argument circle.  It works
+by iterating across the \verb¬:circ¬ field of its argument, \verb¬cons¬ing each
+element on to a new list.  If an element is of type \verb¬clojure.lang.Symbol¬,
+\verb¬eval-circle¬ calls \verb¬eval-circle¬ on the circle that the symbol
+points to, which is resolved using a function \verb¬find-circle¬ that iterates
+across \verb¬used-circles¬, trying to match each circle's \verb¬:name¬ field
+against its argument.  \verb¬eval-circle¬ is then able to return a nested
+S-expression that represents a calculation.  When used in conjunction with
+\verb¬find-root¬, this function is able to resolve the entire diagram that has
+been constructed on the canvas into a single S-expression, which can then be
+evaluated or otherwise utilised as needed.
 
 \begin{center}
 \begin{figure}[H]
@@ -1249,6 +1265,8 @@ evaluating any circles that are contained within the argument circle.
 % the bit that handles all the application shit: render, main-window, etc.
 % talk about jfx2 vs. guiftw/swt vs. seesaw/swing
 
+\emph{{\sc Note:} These paragraphs aren't in the correct order yet; I've just been writing things that I want to include in this subsection, and will reorder them when I have a better idea of where this bit's going.}
+
 % TODO: more!  this shouldn't be the first (or last) paragraph in this section
 My original intention was to develop \emph{Nico} using the JavaFX library.
 However, a number of difficulties were encountered with this: firstly, JavaFX
@@ -1271,10 +1289,33 @@ Clojure.  Ray's excellent bindings, coupled with my own previous experience
 with Swing from earlier in the tripos, served to greatly assist development,
 overcome what had become one of the larger stumbling blocks in this project.
 
+% TODO: also not in the right order
+At the heart of the interaction handler is a function called \verb¬render¬.
+This is the function that is called every time what is displayed on the canvas
+needs to be updated.  It calls \verb¬clear-screen¬, which paints a white
+rectangle over the canvas, followed by the bin icon, and then iterates across
+\verb¬used-circles¬, calling a function \verb¬draw-circle¬ on each circle in
+turn.  \verb¬draw-circle¬ determines what operation its argument circle uses,
+and selects a colour scheme accordingly.  It then contains a sequence of paint
+instructions that construct the circle on the canvas.  Finally, it calls
+\verb¬draw-args¬, followed by \verb¬link-circles¬.  \verb¬draw-args¬ removes
+the first element of its argument's \verb¬:circ¬ field and draws each of the
+remaining elements at hardcoded co-ordinates relative to the \verb¬:x¬ and
+\verb¬:y¬ values of the circle, with different sets of co-ordinates according
+to how many arguments the circle has.  \verb¬link-circles¬ uses data from the
+same sets of co-ordinates to determine which argument the user is trying to
+replace with input from another circle, and draws a line from underneath the
+source circle to the desired point on the destination circle, followed by a
+small circle around that point to make it clear that this circle is receiving
+the results of the other circle.
+
+\emph{{\sc Note:} This is as far as I've got (about halfway by my reckoning).  }\verb¬texcount¬\emph{ tells me I've got about 5,800 words.}
+
 \subsection{User Interface}
 % target audience - children (year 5), but also applications in remedial adult learning (i.e. can't be too childish)
 % hence must be appealing, clear, easy-to-read, not too verbose
 % prototypes! take screenshots of old versions
+% talk about main-window here i guess?
 
 \section{Application}
 % application in which the language is manipulated
@@ -1298,7 +1339,7 @@ overcome what had become one of the larger stumbling blocks in this project.
 \cleardoublepage
 \chapter{Evaluation}
 
-lol
+% lol
 
 \section{Backend Testing}
 % used slime/swank with test lines as comments to be evaluated with C-x C-e
@@ -1329,7 +1370,7 @@ lol
 % what could be improved?
 % overall, is it actually useful?
 
-lol
+% lol
 
 
 

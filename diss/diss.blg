@@ -1,4 +1,5 @@
-This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2012/dev/Arch Linux)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: diss.aux
 The style file: plain.bst
 Database file #1: refs.bib
@@ -10,7 +11,7 @@ Warning--entry type for "Blackwell1999" isn't style-file defined
 --line 54 of file refs.bib
 You've used 12 entries,
             2118 wiz_defined-function locations,
-            563 strings with 5480 characters,
+            563 strings with 5492 characters,
 and the built_in function-call counts, 2977 in all, are:
 = -- 284
 > -- 120

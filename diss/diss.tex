@@ -203,6 +203,7 @@ Stead and Sam Aaron for their encouragement and patience.
 \pagestyle{headings}
 
 \chapter{Introduction}
+% TODO: sort out cogdims: apparently the proper way to do it is to mention cogdims and cite petra & green, then put all the cogdims terms in italics
 
 % \lettrine{T}{he}
 The aim of this project has been to design and develop a notation and
@@ -1258,6 +1259,52 @@ evaluated or otherwise utilised as needed.
 \end{minipage}
 \end{center}
 \caption{The {\ttfamily eval-circle} source.}
+\end{figure}
+\end{center}
+
+% TODO: talk about interesting problems with del-circle-safe
+
+\emph{Nico's} backend stores and manages circles and questions using five
+Clojure agents: \verb¬used-circles¬, containing a list of associative maps as
+detailed above, \verb¬current-qset¬, also containing a list of associative
+maps, this time representative of the questions to be answered (using a format
+of \verb¬{:n 1 :q (* 2 (+ 1 2 3) 7) :a? false :c? false}¬, where \verb¬:n¬ is
+the question number, \verb¬:q¬ is an S-expression representing the current
+question, and \verb¬:a?¬ and \verb¬:c?¬ are artefacts left over from a previous
+revision of the software, and are no longer used), \verb¬circle-number¬,
+containing an integer counting how many circles have previously been created
+whilst answering this question, \verb¬current-coords¬, which tracks the current
+co-ordinates of the mouse cursor, and \verb¬current-question¬, containing an
+integer indicating the number of the question currently being answered.
+
+\verb¬used-circles¬ is an agent containing a list of associative maps, as
+detailed above.  \emph{Nico} includes two main functions for the management of
+circles, namely \verb¬new-circle¬ and \verb¬del-circle¬.  \verb¬new-circle¬
+creates an associative map initialised to the following values:
+% TODO: also maybe talk about kill-used-circles
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\begin{minipage}{\textwidth-2cm}
+\begin{Verbatim}[fontsize=\small,numbers=left]
+{:x (- (:x @current-coords) 50)
+ :y (- (:y @current-coords) 50)
+ :name (str "c" @circle-number)
+ :circ (\? \? \?)}
+\end{Verbatim}
+\end{minipage}
+\end{center}
+\caption{The function {\ttfamily new-circle} initialises a circle map centred on the current location of the mouse cursor, generating a name {\ttfamily c}\emph{n}, where \emph{n} is the number of circles that have previously been created and with an initial expression of {\ttfamily (\textbackslash? \textbackslash? \textbackslash?)}.}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/nico_backend.pdf}
+\end{center}
+\caption{A rough model of \emph{Nico's} management of mutable state.}
 \end{figure}
 \end{center}
 

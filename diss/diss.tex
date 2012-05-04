@@ -1188,6 +1188,77 @@ placeholder for initialising circles.  Similarly, the arguments to the operator
 can be either numbers or the placeholder character \verb¬\?¬.  A Clojure agent,
 \verb¬used-circles¬,  stores a list of all the circles currently in use.
 
+\emph{Nico's} backend stores and manages circles and questions using five
+Clojure agents: \verb¬used-circles¬, containing a list of associative maps as
+detailed above, \verb¬current-qset¬, also containing a list of associative
+maps, this time representative of the questions to be answered (using a format
+of \verb¬{:n 1 :q (* 2 (+ 1 2 3) 7) :a? false :c? false}¬, where \verb¬:n¬ is
+the question number, \verb¬:q¬ is an S-expression representing the current
+question, and \verb¬:a?¬ and \verb¬:c?¬ are artefacts left over from a previous
+revision of the software, and are no longer used), \verb¬circle-number¬,
+containing an integer counting how many circles have previously been created
+whilst answering this question, \verb¬current-coords¬, which tracks the current
+co-ordinates of the mouse cursor, and \verb¬current-question¬, containing an
+integer indicating the number of the question currently being answered.
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/nico_backend.pdf}
+\end{center}
+\caption{A rough model of \emph{Nico's} management of mutable state.}
+\end{figure}
+\end{center}
+
+\verb¬used-circles¬ is an agent containing a list of associative maps, as
+detailed above.  \emph{Nico} includes two main functions for the management of
+circles, namely \verb¬new-circle¬ and \verb¬del-circle¬.  \verb¬new-circle¬
+creates an associative map initialised to the following values:
+% TODO: also maybe talk about kill-used-circles
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\begin{minipage}{2.5in}% {\textwidth-2cm}
+\begin{Verbatim}[fontsize=\small,numbers=left]
+{:x (- (:x @current-coords) 50)
+ :y (- (:y @current-coords) 50)
+ :name (str "c" @circle-number)
+ :circ (\? \? \?)}
+\end{Verbatim}
+\end{minipage}
+\end{center}
+\caption{The function {\ttfamily new-circle} initialises a circle centred on the current location of the mouse cursor, generating a name {\ttfamily "c}\emph{n}{\ttfamily "}, where \emph{n} is the number of circles that have previously been created and with an initial expression of {\ttfamily (\textbackslash? \textbackslash? \textbackslash?)}.}
+\end{figure}
+\end{center}
+
+This map is then sent off to \verb¬used-circles¬.  The value of \verb¬circle-number¬ is incremented by one, and the user-facing canvas area is cleared and re-rendered.
+
+\verb¬del-circle¬ is a more complex function that removes a circle from
+\verb¬used-circles¬, taking either a string or two integers as its arguments.
+If a string is passed to it, the function iterates across the contents of
+\verb¬used-circles¬, reconstructing the list by \verb¬cons¬ing each element in
+turn on to a new list.  If the \verb¬:name¬ field of the head of the
+\verb¬used-circles¬ list matches the argument passed to \verb¬del-circle¬, the
+function recurses without \verb¬cons¬ing that element on to the new list, thus
+constructing a new version of the \verb¬used-circles¬ list with the desired
+circle removed, which can then be sent off to the \verb¬used-circles¬ agent.
+In the case that two integers (i.e. a pair of co-ordinates) is passed to
+\verb¬del-circle¬, the function uses two extra local variables, \verb¬c¬ and
+\verb¬c?¬, to determine which circle is being deleted.  To determine the value
+of \verb¬c¬, the function calls \verb¬point-in-circle¬ on the provided
+co-ordinates, which is another function that, if the co-ordinates are within
+the boundaries of a circle, returns the \verb¬:name¬ field of that circle (or
+\verb¬nil¬ otherwise).  \verb¬c?¬ tests whether or not \verb¬c¬ is equal to
+\verb¬nil¬.  If \verb¬c?¬ has the value \verb¬false¬, then the co-ordinates
+passed to \verb¬del-circle¬ are not in any circle, and hence nothing can be
+deleted.  In this case, the function returns \verb¬nil¬.  In the case that
+\verb¬c?¬ has the value \verb¬true¬, the function proceeds as if id had been
+provided with a string rather than two integers, using the value of \verb¬c¬ as
+the string to compare to.  Also included is a related function,
+\verb¬kill-used-circles¬, that initialises \verb¬used-circles¬ to the empty
+list.
+
 To determine the current value of the user's calculation, two functions are
 used: \verb¬find-root¬ and \verb¬eval-circle¬.
 
@@ -1263,50 +1334,6 @@ evaluated or otherwise utilised as needed.
 \end{center}
 
 % TODO: talk about interesting problems with del-circle-safe
-
-\emph{Nico's} backend stores and manages circles and questions using five
-Clojure agents: \verb¬used-circles¬, containing a list of associative maps as
-detailed above, \verb¬current-qset¬, also containing a list of associative
-maps, this time representative of the questions to be answered (using a format
-of \verb¬{:n 1 :q (* 2 (+ 1 2 3) 7) :a? false :c? false}¬, where \verb¬:n¬ is
-the question number, \verb¬:q¬ is an S-expression representing the current
-question, and \verb¬:a?¬ and \verb¬:c?¬ are artefacts left over from a previous
-revision of the software, and are no longer used), \verb¬circle-number¬,
-containing an integer counting how many circles have previously been created
-whilst answering this question, \verb¬current-coords¬, which tracks the current
-co-ordinates of the mouse cursor, and \verb¬current-question¬, containing an
-integer indicating the number of the question currently being answered.
-
-\verb¬used-circles¬ is an agent containing a list of associative maps, as
-detailed above.  \emph{Nico} includes two main functions for the management of
-circles, namely \verb¬new-circle¬ and \verb¬del-circle¬.  \verb¬new-circle¬
-creates an associative map initialised to the following values:
-% TODO: also maybe talk about kill-used-circles
-
-\begin{center}
-\begin{figure}[H]
-\begin{center}
-\begin{minipage}{\textwidth-2cm}
-\begin{Verbatim}[fontsize=\small,numbers=left]
-{:x (- (:x @current-coords) 50)
- :y (- (:y @current-coords) 50)
- :name (str "c" @circle-number)
- :circ (\? \? \?)}
-\end{Verbatim}
-\end{minipage}
-\end{center}
-\caption{The function {\ttfamily new-circle} initialises a circle map centred on the current location of the mouse cursor, generating a name {\ttfamily c}\emph{n}, where \emph{n} is the number of circles that have previously been created and with an initial expression of {\ttfamily (\textbackslash? \textbackslash? \textbackslash?)}.}
-\end{figure}
-\end{center}
-
-\begin{center}
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=\textwidth-2cm]{figs/nico_backend.pdf}
-\end{center}
-\caption{A rough model of \emph{Nico's} management of mutable state.}
-\end{figure}
-\end{center}
 
 \subsection{Interaction Handler}
 % the bit that handles all the application shit: render, main-window, etc.

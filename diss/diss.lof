@@ -52,9 +52,9 @@
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Clojure backend}}}{24}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Swing/Seesaw interaction handler}}}{24}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {User interface}}}{24}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces The {\ttfamily eval-circle} source.\relax }}{26}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces The function {\ttfamily new-circle} initialises a circle map centred on the current location of the mouse cursor, generating a name {\ttfamily c}\emph {n}, where \emph {n} is the number of circles that have previously been created and with an initial expression of {\ttfamily (\textbackslash ? \textbackslash ? \textbackslash ?)}.\relax }}{27}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces A rough model of \emph {Nico's} management of mutable state.\relax }}{27}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces A rough model of \emph {Nico's} management of mutable state.\relax }}{25}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces The function {\ttfamily new-circle} initialises a circle centred on the current location of the mouse cursor, generating a name {\ttfamily "c}\emph {n}{\ttfamily "}, where \emph {n} is the number of circles that have previously been created and with an initial expression of {\ttfamily (\textbackslash ? \textbackslash ? \textbackslash ?)}.\relax }}{25}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces The {\ttfamily eval-circle} source.\relax }}{27}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

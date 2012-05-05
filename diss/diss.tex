@@ -1333,7 +1333,53 @@ evaluated or otherwise utilised as needed.
 \end{figure}
 \end{center}
 
-% TODO: talk about interesting problems with del-circle-safe
+To manage the set of questions that the user is currently answering,
+\emph{Nico} uses a function \verb¬read-qset¬ to load a set of questions from a
+persistent file, exemplified in \emph{Fig. x.y} as \verb¬qset.nqs¬.
+\verb¬read-qset¬ works by using the Clojure core function \verb¬slurp¬ to read
+in the contents of the file indicated by the path provided as the argument to
+\verb¬read-qset¬ as one long string.  The function \verb¬split-lines¬ provided
+by the \verb¬clojure.string¬ library then separates each line of the string
+into an element of a sequence.  \verb¬read-qset¬ then proceeds to iterate
+across the sequence, prepending the string \verb¬"{:n¬\emph{n}\verb¬ :q '"¬ and
+appending the string \verb¬" :a? false :c? false}"¬ to each item in turn, where
+\emph{n} is a counter starting with value 1 that is incremented with each
+iteration.  This creates a valid specification for an associative map in
+Clojure, so the Clojure core function \verb¬read-string¬ is called to evaluate
+each item to a map, which is then \verb¬cons¬ed on to a list.  \verb¬read-qset¬
+returns a list of question maps, which can then be sent off to the agent
+\verb¬current-qset¬ to be presented to the user.  This method of loading a
+question set requires that the file provided to \verb¬read-qset¬ must be a
+plain text file containing one S-expression per line that represents the
+question that the user is required to answer.  For my own testing files, I have
+opted to use the file extension \verb¬.nqs¬ (\emph{Nico} Question Set) to make
+it clear that these files are specifically for use as question sets.  A future
+extension to this project could be to develop a partner application to
+\emph{Nico} that allows tutors to more easily write their own question sets in
+more familiar language, rather than requiring them to be aware of LISP syntax.
+Due to time constraints, I decided not to write such an application as it was
+outside of the stated goals of this project.
+
+% TODO: talk about interesting problems with del-circle-safe, see logbook entries from 08/03/2012
+% TODO: talk about defcircle
+
+My original intention was that the creation of circles would be handled by a
+macro, \verb¬defcircle¬,  that would allow circles to be `defined' in much the
+same way as any other variable in Clojure, to be accompanied by another macro,
+\verb¬letcircle¬, that would allow temporary circles to be locally defined
+within the scope of a given function.  As the project progressed, it became
+apparent that defining circles as variables was not useful, as actions
+triggered from within the application (e.g. by pressing a button) were unable
+to access the circles that had been defined in this way.  By this point in the
+project I had already begun to monitor the co-ordinates of used circles using
+an agent containing a list of maps, so it was a simple solution to use the same
+agent, which could definitely be accessed at runtime, to contain the circle
+maps instead.  I also had already written a function \verb¬new-circle¬ that was
+calling \verb¬defcircle¬, so I decided to abandon \verb¬defcircle¬ and use
+\verb¬new-circle¬ to initialise a map and send it off to \verb¬used-circles¬,
+thus solving the problem.
+
+I encountered some problems with the development of \verb¬del-circle¬ -- after implementing the \verb¬del-circle¬ function described above, I noticed that deleting circles that formed part of a chain would cause the application to behave unexpectedly, being unable to render some circles properly and throwing \verb¬java.lang.NullPointerException¬s.  To combat this, I developed a replacement function, \verb¬del-circle-safe¬, that deletes circles in such a way that this problem does not occur.  \verb¬del-circle-safe¬ works by
 
 \subsection{Interaction Handler}
 % the bit that handles all the application shit: render, main-window, etc.

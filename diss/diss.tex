@@ -1133,37 +1133,37 @@ a study that tested the software on real people.
 % \subsection{Overview}
 % overview of the system architecture
 % diagram kinda replaces this section; will keep the diagram and just launch straight into the detailed subsections
-
-\emph{{\sc Note:} Bit stuck with this chapter; I feel like I'm just writing down arbitrary bits of things that happened during the project without any overall feel for how this fits together as a chapter.}
-
+%
+% \emph{{\sc Note:} Bit stuck with this chapter; I feel like I'm just writing down arbitrary bits of things that happened during the project without any overall feel for how this fits together as a chapter.}
+%
 % TODO: sort out all the pictures, pdfxetex just can't handle that shit (i.e. scaling images - do it in gimp or something)
-\begin{center}
-\begin{figure}[H]
-\begin{center}
-\subfloat[Clojure backend]{
-\parbox{4cm}{
-\begin{center}
-\includegraphics[height=4cm]{figs/clj.png}
-\end{center}}}
-{\Huge $ \leftrightarrow $}% arrow
-\subfloat[Swing/Seesaw interaction handler]{
-\parbox{4cm}{
-\begin{center}
-\includegraphics[height=4cm]{figs/duke.png}
-\end{center}}}
-{\Huge $ \leftrightarrow $}% arrow
-\subfloat[User interface]{
-\parbox{5cm}{
-\begin{center}
-\includegraphics[height=4cm]{figs/nico_screen_01.png}
-\end{center}}}
-\caption{An overview of the system architecture.  \emph{Nico} is divided into three logically-separate units: the user-facing application, the interaction handler and the backend.}
-\end{center}
-\end{figure}
-\end{center}
-
-\emph{{\sc Note:} Not sure about the ordering of these subsections; this may change.}
-
+% \begin{center}
+% \begin{figure}[H]
+% \begin{center}
+% \subfloat[Clojure backend]{
+% \parbox{4cm}{
+% \begin{center}
+% \includegraphics[height=4cm]{figs/clj.png}
+% \end{center}}}
+% {\Huge $ \leftrightarrow $}% arrow
+% \subfloat[Swing/Seesaw interaction handler]{
+% \parbox{4cm}{
+% \begin{center}
+% \includegraphics[height=4cm]{figs/duke.png}
+% \end{center}}}
+% {\Huge $ \leftrightarrow $}% arrow
+% \subfloat[User interface]{
+% \parbox{5cm}{
+% \begin{center}
+% \includegraphics[height=4cm]{figs/nico_screen_01.png}
+% \end{center}}}
+% \caption{An overview of the system architecture.  \emph{Nico} is divided into three logically-separate units: the user-facing application, the interaction handler and the backend.}
+% \end{center}
+% \end{figure}
+% \end{center}
+%
+% \emph{{\sc Note:} Not sure about the ordering of these subsections; this may change.}
+%
 \subsection{Backend}
 % calculations as data structures (lists to be evaled)
 % rendering engine
@@ -1379,13 +1379,93 @@ calling \verb¬defcircle¬, so I decided to abandon \verb¬defcircle¬ and use
 \verb¬new-circle¬ to initialise a map and send it off to \verb¬used-circles¬,
 thus solving the problem.
 
-I encountered some problems with the development of \verb¬del-circle¬ -- after implementing the \verb¬del-circle¬ function described above, I noticed that deleting circles that formed part of a chain would cause the application to behave unexpectedly, being unable to render some circles properly and throwing \verb¬java.lang.NullPointerException¬s.  To combat this, I developed a replacement function, \verb¬del-circle-safe¬, that deletes circles in such a way that this problem does not occur.  \verb¬del-circle-safe¬ works by
+I encountered some problems with the development of \verb¬del-circle¬ -- after
+implementing the \verb¬del-circle¬ function described above, I noticed that
+deleting circles that formed part of a chain would cause the application to
+behave unexpectedly, being unable to render some circles properly and throwing
+\verb¬java.lang.NullPointerException¬s.  This occurred due to the fact that
+\verb¬del-circle¬ solely removed a circle, with no consideration of if it may
+be being used as an argument to the expression represented by another circle.
+As a result, the application began to throw exceptions as the now-invalid
+references left behind were being followed by functions such as
+\verb¬eval-circle¬, leading them to a non-existant location.  To combat this, I
+developed a replacement function, \verb¬del-circle-safe¬, that deletes circles
+in such a way that this problem does not occur.
+
+\verb¬del-circle-safe¬ works by first checking if the circle being deleted is
+used as an argument to any other circles, using a function \verb¬is-arg-of¬.
+\verb¬is-arg-of¬ takes a circle map as an argument and returns a list of maps
+showing which circles make use of the argument circle, essentially representing
+the links in the diagram that the user sees.  The maps are of the format
+\verb¬{:c ¬\emph{c}\verb¬ :a ¬\emph{l}\verb¬}¬, where \emph{c} is a string
+containing the name of the circle that uses the argument circle and \emph{l} is
+a list of integers indicating the indices of where the argument circle is used
+in the list of arguments to \emph{c}.  To do this, \verb¬is-arg-of¬ iterates
+across \verb¬used-circles¬, calling in each instance another function
+\verb¬is-arg?¬, which returns \verb¬true¬ if its first argument (in this case
+the argument of \verb¬is-arg-of¬) is used in the \verb¬:circ¬ field of its
+second argument (in this case the current element of \verb¬used-circles¬).  If
+this function returns \verb¬true¬, \verb¬is-arg-of¬ \verb¬cons¬es a new map on
+to a list: the map consists of the \verb¬:name¬ field of the current element
+of \verb¬used-circles¬ as the contents of the \verb¬:c¬ field, and constructs
+the list to use for \verb¬:a¬ using another function, \verb¬arg-is¬, which uses
+the \verb¬:name¬ field of its first argument and iterates across the
+\verb¬:circ¬ field of its second, using a counter to construct a list of
+indices where the first argument's \verb¬:name¬ appears as a symbol.  If
+\verb¬is-arg-of¬ returns the empty list, then the circle is not used as an
+argument anywhere and it is, therefore, safe to proceed as before, using the
+same method of deletion that is used by the original \verb¬del-circle¬.  If
+not, then the function iterates across the list that \verb¬is-arg-of¬ produces,
+for each element retrieving the circle indicated by \verb¬:c¬, constructing a
+list of indices using \verb¬arg-is¬ and constructing a new circle map in which
+all instances of the circle being deleted have been replaced with placeholder
+\verb¬\?¬ values.  \verb¬del-circle-safe¬ then calls itself on the circle that
+uses the original circle to be deleted, thus removing all circles that formed
+the chain that incorporated the original circle.  Finally, the function sends
+the new circle (with the \verb¬\?¬ values) off to \verb¬used-circles¬ and
+removes the original circle in the same manner as the unsafe version of
+\verb¬del-circle¬; it is now safe to do so, as there are no longer any circles
+that refer to the circle being deleted (their references having by now been
+replaced with placeholder \verb¬\?¬ values).
+
+This solved the problem of the leftover references to non-existant circles, but
+it has also given rise to a new problem: due to the way that I have implemented
+\verb¬del-circle-safe¬, and in particular due to the stage in which
+\verb¬del-circle-safe¬ must call itself upon the other circles in the chain,
+deleting a circle that forms part of a chain deletes all of the links between
+the rest of the circles in the chain, from the circle being deleted down to the
+root circle.  On reflection, a better way to implement safe deletion would have
+been to include as part of the rendering loop a function to inspect
+\verb¬used-circles¬, checking for any invalid references and replacing them
+with \verb¬\?¬s.
 
 \subsection{Interaction Handler}
 % the bit that handles all the application shit: render, main-window, etc.
 % talk about jfx2 vs. guiftw/swt vs. seesaw/swing
+% talk about main-window here i guess?
+%
+% \emph{{\sc Note:} These paragraphs aren't in the correct order yet; I've just been writing things that I want to include in this subsection, and will reorder them when I have a better idea of where this bit's going.}
 
-\emph{{\sc Note:} These paragraphs aren't in the correct order yet; I've just been writing things that I want to include in this subsection, and will reorder them when I have a better idea of where this bit's going.}
+The interaction handler is a collection of functions that form the `middle layer' of the application: that is, the functions that arbitrate between the backend and the user interface.
+
+At the heart of the interaction handler is a function called \verb¬render¬.
+This is the function that is called every time what is displayed on the canvas
+needs to be updated.  It calls \verb¬clear-screen¬, which paints a white
+rectangle over the canvas, followed by the bin icon, and then iterates across
+\verb¬used-circles¬, calling a function \verb¬draw-circle¬ on each circle in
+turn.  \verb¬draw-circle¬ determines what operation its argument circle uses,
+and selects a colour scheme accordingly.  It then contains a sequence of paint
+instructions that construct the circle on the canvas.  Finally, it calls
+\verb¬draw-args¬, followed by \verb¬link-circles¬.  \verb¬draw-args¬ removes
+the first element of its argument's \verb¬:circ¬ field and draws each of the
+remaining elements at hardcoded co-ordinates relative to the \verb¬:x¬ and
+\verb¬:y¬ values of the circle, with different sets of co-ordinates according
+to how many arguments the circle has.  \verb¬link-circles¬ uses data from the
+same sets of co-ordinates to determine which argument the user is trying to
+replace with input from another circle, and draws a line from underneath the
+source circle to the desired point on the destination circle, followed by a
+small circle around that point to make it clear that this circle is receiving
+the results of the other circle.
 
 % TODO: more!  this shouldn't be the first (or last) paragraph in this section
 My original intention was to develop \emph{Nico} using the JavaFX library.
@@ -1409,47 +1489,179 @@ Clojure.  Ray's excellent bindings, coupled with my own previous experience
 with Swing from earlier in the tripos, served to greatly assist development,
 overcome what had become one of the larger stumbling blocks in this project.
 
-% TODO: also not in the right order
-At the heart of the interaction handler is a function called \verb¬render¬.
-This is the function that is called every time what is displayed on the canvas
-needs to be updated.  It calls \verb¬clear-screen¬, which paints a white
-rectangle over the canvas, followed by the bin icon, and then iterates across
-\verb¬used-circles¬, calling a function \verb¬draw-circle¬ on each circle in
-turn.  \verb¬draw-circle¬ determines what operation its argument circle uses,
-and selects a colour scheme accordingly.  It then contains a sequence of paint
-instructions that construct the circle on the canvas.  Finally, it calls
-\verb¬draw-args¬, followed by \verb¬link-circles¬.  \verb¬draw-args¬ removes
-the first element of its argument's \verb¬:circ¬ field and draws each of the
-remaining elements at hardcoded co-ordinates relative to the \verb¬:x¬ and
-\verb¬:y¬ values of the circle, with different sets of co-ordinates according
-to how many arguments the circle has.  \verb¬link-circles¬ uses data from the
-same sets of co-ordinates to determine which argument the user is trying to
-replace with input from another circle, and draws a line from underneath the
-source circle to the desired point on the destination circle, followed by a
-small circle around that point to make it clear that this circle is receiving
-the results of the other circle.
+%
+% \emph{{\sc Note:} This is as far as I've got (about halfway by my reckoning).  }\verb¬texcount¬\emph{ tells me I've got about 5,800 words.}
 
-\emph{{\sc Note:} This is as far as I've got (about halfway by my reckoning).  }\verb¬texcount¬\emph{ tells me I've got about 5,800 words.}
-
-\subsection{User Interface}
-% target audience - children (year 5), but also applications in remedial adult learning (i.e. can't be too childish)
-% hence must be appealing, clear, easy-to-read, not too verbose
-% prototypes! take screenshots of old versions
-% talk about main-window here i guess?
-
-\section{Application}
+% \subsection{User Interface}
+% do we even need this section?  applciation below might cover it, and to be fair it isn't really part of the architecture - listeners and that should probs go in interaction handler above
+%
+\section{User Interface}%{Application}
 % application in which the language is manipulated
 % talk about how the app has changed, show screenshots
 % talk about how the app becamse more minimalist, to focus on the language itself
 % language as a main focus, with useful information n shit around it in the app
 % colour-coding text (though consider colour-blindness with the red and green text)
 % question highlighting - talk about troubles with it, but also merits of including it
+% do we need this section?  shouldn't this be the ui bit in the prev. section?
+% have lost the ui bit in favour of having this as a separate section
+% target audience - children (year 5), but also applications in remedial adult learning (i.e. can't be too childish)
+% hence must be appealing, clear, easy-to-read, not too verbose
+% prototypes! take screenshots of old versions
+
+The user interface comprises the parts of the application which are
+user-facing; that is, they are that which the user directly interacts with.
+The development of \emph{Nico}'s user interface was key to the success of the
+overall project, being primarily an experiment in human-computer interaction.
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{figs/nico_screen_01.png}
+\end{center}
+\caption{A screenshot of a \emph{Nico} session.}
+\end{figure}
+\end{center}
+
+The application itself was kept fairly minimal: the aim was to emphasise the
+notation as the most important aspect of the software.  As such, the main
+application window, as shown above in \emph{Fig. x.y}, is mostly dedicated to
+the canvas area in which the user answers the question.  The main application
+window is split up into two main sections, one at the top, containing some
+information panels that display the question being answered and the current
+total of the user's calculation, as well as the {\sfapp Check} button to submit
+the current total as the answer.  The lower panel contains the large canvas
+area in which the user is able to construct diagrams with which to answer the
+question.
+
+\emph{Nico} uses a predominantly mouse-based control system for the
+construction of calculations in the application's notation.  Left-clicking on a
+blank patch of canvas creates a new circle, initialised with two arguments,
+{\sfapp ?} and {\sfapp ?}, and with operator {\sfapp ?}.  Right-clicking on a
+circle increments its number of arguments by one, up to a maximum of eight.
+Holding the Ctrl key and right-clicking on a circle decrements its number of
+arguments by one, down to a minimum of two.  Circles can be moved around the
+canvas by left-clicking and dragging the circle to the desired location.  If a
+circle is dragged to the bin icon in the bottom left-hand corner of the screen,
+then it is removed.  Left-clicking on a circle's operator brings up a dialogue
+box with a selection of operators in it, with a radio button for each (see
+\emph{Fig. x.y}.  Similarly, left-clicking on a circle's argument brings up a
+dialogue box containing a spinner, which can be used to set a new value for
+that argument.  To use one circle as an argument to another, right-clicking and
+dragging allows the user to drag a line ending in a circle to the desired slot
+on the recipient circle.
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\subfloat[Editing a circle's operator]{
+\includegraphics[width=\textwidth/2-2cm]{figs/nico_op.png}
+}
+\subfloat[Editing a circle's argument]{
+\includegraphics[width=\textwidth/2-2cm]{figs/nico_arg.png}
+}
+\end{center}
+\caption{The dialogue boxes used to modify existing circles in the application.}
+\end{figure}
+\end{center}
+
+\emph{Nico} also uses colour-coding in various areas of the application.  Circles are coloured according to their operators (addition is green, subtraction is red, multiplication is blue, division is yellow and {\sfapp ?} is grey), clearly separating different kinds of operations and making the notation more readable.  Colour-coding is also used in the information panels at the top of the application: positioning the mouse cursor over a circle highlights the part of the question that it is likely to represent in blue, and also highlights the circle with a blue outline.  When an answer is submitted, the text in the answer panel turns red if the answer was incorrect, or green if the answer was correct, providing an unintrusive form of feedback, allowing the user to continue uninterrupted (i.e. no input is required) if their answer is wrong.
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\subfloat[Red text indicates that the answer submitted was incorrect]{
+\includegraphics[width=\textwidth/3]{figs/nico_wrong.png}
+}\hspace{2cm}
+\subfloat[Green text indicates a correct answer; a dialogue box allows the user to progress to the next question when they are ready]{
+\includegraphics[width=\textwidth/3]{figs/nico_right.png}
+}\\
+\subfloat[The circle's operator is highlighted when it is being edited]{
+\includegraphics[width=\textwidth/3]{figs/nico_op_hi.png}
+}\hspace{2cm}
+\subfloat[An argument is highlighted when it is being edited]{
+\includegraphics[width=\textwidth/3]{figs/nico_arg_hi.png}
+}\\
+\subfloat[Three instances of the question text being highlighted as a corresponding circle is moused-over]{
+\parbox{\textwidth}{
+\begin{center}
+\includegraphics[height=\textwidth/3-1cm]{figs/nico_hi1.png}
+\includegraphics[height=\textwidth/3-1cm]{figs/nico_hi2.png}
+\\
+\vspace{0.5cm}
+\includegraphics[height=\textwidth/3-1cm]{figs/nico_hi3.png}
+\end{center}
+}}
+\end{center}
+\caption{Examples of colour-coding in \emph{Nico}.}
+\end{figure}
+\end{center}
+
+During its development, \emph{Nico}'s user interface went through a number of
+revisions.  Initially, the application was intended to use more buttons (see
+the prototype in \emph{Fig. x.y}, above), having more controls immediately
+visible to the user.  In the first usable version of the interface, there were
+a number of buttons that appeared down the side of the application.  Each
+button ({\sfapp New}, {\sfapp Edit}, {\sfapp Delete}, etc.) would cause a
+dialogue box to appear to the user, which required a circle to be specified by
+name (at this point in the development of the project, it was required that the
+user name each of their circles) before any operations could be performed upon
+it.  Circles were all the same colour, and the text-highlighting and
+colour-coding operations had not yet been implmented.  It was also the case
+that the links between circles did not end in argument slots, but rather fed
+into the centre of the target circle.  This design was abandoned as the
+separation between the user and the diagram itself was too great; creating
+circles by specifying options in many similar-but-slightly-different dialogue
+boxes and watching the results appear on the canvas did not feel like a natural
+way to interact with one's calculation, and hence would have been inappropriate
+for the target audience.  The intention of the project is not to require the
+user to spent a significant amount of time learning how to use the system
+before it becomes a useful tool to them.
+
+Later revisions of the software removed the buttons and implemented a system of
+context menus with which to construct answers. Right-clicking on a blank patch
+of the canvas gave the user the option to create a new circle, and right-
+clicking on an existing circle presented the user with the option to either
+edit or delete that circle.  Choosing to either create of edit a circle
+displayed a dialogue box (\emph{Fig. x.y}), with many options for the user to
+choose from: the name and operator of a circle could be set, with up to eight
+arguments could be enabled, with a choice of either a number (set by a slider)
+or another circle (chosen using a list of radio buttons that was generated upon
+opening the dialogue box) as the value of that argument.  Answer-checking was
+also made automatic: as soon as the total reaches a value equal to that of the
+answer to the question, the user is immediately told so, and moved on to the
+next question.  The circles at this point are still one colour only, and there
+is no expression-highlighting.  The colour-coded totals had been implemented by
+this point.  This design was ultimately abandoned  as, again, it separated the
+user from their own work too much.  Although this design was an improvement,
+allowing the user to interact directly with the canvas to perform operations
+upon circles that were able to specified by pointing with the mouse, rather
+than by typing out a name, the grand unified dialogue box still required the
+user to perform operations without it being entirely obvious what the
+consequences would be, thus requiring an unnecessary amount of
+\emph{premature commitment} from the user.  The automatic answer-checking was
+also a problem, as it did not give the user a chance to review their answer
+before proceeding.  Indeed, it did not give the user a chance to learn from
+their mistakes, say for example if they had accidentally reached the right
+answer as part of a larger, incorrect calculation that they had previously
+intended to make.
+
+The final, current revision of the software reintroduces the {\sfapp Check} button to address the issues with the automatic answer-checking in the previous version of the application.
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+{\Huge \sfapp OLD VERSIONS OF THE APP LOL}
+\end{center}
+\caption{\emph{Nico}'s user interface went through a number of revisions before reaching its current state.}
+\end{figure}
+\end{center}
 
 \subsection{Notation}%metaphor?
 % graphical language itself
 % show previous versions
 % talk about how the circles have to make clear e.g. arg order
 % talk about how circles had to be improved, show iterations
+% more screens: old versions of the language to compare
 
 \section{Summary}
 

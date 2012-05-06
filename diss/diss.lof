@@ -48,13 +48,20 @@
 \contentsline {figure}{\numberline {2.10}{\ignorespaces The prototype Sierpiński-triangle-based language.\relax }}{17}
 \contentsline {figure}{\numberline {2.11}{\ignorespaces The prototype circle-based language.\relax }}{19}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces An overview of the system architecture. \emph {Nico} is divided into three logically-separate units: the user-facing application, the interaction handler and the backend.\relax }}{24}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Clojure backend}}}{24}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Swing/Seesaw interaction handler}}}{24}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {User interface}}}{24}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces A rough model of \emph {Nico's} management of mutable state.\relax }}{25}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces The function {\ttfamily new-circle} initialises a circle centred on the current location of the mouse cursor, generating a name {\ttfamily "c}\emph {n}{\ttfamily "}, where \emph {n} is the number of circles that have previously been created and with an initial expression of {\ttfamily (\textbackslash ? \textbackslash ? \textbackslash ?)}.\relax }}{25}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces The {\ttfamily eval-circle} source.\relax }}{27}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces A rough model of \emph {Nico's} management of mutable state.\relax }}{24}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces The function {\ttfamily new-circle} initialises a circle centred on the current location of the mouse cursor, generating a name {\ttfamily "c}\emph {n}{\ttfamily "}, where \emph {n} is the number of circles that have previously been created and with an initial expression of {\ttfamily (\textbackslash ? \textbackslash ? \textbackslash ?)}.\relax }}{25}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces The {\ttfamily eval-circle} source.\relax }}{27}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces A screenshot of a \emph {Nico} session.\relax }}{31}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces The dialogue boxes used to modify existing circles in the application.\relax }}{32}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Editing a circle's operator}}}{32}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Editing a circle's argument}}}{32}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Examples of colour-coding in \emph {Nico}.\relax }}{33}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Red text indicates that the answer submitted was incorrect}}}{33}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Green text indicates a correct answer; a dialogue box allows the user to progress to the next question when they are ready}}}{33}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {The circle's operator is highlighted when it is being edited}}}{33}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {An argument is highlighted when it is being edited}}}{33}
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {Three instances of the question text being highlighted as a corresponding circle is moused-over}}}{33}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces \emph {Nico}'s user interface went through a number of revisions before reaching its current state.\relax }}{34}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

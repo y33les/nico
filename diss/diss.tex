@@ -1645,7 +1645,14 @@ their mistakes, say for example if they had accidentally reached the right
 answer as part of a larger, incorrect calculation that they had previously
 intended to make.
 
-The final, current revision of the software reintroduces the {\sfapp Check} button to address the issues with the automatic answer-checking in the previous version of the application.
+The final, current revision of the software reintroduces the {\sfapp Check}
+button to address the issues with the automatic answer-checking in the
+previous version of the application.  It also introduces the control scheme
+detailed above, allowing the user to feel more like they are directly
+manipulating their work in progress, with each action having clear
+consequences.  A colour scheme for the circles was implemented, to make the
+notation easier to read, and the expression-highlighting functionality was also
+introduced, along with the other means of highlighting, as shown above.
 
 \begin{center}
 \begin{figure}[H]
@@ -1662,6 +1669,31 @@ The final, current revision of the software reintroduces the {\sfapp Check} butt
 % talk about how the circles have to make clear e.g. arg order
 % talk about how circles had to be improved, show iterations
 % more screens: old versions of the language to compare
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+{\Huge \sfapp OLD VERSIONS OF THE NOTATION LOL}
+\end{center}
+\caption{The notation used also went through a number of revisions before reaching its current state.}
+\end{figure}
+\end{center}
+
+The notation itself was also revised several times during the development of the application.  The original vision of the notation can be seen in \emph{Fig. x.y}.  The first implementation of the notation consisted of uniformly-coloured circles connected by lines feeding into the centre of the recipient circle.  There were no placeholder values; these were unnecessary as the system of dialogue boxes meant that at no point could a circle have any aspect of itself in an undefined state.  There was also no indication of argument ordering, which is acceptable when the operator is commutative (i.e. addition or multiplication), but for operations where this is not the case, this can quickly become confusing.  Although the ordering and placement of arguments was defined, with no indication of this, the user is required to figure this out through experience, which is counter to the intentions of the software.  As mentioned above, it should not be required that the user spend a significant amount of time learning how to use the system, especially due to deficiencies in the notation.  Another, greater, problem related to argument ordering was that of the circles that linked to other circles.  With all input circles pointing to the operator at the centre of their target circle, it was not at all clear in which order the input circles evaluated, neither relative to each other nor to the other arguments in the circle.
+
+% TODO: poss. a figure showing close-ups/details of newest notation?
+
+The notation changed somewhat to address the problems listed above.  In its
+current revision, the notation has had a number of features added.  Firstly,
+the circles are now colour-coded by operator, making it easier for the user to
+distinguish between different kinds of circles.  The circles themselves have
+also been embellished slightly with the addition of a line denoting the star of
+the expression, just to the side of the first argument at the top of the
+circle.  Smalls arrow have also been added to the edge of the circles to
+indicate in which direction the arguments should be read.  Finally, the links
+between circles have been changed such that they now occupy an argument slot
+that could otherwise be taken by a number, with a circle on the end of the link
+line to clearly show where the link terminates.
 
 \section{Summary}
 
@@ -1688,6 +1720,7 @@ The final, current revision of the software reintroduces the {\sfapp Check} butt
 
 \section{User Study}
 % results
+% pilot study - ellie suggested switching left/right-clicks in control scheme, implemented before main study
 
 \section{Goals}
 % did it succeed?

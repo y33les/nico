@@ -25,7 +25,7 @@
 
 \usepackage{graphicx}
 \usepackage{fontspec,xunicode}
-\defaultfontfeatures{Mapping=tex-text, Numbers=Monospaced}% ,Scale=MatchLowercase}% , Numbers=OldStyle}
+\defaultfontfeatures{Mapping=tex-text, Numbers=Monospaced}% ,Scale=MatchLowercase% , Numbers=OldStyle
 \setmainfont[Scale=1]{Linux Libertine O}% {Sabon MT Std}
 \setsansfont{Roboto Bold}% {Myriad Pro Light}
 \setmonofont[Scale=0.82]{Monaco}% {Droid Sans Mono}
@@ -1443,12 +1443,15 @@ with \verb¬\?¬s.
 % the bit that handles all the application shit: render, main-window, etc.
 % talk about jfx2 vs. guiftw/swt vs. seesaw/swing
 % talk about main-window here i guess?
+% talk about dialogue boxes
 %
 % \emph{{\sc Note:} These paragraphs aren't in the correct order yet; I've just been writing things that I want to include in this subsection, and will reorder them when I have a better idea of where this bit's going.}
 
-The interaction handler is a collection of functions that form the `middle layer' of the application: that is, the functions that arbitrate between the backend and the user interface.
+The interaction handler is a collection of functions that form the `middle
+layer' of the application: that is, the functions that arbitrate between the
+backend and the user interface.
 
-At the heart of the interaction handler is a function called \verb¬render¬.
+The function \verb¬render¬ plays a significant rôle in handling interaction.
 This is the function that is called every time what is displayed on the canvas
 needs to be updated.  It calls \verb¬clear-screen¬, which paints a white
 rectangle over the canvas, followed by the bin icon, and then iterates across
@@ -1466,6 +1469,176 @@ replace with input from another circle, and draws a line from underneath the
 source circle to the desired point on the destination circle, followed by a
 small circle around that point to make it clear that this circle is receiving
 the results of the other circle.
+
+% TODO: should probably talk about highlighting, etc.
+
+At the heart of the interaction handler is a structure called
+\verb¬main-window¬.  \verb¬main-window¬ is what defines much of the user
+interface: namely, the main window.  It controls what is displayed and the
+actions to be performed under certain conditions, and listens for certain
+events such as user input.
+
+% TODO: maybe talk about lisp-to-maths?  no so much to say about the other panels than the canvas really though...
+
+% TODO: diagram?  not sure how...  maybe like the one in the backend section?
+% TODO: talk about agents relevant to this section like current-coords, currently-dragging-circle, etc.
+
+Of particular note are the various listeners that monitor the canvas for mouse-
+based events as part of \verb¬main-window¬.  As the mouse moves around the
+canvas, \verb¬main-window¬ listens for a \verb¬:mouse-moved¬
+event.\footnote{The Seesaw library refers to several events defined in
+{\ttfamily java.awt.event.MouseEvent} in this way.  For example, a
+{\ttfamily java.awt.event.MouseEvent.MOUSE\_CLICKED} is referred to as
+{\ttfamily :mouse-clicked}, and a
+{\ttfamily java.awt.event.MouseEvent.MOUSE\_RELEASED} is referred to as
+{\ttfamily :mouse-released}.}  When this is detected (i.e. when the mouse is
+moved), \verb¬main-window¬ calls an anonymous function that retrieves the
+current co-ordinates of the mouse cursor, and calls a function
+\verb¬point-in-circle¬, which compares a pair of co-ordinates to those of the
+circles currently in \verb¬used-circles¬ to determine whether or not the mouse
+is hovering over a circle.  \verb¬point-in-circle¬ returns the name of the
+circle that the mouse cursor is currently over, or \verb¬nil¬ if it is not
+currently over a circle.  The current co-ordinates of the mouse are sent off to
+the agent \verb¬current-coords¬ in the form of a map,
+\verb¬{:x ¬\emph{x}\verb¬ :y ¬\emph{y}\verb¬}¬.  The agent
+\verb¬currently-dragging-circle¬ is also reinitialised to \verb¬nil¬, as mouse
+motion without a button being held implies that no circle is currently being
+dragged.  The canvas is then cleared using \verb¬clear-screen¬ and
+\verb¬render¬, and in the case that \verb¬point-in-circle¬ does not return
+\verb¬nil¬ at the current co-ordinates, the circle that the mouse is hovering
+over is highlighted.  If \verb¬point-in-circle¬ returns \verb¬nil¬, the
+question text is explicitly unhighlighted.
+
+When \verb¬main-window¬ detects a \verb¬:mouse-clicked¬ event, it retrieves the
+current co-ordinates of the mouse cursor, and tests for left-click, right-click
+and Ctrl being pressed.  It also uses \verb¬point-in-circle¬ to return the
+name, if any, of the circle that the mouse cursor is currently over, as well
+as \verb¬arg-in-circle¬ and \verb¬op-in-circle?¬ to determine the index of the
+argument, if any, that that mouse cursor is currently over by comparing the
+current mouse co-ordinates to those of the predetermined placements of
+arguments in each case of the circle having two to eight arguments, and whether
+or not the cursor is over the circle's operator, again by comparing the current
+co-ordinates to the predetermined placement of the operator relative to the
+circle's co-ordinates.  It is also further determined whether or not the cursor
+is currently over a placeholder argument, using the results of
+\verb¬arg-in-circle¬.  This information is then used to implement \emph{Nico}'s
+control scheme, as illustrated in \emph{Fig. x.y}.
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-4cm]{figs/nico_click.pdf}
+\end{center}
+\caption{Decision tree to determine the appropriate response to a {\ttfamily :mouse-clicked} event.}
+\end{figure}
+\end{center}
+
+In the case that the cursor is not over a circle, \verb¬new-circle¬ is called,
+with the current co-ordinates as arguments, creating a blank circle, as
+described in the previous section.  If the cursor is over a circle and the
+mouse has been right-clicked, the circle is removed from \verb¬used-circles¬
+and a new version is sent off, either with its final argument removed or with a
+placeholder argument added.  In the case that the user tries to remove an
+argument when there are only two, or to add an argument when there are already
+eight, an alert box appears, warning the user that they are only allowed a
+minimum of two and a maximum of eight arguments.
+
+If the mouse is over a circle, has been left-clicked and is over one of the
+circle's arguments, \verb¬main-window¬ draws a small blue circle around the
+argument and launches a dialogue box using the function
+\verb¬mod-arg-dialogue¬, which defines a simple window containing a spinner
+and returns the contents of that spinner upon the user pressing the {\sfapp OK}
+button.  The circle that had been clicked originally is then removed from
+\verb¬used-circles¬, and replaced with a version in which the chosen argument
+has the value that the user has input.  \verb¬clear-screen¬ and \verb¬render¬
+are called, and the answer displayed at the top of the application is updated
+by using \verb¬find-root¬ to find the root circle of the diagram, and then
+re-evaluating the entire expression.  The process is similar in the case that
+the mouse was over a circle's operator, except that the function
+\verb¬mod-op-dialogue¬, which defines a small dialogue box containing four
+radio buttons corresponding to the four arithmetic operations and returns the
+user's selection, is called, rather than \verb¬mod-arg-dialogue¬.
+
+\emph{Nico}'s drag-and-drop functionality is also implemented using
+\verb¬main-window¬'s listeners.  When a \verb¬:mouse-pressed¬ event is
+detected, the mouse co-ordinates are once again retrieved and
+\verb¬point-in-circle¬ is called.\footnote{{\ttfamily :mouse-pressed} is not
+the same as {\ttfamily :mouse-clicked}.  The latter only occurs when the mouse
+is pressed {\bf and then} released, whereas the former occurs every time the
+mouse button is pressed.  It is for this reason that the actions that occur
+when {\ttfamily :mouse-clicked} is detected must reinitialise
+{\ttfamily currently-dragging-circle} to {\ttfamily nil}.}  If
+\verb¬point-in-circle¬ does not return \verb¬nil¬, the circle map that
+corresponds to the name returned is sent off as part of a map to the agent
+\verb¬currently-dragging-circle¬.  This map takes the form
+\verb¬{:c ¬\emph{c}\verb¬ :t ¬\emph{t}\verb¬ :m ¬\emph{m}\verb¬}¬, where
+\emph{c} is the circle map, \emph{t} is the current system time in milliseconds
+and \emph{m} is the integer representing the mouse button that was pressed.
+When the application detects a \verb¬:mouse-dragged¬ event, this information is
+then used to determine which action to take.  First,
+\verb¬currently-dragging-circle¬ is checked.  If it is \verb¬nil¬, no action
+needs to be taken.  To check that the user has deliberately dragged the mouse,
+the current system time is compared to the \verb¬:t¬ value in
+\verb¬currently-dragging-circle¬'s map.  If the difference is greater than
+100ms, this is determined to be an intentional mouse drag, and the function
+proceeds.  If the left mouse button is pressed, the mouse co-ordinates are
+compared to the location of the bin icon.  If the circle has been dragged into
+the bin area, it is removed.  Otherwise, it is relocated to the current
+position of the mouse cursor by removing it from \verb¬used-circles¬ and
+sending off a version with the \verb¬:x¬ and \verb¬:y¬ fields modified
+appropriately.  If the right mouse button is held, a line is drawn from the
+circle to the current location of the mouse, and a circle is also drawn around
+this point.  If the mouse is dragged on to an argument that is not in the
+source circle, the line and circle are anchored in that argument's slot and the
+target circle is removed from \verb¬used-circles¬, being replaced by a version
+with the appropriate argument modified to be a symbol referring to the source
+circle.
+% do i need to mention *all* the times clear-screen and render are called?  it's kind of implicit (to me anyway)...
+
+As mentioned above, \emph{Nico} has the ability to highlight sections of the
+question currently being answered that correspond to circles or sets of circles
+within the user's diagram.  This is achieved using a function \verb¬highlight¬,
+which uses a function \verb¬lisp-to-maths¬ to convert S-expressions into
+standard mathematics.  \verb¬lisp-to-maths¬ uses a counter beginning with value
+0 to append the operator of an S-expression on to a string of its arguments
+every time the counter is odd, producing the infix expressions many people are
+more comfortable with.  When the counter is not odd, if the next argument is a
+list, \verb¬lisp-to-maths¬ recursively calls itself on that list, appending to
+the string being produced the string \verb¬"("¬, the output of the recursive
+call to \verb¬lisp-to-maths¬ and the string \verb¬")"¬, creating a more
+familiar-looking subexpression using brackets.  If the counter is not odd and
+the current element of the S-expression is not a list, the element is simply
+appended to the string being created.  This produces a line of mathematics from
+an S-expression; for example, an input of \verb¬(+ 1 2 (* 3 4) 5 (- 6 7) 8)¬
+will produce an output of \verb¬"1+2+(3×4)+5+(6-7)"¬.  This function is also
+used to produce the contents of the {\sfapp Question} panel from the questions
+contained in the question set file.  \verb¬highlight¬ uses \verb¬lisp-to-maths¬
+to compare the question string to the translation of a circle into regular
+mathematics using another function \verb¬detect-subs¬, which takes two strings
+as arguments and returns a list of maps containing the start and end indices of
+every instance where the first argument appears as a substring of the second
+argument.  \verb¬detect-subs¬ iterates across its second argument, character by
+character, using a counter that is incremented by one with each iteration to
+compare its first argument to the substring of its second that begins at the
+current value of the counter and ends at the same value, plus the length of the
+substring being searched for.  If it detects that those two strings are equal,
+the start and end indices are put into a map and appended to a list.
+\verb¬highlight¬ iterates across the resultant list of \verb¬detect-subs¬, and
+changes the colour of the text that matches the result of calling
+\verb¬lisp-to-maths¬ on the result of evaluating a circle.
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\subfloat[]{\includegraphics[height=\textwidth/3-1cm]{figs/nico_hi1.png}}
+\subfloat[]{\includegraphics[height=\textwidth/3-1cm]{figs/nico_hi2.png}}
+\\
+\vspace{0.5cm}
+\subfloat[]{\includegraphics[height=\textwidth/3-1cm]{figs/nico_hi3.png}}
+\end{center}
+\caption{Three instances of the question text being highlighted as a corresponding circle is moused-over.}
+\end{figure}
+\end{center}
 
 % TODO: more!  this shouldn't be the first (or last) paragraph in this section
 My original intention was to develop \emph{Nico} using the JavaFX library.
@@ -1533,6 +1706,8 @@ the current total as the answer.  The lower panel contains the large canvas
 area in which the user is able to construct diagrams with which to answer the
 question.
 
+% TODO: diagram?  like the one in the notebook, showing the consequences of each possible action to illustrate the control scheme and notation
+
 \emph{Nico} uses a predominantly mouse-based control system for the
 construction of calculations in the application's notation.  Left-clicking on a
 blank patch of canvas creates a new circle, initialised with two arguments,
@@ -1544,7 +1719,7 @@ canvas by left-clicking and dragging the circle to the desired location.  If a
 circle is dragged to the bin icon in the bottom left-hand corner of the screen,
 then it is removed.  Left-clicking on a circle's operator brings up a dialogue
 box with a selection of operators in it, with a radio button for each (see
-\emph{Fig. x.y}.  Similarly, left-clicking on a circle's argument brings up a
+\emph{Fig. x.y}).  Similarly, left-clicking on a circle's argument brings up a
 dialogue box containing a spinner, which can be used to set a new value for
 that argument.  To use one circle as an argument to another, right-clicking and
 dragging allows the user to drag a line ending in a circle to the desired slot
@@ -1564,7 +1739,18 @@ on the recipient circle.
 \end{figure}
 \end{center}
 
-\emph{Nico} also uses colour-coding in various areas of the application.  Circles are coloured according to their operators (addition is green, subtraction is red, multiplication is blue, division is yellow and {\sfapp ?} is grey), clearly separating different kinds of operations and making the notation more readable.  Colour-coding is also used in the information panels at the top of the application: positioning the mouse cursor over a circle highlights the part of the question that it is likely to represent in blue, and also highlights the circle with a blue outline.  When an answer is submitted, the text in the answer panel turns red if the answer was incorrect, or green if the answer was correct, providing an unintrusive form of feedback, allowing the user to continue uninterrupted (i.e. no input is required) if their answer is wrong.
+\emph{Nico} also uses colour-coding in various areas of the application.
+Circles are coloured according to their operators (addition is green,
+subtraction is red, multiplication is blue, division is yellow and {\sfapp ?}
+is grey), clearly separating different kinds of operations and making the
+notation more readable.  Colour-coding is also used in the information panels
+at the top of the application: positioning the mouse cursor over a circle
+highlights the part of the question that it is likely to represent in blue, and
+also highlights the circle with a blue outline.  When an answer is submitted,
+the text in the answer panel turns red if the answer was incorrect, or green if
+the answer was correct, providing an unintrusive form of feedback, allowing the
+user to continue uninterrupted (i.e. no input is required) if their answer is
+wrong.
 
 \begin{center}
 \begin{figure}[H]
@@ -1580,17 +1766,7 @@ on the recipient circle.
 }\hspace{2cm}
 \subfloat[An argument is highlighted when it is being edited]{
 \includegraphics[width=\textwidth/3]{figs/nico_arg_hi.png}
-}\\
-\subfloat[Three instances of the question text being highlighted as a corresponding circle is moused-over]{
-\parbox{\textwidth}{
-\begin{center}
-\includegraphics[height=\textwidth/3-1cm]{figs/nico_hi1.png}
-\includegraphics[height=\textwidth/3-1cm]{figs/nico_hi2.png}
-\\
-\vspace{0.5cm}
-\includegraphics[height=\textwidth/3-1cm]{figs/nico_hi3.png}
-\end{center}
-}}
+}
 \end{center}
 \caption{Examples of colour-coding in \emph{Nico}.}
 \end{figure}
@@ -1679,7 +1855,25 @@ introduced, along with the other means of highlighting, as shown above.
 \end{figure}
 \end{center}
 
-The notation itself was also revised several times during the development of the application.  The original vision of the notation can be seen in \emph{Fig. x.y}.  The first implementation of the notation consisted of uniformly-coloured circles connected by lines feeding into the centre of the recipient circle.  There were no placeholder values; these were unnecessary as the system of dialogue boxes meant that at no point could a circle have any aspect of itself in an undefined state.  There was also no indication of argument ordering, which is acceptable when the operator is commutative (i.e. addition or multiplication), but for operations where this is not the case, this can quickly become confusing.  Although the ordering and placement of arguments was defined, with no indication of this, the user is required to figure this out through experience, which is counter to the intentions of the software.  As mentioned above, it should not be required that the user spend a significant amount of time learning how to use the system, especially due to deficiencies in the notation.  Another, greater, problem related to argument ordering was that of the circles that linked to other circles.  With all input circles pointing to the operator at the centre of their target circle, it was not at all clear in which order the input circles evaluated, neither relative to each other nor to the other arguments in the circle.
+The notation itself was also revised several times during the development of
+the application.  The original vision of the notation can be seen in
+\emph{Fig. x.y}.  The first implementation of the notation consisted of
+uniformly-coloured circles connected by lines feeding into the centre of the
+recipient circle.  There were no placeholder values; these were unnecessary as
+the system of dialogue boxes meant that at no point could a circle have any
+aspect of itself in an undefined state.  There was also no indication of
+argument ordering, which is acceptable when the operator is commutative (i.e.
+addition or multiplication), but for operations where this is not the case,
+this can quickly become confusing.  Although the ordering and placement of
+arguments was defined, with no indication of this, the user is required to
+figure this out through experience, which is counter to the intentions of the
+software.  As mentioned above, it should not be required that the user spend a
+significant amount of time learning how to use the system, especially due to
+deficiencies in the notation.  Another, greater, problem related to argument
+ordering was that of the circles that linked to other circles.  With all input
+circles pointing to the operator at the centre of their target circle, it was
+not at all clear in which order the input circles evaluated, neither relative
+to each other nor to the other arguments in the circle.
 
 % TODO: poss. a figure showing close-ups/details of newest notation?
 
@@ -1694,11 +1888,28 @@ indicate in which direction the arguments should be read.  Finally, the links
 between circles have been changed such that they now occupy an argument slot
 that could otherwise be taken by a number, with a circle on the end of the link
 line to clearly show where the link terminates.
+% TODO: more cogdims!  ALWAYS more cogdims!
+
+% TODO: testing?  or does that go in the next chapter?
 
 \section{Summary}
 
+In this chapter, the implementation of the project was discussed in some
+detail, as well as the challenges that were faced during this development
+phase.  The software itself fulfils and exceeds the criteria for success
+outlined in the project proposal, being a complete and usable system that
+improves greatly, in terms of cognitive dimensions, upon the traditional method
+of handwritten arithmetic.  Third-party libraries, in particular Seesaw, were
+used where appropriate.  The application divides into three main sections: the
+backend, handling mathematical operations and memory management, the
+interaction handler, helping the user interface to interface with the backend,
+and the user interface itself.  The user interface was revised many times to
+correct deficiencies in the design that would have led to a poor user
+experience, and the backend and interaction handler were also both restructured
+as new demands upon the software became apparent.
 
-
+In the next chapter, the software will be evaluated, discussing test results
+and the user study that was conducted as an extension to the project.
 
 \cleardoublepage
 \chapter{Evaluation}

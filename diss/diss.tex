@@ -1232,7 +1232,9 @@ creates an associative map initialised to the following values:
 \end{figure}
 \end{center}
 
-This map is then sent off to \verb¬used-circles¬.  The value of \verb¬circle-number¬ is incremented by one, and the user-facing canvas area is cleared and re-rendered.
+This map is then sent off to \verb¬used-circles¬.  The value of
+\verb¬circle-number¬ is incremented by one, and the user-facing canvas area is
+cleared and re-rendered.
 
 \verb¬del-circle¬ is a more complex function that removes a circle from
 \verb¬used-circles¬, taking either a string or two integers as its arguments.
@@ -1342,7 +1344,7 @@ in the contents of the file indicated by the path provided as the argument to
 \verb¬read-qset¬ as one long string.  The function \verb¬split-lines¬ provided
 by the \verb¬clojure.string¬ library then separates each line of the string
 into an element of a sequence.  \verb¬read-qset¬ then proceeds to iterate
-across the sequence, prepending the string \verb¬"{:n¬\emph{n}\verb¬ :q '"¬ and
+across the sequence, prepending the string \verb¬"{:n ¬\emph{n}\verb¬ :q '"¬ and
 appending the string \verb¬" :a? false :c? false}"¬ to each item in turn, where
 \emph{n} is a counter starting with value 1 that is incremented with each
 iteration.  This creates a valid specification for an associative map in

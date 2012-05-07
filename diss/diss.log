@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.2-0.9995.2 (TeX Live 2009/Debian) (format=xelatex 2012.3.2)  7 MAY 2012 22:06
+This is XeTeX, Version 3.1415926-2.2-0.9995.2 (TeX Live 2009/Debian) (format=xelatex 2012.3.2)  7 MAY 2012 22:17
 entering extended mode
  %&-line parsing enabled.
 **\input diss.tex
@@ -743,7 +743,7 @@ File: figs/nico_click.pdf Graphic file (type QTm)
 
 <use  "figs/nico_click.pdf" > [30]
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/n' will be
-(Font)              scaled to size 10.0pt on input line 1570.
+(Font)              scaled to size 10.0pt on input line 1573.
  [31] [32]
 File: figs/nico_hi1.png Graphic file (type QTm)
  <use  "figs/nico_hi1.png" >
@@ -767,19 +767,19 @@ File: figs/nico_right.png Graphic file (type QTm)
 <use  "figs/nico_right.png" >
 File: figs/nico_op_hi.png Graphic file (type QTm)
  <use  "figs/nico_op_hi.png" >
-Underfull \hbox (badness 1117) in paragraph at lines 1766--1766
+Underfull \hbox (badness 1117) in paragraph at lines 1769--1769
 []\EU1/LinuxLibertineO(0)/m/n/10 (c) |The circle’s operator is high-
  []
 
 File: figs/nico_arg_hi.png Graphic file (type QTm)
 <use  "figs/nico_arg_hi.png" >
-Underfull \hbox (badness 3872) in paragraph at lines 1769--1769
+Underfull \hbox (badness 3872) in paragraph at lines 1772--1772
 []\EU1/LinuxLibertineO(0)/m/n/10 (d) |An argument is highlighted
  []
 
 [36] [37]
 LaTeX Font Info:    Font shape `EU1/RobotoRegular(0)/m/n' will be
-(Font)              scaled to size 20.40178pt on input line 1836.
+(Font)              scaled to size 20.40178pt on input line 1839.
  [38] [39] [40]
 Chapter 4.
 [41
@@ -946,7 +946,7 @@ LaTeX Font Info:    Some font shapes were not available, defaults substituted.
 Here is how much of TeX's memory you used:
  7735 strings out of 495724
  128486 string characters out of 1189347
- 216748 words of memory out of 3000000
+ 217748 words of memory out of 3000000
  10670 multiletter control sequences out of 15000+50000
  11286 words of font info for 87 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191

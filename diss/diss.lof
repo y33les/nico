@@ -50,12 +50,12 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces A rough model of \emph {Nico's} management of mutable state.\relax }}{24}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces The function {\ttfamily new-circle} initialises a circle centred on the current location of the mouse cursor, generating a name {\ttfamily "c}\emph {n}{\ttfamily "}, where \emph {n} is the number of circles that have previously been created and with an initial expression of {\ttfamily (\textbackslash ? \textbackslash ? \textbackslash ?)}.\relax }}{25}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces The {\ttfamily eval-circle} source.\relax }}{27}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Decision tree to determine the appropriate response to a \relax \unhbox \voidb@x \hbox {}\bgroup \catcode `\ \active \let \GenericInfo { }{LaTeX Info: Active EOL character found while output routine is active \MessageBreak This may be a bug in a package file you are using\par } \par \def \GenericInfo { }{LaTeX Info: Active EOL character found while output routine is active \MessageBreak This may be a bug in a package file you are using\par } {\global \let \egroup \GenericError { }{LaTeX Error: \relax \unhbox \voidb@x \hbox {}\bgroup \catcode `\ \active \let \GenericInfo { }{LaTeX Info: Active EOL character found while output routine is active \MessageBreak This may be a bug in a package file you are using\par } \par \def \GenericInfo { }{LaTeX Info: Active EOL character found while output routine is active \MessageBreak This may be a bug in a package file you are using\par } {\global \let \egroup \GenericError { }{LaTeX Error: \verb ended by end of line}{See the LaTeX manual or LaTeX Companion for explanation.}{Try typing <return> to proceed.\MessageBreak If that doesn't work, type X <return> to quit.}}\let \@makeother \ \\\{\}\$\&\#\^\_\%\~\normalfont \ttfamily \hyphenchar \font \m@ne \let \do@noligs \`\<\>\,\'\-\let \do@noligs \`\<\>\,\'\-\let \reserved@d =*\def \def document{center}\edef { on input line 1545}\parsep \parskip \let } } } } 
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Three instances of the question text being highlighted as a corresponding circle is moused-over.\relax }}{34}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{34}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{34}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{34}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces The {\ttfamily eval-circle} source.\relax }}{26}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Decision tree to determine the appropriate response to a {\ttfamily :mouse-clicked} event.\relax }}{31}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Three instances of the question text being highlighted as a corresponding circle is moused-over.\relax }}{33}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{33}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{33}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{33}
 \contentsline {figure}{\numberline {3.6}{\ignorespaces A screenshot of a \emph {Nico} session.\relax }}{35}
 \contentsline {figure}{\numberline {3.7}{\ignorespaces The dialogue boxes used to modify existing circles in the application.\relax }}{36}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Editing a circle's operator}}}{36}
@@ -67,6 +67,8 @@
 \contentsline {subfigure}{\numberline {(d)}{\ignorespaces {An argument is highlighted when it is being edited}}}{37}
 \contentsline {figure}{\numberline {3.9}{\ignorespaces \emph {Nico}'s user interface went through a number of revisions before reaching its current state.\relax }}{38}
 \contentsline {figure}{\numberline {3.10}{\ignorespaces The notation used also went through a number of revisions before reaching its current state.\relax }}{39}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces An example of a block of inline tests, taken from {\ttfamily core.clj}, showing some tests to be run to test the implementation of {\ttfamily detect-subs}.\relax }}{42}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

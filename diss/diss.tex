@@ -1293,11 +1293,12 @@ S-expression that represents a calculation.  When used in conjunction with
 been constructed on the canvas into a single S-expression, which can then be
 evaluated or otherwise utilised as needed.
 
+% TODO: centre this properly
 \begin{center}
 \begin{figure}[H]
 \begin{center}
-\begin{minipage}{\textwidth-2cm}
-\begin{Verbatim}[fontsize=\small,numbers=left]
+\begin{minipage}{8.2cm}% {\textwidth-2cm}
+\begin{Verbatim}[fontsize=\tiny,numbers=left]
 (defn eval-circle
   "Iterates across a circle list, resolving
    symbols into their respective circles."
@@ -1914,24 +1915,92 @@ and the user study that was conducted as an extension to the project.
 \cleardoublepage
 \chapter{Evaluation}
 
-% lol
+This chapter concerns the testing and evaluation of \emph{Nico}; carried out to determine the quality and utility of the software.
 
-\section{Backend Testing}
+\section{Testing}% {Defect Management and Testing}% {Backend Testing}
 % used slime/swank with test lines as comments to be evaluated with C-x C-e
 % emacs/slime/swank as ide; ideal for lisps!
 % lein test framework - need to actually set up some tests first though!
+% clojure test-is; see http://en.wikibooks.org/wiki/Clojure_Programming/Tutorials_and_Tips#Unit_Testing_in_Clojure
+
+% does C-x C-e *actually* count as unit testing?  i mean, i *did* test small bits and then test bigger bits after i'd established that the smaller bits worked...
+Throughout the development of the software, I performed unit tests to ensure the integrity of my code.  My development environment of choice, GNU Emacs using SLIME/SWANK and clojure-mode, includes functionality such that commented-out lines of code can be evaluated at will.  As such, it was possible for me to write unit tests into the main body of my code, evaluating them whenever a change may have affected how a function behaved.  In the interests of tidiness, many tests have been removed as they became unnecessary later on in the devlopment in the project, but \emph{Fig. x.y} shows one of the test blocks that were left in the most recent revision of the source code.
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\begin{minipage}{11.7cm}% {\textwidth-2cm}
+\begin{Verbatim}[fontsize=\tiny,numbers=left]
+(defn detect-subs
+  "Returns a list of maps containing start and end indices showing where a substring c appears in the superstring q."
+  [c q]
+  (loop [s (cond (= (subs q
+                          (- (count q) (count c))
+                          (count q)) c) (split q
+                                               (re-pattern
+                                                (escape
+                                                 c
+                                                 {\+ "\\+"
+                                                  \( "\\("
+                                                  \) "\\)"})))
+                 :else (butlast (split q
+                         (re-pattern
+                          (escape
+                           c
+                           {\+ "\\+"
+                            \( "\\("
+                            \) "\\)"})))))
+         i 0
+         l '()]
+    (cond (empty? s) (reverse l)
+          (= c (subs q
+                     (+ i (count (first s)))
+                     (+ i (count (first s)) (count c)))) (recur (rest s)
+                                                                (inc i)
+                                                                (cons {:s (+ i (count (first s)))
+                                                                       :e (+ i (count (first s)) (count c))}
+                                                                      l))
+          :else (recur s (inc i) l))))
+
+;; (def tq (lisp-to-maths (eval (:q (first @current-qset)))))
+;; (subs tq (:s (nth (detect-subs "1+2" tq) 0)) (:e (nth (detect-subs "1+2" tq) 0)))
+;; (subs tq (:s (nth (detect-subs "1+2" tq) 1)) (:e (nth (detect-subs "1+2" tq) 1)))
+;; (subs tq (:s (nth (detect-subs "1+2" tq) 2)) (:e (nth (detect-subs "1+2" tq) 2)))
+;; (let [s "roflolmaomglolwtf" i (detect-subs "lol" s)] (subs s (:s (nth i 0)) (:e (nth i 0))))
+;; (let [s "roflolmaomglolwtf" i (detect-subs "lol" s)] (subs s (:s (nth i 1)) (:e (nth i 1))))
+;; (let [s "roflolmaomglolwtf" i (detect-subs "lol" s)] (subs s (:s (nth i 2)) (:e (nth i 2))))
+
+;; (let [s "0123456789" i (detect-subs "456" s)] (subs s (:s (first i)) (:e (first i))))
+;; (let [s "roflolmaomglolwtf" i (detect-subs "lol" s)] (subs s (:s (first i)) (:e (first i))))
+;; (let [s "fagaha" i (detect-subs "a" s)] (subs s (:s (first i)) (:e (first i))))
+;; (let [s "lalala" i (detect-subs "a" s)] (subs s (:s (first i)) (:e (first i))))
+;; (detect-subs (lisp-to-maths (eval-circle (find-circle "c0"))) (lisp-to-maths (eval (:q (first @current-qset)))))
+;; (let [s "dcbabcd" i (detect-subs "a" s)] (subs s (:s (first i)) (:e (first i))))
+;; (let [s "dcbabcd" i (detect-subs "a" s)] (subs s (:s (nth i 1)) (:e (nth i 1))))
+
+\end{Verbatim}
+\end{minipage}
+\end{center}
+\caption{An example of a block of inline tests, taken from {\ttfamily core.clj}, showing some tests to be run to test the implementation of {\ttfamily detect-subs}.}
+\end{figure}
+\end{center}
+
 
 \section{UI Evaluation}
 % user testing
 % graphs
 
-\section{Language Evaluation}
+\subsection{Notation Evaluation}
 % user testing
 % graphs
 
 \section{User Study}
 % results
 % pilot study - ellie suggested switching left/right-clicks in control scheme, implemented before main study
+
+To assess the utility of the software relative to handwritten arithmetic, a user study was conducted, allowing real users to get to grips with the system, and provide feedback on it.  To this end, users were given a tutorial video and a questionnaire (see \emph{Appendix A} for the full questionnaire) to complete whilst using the software.
+
+Test subjects were first asked to sign a statement of informed consent, giving their consent to participate in the study, and were then asked if they had previously used \emph{Nico}, and to indicate their confidence in their ability to solve simple mathematical problems.  Users were then divided into two groups.  The first watched the tutorial video and completed one question set using \emph{Nico}, and then answered the same questions by hand.  The second group completed the questions by hand before watching the video and using the software.  The time taken to answer each question was recorded, with \emph{Nico} including functionality to query the system time as the user progressed and the handwritten questions being timed using a stopwatch.  Both groups were then asked to complete a series of questions to provide feedback on the software, taking questions from Blackwell and Green's sample questionnaire. \cite{Blackwell2000}
 
 \section{Goals}
 % did it succeed?
@@ -1963,6 +2032,14 @@ and the user study that was conducted as an extension to the project.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % the appendices
 \appendix
+
+\chapter{Questionnaire}
+
+The questionnaire used in the user study follows.
+
+\includepdf[pages=-]{qs.pdf}
+
+\cleardoublepage
 
 \chapter{Project Proposal}
 

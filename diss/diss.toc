@@ -31,9 +31,12 @@
 \contentsline {section}{\numberline {4.2}UI Evaluation}{42}
 \contentsline {subsection}{\numberline {4.2.1}Notation Evaluation}{42}
 \contentsline {section}{\numberline {4.3}User Study}{42}
-\contentsline {section}{\numberline {4.4}Goals}{43}
-\contentsline {section}{\numberline {4.5}Summary}{43}
-\contentsline {chapter}{\numberline {5}Conclusions}{45}
-\contentsline {chapter}{Bibliography}{47}
-\contentsline {chapter}{\numberline {A}Questionnaire}{49}
-\contentsline {chapter}{\numberline {B}Project Proposal}{61}
+\contentsline {subsection}{\numberline {4.3.1}Pilot Study}{43}
+\contentsline {subsection}{\numberline {4.3.2}Results}{44}
+\contentsline {subsubsection}{\numberline {4.3.2.1}Feedback}{53}
+\contentsline {section}{\numberline {4.4}Goals}{53}
+\contentsline {section}{\numberline {4.5}Summary}{53}
+\contentsline {chapter}{\numberline {5}Conclusions}{55}
+\contentsline {chapter}{Bibliography}{57}
+\contentsline {chapter}{\numberline {A}Questionnaire}{59}
+\contentsline {chapter}{\numberline {B}Project Proposal}{71}

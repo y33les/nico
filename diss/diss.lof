@@ -69,6 +69,16 @@
 \contentsline {figure}{\numberline {3.10}{\ignorespaces The notation used also went through a number of revisions before reaching its current state.\relax }}{39}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces An example of a block of inline tests, taken from {\ttfamily core.clj}, showing some tests to be run to test the implementation of {\ttfamily detect-subs}.\relax }}{42}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Time taken in milliseconds per subject to answer Question 1.\relax }}{46}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Time taken in milliseconds per subject to answer Question 2.\relax }}{46}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Time taken in milliseconds per subject to answer Question 3.\relax }}{47}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Time taken in milliseconds per subject to answer Question 4.\relax }}{47}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Time taken in milliseconds per subject to answer Question 5.\relax }}{48}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Time taken in milliseconds per subject to answer Question 6.\relax }}{48}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Time taken in milliseconds per subject to answer Question 7.\relax }}{49}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Time taken in milliseconds per subject to answer Question 8.\relax }}{49}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Time taken in milliseconds per subject to answer Question 9.\relax }}{50}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Time taken in milliseconds per subject to answer Question 10.\relax }}{50}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

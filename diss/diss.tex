@@ -22,6 +22,7 @@
 % \usepackage{lettrine} % dropped capitals at start of chapter
 \usepackage{fancyvrb}
 % \usepackage{cprotect}
+\usepackage{lscape}
 
 \usepackage{graphicx}
 \usepackage{fontspec,xunicode}
@@ -1724,9 +1725,15 @@ then it is removed.  Left-clicking on a circle's operator brings up a dialogue
 box with a selection of operators in it, with a radio button for each (see
 \emph{Fig. x.y}).  Similarly, left-clicking on a circle's argument brings up a
 dialogue box containing a spinner, which can be used to set a new value for
-that argument.  To use one circle as an argument to another, right-clicking and
-dragging allows the user to drag a line ending in a circle to the desired slot
-on the recipient circle.
+that argument, between -10 and 10.  The spinner is limited to this particular
+range as this prevents the user from effectively using the software as a simple
+calculator.  The limited range of numbers available means that the user must
+still consider strategies such as partitioning or long multiplication,
+focussing on how to solve the problem, rather than simply transcribing the
+question into one circle that will complete the calculation for them.  To use
+one circle as an argument to another, right-clicking and dragging allows the
+user to drag a line ending in a circle to the desired slot on the recipient
+circle.
 
 \begin{center}
 \begin{figure}[H]
@@ -1926,7 +1933,18 @@ This chapter concerns the testing and evaluation of \emph{Nico}; carried out to 
 % clojure test-is; see http://en.wikibooks.org/wiki/Clojure_Programming/Tutorials_and_Tips#Unit_Testing_in_Clojure
 
 % does C-x C-e *actually* count as unit testing?  i mean, i *did* test small bits and then test bigger bits after i'd established that the smaller bits worked...
-Throughout the development of the software, I performed unit tests to ensure the integrity of my code.  My development environment of choice, GNU Emacs using SLIME/SWANK and clojure-mode, includes functionality such that commented-out lines of code can be evaluated at will.  As such, it was possible for me to write unit tests into the main body of my code, evaluating them whenever a change may have affected how a function behaved.  In the interests of tidiness, many tests have been removed as they became unnecessary later on in the devlopment in the project, but \emph{Fig. x.y} shows one of the test blocks that were left in the most recent revision of the source code.
+% apparently it does! w00t
+% also talk about integration testing (after the units have been tested, testing the bits that use those units), and see the link in alistair's email re other levels of testing
+Throughout the development of the software, I performed unit tests to ensure
+the integrity of my code.  My development environment of choice, GNU Emacs
+using SLIME/SWANK and clojure-mode, includes functionality such that
+commented-out lines of code can be evaluated at will.  As such, it was possible
+for me to write unit tests into the main body of my code, evaluating them
+whenever a change may have affected how a function behaved.  In the interests
+of tidiness and code readability, many tests were removed as they became
+unnecessary later on in the devlopment in the project, but \emph{Fig. x.y}
+shows one of the test blocks that were left in the most recent revision of the
+source code.
 
 \begin{center}
 \begin{figure}[H]
@@ -2000,9 +2018,329 @@ Throughout the development of the software, I performed unit tests to ensure the
 % results
 % pilot study - ellie suggested switching left/right-clicks in control scheme, implemented before main study
 
-To assess the utility of the software relative to handwritten arithmetic, a user study was conducted, allowing real users to get to grips with the system, and provide feedback on it.  To this end, users were given a tutorial video and a questionnaire (see \emph{Appendix A} for the full questionnaire) to complete whilst using the software.
+To assess the utility of the software relative to handwritten arithmetic, a
+user study was conducted, allowing real users to get to grips with the system,
+and provide feedback on it.  To this end, users were given a tutorial video and
+a questionnaire (see \emph{Appendix A} for the full questionnaire) to complete
+whilst using the software.
 
-Test subjects were first asked to sign a statement of informed consent, giving their consent to participate in the study, and were then asked if they had previously used \emph{Nico}, and to indicate their confidence in their ability to solve simple mathematical problems.  Users were then divided into two groups.  The first watched the tutorial video and completed one question set using \emph{Nico}, and then answered the same questions by hand.  The second group completed the questions by hand before watching the video and using the software.  The time taken to answer each question was recorded, with \emph{Nico} including functionality to query the system time as the user progressed and the handwritten questions being timed using a stopwatch.  Both groups were then asked to complete a series of questions to provide feedback on the software, taking questions from Blackwell and Green's sample questionnaire. \cite{Blackwell2000}
+Originally, it was the intention of this project to perform a user study upon
+a `test class' of Year 5 pupils at an actual school, but the ethical
+complications involved with working with vulnerable individuals were so great
+as to make such a study impractical, given the time constraints of this
+dissertation; in addition to obtaining the approval of the Ethics Committee and
+the permission of a school to conduct the study, consent forms would have to be
+distributed to the test class, taken home, signed by the pupils' guardians,
+returned to the school and returned to myself.  It was, therefore, decided that
+the software should be tested upon a group of students not currently reading a
+`mathematical' subject, such as the Natural Sciences Tripos, the Mathematical
+Tripos or the Computer Science Tripos, which necessitate a high level of
+mathematical aptitude and experience.
+
+Test subjects were first asked to sign a statement of informed consent, giving
+their consent to participate in the study, and were then asked if they had
+previously used \emph{Nico}, and to indicate their confidence in their ability
+to solve simple mathematical problems on a five-point Likert item.  Users were
+then divided into two groups.  The first watched the tutorial video and were
+allowed to explore the application in a `sandbox' environment for five
+minutes.  They then completed one question set using \emph{Nico}, and answered
+the same questions by hand.  The second group completed the questions by hand
+before watching the video and using the software.  The time taken to answer
+each question was recorded, with \emph{Nico} including functionality to query
+the system time as the user progressed and the handwritten questions being
+timed using a stopwatch.  Both groups were then asked to complete a series of
+questions to provide feedback on the software, taking questions from Blackwell
+and Green's sample questionnaire. \cite{Blackwell2000}
+
+\subsection{Pilot Study}
+% changes, improvements
+
+A pilot study was conducted with one test subject, to assess the feasibility of
+the experiment that had been designed.  The outcome of this study was to make
+changes to several areas of the test, and a small change to the control scheme
+of the application itself.  Firstly, the pilot test subject noted that the
+original version of the tutorial video for \emph{Nico} was hard to follow; it
+used subtitles to convey information, which the test subject felt were hard to
+read and understand in the time given.  The subject also noted that some of the
+questions in the feedback section were confusing or seemingly irrelevant to
+this particular application, and was unsure of how to answer them.  The final
+piece of feedback that the subject provided was that the control scheme of the
+application seemed counterintuitively focussed upon the right mouse button,
+where it would have felt more natural to the user to have used the left.
+
+In the interests of improving the study, I acted upon the subject's advice.
+The video was reproduced using a voiceover rather than subtitles, making it
+easier to follow.  Some of the less relevant questions were removed from the
+feedback section, leaving those more applicable to \emph{Nico}.  Finally, the
+control scheme was revised, assigning the left mouse button to primary
+functions such as the creation and editing of circles, and the right to
+functions such as changing the number of arguments.
+
+\subsection{Results}
+% data, graphs, analyses
+% p-values:
+% q1:  t = -8.0204, df = 7, p-value = 8.968e-05 <- sig
+% q2:  t = -8.0493, df = 7, p-value = 8.764e-05 <- sig
+% q3:  t = -8.9296, df = 7, p-value = 4.489e-05 <- sig
+% q4:  t = -2.9592, df = 7, p-value = 0.02113   <- sig
+% q5:  t = -5.288, df = 7, p-value = 0.001138   <- sig
+% q6:  t = -1.3149, df = 7, p-value = 0.2300
+% q7:  t = 2.3688, df = 7, p-value = 0.0497     <- sig
+% q8:  t = 3.1, df = 7, p-value = 0.01732       <- sig
+% q9:  t = 4.0293, df = 7, p-value = 0.005      <- sig
+% q10: t = 2.1298, df = 7, p-value = 0.0707
+
+The results of the tests are shown in \emph{Table x.y}, listing the times taken
+for each subject to answer the questions both by hand and using \emph{Nico}.
+
+\begin{center}
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|r||r|r||r|r||r|r||r|r|}
+\cline{2-9}
+\multicolumn{1}{c|}{} & \multicolumn{8}{c|}{Group 1}\\ \cline{2-9}
+\multicolumn{1}{c|}{} & \multicolumn{2}{c||}{Subject 1} & \multicolumn{2}{c||}{Subject 2} & \multicolumn{2}{c||}{Subject 3} & \multicolumn{2}{c|}{Subject 4}\\ \hline
+\multicolumn{1}{|c||}{Question} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c|}{\emph{Nico}}\\ \hline \hline
+Q1 & 4600 & 19547 & 3100 & 34094 & 1800 & 24657 & 1300 & 38891\\ \hline
+Q2 & 8800 & 23313 & 7000 & 24329 & 6300 & 17437 & 5400 & 12031\\ \hline
+Q3 & 20600 & 53500 & 13600 & 36360 & 10100 & 40798 & 10700 & 31813\\ \hline
+Q4 & 36200 & 54375 & 26400 & 60156 & 14200 & 79704 & 23800 & 50094\\ \hline
+Q5 & 61900 & 103344 & 39600 & 79844 & 26500 & 103221 & 33400 & 61064\\ \hline
+Q6 & 213400 & 224406 & 190300 & 215376 & 84900 & 172940 & 181700 & 154691\\ \hline
+Q7 & 235200 & 165813 & 1996000 & 103376 & 909000 & 48922 & 194200 & 52595\\ \hline
+Q8 & 259500 & 306625 & 282500 & 158094 & 147200 & 138581 & 256700 & 155347\\ \hline
+Q9 & 304400 & 230953 & 313500 & 123626 & 159800 & 183722 & 271700 & 196144\\ \hline
+Q10 & 416500 & 307734 & 357700 & 213642 & 197100 & 245161 & 322200 & 235364\\ \hline
+\multicolumn{9}{c}{}\\ \cline{2-9}
+\multicolumn{1}{c|}{} & \multicolumn{8}{c|}{Group 2}\\ \cline{2-9}
+\multicolumn{1}{c|}{} & \multicolumn{2}{c||}{Subject 1} & \multicolumn{2}{c||}{Subject 2} & \multicolumn{2}{c||}{Subject 3} & \multicolumn{2}{c|}{Subject 4}\\ \hline
+\multicolumn{1}{|c||}{Question} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c|}{\emph{Nico}}\\ \hline \hline
+Q1 & 1200 & 22299 & 2100 & 23516 & 2600 & 16142 & 2600 & 21985\\ \hline
+Q2 & 2200 & 24530 & 5600 & 19015 & 7200 & 16875 & 7200 & 23422\\ \hline
+Q3 & 17300 & 47620 & 7600 & 29735 & 18400 & 27923 & 15900 & 48470\\ \hline
+Q4 & 23000 & 50704 & 20700 & 43094 & 25300 & 37516 & 38600 & 174160\\ \hline
+Q5 & 46600 & 134828 & 33300 & 70313 & 35500 & 58954 & 72400 & 98846\\ \hline
+Q6 & 199900 & 629835 & 136400 & 164891 & 99000 & 113659 & 266600 & 252708\\ \hline
+Q7 & 202400 & 80277 & 142200 & 48890 & 1106000 & 52954 & 272900 & 72767\\ \hline
+Q8 & 295900 & 248736 & 182000 & 107375 & 184700 & 78001 & 348900 & 257224\\ \hline
+Q9 & 312900 & 152185 & 204100 & 118594 & 200500 & 67485 & 384500 & 144753\\ \hline
+Q10 & 357300 & 238300 & 261600 & 203110 & 237500 & 324581 & 472900 & 270177\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Table showing the time in milliseconds taken by each test subject to complete each question, by hand and using the software.}
+\end{table}
+\end{center}
+
+This data can be visualised using a series of plots, as follows.
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q1.png}
+\end{center}
+\caption{Time taken in milliseconds per subject to answer Question 1.}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q2.png}
+\end{center}
+\caption{Time taken in milliseconds per subject to answer Question 2.}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q3.png}
+\end{center}
+\caption{Time taken in milliseconds per subject to answer Question 3.}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q4.png}
+\end{center}
+\caption{Time taken in milliseconds per subject to answer Question 4.}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q5.png}
+\end{center}
+\caption{Time taken in milliseconds per subject to answer Question 5.}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q6.png}
+\end{center}
+\caption{Time taken in milliseconds per subject to answer Question 6.}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q7.png}
+\end{center}
+\caption{Time taken in milliseconds per subject to answer Question 7.}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q8.png}
+\end{center}
+\caption{Time taken in milliseconds per subject to answer Question 8.}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q9.png}
+\end{center}
+\caption{Time taken in milliseconds per subject to answer Question 9.}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q10.png}
+\end{center}
+\caption{Time taken in milliseconds per subject to answer Question 10.}
+\end{figure}
+\end{center}
+
+A two-sample, paired \emph{t}-test using an \emph{α} value of 0.05 was used to
+determine whether or not the difference between the mean time taken to answer
+each question by hand and using \emph{Nico} was statistically-significant.  The
+paired \emph{t}-test was chosen as the samples are not independent.  The
+results of the \emph{t}-tests on each question's datasets are shown in
+\emph{Table x.y}.  The data is assumed to fit a normal distribution.  A
+Shapiro-Wilk test was considered to test each dataset for normality, but the
+sample size of eight data points per set (i.e. eight subjects for each
+question) was deemed to be too small for such a test to have meaningful results.
+
+% remove df (degrees of freedom)?
+\begin{center}
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|r|r|r|r|r|}
+\hline
+Question & \emph{t} & \emph{df} & \emph{p} & Significant?\\ \hline \hline
+Q1 & -8.0204 & 7 & 0.00008968 & Yes\\ \hline
+Q2 & -8.0493 & 7 & 0.00008764 & Yes\\ \hline
+Q3 & -8.9296 & 7 & 0.00004489 & Yes\\ \hline
+Q4 & -2.9592 & 7 & 0.02113 & Yes\\ \hline
+Q5 & -5.288 & 7 &  0.001138 & Yes\\ \hline
+Q6 & -1.3149 & 7 & 0.2300 & No\\ \hline
+Q7 & 2.3688 & 7 &  0.0497 & Yes\\ \hline
+Q8 & 3.1 & 7 & 0.01732 & Yes\\ \hline
+Q9 & 4.0293 & 7 & 0.005 & Yes\\ \hline
+Q10 & 2.1298 & 7 & 0.0707 & No\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Table showing the results of the paired \emph{t}-test comparing the distribution of times taken to answer each question by hand and using the software, using an \emph{α} value of 0.05.}
+\end{table}
+\end{center}
+
+As the \emph{p}-values in the above table indicate, there was a significant
+difference in performance between using \emph{Nico} and completing the
+questions by hand.  For the first five questions, the time taken to complete
+the questions is markedly increased by using the software.  This is somewhat to
+be expected;  the first five questions were `warm-up' questions, requiring a
+maximum of three separate calculations to solve and with all numbers involved
+in each calculation being less than ten.  Such questions were included to give
+the user a chance to get used to solving simple problems using \emph{Nico},
+before moving on to more complex tasks.  By the sixth question, there is no
+longer a statistically-significant difference between using the software and
+completing the questions by hand.  This particular question still uses numbers
+less than ten, but requires several more nested calculations to solve,
+suggesting that \emph{Nico} offers some improvement where the handwritten
+method is lacking, but also that this is offset by the greater time required to
+input very simple expressions into the application.  The final four questions
+introduced numbers greater than ten, include many subcalculations and large
+numbers.  For the seventh, eighth and ninth questions, \emph{Nico} offers a
+statistically-significant improvement.  These questions involve the
+manipulation of larger numbers, requiring strategies that go beyond simply
+recalling number bonds, such as partitioning or long multiplication.  It is
+these types of questions that \emph{Nico} is intended to make easier for the
+user, and the often-dramatic decrease in the time taken to solve such questions
+is shown to great effect here.  The tenth question, on reflection, was not
+well-chosen.  It is comparable in difficulty to the fifth question, being a
+series of simple subcalculations with numbers less than ten.  Though there are
+more calculations to perform, and one operation involving a large number at the
+end,  this question is not especially challenging to solve by hand, and as such
+the lack of a significant difference between using the software and not doing
+so is not entirely unexpected.  The simple subcalculations are easier to
+perform by hand, and combining them is faster using \emph{Nico}.
+
+Data were also collected regarding how well the questions were answered by each
+user, which follow.
+
+\begin{center}
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|r||r|r||r|r||r|r||r|r|}
+\cline{2-9}
+\multicolumn{1}{c|}{} & \multicolumn{8}{c|}{Group 1}\\ \cline{2-9}
+\multicolumn{1}{c|}{} & \multicolumn{2}{c||}{Subject 1} & \multicolumn{2}{c||}{Subject 2} & \multicolumn{2}{c||}{Subject 3} & \multicolumn{2}{c|}{Subject 4}\\ \hline
+\multicolumn{1}{|c||}{Question} & \multicolumn{1}{c|}{Marks} & \multicolumn{1}{c||}{Errors} & \multicolumn{1}{c|}{Marks} & \multicolumn{1}{c||}{Errors} & \multicolumn{1}{c|}{Marks} & \multicolumn{1}{c||}{Errors} & \multicolumn{1}{c|}{Marks} & \multicolumn{1}{c|}{Errors}\\ \hline \hline
+Q1 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0\\ \hline
+Q2 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0\\ \hline
+Q3 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & 0\\ \hline
+Q4 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0\\ \hline
+Q5 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0\\ \hline
+Q6 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\ \hline
+Q7 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0\\ \hline
+Q8 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 0\\ \hline
+Q9 & 0 & 0 & 1 & 0 & 1 & 1 & 1 & 1\\ \hline
+Q10 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 0\\ \hline
+\multicolumn{9}{c}{}\\ \cline{2-9}
+\multicolumn{1}{c|}{} & \multicolumn{8}{c|}{Group 2}\\ \cline{2-9}
+\multicolumn{1}{c|}{} & \multicolumn{2}{c||}{Subject 1} & \multicolumn{2}{c||}{Subject 2} & \multicolumn{2}{c||}{Subject 3} & \multicolumn{2}{c|}{Subject 4}\\ \hline
+\multicolumn{1}{|c||}{Question} & \multicolumn{1}{c|}{Marks} & \multicolumn{1}{c||}{Errors} & \multicolumn{1}{c|}{Marks} & \multicolumn{1}{c||}{Errors} & \multicolumn{1}{c|}{Marks} & \multicolumn{1}{c||}{Errors} & \multicolumn{1}{c|}{Marks} & \multicolumn{1}{c|}{Errors}\\ \hline \hline
+Q1 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0\\ \hline
+Q2 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0\\ \hline
+Q3 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0\\ \hline
+Q4 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 2\\ \hline
+Q5 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 0\\ \hline
+Q6 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0\\ \hline
+Q7 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0\\ \hline
+Q8 & 0 & 0 & 1 & 0 & 1 & 0 & 1 & 1\\ \hline
+Q9 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0\\ \hline
+Q10 & 0 & 0 & 1 & 0 & 0 & 5 & 1 & 0\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Table comparing the mark obtained for each question answered by hand (a correct answer scored 1, whereas an incorrect answer scored 0) to the number of attempts made to answer each question before submitting the correct answer in \emph{Nico}.}
+\end{table}
+\end{center}
+
+% pearson product-moment correlation coefficient (pearson's r)?
+% R: cor.test(x,y,alternative="g",method="p") to test if x, y have pos. corr. ("l" for neg.)
+% should maybe concat all marks columns and all wrongs columns, then test marks against wrongs for marks wrongs
+% or perhaps concat as above, then separate into the 1-markers and 0-markers
+% then again, might be better to just take a mean of the wrongs with that data
+% could even do this by question, e.g. if they got q1 wrong on paper they're more likely to get it wrong in the software, but getting q2 wrong might not mean shit
+lol
+
+\subsubsection{Feedback}
+% feedback innit
 
 \section{Goals}
 % did it succeed?
@@ -2014,6 +2352,7 @@ Test subjects were first asked to sign a statement of informed consent, giving t
 \chapter{Conclusions}
 % did it achieve what was set out in the proposal?  300ms, etc.?
 % does it work?
+% user study
 % what could be improved?
 % overall, is it actually useful?
 

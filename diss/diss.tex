@@ -1165,6 +1165,7 @@ a study that tested the software on real people.
 %
 % \emph{{\sc Note:} Not sure about the ordering of these subsections; this may change.}
 %
+% TODO: overview of system architecture beforehand
 \subsection{Backend}
 % calculations as data structures (lists to be evaled)
 % rendering engine
@@ -1176,6 +1177,7 @@ a study that tested the software on real people.
 % very little mutable state
 % placeholders?  why were they introduced?  how did they make things easier?  what problems did they solve?
 
+% TODO: explain components rather than code, make it higher level
 The application backend handles the mathematical aspect of the application;
 that is, it is able to interpret data gathered from the user's input and
 process it as a calculation.  Each circle is represented by an associative map,
@@ -1189,6 +1191,7 @@ placeholder for initialising circles.  Similarly, the arguments to the operator
 can be either numbers or the placeholder character \verb¬\?¬.  A Clojure agent,
 \verb¬used-circles¬,  stores a list of all the circles currently in use.
 
+% list rather than paragraph?
 \emph{Nico's} backend stores and manages circles and questions using five
 Clojure agents: \verb¬used-circles¬, containing a list of associative maps as
 detailed above, \verb¬current-qset¬, also containing a list of associative
@@ -1207,7 +1210,8 @@ integer indicating the number of the question currently being answered.
 \begin{center}
 \includegraphics[width=\textwidth-2cm]{figs/nico_backend.pdf}
 \end{center}
-\caption{A rough model of \emph{Nico's} management of mutable state.}
+% \caption{A rough model of \emph{Nico's} management of mutable state.}
+\caption{A model of \emph{Nico's} management of mutable state.}
 \end{figure}
 \end{center}
 
@@ -1645,6 +1649,7 @@ changes the colour of the text that matches the result of calling
 \end{center}
 
 % TODO: more!  this shouldn't be the first (or last) paragraph in this section
+% TODO: depersonalise
 My original intention was to develop \emph{Nico} using the JavaFX library.
 However, a number of difficulties were encountered with this: firstly, JavaFX
 version 2.0 was not available for Linux, my primary development environment, at
@@ -1712,6 +1717,7 @@ question.
 
 % TODO: diagram?  like the one in the notebook, showing the consequences of each possible action to illustrate the control scheme and notation
 
+% why the '(\? \? \?) initial circle expr?
 \emph{Nico} uses a predominantly mouse-based control system for the
 construction of calculations in the application's notation.  Left-clicking on a
 blank patch of canvas creates a new circle, initialised with two arguments,
@@ -1749,6 +1755,9 @@ circle.
 \end{figure}
 \end{center}
 
+% talk about colour-blindness
+% why this colour scheme? psychological reasons?
+% why not random or connection-based colours?
 \emph{Nico} also uses colour-coding in various areas of the application.
 Circles are coloured according to their operators (addition is green,
 subtraction is red, multiplication is blue, division is yellow and {\sfapp ?}
@@ -1783,7 +1792,10 @@ wrong.
 \end{center}
 
 During its development, \emph{Nico}'s user interface went through a number of
-revisions.  Initially, the application was intended to use more buttons (see
+revisions.  Details of how the UI design developed over time follow.
+
+\subsubsection{First Revision}
+Initially, the application was intended to use more buttons (see
 the prototype in \emph{Fig. x.y}, above), having more controls immediately
 visible to the user.  In the first usable version of the interface, there were
 a number of buttons that appeared down the side of the application.  Each
@@ -1802,7 +1814,10 @@ way to interact with one's calculation, and hence would have been inappropriate
 for the target audience.  The intention of the project is not to require the
 user to spent a significant amount of time learning how to use the system
 before it becomes a useful tool to them.
+% how did we know the separation was too great?
+% avoid "similar-but-slightly-different"
 
+\subsubsection{Later Revisions}
 Later revisions of the software removed the buttons and implemented a system of
 context menus with which to construct answers. Right-clicking on a blank patch
 of the canvas gave the user the option to create a new circle, and right-
@@ -1831,6 +1846,7 @@ their mistakes, say for example if they had accidentally reached the right
 answer as part of a larger, incorrect calculation that they had previously
 intended to make.
 
+\subsubsection{Current Revision}
 The final, current revision of the software reintroduces the {\sfapp Check}
 button to address the issues with the automatic answer-checking in the
 previous version of the application.  It also introduces the control scheme

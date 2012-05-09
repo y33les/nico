@@ -1131,6 +1131,7 @@ a study that tested the software on real people.
 \section{System Architecture}
 % TODO: intro?
 
+\emph{Nico} can be considered as having three distinct layers of operation: the user interface, the interaction handler and the back-end.  The user interface is what the user directly interacts with, with events in this layer being processed by the interaction handler, with the resultant data being passed to the back-end, which handles the mathematical and memory-management operations, to interpret.  Data can also flow in the other direction, with output from the back-end being passed up to the interaction handler to cause effects in the user interface.  An analysis of each layer in greater detail follows.
 % \subsection{Overview}
 % overview of the system architecture
 % diagram kinda replaces this section; will keep the diagram and just launch straight into the detailed subsections

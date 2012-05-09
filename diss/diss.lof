@@ -48,14 +48,14 @@
 \contentsline {figure}{\numberline {2.10}{\ignorespaces The prototype Sierpiński-triangle-based language.\relax }}{17}
 \contentsline {figure}{\numberline {2.11}{\ignorespaces The prototype circle-based language.\relax }}{19}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces A rough model of \emph {Nico's} management of mutable state.\relax }}{24}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces A model of \emph {Nico's} management of mutable state.\relax }}{25}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces The function {\ttfamily new-circle} initialises a circle centred on the current location of the mouse cursor, generating a name {\ttfamily "c}\emph {n}{\ttfamily "}, where \emph {n} is the number of circles that have previously been created and with an initial expression of {\ttfamily (\textbackslash ? \textbackslash ? \textbackslash ?)}.\relax }}{25}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces The {\ttfamily eval-circle} source.\relax }}{26}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces The {\ttfamily eval-circle} source.\relax }}{27}
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Decision tree to determine the appropriate response to a {\ttfamily :mouse-clicked} event.\relax }}{31}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Three instances of the question text being highlighted as a corresponding circle is moused-over.\relax }}{33}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{33}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{33}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{33}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Three instances of the question text being highlighted as a corresponding circle is moused-over.\relax }}{34}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{34}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{34}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{34}
 \contentsline {figure}{\numberline {3.6}{\ignorespaces A screenshot of a \emph {Nico} session.\relax }}{35}
 \contentsline {figure}{\numberline {3.7}{\ignorespaces The dialogue boxes used to modify existing circles in the application.\relax }}{36}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Editing a circle's operator}}}{36}
@@ -65,7 +65,7 @@
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Green text indicates a correct answer; a dialogue box allows the user to progress to the next question when they are ready}}}{37}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {The circle's operator is highlighted when it is being edited}}}{37}
 \contentsline {subfigure}{\numberline {(d)}{\ignorespaces {An argument is highlighted when it is being edited}}}{37}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces \emph {Nico}'s user interface went through a number of revisions before reaching its current state.\relax }}{38}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces \emph {Nico}'s user interface went through a number of revisions before reaching its current state.\relax }}{39}
 \contentsline {figure}{\numberline {3.10}{\ignorespaces The notation used also went through a number of revisions before reaching its current state.\relax }}{39}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces An example of a block of inline tests, taken from {\ttfamily core.clj}, showing some tests to be run to test the implementation of {\ttfamily detect-subs}.\relax }}{42}

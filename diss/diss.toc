@@ -21,11 +21,14 @@
 \contentsline {section}{\numberline {2.4}Summary}{22}
 \contentsline {chapter}{\numberline {3}Implementation}{23}
 \contentsline {section}{\numberline {3.1}System Architecture}{23}
-\contentsline {subsection}{\numberline {3.1.1}Backend}{23}
+\contentsline {subsection}{\numberline {3.1.1}Backend}{24}
 \contentsline {subsection}{\numberline {3.1.2}Interaction Handler}{29}
-\contentsline {section}{\numberline {3.2}User Interface}{34}
+\contentsline {section}{\numberline {3.2}User Interface}{35}
+\contentsline {subsubsection}{\numberline {3.2.0.1}First Revision}{37}
+\contentsline {subsubsection}{\numberline {3.2.0.2}Later Revisions}{38}
+\contentsline {subsubsection}{\numberline {3.2.0.3}Current Revision}{39}
 \contentsline {subsection}{\numberline {3.2.1}Notation}{39}
-\contentsline {section}{\numberline {3.3}Summary}{39}
+\contentsline {section}{\numberline {3.3}Summary}{40}
 \contentsline {chapter}{\numberline {4}Evaluation}{41}
 \contentsline {section}{\numberline {4.1}Testing}{41}
 \contentsline {section}{\numberline {4.2}UI Evaluation}{42}

@@ -248,7 +248,7 @@ alternative notation should have.
 % difficulty of learning clojure over summer in preparation
 
 Developing such an application comprises two main challenges: developing a
-backend that is capable of creating, storing, editing, deleting, evaluating,
+back-end that is capable of creating, storing, editing, deleting, evaluating,
 nesting and calculations, and a graphical, user-facing frontend that is able to
 render calculations into the devised notation, and allow the user to perform
 operations upon the notation that affect the underlying calculation.
@@ -1132,42 +1132,10 @@ a study that tested the software on real people.
 % TODO: intro?
 
 \emph{Nico} can be considered as having three distinct layers of operation: the user interface, the interaction handler and the back-end.  The user interface is what the user directly interacts with, with events in this layer being processed by the interaction handler, with the resultant data being passed to the back-end, which handles the mathematical and memory-management operations, to interpret.  Data can also flow in the other direction, with output from the back-end being passed up to the interaction handler to cause effects in the user interface.  An analysis of each layer in greater detail follows.
-% \subsection{Overview}
-% overview of the system architecture
-% diagram kinda replaces this section; will keep the diagram and just launch straight into the detailed subsections
-%
-% \emph{{\sc Note:} Bit stuck with this chapter; I feel like I'm just writing down arbitrary bits of things that happened during the project without any overall feel for how this fits together as a chapter.}
-%
+
 % TODO: sort out all the pictures, pdfxetex just can't handle that shit (i.e. scaling images - do it in gimp or something)
-% \begin{center}
-% \begin{figure}[H]
-% \begin{center}
-% \subfloat[Clojure backend]{
-% \parbox{4cm}{
-% \begin{center}
-% \includegraphics[height=4cm]{figs/clj.png}
-% \end{center}}}
-% {\Huge $ \leftrightarrow $}% arrow
-% \subfloat[Swing/Seesaw interaction handler]{
-% \parbox{4cm}{
-% \begin{center}
-% \includegraphics[height=4cm]{figs/duke.png}
-% \end{center}}}
-% {\Huge $ \leftrightarrow $}% arrow
-% \subfloat[User interface]{
-% \parbox{5cm}{
-% \begin{center}
-% \includegraphics[height=4cm]{figs/nico_screen_01.png}
-% \end{center}}}
-% \caption{An overview of the system architecture.  \emph{Nico} is divided into three logically-separate units: the user-facing application, the interaction handler and the backend.}
-% \end{center}
-% \end{figure}
-% \end{center}
-%
-% \emph{{\sc Note:} Not sure about the ordering of these subsections; this may change.}
-%
 % TODO: overview of system architecture beforehand
-\subsection{Backend}
+\subsection{Back-End}
 % calculations as data structures (lists to be evaled)
 % rendering engine
 % questions and marking
@@ -1179,7 +1147,7 @@ a study that tested the software on real people.
 % placeholders?  why were they introduced?  how did they make things easier?  what problems did they solve?
 
 % TODO: explain components rather than code, make it higher level
-The application backend handles the mathematical aspect of the application;
+The application back-end handles the mathematical aspect of the application;
 that is, it is able to interpret data gathered from the user's input and
 process it as a calculation.  Each circle is represented by an associative map,
 of the form \verb¬{:x 123 :y 234 :name "c0" :circ (+ 1 2 3 4)}¬, where the
@@ -1193,18 +1161,29 @@ can be either numbers or the placeholder character \verb¬\?¬.  A Clojure agent
 \verb¬used-circles¬,  stores a list of all the circles currently in use.
 
 % list rather than paragraph?
-\emph{Nico's} backend stores and manages circles and questions using five
-Clojure agents: \verb¬used-circles¬, containing a list of associative maps as
-detailed above, \verb¬current-qset¬, also containing a list of associative
-maps, this time representative of the questions to be answered (using a format
-of \verb¬{:n 1 :q (* 2 (+ 1 2 3) 7) :a? false :c? false}¬, where \verb¬:n¬ is
-the question number, \verb¬:q¬ is an S-expression representing the current
-question, and \verb¬:a?¬ and \verb¬:c?¬ are artefacts left over from a previous
-revision of the software, and are no longer used), \verb¬circle-number¬,
-containing an integer counting how many circles have previously been created
-whilst answering this question, \verb¬current-coords¬, which tracks the current
-co-ordinates of the mouse cursor, and \verb¬current-question¬, containing an
-integer indicating the number of the question currently being answered.
+% \emph{Nico's} back-end stores and manages circles and questions using five
+% Clojure agents: \verb¬used-circles¬, containing a list of associative maps as
+% detailed above, \verb¬current-qset¬, also containing a list of associative
+% maps, this time representative of the questions to be answered (using a format
+% of \verb¬{:n 1 :q (* 2 (+ 1 2 3) 7) :a? false :c? false}¬, where \verb¬:n¬ is
+% the question number, \verb¬:q¬ is an S-expression representing the current
+% question, and \verb¬:a?¬ and \verb¬:c?¬ are artefacts left over from a previous
+% revision of the software, and are no longer used), \verb¬circle-number¬,
+% containing an integer counting how many circles have previously been created
+% whilst answering this question, \verb¬current-coords¬, which tracks the current
+% co-ordinates of the mouse cursor, and \verb¬current-question¬, containing an
+% integer indicating the number of the question currently being answered.
+
+\emph{Nico's} back-end stores and manages circles and questions using just six
+Clojure agents.  They are detailed below:
+begin{itemize}
+\item \verb¬used-circles¬, containing a list of associative maps as detailed above
+\item \verb¬current-qset¬, also containing a list of associative maps, this time representative of the questions to be answered, using a format of \verb¬{:n ¬\emph{n}¬\verb¬ :q ¬\emph{l}\verb¬ :a? false :c? false}¬, where \emph{n} is the question number, \emph{l} is an S-expression representing the current question, and the \verb¬:a?¬ and \verb¬:c?¬ fields are artefacts left over from a previous revision of the software, and are no longer used
+\item \verb¬circle-number¬, containing an integer counting how many circles have previously been created whilst answering this question
+\item \verb¬current-coords¬, which tracks the current co-ordinates of the mouse cursor
+\item \verb¬current-question¬, containing an integer indicating the number of the question currently being answered
+\item \verb¬currently-dragging-circle¬, which is used by the interaction handler to temporarily store information about circles that are currently being repositioned by the user
+\end{itemize}
 
 \begin{center}
 \begin{figure}[H]
@@ -1212,7 +1191,7 @@ integer indicating the number of the question currently being answered.
 \includegraphics[width=\textwidth-2cm]{figs/nico_backend.pdf}
 \end{center}
 % \caption{A rough model of \emph{Nico's} management of mutable state.}
-\caption{A model of \emph{Nico's} management of mutable state.}
+\caption{A model of \emph{Nico's} management of mutable state; {\ttfamily currently-dragging-circle} is omitted as it is not utilised by the back-end.}
 \end{figure}
 \end{center}
 
@@ -1458,7 +1437,7 @@ with \verb¬\?¬s.
 
 The interaction handler is a collection of functions that form the `middle
 layer' of the application: that is, the functions that arbitrate between the
-backend and the user interface.
+back-end and the user interface.
 
 The function \verb¬render¬ plays a significant rôle in handling interaction.
 This is the function that is called every time what is displayed on the canvas
@@ -1661,7 +1640,7 @@ installation.  Deciding that it would be better to get on with the project
 rather than spending any more time installing a library, I decided to proceed
 using the Eclipse Foundation's SWT toolkit and Szymon Witamborski's (santamon)
 corresponding Clojure bindings, GUI FTW!, to interface with it.  After spending
-some time developing the backend, I began work on the user interface.  I
+some time developing the back-end, I began work on the user interface.  I
 encountered many problems with SWT and GUI FTW!, particularly regarding drawing
 arbitrary shapes on the canvas area and regarding extracting user input from
 dialogue boxes.  Admittedly, this was most likely due to my unfamiliarity with
@@ -1928,11 +1907,11 @@ outlined in the project proposal, being a complete and usable system that
 improves greatly, in terms of cognitive dimensions, upon the traditional method
 of handwritten arithmetic.  Third-party libraries, in particular Seesaw, were
 used where appropriate.  The application divides into three main sections: the
-backend, handling mathematical operations and memory management, the
-interaction handler, helping the user interface to interface with the backend,
+back-end, handling mathematical operations and memory management, the
+interaction handler, helping the user interface to interface with the back-end,
 and the user interface itself.  The user interface was revised many times to
 correct deficiencies in the design that would have led to a poor user
-experience, and the backend and interaction handler were also both restructured
+experience, and the back-end and interaction handler were also both restructured
 as new demands upon the software became apparent.
 
 In the next chapter, the software will be evaluated, discussing test results

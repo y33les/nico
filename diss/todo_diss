@@ -1,11 +1,11 @@
-/ Add an overview of system architecture before starting backend. 
-/ use back-end instead of backend. 
+/ Add an overview of system architecture before starting backend.
+/ use back-end instead of backend.
 / Consider changing five clojure agents paragraph to list?
 / A rough model caption -> "A model"
 
-- Some of the implementation (sec 3.1.1) is too detailed, needs to be higher level. Difficult for reader to remember which function is which. Mostly explanation of code, should really be explanation of components. 
+- Some of the implementation (sec 3.1.1) is too detailed, needs to be higher level. Difficult for reader to remember which function is which. Mostly explanation of code, should really be explanation of components.
 
-- Look at luke's part II - section on user interface, sequence diagrams, comparison diagrams - before/after. 
+- Look at luke's part II - section on user interface, sequence diagrams, comparison diagrams - before/after.
 
 - More subsections needed
 
@@ -14,18 +14,19 @@
 - Paragraph after Figure 3.5  - Too informal and first person. Try to de-personalise slightly and avoid things like "get on with the project".
 
 - Reference to Figure 3.6 shows up as Fig. x.y
-- refer to panels "one at the top" etc as information panel and canvas from the outset. 
+- refer to panels "one at the top" etc as information panel and canvas from the outset.
 
 - Again, mainly describing functionality, why does creation of a new circle initialise with two arguments ? ? and operator ?. Did you just pull that out of a hat?
 
-- Need colour coding explanation - have you considered colour blindness? Is there any reason you picked green for addition? A psychological reason? Why didn't you go with random colours or connection based colours? 
+/ Need colour coding explanation - have you considered colour blindness? Is there any reason you picked green for addition? A psychological reason? Why didn't you go with random colours or connection based colours?
+  = though still need to discuss colour blindness?
 
-- How did you do the colour matching (when the mouse hovers over)? Is there a link between the text and circles, or is it just a string search?
+/ How did you do the colour matching (when the mouse hovers over)? Is there a link between the text and circles, or is it just a string search?
 
-- In para "During it's deve…" there is an unlinked figure reference. 
+- In para "During it's deve…" there is an unlinked figure reference.
 
 - When you abandoned the initial design, how did you know the separation between the user and the diagram was too great?
 
-- avoid similar-but-slightly-different
+/ avoid similar-but-slightly-different
 
 / You need to make each software revision explicit - each transition should have its own subsection.

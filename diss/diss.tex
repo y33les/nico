@@ -1738,18 +1738,38 @@ circle.
 % talk about colour-blindness
 % why this colour scheme? psychological reasons?
 % why not random or connection-based colours?
-\emph{Nico} also uses colour-coding in various areas of the application.
-Circles are coloured according to their operators (addition is green,
-subtraction is red, multiplication is blue, division is yellow and {\sfapp ?}
-is grey), clearly separating different kinds of operations and making the
-notation more readable.  Colour-coding is also used in the information panels
-at the top of the application: positioning the mouse cursor over a circle
-highlights the part of the question that it is likely to represent in blue, and
-also highlights the circle with a blue outline.  When an answer is submitted,
-the text in the answer panel turns red if the answer was incorrect, or green if
-the answer was correct, providing an unintrusive form of feedback, allowing the
-user to continue uninterrupted (i.e. no input is required) if their answer is
-wrong.
+\emph{Nico} also uses colour-coding in various areas of the application, to
+draw attention to important elements of the application.  Colour-coding has
+been shown to faciliate more effective learning.  Indeed, Lamberski and Dwyer
+note that
+\begin{center}
+\parbox[c]{\textwidth-2cm}{
+\small
+``[...] younger learners, for whom color in passive materials has been found to facilitate performance in less complex concept attainment tasks because of color's attention of motivation elements.  However, when younger learners have been given self-paced instructional materials containing color-coded reading and phonic concepts, similar positive results have been attained.'' \cite{Lamberski1983}
+}
+\end{center}
+Circles are coloured according to their operators, clearly separating different
+kinds of operations and making the notation more readable.  An alternative
+method of colour-coding by the level of nesting was considered, but rejected on
+the grounds that it could become confusing if a circle were reused (see
+\emph{Fig. x.y}).
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/nico_screen_02.png}
+\end{center}
+\caption{An example of where nesting-based colour-coding would be confusing.  The circle containing (2+2) can be considered to be both one and two circles removed from the root circle.}
+\end{figure}
+\end{center}
+
+Colour-coding is also used in the information panels at the top of the
+application: positioning the mouse cursor over a circle highlights the part of
+the question that it is likely to represent in blue, and also highlights the
+circle with a blue outline.  When an answer is submitted, the text in the
+answer panel turns red if the answer was incorrect, or green if the answer was
+correct, providing an unintrusive form of feedback, allowing the user to
+continue uninterrupted (i.e. no input is required) if their answer is wrong.
 
 \begin{center}
 \begin{figure}[H]
@@ -1788,7 +1808,7 @@ colour-coding operations had not yet been implmented.  It was also the case
 that the links between circles did not end in argument slots, but rather fed
 into the centre of the target circle.  This design was abandoned as the
 separation between the user and the diagram itself was too great; creating
-circles by specifying options in many similar-but-slightly-different dialogue
+circles by specifying options in many only slightly different dialogue
 boxes and watching the results appear on the canvas did not feel like a natural
 way to interact with one's calculation, and hence would have been inappropriate
 for the target audience.  The intention of the project is not to require the

@@ -266,7 +266,10 @@ also important that there be well-established GUI libraries available.  Clojure
 runs on the Java Virtual Machine (JVM), which puts Java's considerable standard
 library at one's disposal, whilst still being able to program in a LISP.  As I
 am familiar with Java and the Swing GUI libraries, it was advantageous to be
-able to leverage this knowledge in designing the application's interface.
+able to leverage this knowledge in designing the application's interface.  In
+addition to this, Java's portability was an advantage, due to the wide range of
+platforms available both in educational and home settings.  A Java-based
+solution standardises the \emph{Nico} experience across many environments.
 
 \section{Previous Work}
 % scrubbing calculator http://worrydream.com/ScrubbingCalculator/
@@ -1243,181 +1246,27 @@ The interaction handler is a collection of functions that form the `middle
 layer' of the application: that is, the functions that arbitrate between the
 back-end and the user interface.
 
-The function \verb¬render¬ plays a significant rôle in handling interaction.
-This is the function that is called every time what is displayed on the canvas
-needs to be updated.  It calls \verb¬clear-screen¬, which paints a white
-rectangle over the canvas, followed by the bin icon, and then iterates across
-\verb¬used-circles¬, calling a function \verb¬draw-circle¬ on each circle in
-turn.  \verb¬draw-circle¬ determines what operation its argument circle uses,
-and selects a colour scheme accordingly.  It then contains a sequence of paint
-instructions that construct the circle on the canvas.  Finally, it calls
-\verb¬draw-args¬, followed by \verb¬link-circles¬.  \verb¬draw-args¬ removes
-the first element of its argument's \verb¬:circ¬ field and draws each of the
-remaining elements at hardcoded co-ordinates relative to the \verb¬:x¬ and
-\verb¬:y¬ values of the circle, with different sets of co-ordinates according
-to how many arguments the circle has.  \verb¬link-circles¬ uses data from the
-same sets of co-ordinates to determine which argument the user is trying to
-replace with input from another circle, and draws a line from underneath the
-source circle to the desired point on the destination circle, followed by a
-small circle around that point to make it clear that this circle is receiving
-the results of the other circle.
+The rendering function is called every time the mouse is moved, or when what is displayed on the canvas needs to be updated.  It paints a white rectangle over the canvas area, draws a bin icon in the corner (for circle, deletion, see information on the control scheme below) and iterates across the circle list, drawing a circle to match each element.  References to other circles are visualised as lines extending from the source circle to the appropriate argument slot on the recipient circle.  By re-rendering every time the mouse is moved, rather than continously, the application does not have to render when the canvas is not being changed, as every action in the control scheme requires some use of the mouse.
 
-% TODO: should probably talk about highlighting, etc.
+\subsubsection{GUI Libraries}
 
-At the heart of the interaction handler is a structure called
-\verb¬main-window¬.  \verb¬main-window¬ is what defines much of the user
-interface: namely, the main window.  It controls what is displayed and the
-actions to be performed under certain conditions, and listens for certain
-events such as user input.
+The original intention of the project was to develop \emph{Nico} using the JavaFX library.
+However, a number of difficulties were encountered with this: firstly, JavaFX
+version 2.0 was not available for Linux, the primary development environment, at
+the time of beginning the project.  Installation was attempted on a
+Windows machine, but caused a number of problems. In the interest of making progress, it was decided to proceed
+using the Eclipse Foundation's SWT toolkit and Szymon Witamborski's
+corresponding Clojure bindings, \emph{GUI FTW!} \cite{GuiFtw}.  During the development of the user interface, many problems were encountered with SWT and \emph{GUI FTW!}, particularly regarding drawing
+arbitrary shapes on the canvas area and extracting user input from
+dialogue boxes.  To keep the project on-schedule, the application was migrated to Java Swing,
+using David Ray's \emph{Seesaw} library to provide bindings for
+Clojure \cite{Seesaw}.
 
-% TODO: maybe talk about lisp-to-maths?  no so much to say about the other panels than the canvas really though...
+\subsubsection{Main Window}
 
-% TODO: diagram?  not sure how...  maybe like the one in the backend section?
-% TODO: talk about agents relevant to this section like current-coords, currently-dragging-circle, etc.
+At the heart of the interaction handler is the structure defining the main window, which comprises the majority of the user interface.  It controls what is to be displayed and the actions to be performed under certain conditions.  It listens for certain events (i.e. user input), and prompts the user for input when required.
 
-Of particular note are the various listeners that monitor the canvas for mouse-
-based events as part of \verb¬main-window¬.  As the mouse moves around the
-canvas, \verb¬main-window¬ listens for a \verb¬:mouse-moved¬
-event.\footnote{The Seesaw library refers to several events defined in
-{\ttfamily java.awt.event.MouseEvent} in this way.  For example, a
-{\ttfamily java.awt.event.MouseEvent.MOUSE\_CLICKED} is referred to as
-{\ttfamily :mouse-clicked}, and a
-{\ttfamily java.awt.event.MouseEvent.MOUSE\_RELEASED} is referred to as
-{\ttfamily :mouse-released}.}  When this is detected (i.e. when the mouse is
-moved), \verb¬main-window¬ calls an anonymous function that retrieves the
-current co-ordinates of the mouse cursor, and calls a function
-\verb¬point-in-circle¬, which compares a pair of co-ordinates to those of the
-circles currently in \verb¬used-circles¬ to determine whether or not the mouse
-is hovering over a circle.  \verb¬point-in-circle¬ returns the name of the
-circle that the mouse cursor is currently over, or \verb¬nil¬ if it is not
-currently over a circle.  The current co-ordinates of the mouse are sent off to
-the agent \verb¬current-coords¬ in the form of a map,
-\verb¬{:x ¬\emph{x}\verb¬ :y ¬\emph{y}\verb¬}¬.  The agent
-\verb¬currently-dragging-circle¬ is also reinitialised to \verb¬nil¬, as mouse
-motion without a button being held implies that no circle is currently being
-dragged.  The canvas is then cleared using \verb¬clear-screen¬ and
-\verb¬render¬, and in the case that \verb¬point-in-circle¬ does not return
-\verb¬nil¬ at the current co-ordinates, the circle that the mouse is hovering
-over is highlighted.  If \verb¬point-in-circle¬ returns \verb¬nil¬, the
-question text is explicitly unhighlighted.
-
-When \verb¬main-window¬ detects a \verb¬:mouse-clicked¬ event, it retrieves the
-current co-ordinates of the mouse cursor, and tests for left-click, right-click
-and Ctrl being pressed.  It also uses \verb¬point-in-circle¬ to return the
-name, if any, of the circle that the mouse cursor is currently over, as well
-as \verb¬arg-in-circle¬ and \verb¬op-in-circle?¬ to determine the index of the
-argument, if any, that that mouse cursor is currently over by comparing the
-current mouse co-ordinates to those of the predetermined placements of
-arguments in each case of the circle having two to eight arguments, and whether
-or not the cursor is over the circle's operator, again by comparing the current
-co-ordinates to the predetermined placement of the operator relative to the
-circle's co-ordinates.  It is also further determined whether or not the cursor
-is currently over a placeholder argument, using the results of
-\verb¬arg-in-circle¬.  This information is then used to implement \emph{Nico}'s
-control scheme, as illustrated in \emph{Fig. x.y}.
-
-\begin{center}
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=\textwidth-4cm]{figs/nico_click.pdf}
-\end{center}
-\caption{Decision tree to determine the appropriate response to a {\ttfamily :mouse-clicked} event.}
-\end{figure}
-\end{center}
-
-In the case that the cursor is not over a circle, \verb¬new-circle¬ is called,
-with the current co-ordinates as arguments, creating a blank circle, as
-described in the previous section.  If the cursor is over a circle and the
-mouse has been right-clicked, the circle is removed from \verb¬used-circles¬
-and a new version is sent off, either with its final argument removed or with a
-placeholder argument added.  In the case that the user tries to remove an
-argument when there are only two, or to add an argument when there are already
-eight, an alert box appears, warning the user that they are only allowed a
-minimum of two and a maximum of eight arguments.
-
-If the mouse is over a circle, has been left-clicked and is over one of the
-circle's arguments, \verb¬main-window¬ draws a small blue circle around the
-argument and launches a dialogue box using the function
-\verb¬mod-arg-dialogue¬, which defines a simple window containing a spinner
-and returns the contents of that spinner upon the user pressing the {\sfapp OK}
-button.  The circle that had been clicked originally is then removed from
-\verb¬used-circles¬, and replaced with a version in which the chosen argument
-has the value that the user has input.  \verb¬clear-screen¬ and \verb¬render¬
-are called, and the answer displayed at the top of the application is updated
-by using \verb¬find-root¬ to find the root circle of the diagram, and then
-re-evaluating the entire expression.  The process is similar in the case that
-the mouse was over a circle's operator, except that the function
-\verb¬mod-op-dialogue¬, which defines a small dialogue box containing four
-radio buttons corresponding to the four arithmetic operations and returns the
-user's selection, is called, rather than \verb¬mod-arg-dialogue¬.
-
-\emph{Nico}'s drag-and-drop functionality is also implemented using
-\verb¬main-window¬'s listeners.  When a \verb¬:mouse-pressed¬ event is
-detected, the mouse co-ordinates are once again retrieved and
-\verb¬point-in-circle¬ is called.\footnote{{\ttfamily :mouse-pressed} is not
-the same as {\ttfamily :mouse-clicked}.  The latter only occurs when the mouse
-is pressed {\bf and then} released, whereas the former occurs every time the
-mouse button is pressed.  It is for this reason that the actions that occur
-when {\ttfamily :mouse-clicked} is detected must reinitialise
-{\ttfamily currently-dragging-circle} to {\ttfamily nil}.}  If
-\verb¬point-in-circle¬ does not return \verb¬nil¬, the circle map that
-corresponds to the name returned is sent off as part of a map to the agent
-\verb¬currently-dragging-circle¬.  This map takes the form
-\verb¬{:c ¬\emph{c}\verb¬ :t ¬\emph{t}\verb¬ :m ¬\emph{m}\verb¬}¬, where
-\emph{c} is the circle map, \emph{t} is the current system time in milliseconds
-and \emph{m} is the integer representing the mouse button that was pressed.
-When the application detects a \verb¬:mouse-dragged¬ event, this information is
-then used to determine which action to take.  First,
-\verb¬currently-dragging-circle¬ is checked.  If it is \verb¬nil¬, no action
-needs to be taken.  To check that the user has deliberately dragged the mouse,
-the current system time is compared to the \verb¬:t¬ value in
-\verb¬currently-dragging-circle¬'s map.  If the difference is greater than
-100ms, this is determined to be an intentional mouse drag, and the function
-proceeds.  If the left mouse button is pressed, the mouse co-ordinates are
-compared to the location of the bin icon.  If the circle has been dragged into
-the bin area, it is removed.  Otherwise, it is relocated to the current
-position of the mouse cursor by removing it from \verb¬used-circles¬ and
-sending off a version with the \verb¬:x¬ and \verb¬:y¬ fields modified
-appropriately.  If the right mouse button is held, a line is drawn from the
-circle to the current location of the mouse, and a circle is also drawn around
-this point.  If the mouse is dragged on to an argument that is not in the
-source circle, the line and circle are anchored in that argument's slot and the
-target circle is removed from \verb¬used-circles¬, being replaced by a version
-with the appropriate argument modified to be a symbol referring to the source
-circle.
-% do i need to mention *all* the times clear-screen and render are called?  it's kind of implicit (to me anyway)...
-
-As mentioned above, \emph{Nico} has the ability to highlight sections of the
-question currently being answered that correspond to circles or sets of circles
-within the user's diagram.  This is achieved using a function \verb¬highlight¬,
-which uses a function \verb¬lisp-to-maths¬ to convert S-expressions into
-standard mathematics.  \verb¬lisp-to-maths¬ uses a counter beginning with value
-0 to append the operator of an S-expression on to a string of its arguments
-every time the counter is odd, producing the infix expressions many people are
-more comfortable with.  When the counter is not odd, if the next argument is a
-list, \verb¬lisp-to-maths¬ recursively calls itself on that list, appending to
-the string being produced the string \verb¬"("¬, the output of the recursive
-call to \verb¬lisp-to-maths¬ and the string \verb¬")"¬, creating a more
-familiar-looking subexpression using brackets.  If the counter is not odd and
-the current element of the S-expression is not a list, the element is simply
-appended to the string being created.  This produces a line of mathematics from
-an S-expression; for example, an input of \verb¬(+ 1 2 (* 3 4) 5 (- 6 7) 8)¬
-will produce an output of \verb¬"1+2+(3×4)+5+(6-7)"¬.  This function is also
-used to produce the contents of the {\sfapp Question} panel from the questions
-contained in the question set file.  \verb¬highlight¬ uses \verb¬lisp-to-maths¬
-to compare the question string to the translation of a circle into regular
-mathematics using another function \verb¬detect-subs¬, which takes two strings
-as arguments and returns a list of maps containing the start and end indices of
-every instance where the first argument appears as a substring of the second
-argument.  \verb¬detect-subs¬ iterates across its second argument, character by
-character, using a counter that is incremented by one with each iteration to
-compare its first argument to the substring of its second that begins at the
-current value of the counter and ends at the same value, plus the length of the
-substring being searched for.  If it detects that those two strings are equal,
-the start and end indices are put into a map and appended to a list.
-\verb¬highlight¬ iterates across the resultant list of \verb¬detect-subs¬, and
-changes the colour of the text that matches the result of calling
-\verb¬lisp-to-maths¬ on the result of evaluating a circle.
+Of particular note are the various listeners embedded into the main window structure that monitor the canvas for mouse-based events.  While the application is running, it listens for five mouse-based events: motion, dargging, a button press, a button release and a button click.\footnote{It should be noted that a mouse click is defined by Java as a button press followed by a button release, and that, upon a click, it issues a press event, followed by a release event, followed by a click event. \cite{JavaApi}}  When motion is detected, the canvas is cleared and re-rendered, as mentioned above.  Motion also triggers a check to determine whether or not the mouse is over a circle; if it is, a highlighting function is called.  This draws a ring around the circle currently being moused over, and also performs a string comparison:  using the same function written to convert the questions into traditional mathematics for display in the information panel, the circle's S-expression is converted and compared to the question string to see if it appears as a substring.  If so, the appropriate section of the question string is also highlighted, to help reinforce the notion of the circle notation as a metaphor for calculation.  It was decided to implement this a string search, rather than by using the actual S-expressions for the question and for the circle's calculation as although this would be a more efficient method to determine whether or not a circle corresponds to a part of the question, it is less efficient to do so and then calculate where the matched S-expression appears, rather than just matching a potential substring against a longer string.
 
 \begin{center}
 \begin{figure}[H]
@@ -1432,23 +1281,58 @@ changes the colour of the text that matches the result of calling
 \end{figure}
 \end{center}
 
-% TODO: more!  this shouldn't be the first (or last) paragraph in this section
-% TODO: depersonalise
-The original intention of the project was to develop \emph{Nico} using the JavaFX library.
-However, a number of difficulties were encountered with this: firstly, JavaFX
-version 2.0 was not available for Linux, the primary development environment, at
-the time of beginning the project.  Installation was attempted on a
-Windows machine, but caused a number of problems. In the interest of making progress, it was decided to proceed
-using the Eclipse Foundation's SWT toolkit and Szymon Witamborski's
-corresponding Clojure bindings, GUI FTW! \cite{GuiFtw}.  During the development of the user interface, many problems were encountered with SWT and GUI FTW!, particularly regarding drawing
-arbitrary shapes on the canvas area and extracting user input from
-dialogue boxes.  To keep the project on-schedule, the application was migrated to Java Swing,
-using David Ray's Seesaw library to provide bindings for
-Clojure \cite{Seesaw}.
+\subsubsection{Control Scheme}
 
+Upon the detection of a mouse click, the software must determine the exact context in whcih the mouse was clicked, as this constitutes much of the application's control scheme.  The mouse's current co-ordinates on the canvas, as well as information regarding which mouse button was pressed and any modifiers that were active, are used to determine the correct action to take, as illustrated in \emph{Fig. x.y}.
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-4cm]{figs/nico_click.pdf}
+\end{center}
+\caption{Decision tree to determine the appropriate response to a {\ttfamily :mouse-clicked} event.}
+\end{figure}
+\end{center}
+
+A more in-depth analysis of the control scheme follows.
+
+\begin{itemize}
+\item Mouse not in circle
+\begin{itemize}
+\item A blank circle is created, centred on the current location of the mouse cursor.  It has two arguments, {\sfapp ?} and {\sfapp ?}, and its operator is {\sfapp ?}.
+\end{itemize}
+\item Mouse in circle
+\begin{itemize}
+\item Left-click
+\begin{itemize}
+\item Mouse on argument
+\begin{itemize}
+\item A small blue circle is drawn around the argument and a dialogue box is launched, containing a spinner with which to set the new value of the selected argument.
+\end{itemize}
+\item Mouse on operator
+\begin{itemize}
+\item A small blue circle is drawn around the argument and a dialogue box is launched, containing four radio buttons corresponding to the four arithmetic operations, with which to set the new value of the operator.
+\end{itemize}
+\end{itemize}
+\item Right-click
+\begin{itemize}
+\item Ctrl key pressed
+\begin{itemize}
+\item The final argument is removed from the circle, down to a minimum of two arguments.  An alert box warns the user if they try to remove arguments when there are only two remaining.
+\end{itemize}
+\item Ctrl key not pressed
+\begin{itemize}
+\item A placeholder argument is added to the circle, up to a maximum of eight arguments.  An alert box warns the user if they try to add more than the maximum number of arguments.
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\end{itemize}
+
+\emph{Nico} also includes some drag-and-drop functionality in its control scheme.  When the application detects that a mouse press has occurred, if the event was triggered whilst the mouse cursor was over a circle, that circle's map is stored, along with the current system time in milliseconds and the mouse button that was pressed, in one of the agents.  A drag event then uses the information stored in the agent to perform one of two operations upon the circle.  If the left mouse button is held whilst dragging, the circle's positioning information is updated to the current co-ordinates of the mouse cursor.  If the right mouse button is held whilst dragging, a line is drawn from the circle to the current location of the mouse cursor, indicating that two circles are to be joined.  When the mouse passes over the argument slot of another circle, that line is fixed, and the target circle is updated such that the argument now has the value of a reference to the source circle.  When the mouse is released, the information in the agent is removed.  The drag-and-drop functionality was implemented thus as a drag-and-drop action constitutes a press event, followed by a drag event, followed by a relase event.  By storing information about the circle being dragged in an agent upon detecting a mouse press, the function called when dragging is detected can use and modify this information easily, without encountering the problems of defining new variables at runtime, as mentioned in the discussion of the application back-end.  This does not impact upon other mouse events involving presses and releases (e.g. clicking), as the agent is reinitialised upon every mouse release, regardless of whether or not the drag-and-drop agent was being used.
+
+% do i need to mention *all* the times clear-screen and render are called?  it's kind of implicit (to me anyway)...
 %
 % \emph{{\sc Note:} This is as far as I've got (about halfway by my reckoning).  }\verb¬texcount¬\emph{ tells me I've got about 5,800 words.}
-
 % \subsection{User Interface}
 % do we even need this section?  applciation below might cover it, and to be fair it isn't really part of the architecture - listeners and that should probs go in interaction handler above
 %

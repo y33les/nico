@@ -3,11 +3,11 @@
 / Consider changing five clojure agents paragraph to list?
 / A rough model caption -> "A model"
 
-- Some of the implementation (sec 3.1.1) is too detailed, needs to be higher level. Difficult for reader to remember which function is which. Mostly explanation of code, should really be explanation of components.
+/ Some of the implementation (sec 3.1.1) is too detailed, needs to be higher level. Difficult for reader to remember which function is which. Mostly explanation of code, should really be explanation of components.
 
 - Look at luke's part II - section on user interface, sequence diagrams, comparison diagrams - before/after.
 
-- More subsections needed
+/ More subsections needed
 
 - There are interesting implementation parts that you can explain - the interaction between clojure and the UI.
 

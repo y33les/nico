@@ -11,12 +11,12 @@
 
 - There are interesting implementation parts that you can explain - the interaction between clojure and the UI.
 
-- Paragraph after Figure 3.5  - Too informal and first person. Try to de-personalise slightly and avoid things like "get on with the project".
+/ Paragraph after Figure 3.5  - Too informal and first person. Try to de-personalise slightly and avoid things like "get on with the project".
 
 - Reference to Figure 3.6 shows up as Fig. x.y
-- refer to panels "one at the top" etc as information panel and canvas from the outset.
+/ refer to panels "one at the top" etc as information panel and canvas from the outset.
 
-- Again, mainly describing functionality, why does creation of a new circle initialise with two arguments ? ? and operator ?. Did you just pull that out of a hat?
+/ Again, mainly describing functionality, why does creation of a new circle initialise with two arguments ? ? and operator ?. Did you just pull that out of a hat?
 
 / Need colour coding explanation - have you considered colour blindness? Is there any reason you picked green for addition? A psychological reason? Why didn't you go with random colours or connection based colours?
   = though still need to discuss colour blindness?

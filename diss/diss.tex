@@ -1176,7 +1176,7 @@ can be either numbers or the placeholder character \verb¬\?¬.  A Clojure agent
 
 \emph{Nico's} back-end stores and manages circles and questions using just six
 Clojure agents.  They are detailed below:
-begin{itemize}
+\begin{itemize}
 \item \verb¬used-circles¬, containing a list of associative maps as detailed above
 \item \verb¬current-qset¬, also containing a list of associative maps, this time representative of the questions to be answered, using a format of \verb¬{:n ¬\emph{n}¬\verb¬ :q ¬\emph{l}\verb¬ :a? false :c? false}¬, where \emph{n} is the question number, \emph{l} is an S-expression representing the current question, and the \verb¬:a?¬ and \verb¬:c?¬ fields are artefacts left over from a previous revision of the software, and are no longer used
 \item \verb¬circle-number¬, containing an integer counting how many circles have previously been created whilst answering this question
@@ -1630,26 +1630,17 @@ changes the colour of the text that matches the result of calling
 
 % TODO: more!  this shouldn't be the first (or last) paragraph in this section
 % TODO: depersonalise
-My original intention was to develop \emph{Nico} using the JavaFX library.
+The original intention of the project was to develop \emph{Nico} using the JavaFX library.
 However, a number of difficulties were encountered with this: firstly, JavaFX
-version 2.0 was not available for Linux, my primary development environment, at
-the time of beginning the project.  Although I had access to Windows machines,
-this was not an ideal situation.  Regardless, I tried to begin development on a
-Windows machine, using JavaFX, but faced a number of problems with
-installation.  Deciding that it would be better to get on with the project
-rather than spending any more time installing a library, I decided to proceed
-using the Eclipse Foundation's SWT toolkit and Szymon Witamborski's (santamon)
-corresponding Clojure bindings, GUI FTW!, to interface with it.  After spending
-some time developing the back-end, I began work on the user interface.  I
-encountered many problems with SWT and GUI FTW!, particularly regarding drawing
-arbitrary shapes on the canvas area and regarding extracting user input from
-dialogue boxes.  Admittedly, this was most likely due to my unfamiliarity with
-SWT, but in the interests of keeping the project on-schedule, I decided to
-migrate what I had already constructed of the interface over to Java Swing,
-using David Ray's (daveray) Seesaw library to provide convenient bindings for
-Clojure.  Ray's excellent bindings, coupled with my own previous experience
-with Swing from earlier in the tripos, served to greatly assist development,
-overcome what had become one of the larger stumbling blocks in this project.
+version 2.0 was not available for Linux, the primary development environment, at
+the time of beginning the project.  Installation was attempted on a
+Windows machine, but caused a number of problems. In the interest of making progress, it was decided to proceed
+using the Eclipse Foundation's SWT toolkit and Szymon Witamborski's
+corresponding Clojure bindings, GUI FTW! \cite{GuiFtw}.  During the development of the user interface, many problems were encountered with SWT and GUI FTW!, particularly regarding drawing
+arbitrary shapes on the canvas area and extracting user input from
+dialogue boxes.  To keep the project on-schedule, the application was migrated to Java Swing,
+using David Ray's Seesaw library to provide bindings for
+Clojure \cite{Seesaw}.
 
 %
 % \emph{{\sc Note:} This is as far as I've got (about halfway by my reckoning).  }\verb¬texcount¬\emph{ tells me I've got about 5,800 words.}
@@ -1688,10 +1679,9 @@ The application itself was kept fairly minimal: the aim was to emphasise the
 notation as the most important aspect of the software.  As such, the main
 application window, as shown above in \emph{Fig. x.y}, is mostly dedicated to
 the canvas area in which the user answers the question.  The main application
-window is split up into two main sections, one at the top, containing some
-information panels that display the question being answered and the current
+window is split up into two main sections, the information panels that display the question being answered and the current
 total of the user's calculation, as well as the {\sfapp Check} button to submit
-the current total as the answer.  The lower panel contains the large canvas
+the current total as the answer, and the large canvas
 area in which the user is able to construct diagrams with which to answer the
 question.
 
@@ -1701,13 +1691,14 @@ question.
 \emph{Nico} uses a predominantly mouse-based control system for the
 construction of calculations in the application's notation.  Left-clicking on a
 blank patch of canvas creates a new circle, initialised with two arguments,
-{\sfapp ?} and {\sfapp ?}, and with operator {\sfapp ?}.  Right-clicking on a
+{\sfapp ?} and {\sfapp ?}, and with operator {\sfapp ?} -- this approach was chosen, rather than providing the user with a null circle such as (0+0), to make it clear to the user that the new circle required attention, and so that it wouldn't interfere with the evaluation of the diagram; a new circle on its own could be found to be a root circle, leading to the possibility that the user's total could suddenly drop to 0, which would be confusing.  Right-clicking on a
 circle increments its number of arguments by one, up to a maximum of eight.
 Holding the Ctrl key and right-clicking on a circle decrements its number of
-arguments by one, down to a minimum of two.  Circles can be moved around the
+arguments by one, down to a minimum of two.  The user is warned by a popup if the exceed either of these boundaries.  The limit of two to eight arguments was decided upon as fewer than two arguments is an unfamiliar and not often useful concept from the perspective of the target audience.  Although Clojure is able to evaluate, for example, \verb¬(+ 1)¬ (returning \verb¬1¬), this is liable to lead to confusion on the part of the user.  The upper limit of eight arguments was set to prevent circles from becoming overcrowded and harder to read.
+Circles can be moved around the
 canvas by left-clicking and dragging the circle to the desired location.  If a
 circle is dragged to the bin icon in the bottom left-hand corner of the screen,
-then it is removed.  Left-clicking on a circle's operator brings up a dialogue
+then it is removed.  Originally, deletion was mapped to a mouse control, but in the interest of a simpler control scheme and with a limited number of mouse buttons, it was decided that an icon should be used instead.  This also has the advantage of demonstrating to the new user that work can be easily undone, encouraging exploration.  Left-clicking on a circle's operator brings up a dialogue
 box with a selection of operators in it, with a radio button for each (see
 \emph{Fig. x.y}).  Similarly, left-clicking on a circle's argument brings up a
 dialogue box containing a spinner, which can be used to set a new value for
@@ -1716,7 +1707,7 @@ range as this prevents the user from effectively using the software as a simple
 calculator.  The limited range of numbers available means that the user must
 still consider strategies such as partitioning or long multiplication,
 focussing on how to solve the problem, rather than simply transcribing the
-question into one circle that will complete the calculation for them.  To use
+question into one circle that will complete the calculation for them.  The user is not required to calculate manually expressions using such small numbers, as it is assumed that the target audience are familiar with simple arithmetic.  To use
 one circle as an argument to another, right-clicking and dragging allows the
 user to drag a line ending in a circle to the desired slot on the recipient
 circle.
@@ -1763,8 +1754,7 @@ the grounds that it could become confusing if a circle were reused (see
 \end{figure}
 \end{center}
 
-Colour-coding is also used in the information panels at the top of the
-application: positioning the mouse cursor over a circle highlights the part of
+Colour-coding is also used in the information panels: positioning the mouse cursor over a circle highlights the part of
 the question that it is likely to represent in blue, and also highlights the
 circle with a blue outline.  When an answer is submitted, the text in the
 answer panel turns red if the answer was incorrect, or green if the answer was
@@ -1855,6 +1845,8 @@ manipulating their work in progress, with each action having clear
 consequences.  A colour scheme for the circles was implemented, to make the
 notation easier to read, and the expression-highlighting functionality was also
 introduced, along with the other means of highlighting, as shown above.
+Finally, the bin icon was introduced after deciding that a control for deletion
+was not an ideal approach, as detailed above.
 
 \begin{center}
 \begin{figure}[H]

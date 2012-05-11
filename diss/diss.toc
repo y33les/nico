@@ -21,25 +21,25 @@
 \contentsline {section}{\numberline {2.4}Summary}{22}
 \contentsline {chapter}{\numberline {3}Implementation}{23}
 \contentsline {section}{\numberline {3.1}System Architecture}{23}
-\contentsline {subsection}{\numberline {3.1.1}Backend}{24}
+\contentsline {subsection}{\numberline {3.1.1}Back-End}{24}
 \contentsline {subsection}{\numberline {3.1.2}Interaction Handler}{29}
 \contentsline {section}{\numberline {3.2}User Interface}{35}
-\contentsline {subsubsection}{\numberline {3.2.0.1}First Revision}{37}
-\contentsline {subsubsection}{\numberline {3.2.0.2}Later Revisions}{38}
-\contentsline {subsubsection}{\numberline {3.2.0.3}Current Revision}{39}
-\contentsline {subsection}{\numberline {3.2.1}Notation}{39}
-\contentsline {section}{\numberline {3.3}Summary}{40}
-\contentsline {chapter}{\numberline {4}Evaluation}{41}
-\contentsline {section}{\numberline {4.1}Testing}{41}
-\contentsline {section}{\numberline {4.2}UI Evaluation}{42}
-\contentsline {subsection}{\numberline {4.2.1}Notation Evaluation}{42}
-\contentsline {section}{\numberline {4.3}User Study}{42}
-\contentsline {subsection}{\numberline {4.3.1}Pilot Study}{43}
-\contentsline {subsection}{\numberline {4.3.2}Results}{44}
-\contentsline {subsubsection}{\numberline {4.3.2.1}Feedback}{53}
-\contentsline {section}{\numberline {4.4}Goals}{53}
-\contentsline {section}{\numberline {4.5}Summary}{53}
-\contentsline {chapter}{\numberline {5}Conclusions}{55}
-\contentsline {chapter}{Bibliography}{57}
-\contentsline {chapter}{\numberline {A}Questionnaire}{59}
-\contentsline {chapter}{\numberline {B}Project Proposal}{71}
+\contentsline {subsubsection}{\numberline {3.2.0.1}First Revision}{39}
+\contentsline {subsubsection}{\numberline {3.2.0.2}Later Revisions}{40}
+\contentsline {subsubsection}{\numberline {3.2.0.3}Current Revision}{40}
+\contentsline {subsection}{\numberline {3.2.1}Notation}{41}
+\contentsline {section}{\numberline {3.3}Summary}{42}
+\contentsline {chapter}{\numberline {4}Evaluation}{43}
+\contentsline {section}{\numberline {4.1}Testing}{43}
+\contentsline {section}{\numberline {4.2}UI Evaluation}{44}
+\contentsline {subsection}{\numberline {4.2.1}Notation Evaluation}{44}
+\contentsline {section}{\numberline {4.3}User Study}{44}
+\contentsline {subsection}{\numberline {4.3.1}Pilot Study}{45}
+\contentsline {subsection}{\numberline {4.3.2}Results}{46}
+\contentsline {subsubsection}{\numberline {4.3.2.1}Feedback}{55}
+\contentsline {section}{\numberline {4.4}Goals}{55}
+\contentsline {section}{\numberline {4.5}Summary}{55}
+\contentsline {chapter}{\numberline {5}Conclusions}{57}
+\contentsline {chapter}{Bibliography}{59}
+\contentsline {chapter}{\numberline {A}Questionnaire}{61}
+\contentsline {chapter}{\numberline {B}Project Proposal}{73}

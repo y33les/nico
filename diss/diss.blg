@@ -1,4 +1,5 @@
-This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2012/dev/Arch Linux)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: diss.aux
 The style file: plain.bst
 Database file #1: refs.bib
@@ -10,45 +11,50 @@ Warning--entry type for "Blackwell1999" isn't style-file defined
 --line 54 of file refs.bib
 Warning--entry type for "Green1996" isn't style-file defined
 --line 76 of file refs.bib
-You've used 13 entries,
+I was expecting a `,' or a `}'---line 94 of file refs.bib
+ : NOTE = "
+ :         10.1007/BF02765207",
+I'm skipping whatever remains of this entry
+Warning--empty year in Lamberski1983
+You've used 17 entries,
             2118 wiz_defined-function locations,
-            568 strings with 5636 characters,
-and the built_in function-call counts, 3210 in all, are:
-= -- 304
-> -- 133
+            594 strings with 6243 characters,
+and the built_in function-call counts, 4141 in all, are:
+= -- 392
+> -- 167
 < -- 1
-+ -- 54
-- -- 40
-* -- 140
-:= -- 539
-add.period$ -- 36
-call.type$ -- 13
-change.case$ -- 59
++ -- 70
+- -- 50
+* -- 182
+:= -- 698
+add.period$ -- 48
+call.type$ -- 17
+change.case$ -- 75
 chr.to.int$ -- 0
-cite$ -- 13
-duplicate$ -- 118
-empty$ -- 299
-format.name$ -- 40
-if$ -- 697
+cite$ -- 18
+duplicate$ -- 155
+empty$ -- 388
+format.name$ -- 50
+if$ -- 896
 int.to.chr$ -- 0
-int.to.str$ -- 13
-missing$ -- 4
-newline$ -- 64
-num.names$ -- 26
-pop$ -- 100
+int.to.str$ -- 17
+missing$ -- 7
+newline$ -- 84
+num.names$ -- 34
+pop$ -- 128
 preamble$ -- 1
-purify$ -- 46
+purify$ -- 59
 quote$ -- 0
-skip$ -- 111
+skip$ -- 138
 stack$ -- 0
-substring$ -- 112
-swap$ -- 22
+substring$ -- 146
+swap$ -- 26
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 52
-warning$ -- 0
-while$ -- 29
-width$ -- 15
-write$ -- 128
-(There were 4 warnings)
+type$ -- 66
+warning$ -- 1
+while$ -- 38
+width$ -- 19
+write$ -- 169
+(There was 1 error message)

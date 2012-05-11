@@ -1150,10 +1150,9 @@ a study that tested the software on real people.
 The application back-end handles the mathematical aspect of the application;
 that is, it is able to interpret data gathered from the user's input and
 process it as a calculation.  Each circle is represented by an associative map,
-of the form \verb¬{:x 123 :y 234 :name "c0" :circ (+ 1 2 3 4)}¬, where the
-\verb¬:x¬ and \verb¬:y¬ fields are numbers representative of the circle's
-co-ordinates on the canvas, the \verb¬:name¬ field is a string used to refer to
-the circle and the \verb¬:circ¬ field is an S-expression representative of the
+of the form \verb¬{:x ¬\emph{x}verb¬ :y ¬\emph{y}\verb¬ :name ¬\emph{s}\verb¬ :circ ¬\emph{l}\verb¬}¬, where \emph{x} and \emph{y} are integers representative of the circle's
+co-ordinates on the canvas, \emph{s} is a string used to refer to
+the circle and the \emph{l} is an S-expression representative of the
 calculation that the circle contains.  This S-expression can use any of five
 operators: \verb¬+¬, \verb¬-¬, \verb¬*¬, \verb¬/¬ and finally \verb¬\?¬, a
 placeholder for initialising circles.  Similarly, the arguments to the operator
@@ -1178,7 +1177,7 @@ can be either numbers or the placeholder character \verb¬\?¬.  A Clojure agent
 Clojure agents.  They are detailed below:
 \begin{itemize}
 \item \verb¬used-circles¬, containing a list of associative maps as detailed above
-\item \verb¬current-qset¬, also containing a list of associative maps, this time representative of the questions to be answered, using a format of \verb¬{:n ¬\emph{n}¬\verb¬ :q ¬\emph{l}\verb¬ :a? false :c? false}¬, where \emph{n} is the question number, \emph{l} is an S-expression representing the current question, and the \verb¬:a?¬ and \verb¬:c?¬ fields are artefacts left over from a previous revision of the software, and are no longer used
+\item \verb¬current-qset¬, also containing a list of associative maps, this time representative of the questions to be answered, using a format of \verb¬{:n ¬\emph{n}\verb¬ :q ¬\emph{l}\verb¬ :a? false :c? false}¬, where \emph{n} is the question number, \emph{l} is an S-expression representing the current question, and the \verb¬:a?¬ and \verb¬:c?¬ fields are artefacts left over from a previous revision of the software, and are no longer used
 \item \verb¬circle-number¬, containing an integer counting how many circles have previously been created whilst answering this question
 \item \verb¬current-coords¬, which tracks the current co-ordinates of the mouse cursor
 \item \verb¬current-question¬, containing an integer indicating the number of the question currently being answered
@@ -1213,7 +1212,7 @@ creates an associative map initialised to the following values:
 \end{Verbatim}
 \end{minipage}
 \end{center}
-\caption{The function {\ttfamily new-circle} initialises a circle centred on the current location of the mouse cursor, generating a name {\ttfamily "c}\emph{n}{\ttfamily "}, where \emph{n} is the number of circles that have previously been created and with an initial expression of {\ttfamily (\textbackslash? \textbackslash? \textbackslash?)}.}
+\caption{The function {\ttfamily new-circle} initialises a circle centred on the current location of the mouse cursor, generating a name {\ttfamily "c}\emph{n}{\ttfamily "}, where \emph{n} is the number of circles that have previously been created, and with an initial expression of {\ttfamily (\textbackslash? \textbackslash? \textbackslash?)}.}
 \end{figure}
 \end{center}
 
@@ -1423,7 +1422,7 @@ it has also given rise to a new problem: due to the way that I have implemented
 deleting a circle that forms part of a chain deletes all of the links between
 the rest of the circles in the chain, from the circle being deleted down to the
 root circle.  On reflection, a better way to implement safe deletion would have
-been to include as part of the rendering loop a function to inspect
+been to include either as part of the rendering loop or as part of \verb¬del-circle-safe¬ a function to inspect
 \verb¬used-circles¬, checking for any invalid references and replacing them
 with \verb¬\?¬s.
 
@@ -1793,17 +1792,7 @@ button ({\sfapp New}, {\sfapp Edit}, {\sfapp Delete}, etc.) would cause a
 dialogue box to appear to the user, which required a circle to be specified by
 name (at this point in the development of the project, it was required that the
 user name each of their circles) before any operations could be performed upon
-it.  Circles were all the same colour, and the text-highlighting and
-colour-coding operations had not yet been implmented.  It was also the case
-that the links between circles did not end in argument slots, but rather fed
-into the centre of the target circle.  This design was abandoned as the
-separation between the user and the diagram itself was too great; creating
-circles by specifying options in many only slightly different dialogue
-boxes and watching the results appear on the canvas did not feel like a natural
-way to interact with one's calculation, and hence would have been inappropriate
-for the target audience.  The intention of the project is not to require the
-user to spent a significant amount of time learning how to use the system
-before it becomes a useful tool to them.
+it.  The operations themselves were specified by typing the circle's name into a text field, followed, in the case of the creation and editing of circles, an S-expression specifying the mathematical expression that the circle was to represent.  Circles were all the same colour, and the text-highlighting and colour-coding operations had not yet been implmented.  It was also the case that the links between circles did not end in argument slots, but rather fed into the centre of the target circle.  This design was abandoned as the separation between the user and the diagram itself was too great; creating circles by specifying options in many only slightly different dialogue boxes and watching the results appear on the canvas did not feel like a natural way to interact with one's calculation, and hence would have been inappropriate for the target audience.  Indeed, forcing the user to commit to a design before even seeing it entailed much \emph{premature commitment}.  Requiring the user to use LISP S-expression syntax was also far from ideal, as the user then had to learn this syntax in order to use the program.  The intention of the project is not to require the user to spent a significant amount of time learning how to use the system before it becomes a useful tool to them.  Quite apart from this, a user familiar with LISP is also unlikely to need the aid of the circle metaphor to visualise expressions.
 % how did we know the separation was too great?
 % avoid "similar-but-slightly-different"
 
@@ -1820,21 +1809,23 @@ or another circle (chosen using a list of radio buttons that was generated upon
 opening the dialogue box) as the value of that argument.  Answer-checking was
 also made automatic: as soon as the total reaches a value equal to that of the
 answer to the question, the user is immediately told so, and moved on to the
-next question.  The circles at this point are still one colour only, and there
-is no expression-highlighting.  The colour-coded totals had been implemented by
-this point.  This design was ultimately abandoned  as, again, it separated the
+next question.  The circles at this point were still one colour only, and there
+was no expression-highlighting.  The colour-coded totals had been implemented by
+this point.  This design was ultimately abandoned as, again, it separated the
 user from their own work too much.  Although this design was an improvement,
 allowing the user to interact directly with the canvas to perform operations
 upon circles that were able to specified by pointing with the mouse, rather
 than by typing out a name, the grand unified dialogue box still required the
 user to perform operations without it being entirely obvious what the
 consequences would be, thus requiring an unnecessary amount of
-\emph{premature commitment} from the user.  The automatic answer-checking was
-also a problem, as it did not give the user a chance to review their answer
-before proceeding.  Indeed, it did not give the user a chance to learn from
-their mistakes, say for example if they had accidentally reached the right
-answer as part of a larger, incorrect calculation that they had previously
-intended to make.
+\emph{premature commitment} from the user.  In addition to this, the act of
+visualising the circle to be created whilst setting the many options available
+in the dialogue box constituted an unnecessary \emph{hard mental operation}.
+The automatic answer-checking was also a problem, as it did not give the user a
+chance to review their answer before proceeding.  Indeed, it did not give the
+user a chance to learn from their mistakes, say for example if they had
+accidentally reached the right answer as part of a larger, incorrect
+calculation that they had previously intended to make.
 
 \subsubsection{Current Revision}
 The final, current revision of the software reintroduces the {\sfapp Check}

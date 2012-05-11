@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (TeX Live 2012/dev/Arch Linux) (format=xelatex 2012.3.31)  11 MAY 2012 12:27
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (TeX Live 2012/dev/Arch Linux) (format=xelatex 2012.3.31)  11 MAY 2012 15:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1208,16 +1208,16 @@ Chapter 3.
 File: figs/nico_backend.pdf Graphic file (type QTm)
  <use  "figs/nico_backend.pdf" >
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/it' will be
-(Font)              scaled to size 10.0pt on input line 1194.
+(Font)              scaled to size 10.0pt on input line 1193.
  [24]
 LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 8.97906pt on input line 1208.
+(Font)              scaled to size 8.97906pt on input line 1207.
  [25] [26] [27] [28] [29] [30]
 File: figs/nico_click.pdf Graphic file (type QTm)
 
 <use  "figs/nico_click.pdf" > [31]
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/n' will be
-(Font)              scaled to size 10.0pt on input line 1558.
+(Font)              scaled to size 10.0pt on input line 1557.
  [32]
 File: figs/nico_hi1.png Graphic file (type QTm)
  <use  "figs/nico_hi1.png" >
@@ -1244,26 +1244,26 @@ File: figs/nico_right.png Graphic file (type QTm)
 File: figs/nico_op_hi.png Graphic file (type QTm)
 
 <use  "figs/nico_op_hi.png" >
-Underfull \hbox (badness 1117) in paragraph at lines 1775--1775
+Underfull \hbox (badness 1117) in paragraph at lines 1774--1774
 []\EU1/LinuxLibertineO(0)/m/n/10 (c) |The circle’s operator is high-
  []
 
 File: figs/nico_arg_hi.png Graphic file (type QTm)
 <use  "figs/nico_arg_hi.png" >
-Underfull \hbox (badness 3872) in paragraph at lines 1778--1778
+Underfull \hbox (badness 3872) in paragraph at lines 1777--1777
 []\EU1/LinuxLibertineO(0)/m/n/10 (d) |An argument is highlighted
  []
 
 [38] [39] [40]
 LaTeX Font Info:    Font shape `EU1/RobotoRegular(0)/m/n' will be
-(Font)              scaled to size 20.40178pt on input line 1854.
+(Font)              scaled to size 20.40178pt on input line 1845.
  [41] [42]
 Chapter 4.
 [43
 
 
 ] [44] [45]
-Overfull \hbox (27.71332pt too wide) in paragraph at lines 2107--2138
+Overfull \hbox (27.71332pt too wide) in paragraph at lines 2098--2129
  [] 
  []
 
@@ -1459,6 +1459,6 @@ Here is how much of TeX's memory you used:
  19679 multiletter control sequences out of 15000+200000
  11318 words of font info for 91 fonts, out of 3000000 for 9000
  1018 hyphenation exceptions out of 8191
- 44i,18n,48p,662b,498s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,18n,48p,1473b,498s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on diss.pdf (90 pages).

@@ -1149,40 +1149,34 @@ a study that tested the software on real people.
 % TODO: explain components rather than code, make it higher level
 The application back-end handles the mathematical aspect of the application;
 that is, it is able to interpret data gathered from the user's input and
-process it as a calculation.  Each circle is represented by an associative map,
-of the form \verb¬{:x ¬\emph{x}verb¬ :y ¬\emph{y}\verb¬ :name ¬\emph{s}\verb¬ :circ ¬\emph{l}\verb¬}¬, where \emph{x} and \emph{y} are integers representative of the circle's
-co-ordinates on the canvas, \emph{s} is a string used to refer to
-the circle and the \emph{l} is an S-expression representative of the
-calculation that the circle contains.  This S-expression can use any of five
-operators: \verb¬+¬, \verb¬-¬, \verb¬*¬, \verb¬/¬ and finally \verb¬\?¬, a
-placeholder for initialising circles.  Similarly, the arguments to the operator
-can be either numbers or the placeholder character \verb¬\?¬.  A Clojure agent,
-\verb¬used-circles¬,  stores a list of all the circles currently in use.
+process it as a calculation.  Each circles is represented by an associative map,
+containing information regarding its position on the canvas, the calculation it
+represents and its label.  A Clojure agent stores a list of all of the circles
+currently in use.  It was decided to use an agent after the original approach
+of defining circle maps as variables using a dedicated macro at runtime proved
+to be unviable; such variables were not accessible by the interaction handler.
+An agent solved this problem neatly, providing a useful means of storing data
+whilst making it available to be accessed and changed at will during the
+program's execution.
 
-% list rather than paragraph?
-% \emph{Nico's} back-end stores and manages circles and questions using five
-% Clojure agents: \verb¬used-circles¬, containing a list of associative maps as
-% detailed above, \verb¬current-qset¬, also containing a list of associative
-% maps, this time representative of the questions to be answered (using a format
-% of \verb¬{:n 1 :q (* 2 (+ 1 2 3) 7) :a? false :c? false}¬, where \verb¬:n¬ is
-% the question number, \verb¬:q¬ is an S-expression representing the current
-% question, and \verb¬:a?¬ and \verb¬:c?¬ are artefacts left over from a previous
-% revision of the software, and are no longer used), \verb¬circle-number¬,
-% containing an integer counting how many circles have previously been created
-% whilst answering this question, \verb¬current-coords¬, which tracks the current
-% co-ordinates of the mouse cursor, and \verb¬current-question¬, containing an
-% integer indicating the number of the question currently being answered.
+\subsubsection{Management of Mutable State}
 
 \emph{Nico's} back-end stores and manages circles and questions using just six
 Clojure agents.  They are detailed below:
 \begin{itemize}
-\item \verb¬used-circles¬, containing a list of associative maps as detailed above
-\item \verb¬current-qset¬, also containing a list of associative maps, this time representative of the questions to be answered, using a format of \verb¬{:n ¬\emph{n}\verb¬ :q ¬\emph{l}\verb¬ :a? false :c? false}¬, where \emph{n} is the question number, \emph{l} is an S-expression representing the current question, and the \verb¬:a?¬ and \verb¬:c?¬ fields are artefacts left over from a previous revision of the software, and are no longer used
-\item \verb¬circle-number¬, containing an integer counting how many circles have previously been created whilst answering this question
-\item \verb¬current-coords¬, which tracks the current co-ordinates of the mouse cursor
-\item \verb¬current-question¬, containing an integer indicating the number of the question currently being answered
-\item \verb¬currently-dragging-circle¬, which is used by the interaction handler to temporarily store information about circles that are currently being repositioned by the user
+\item An agent which contains the list of circles, as detailed above
+\item An agent which also contains the current question set, as a list of maps containing the question number and the S-expression that constitutes the question to be answered
+\item An agent which contains an integer counting how many circles have previously been created whilst answering this question
+\item An agent which tracks the current co-ordinates of the mouse cursor
+\item An agent which contains an integer indicating the number of the question currently being answered
+\item An agent which is used by the interaction handler to temporarily store information about circles that are currently being repositioned by the user
 \end{itemize}
+
+Again, agents were chosen for these structures as they needed to be continually
+changed whilst the program was running.  Agents specifically, rather than the
+vars, refs and atoms that Clojure also provides for mutable state, were chosen
+to allow asynchronous updates, and are able to share information amongst
+several threads. \cite{Halloway2009}
 
 \begin{center}
 \begin{figure}[H]
@@ -1190,14 +1184,13 @@ Clojure agents.  They are detailed below:
 \includegraphics[width=\textwidth-2cm]{figs/nico_backend.pdf}
 \end{center}
 % \caption{A rough model of \emph{Nico's} management of mutable state.}
-\caption{A model of \emph{Nico's} management of mutable state; {\ttfamily currently-dragging-circle} is omitted as it is not utilised by the back-end.}
+\caption{A model of \emph{Nico's} management of mutable state; the sixth agent is omitted as it is not utilised by the back-end.}
 \end{figure}
 \end{center}
 
-\verb¬used-circles¬ is an agent containing a list of associative maps, as
-detailed above.  \emph{Nico} includes two main functions for the management of
-circles, namely \verb¬new-circle¬ and \verb¬del-circle¬.  \verb¬new-circle¬
-creates an associative map initialised to the following values:
+\subsubsection{Circle Management}
+
+\emph{Nico} includes two main functions for the management of circles: creation and deletion.  New circles are initialised to the following values:
 % TODO: also maybe talk about kill-used-circles
 
 \begin{center}
@@ -1212,219 +1205,31 @@ creates an associative map initialised to the following values:
 \end{Verbatim}
 \end{minipage}
 \end{center}
-\caption{The function {\ttfamily new-circle} initialises a circle centred on the current location of the mouse cursor, generating a name {\ttfamily "c}\emph{n}{\ttfamily "}, where \emph{n} is the number of circles that have previously been created, and with an initial expression of {\ttfamily (\textbackslash? \textbackslash? \textbackslash?)}.}
+\caption{Circles are initialised on the current location of the mouse cursor, generating a name {\ttfamily "c}\emph{n}{\ttfamily "}, where \emph{n} is the number of circles that have previously been created, and with an initial expression of {\ttfamily (\textbackslash? \textbackslash? \textbackslash?)}.}
 \end{figure}
 \end{center}
 
-This map is then sent off to \verb¬used-circles¬.  The value of
-\verb¬circle-number¬ is incremented by one, and the user-facing canvas area is
-cleared and re-rendered.
+This map is then stored in the list of circles.  The counter for the number of circles is incremented by one, and the user-facing canvas area is cleared and re-rendered.  This particular initial state for each circle was chosen so that the circle is centred upon the mouse cursor (rather than having its top-left corner appear at the location of the cursor if 50 had not been subtracted from the current co-ordinates), and so that its name is predictable, for use in other functions that refer to it; that is, the order in which the circles in the list were created can be inferred from their names if need be.  The circle is also initialised to a placeholder expression, rather than one of value 0, so that it does not interfere with the root-circle inference, which will be discussed later.
 
-\verb¬del-circle¬ is a more complex function that removes a circle from
-\verb¬used-circles¬, taking either a string or two integers as its arguments.
-If a string is passed to it, the function iterates across the contents of
-\verb¬used-circles¬, reconstructing the list by \verb¬cons¬ing each element in
-turn on to a new list.  If the \verb¬:name¬ field of the head of the
-\verb¬used-circles¬ list matches the argument passed to \verb¬del-circle¬, the
-function recurses without \verb¬cons¬ing that element on to the new list, thus
-constructing a new version of the \verb¬used-circles¬ list with the desired
-circle removed, which can then be sent off to the \verb¬used-circles¬ agent.
-In the case that two integers (i.e. a pair of co-ordinates) is passed to
-\verb¬del-circle¬, the function uses two extra local variables, \verb¬c¬ and
-\verb¬c?¬, to determine which circle is being deleted.  To determine the value
-of \verb¬c¬, the function calls \verb¬point-in-circle¬ on the provided
-co-ordinates, which is another function that, if the co-ordinates are within
-the boundaries of a circle, returns the \verb¬:name¬ field of that circle (or
-\verb¬nil¬ otherwise).  \verb¬c?¬ tests whether or not \verb¬c¬ is equal to
-\verb¬nil¬.  If \verb¬c?¬ has the value \verb¬false¬, then the co-ordinates
-passed to \verb¬del-circle¬ are not in any circle, and hence nothing can be
-deleted.  In this case, the function returns \verb¬nil¬.  In the case that
-\verb¬c?¬ has the value \verb¬true¬, the function proceeds as if id had been
-provided with a string rather than two integers, using the value of \verb¬c¬ as
-the string to compare to.  Also included is a related function,
-\verb¬kill-used-circles¬, that initialises \verb¬used-circles¬ to the empty
-list.
+Deletion is a more complex function that removes a circle from the list.  It first compares its argument to the head of the circle list.  If it does not match its name or co-ordinate range (each circle is contained within an area of 100px^2), it recursively calls itself on the tail of the list, and appends the rejected circle to a new list.  If there is a match, it again calls itself on the tail of the main circle list, but does not add the head to the new list.  Thus, a list identical to the original list of circles is constructed, excluding only the matched circle.
 
-To determine the current value of the user's calculation, two functions are
-used: \verb¬find-root¬ and \verb¬eval-circle¬.
+This naïve implementation of deletion led to many problems: the function described above does not deal well with circles that are used as arguments to other circles.  When such a circle is removed from the main list, there still remain references to it in the circles that were using it as part of a larger calculation, causing the application to throw \verb¬java.lang.NullPointerException¬s.  As such, a `safe' version of circle deletion was implemented.  The safe deletion function works by first checking if any of the circle scurrently in the main list contain references to the circle being deleted.  If it is found that there are circles that contain references to it, the function determines if that circle is a root circle (see below), and, if so, uses the previous method of deletion to remove the circle and replace it with a similar circle that uses placeholder {\sfapp ?} values where there were references that would have been invalidated.  If the circle is non-root, the deletion function recursively calls itself upon the circle, thus removing all circles that formed the original chain dependent upon the circle to be deleted.  The circle can then safely be deleted using the previous method, and the intermediate circles are replaced.
 
-\verb¬find-root¬ finds the circle that is not used as an argument to any other
-circle.  If there are two circles that match this criterion, \verb¬find-root¬
-returns the first instance that it encounters; that is, the first instance of
-a `root' circle.  As a complete calculation must only have one root circle
-(else it would be two separate calculations), this is not problematic for
-answer-checking.  However, it can be mildly confusing for the user if they are
-constructing a calculation by constructing two subexpressions and merging them
-at the end, and a future improvement to this design could be to find the root
-of the calculation that the mouse is hovering over.  Regardless,
-\verb¬find-root¬ works by iterating across \verb¬used-circles¬ and returning
-the first circle that causes another function, \verb¬root?¬, to return the
-value \verb¬true¬.  \verb¬root?¬ iterates across \verb¬used-circles¬, comparing
-its single argument, a circle, to each of the other available circles in turn
-using another function, \verb¬is-arg?¬, which takes the \verb¬:name¬ field of
-its first argument and returns \verb¬true¬ if that name appears as a symbol
-anywhere in the \verb¬:circ¬ field of its second argument.
+This solved the problem of the leftover references to non-existant circles, but it has also given rise to a new problem: using this method, and in particular due to the stage in which the safe deletion function must call itself upon the other circles in the chain, deleting a circle that forms part of a chain deletes all of the links between the rest of the circles in the chain, from the circle being deleted down to the root circle.  On reflection, a better way to implement safe deletion would have been to include either as part of the rendering loop or as part of the safe deletion function a function to inspect the main circle list, checking for any invalid references and replacing them with \verb¬\?¬s, rather than doing it at delete-time.
 
-\verb¬eval-circle¬ takes a circle as its argument and returns an S-expression
-representative of the calculation that that circle represents, recursively
-evaluating any circles that are contained within the argument circle.  It works
-by iterating across the \verb¬:circ¬ field of its argument, \verb¬cons¬ing each
-element on to a new list.  If an element is of type \verb¬clojure.lang.Symbol¬,
-\verb¬eval-circle¬ calls \verb¬eval-circle¬ on the circle that the symbol
-points to, which is resolved using a function \verb¬find-circle¬ that iterates
-across \verb¬used-circles¬, trying to match each circle's \verb¬:name¬ field
-against its argument.  \verb¬eval-circle¬ is then able to return a nested
-S-expression that represents a calculation.  When used in conjunction with
-\verb¬find-root¬, this function is able to resolve the entire diagram that has
-been constructed on the canvas into a single S-expression, which can then be
-evaluated or otherwise utilised as needed.
+\subsubsection{Evaluation}
 
-% TODO: centre this properly
-\begin{center}
-\begin{figure}[H]
-\begin{center}
-\begin{minipage}{8.2cm}% {\textwidth-2cm}
-\begin{Verbatim}[fontsize=\tiny,numbers=left]
-(defn eval-circle
-  "Iterates across a circle list, resolving
-   symbols into their respective circles."
-  [circ]
-  (loop [c (:circ (remove-placeholders circ))
-         out '()]
-    (cond (empty? c) (reverse out)
-          (= (first c) \?) 0
-          (symbol? (first c)) (cond
-                                (nested?
-                                  (find-circle
-                                    (str
-                                      (first c))))
-                                  (recur (rest c)
-                                         (cons (eval-circle
-                                                 (find-circle
-                                                   (str
-                                                     (first c))))
-                                               out))
-                                :else (recur (rest c)
-                                             (cons (:circ
-                                                     (find-circle
-                                                       (str
-                                                         (first c))))
-                                                   out)))
-          :else (recur (rest c)
-                       (cons (first c)
-                             out)))))
-\end{Verbatim}
-\end{minipage}
-\end{center}
-\caption{The {\ttfamily eval-circle} source.}
-\end{figure}
-\end{center}
+There are two main stages required to evaluate the user's work: finding the root circle, into which all other circles feed, and evaluating a circle or collection of circles to give a valid, computable S-expression.
 
-To manage the set of questions that the user is currently answering,
-\emph{Nico} uses a function \verb¬read-qset¬ to load a set of questions from a
-persistent file, exemplified in \emph{Fig. x.y} as \verb¬qset.nqs¬.
-\verb¬read-qset¬ works by using the Clojure core function \verb¬slurp¬ to read
-in the contents of the file indicated by the path provided as the argument to
-\verb¬read-qset¬ as one long string.  The function \verb¬split-lines¬ provided
-by the \verb¬clojure.string¬ library then separates each line of the string
-into an element of a sequence.  \verb¬read-qset¬ then proceeds to iterate
-across the sequence, prepending the string \verb¬"{:n ¬\emph{n}\verb¬ :q '"¬ and
-appending the string \verb¬" :a? false :c? false}"¬ to each item in turn, where
-\emph{n} is a counter starting with value 1 that is incremented with each
-iteration.  This creates a valid specification for an associative map in
-Clojure, so the Clojure core function \verb¬read-string¬ is called to evaluate
-each item to a map, which is then \verb¬cons¬ed on to a list.  \verb¬read-qset¬
-returns a list of question maps, which can then be sent off to the agent
-\verb¬current-qset¬ to be presented to the user.  This method of loading a
-question set requires that the file provided to \verb¬read-qset¬ must be a
-plain text file containing one S-expression per line that represents the
-question that the user is required to answer.  For my own testing files, I have
-opted to use the file extension \verb¬.nqs¬ (\emph{Nico} Question Set) to make
-it clear that these files are specifically for use as question sets.  A future
-extension to this project could be to develop a partner application to
-\emph{Nico} that allows tutors to more easily write their own question sets in
-more familiar language, rather than requiring them to be aware of LISP syntax.
-Due to time constraints, I decided not to write such an application as it was
-outside of the stated goals of this project.
+The root circle is the one circle in a finished diagram that is not used as an argument to any of the other circles.  Therefore, it can be found by searching through the list of circles, comparing each one to the rest of the list and discarding it if there are references to it in other circles.  As stated, in a {\bf finished} diagram, there can only be one root circle, so this method is sufficient for use in marking answers.  However, whilst the user is working, it is possible that they may construct two or more calculation structures in parllel, with intent to join them later.  In this case, there can be multiple root circles.  The method chosen to identify the root returns the first instance of a root circle that it comes across.  It would have been possible to, for example, add an extra {\sfapp Answer} panel for each root and maintain a total for each, but it was decided that this would be confusing for the user, who may not expect the structure of the application window to change.  This would also require a labelling system for circles and structures, which was abandoned in the user interface design as it is an unfamiliar concept to non-programmers and those without algebra: most of the target audience.
 
-% TODO: talk about interesting problems with del-circle-safe, see logbook entries from 08/03/2012
-% TODO: talk about defcircle
+Once the root has been found, the user's diagram can then be evaluated to give an S-expression.  As each circle contains an S-expression for the calculation unit that it represents, all that needs to happen is for the references to other circles to be resolved, creating a nested S-expression that can simply have Clojure's \verb¬eval¬ called on it to return an answer.  This was, in fact, a significant reason for choose Clojure, as a dialect of LISP, as the language in which to program \emph{Nico}; as a homoiconic language, code to be evaluated later can easily be built up as a data structure, which can then be passed around, evaluated and otherwise utilised as is convenient.  By creating one unified S-expression representing the entire diagram, not only can the value of the structure be calculated, but other operations, such as the selective highlighting of the question (discussed below), can be performed.
 
-My original intention was that the creation of circles would be handled by a
-macro, \verb¬defcircle¬,  that would allow circles to be `defined' in much the
-same way as any other variable in Clojure, to be accompanied by another macro,
-\verb¬letcircle¬, that would allow temporary circles to be locally defined
-within the scope of a given function.  As the project progressed, it became
-apparent that defining circles as variables was not useful, as actions
-triggered from within the application (e.g. by pressing a button) were unable
-to access the circles that had been defined in this way.  By this point in the
-project I had already begun to monitor the co-ordinates of used circles using
-an agent containing a list of maps, so it was a simple solution to use the same
-agent, which could definitely be accessed at runtime, to contain the circle
-maps instead.  I also had already written a function \verb¬new-circle¬ that was
-calling \verb¬defcircle¬, so I decided to abandon \verb¬defcircle¬ and use
-\verb¬new-circle¬ to initialise a map and send it off to \verb¬used-circles¬,
-thus solving the problem.
+\subsubsection{Question Management}
 
-I encountered some problems with the development of \verb¬del-circle¬ -- after
-implementing the \verb¬del-circle¬ function described above, I noticed that
-deleting circles that formed part of a chain would cause the application to
-behave unexpectedly, being unable to render some circles properly and throwing
-\verb¬java.lang.NullPointerException¬s.  This occurred due to the fact that
-\verb¬del-circle¬ solely removed a circle, with no consideration of if it may
-be being used as an argument to the expression represented by another circle.
-As a result, the application began to throw exceptions as the now-invalid
-references left behind were being followed by functions such as
-\verb¬eval-circle¬, leading them to a non-existant location.  To combat this, I
-developed a replacement function, \verb¬del-circle-safe¬, that deletes circles
-in such a way that this problem does not occur.
+\emph{Nico} uses external files containing sets of questions to provide tasks for the user to complete.  An NQS (\emph{Nico} Question Set) file is simply a plain text file contaning S-expressions corresponding to questions, separated by newlines.  This particular approach was chosen so that questions can easily be read in using functionality provided by Clojure's standard library.  Nico is then able to navigate between questions by setting the agent containing the current question to the value of the desired question in the list.
 
-\verb¬del-circle-safe¬ works by first checking if the circle being deleted is
-used as an argument to any other circles, using a function \verb¬is-arg-of¬.
-\verb¬is-arg-of¬ takes a circle map as an argument and returns a list of maps
-showing which circles make use of the argument circle, essentially representing
-the links in the diagram that the user sees.  The maps are of the format
-\verb¬{:c ¬\emph{c}\verb¬ :a ¬\emph{l}\verb¬}¬, where \emph{c} is a string
-containing the name of the circle that uses the argument circle and \emph{l} is
-a list of integers indicating the indices of where the argument circle is used
-in the list of arguments to \emph{c}.  To do this, \verb¬is-arg-of¬ iterates
-across \verb¬used-circles¬, calling in each instance another function
-\verb¬is-arg?¬, which returns \verb¬true¬ if its first argument (in this case
-the argument of \verb¬is-arg-of¬) is used in the \verb¬:circ¬ field of its
-second argument (in this case the current element of \verb¬used-circles¬).  If
-this function returns \verb¬true¬, \verb¬is-arg-of¬ \verb¬cons¬es a new map on
-to a list: the map consists of the \verb¬:name¬ field of the current element
-of \verb¬used-circles¬ as the contents of the \verb¬:c¬ field, and constructs
-the list to use for \verb¬:a¬ using another function, \verb¬arg-is¬, which uses
-the \verb¬:name¬ field of its first argument and iterates across the
-\verb¬:circ¬ field of its second, using a counter to construct a list of
-indices where the first argument's \verb¬:name¬ appears as a symbol.  If
-\verb¬is-arg-of¬ returns the empty list, then the circle is not used as an
-argument anywhere and it is, therefore, safe to proceed as before, using the
-same method of deletion that is used by the original \verb¬del-circle¬.  If
-not, then the function iterates across the list that \verb¬is-arg-of¬ produces,
-for each element retrieving the circle indicated by \verb¬:c¬, constructing a
-list of indices using \verb¬arg-is¬ and constructing a new circle map in which
-all instances of the circle being deleted have been replaced with placeholder
-\verb¬\?¬ values.  \verb¬del-circle-safe¬ then calls itself on the circle that
-uses the original circle to be deleted, thus removing all circles that formed
-the chain that incorporated the original circle.  Finally, the function sends
-the new circle (with the \verb¬\?¬ values) off to \verb¬used-circles¬ and
-removes the original circle in the same manner as the unsafe version of
-\verb¬del-circle¬; it is now safe to do so, as there are no longer any circles
-that refer to the circle being deleted (their references having by now been
-replaced with placeholder \verb¬\?¬ values).
-
-This solved the problem of the leftover references to non-existant circles, but
-it has also given rise to a new problem: due to the way that I have implemented
-\verb¬del-circle-safe¬, and in particular due to the stage in which
-\verb¬del-circle-safe¬ must call itself upon the other circles in the chain,
-deleting a circle that forms part of a chain deletes all of the links between
-the rest of the circles in the chain, from the circle being deleted down to the
-root circle.  On reflection, a better way to implement safe deletion would have
-been to include either as part of the rendering loop or as part of \verb¬del-circle-safe¬ a function to inspect
-\verb¬used-circles¬, checking for any invalid references and replacing them
-with \verb¬\?¬s.
+A future extension to this project could be to develop a partner application to \emph{Nico} to aid tutors unfamiliar with LISP to develop their own question sets in a more `user-friendly' manner, rather than by transcribing lists of problems into S-expressions.
 
 \subsection{Interaction Handler}
 % the bit that handles all the application shit: render, main-window, etc.

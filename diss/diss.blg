@@ -11,50 +11,54 @@ Warning--entry type for "Blackwell1999" isn't style-file defined
 --line 54 of file refs.bib
 Warning--entry type for "Green1996" isn't style-file defined
 --line 76 of file refs.bib
-I was expecting a `,' or a `}'---line 94 of file refs.bib
- : NOTE = "
- :         10.1007/BF02765207",
+Illegal end of database file---line 135 of file refs.bib
+ : HOWPUBLISHED = "\url{http://docs.oracle.com/javase/7/docs/api/java/awt/event/MouseEvent.html}"}
+ :                                                                                                
 I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "Halloway2009"
+Warning--I didn't find a database entry for "GuiFtw"
+Warning--I didn't find a database entry for "Seesaw"
+Warning--I didn't find a database entry for "JavaApi"
 Warning--empty year in Lamberski1983
-You've used 17 entries,
+You've used 14 entries,
             2118 wiz_defined-function locations,
-            594 strings with 6243 characters,
-and the built_in function-call counts, 4141 in all, are:
-= -- 392
-> -- 167
+            584 strings with 5920 characters,
+and the built_in function-call counts, 3504 in all, are:
+= -- 332
+> -- 146
 < -- 1
-+ -- 70
-- -- 50
-* -- 182
-:= -- 698
-add.period$ -- 48
-call.type$ -- 17
-change.case$ -- 75
++ -- 60
+- -- 44
+* -- 161
+:= -- 589
+add.period$ -- 39
+call.type$ -- 14
+change.case$ -- 64
 chr.to.int$ -- 0
-cite$ -- 18
-duplicate$ -- 155
-empty$ -- 388
-format.name$ -- 50
-if$ -- 896
+cite$ -- 15
+duplicate$ -- 129
+empty$ -- 322
+format.name$ -- 44
+if$ -- 757
 int.to.chr$ -- 0
-int.to.str$ -- 17
-missing$ -- 7
-newline$ -- 84
-num.names$ -- 34
-pop$ -- 128
+int.to.str$ -- 14
+missing$ -- 5
+newline$ -- 69
+num.names$ -- 28
+pop$ -- 105
 preamble$ -- 1
-purify$ -- 59
+purify$ -- 50
 quote$ -- 0
-skip$ -- 138
+skip$ -- 118
 stack$ -- 0
-substring$ -- 146
-swap$ -- 26
+substring$ -- 130
+swap$ -- 23
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 66
+type$ -- 56
 warning$ -- 1
-while$ -- 38
-width$ -- 19
-write$ -- 169
+while$ -- 32
+width$ -- 16
+write$ -- 138
 (There was 1 error message)

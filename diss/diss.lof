@@ -48,38 +48,37 @@
 \contentsline {figure}{\numberline {2.10}{\ignorespaces The prototype Sierpiński-triangle-based language.\relax }}{17}
 \contentsline {figure}{\numberline {2.11}{\ignorespaces The prototype circle-based language.\relax }}{19}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces A model of \emph {Nico's} management of mutable state; {\ttfamily currently-dragging-circle} is omitted as it is not utilised by the back-end.\relax }}{25}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces The function {\ttfamily new-circle} initialises a circle centred on the current location of the mouse cursor, generating a name {\ttfamily "c}\emph {n}{\ttfamily "}, where \emph {n} is the number of circles that have previously been created and with an initial expression of {\ttfamily (\textbackslash ? \textbackslash ? \textbackslash ?)}.\relax }}{25}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces The {\ttfamily eval-circle} source.\relax }}{27}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Decision tree to determine the appropriate response to a {\ttfamily :mouse-clicked} event.\relax }}{31}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Three instances of the question text being highlighted as a corresponding circle is moused-over.\relax }}{34}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{34}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{34}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{34}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces A screenshot of a \emph {Nico} session.\relax }}{35}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces The dialogue boxes used to modify existing circles in the application.\relax }}{37}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Editing a circle's operator}}}{37}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Editing a circle's argument}}}{37}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces An example of where nesting-based colour-coding would be confusing. The circle containing (2+2) can be considered to be both one and two circles removed from the root circle.\relax }}{38}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Examples of colour-coding in \emph {Nico}.\relax }}{39}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Red text indicates that the answer submitted was incorrect}}}{39}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Green text indicates a correct answer; a dialogue box allows the user to progress to the next question when they are ready}}}{39}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {The circle's operator is highlighted when it is being edited}}}{39}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {An argument is highlighted when it is being edited}}}{39}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces \emph {Nico}'s user interface went through a number of revisions before reaching its current state.\relax }}{41}
-\contentsline {figure}{\numberline {3.11}{\ignorespaces The notation used also went through a number of revisions before reaching its current state.\relax }}{41}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces A model of \emph {Nico's} management of mutable state; the sixth agent is omitted as it is not utilised by the back-end.\relax }}{25}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Circles are initialised on the current location of the mouse cursor, generating a name {\ttfamily "c}\emph {n}{\ttfamily "}, where \emph {n} is the number of circles that have previously been created, and with an initial expression of {\ttfamily (\textbackslash ? \textbackslash ? \textbackslash ?)}.\relax }}{25}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Three instances of the question text being highlighted as a corresponding circle is moused-over.\relax }}{30}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{30}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{30}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{30}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Decision tree to determine the appropriate response to a mouse click event.\relax }}{31}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces A screenshot of a \emph {Nico} session.\relax }}{33}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces The dialogue boxes used to modify existing circles in the application.\relax }}{34}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Editing a circle's operator}}}{34}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Editing a circle's argument}}}{34}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces An example of where nesting-based colour-coding would be confusing. The circle containing (2+2) can be considered to be both one and two circles removed from the root circle.\relax }}{35}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Examples of colour-coding in \emph {Nico}.\relax }}{36}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Red text indicates that the answer submitted was incorrect}}}{36}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Green text indicates a correct answer; a dialogue box allows the user to progress to the next question when they are ready}}}{36}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {The circle's operator is highlighted when it is being edited}}}{36}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {An argument is highlighted when it is being edited}}}{36}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces \emph {Nico}'s user interface went through a number of revisions before reaching its current state.\relax }}{38}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces The notation used also went through a number of revisions before reaching its current state.\relax }}{38}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces An example of a block of inline tests, taken from {\ttfamily core.clj}, showing some tests to be run to test the implementation of {\ttfamily detect-subs}.\relax }}{44}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Time taken in milliseconds per subject to answer Question 1.\relax }}{48}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Time taken in milliseconds per subject to answer Question 2.\relax }}{48}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Time taken in milliseconds per subject to answer Question 3.\relax }}{49}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Time taken in milliseconds per subject to answer Question 4.\relax }}{49}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Time taken in milliseconds per subject to answer Question 5.\relax }}{50}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Time taken in milliseconds per subject to answer Question 6.\relax }}{50}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Time taken in milliseconds per subject to answer Question 7.\relax }}{51}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Time taken in milliseconds per subject to answer Question 8.\relax }}{51}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Time taken in milliseconds per subject to answer Question 9.\relax }}{52}
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Time taken in milliseconds per subject to answer Question 10.\relax }}{52}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces An example of a block of inline tests, taken from {\ttfamily core.clj}, showing some tests to be run to test the implementation of {\ttfamily detect-subs}.\relax }}{42}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Time taken in milliseconds per subject to answer Question 1.\relax }}{46}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Time taken in milliseconds per subject to answer Question 2.\relax }}{46}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Time taken in milliseconds per subject to answer Question 3.\relax }}{47}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Time taken in milliseconds per subject to answer Question 4.\relax }}{47}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Time taken in milliseconds per subject to answer Question 5.\relax }}{48}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Time taken in milliseconds per subject to answer Question 6.\relax }}{48}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Time taken in milliseconds per subject to answer Question 7.\relax }}{49}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Time taken in milliseconds per subject to answer Question 8.\relax }}{49}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Time taken in milliseconds per subject to answer Question 9.\relax }}{50}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Time taken in milliseconds per subject to answer Question 10.\relax }}{50}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

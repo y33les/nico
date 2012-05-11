@@ -6,11 +6,11 @@
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {1.1}Motivations}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.2}Technical Challenges}{2}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.3}Previous Work}{2}}
 \citation{PiCubed}
 \citation{Soulver}
 \citation{ScrubCalc}
-\@writefile{toc}{\contentsline {section}{\numberline {1.2}Technical Challenges}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.3}Previous Work}{2}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.4}Summary}{3}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {2}Preparation}{5}}
 \@writefile{lof}{\addvspace {10\p@ }}
@@ -84,89 +84,80 @@
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {3.1}System Architecture}{23}}
+\citation{Halloway2009}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Back-End}{24}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces A model of \emph  {Nico's} management of mutable state; {\ttfamily  currently-dragging-circle} is omitted as it is not utilised by the back-end.\relax }}{25}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces The function {\ttfamily  new-circle} initialises a circle centred on the current location of the mouse cursor, generating a name {\ttfamily  "c}\emph  {n}{\ttfamily  "}, where \emph  {n} is the number of circles that have previously been created and with an initial expression of {\ttfamily  (\textbackslash ? \textbackslash ? \textbackslash ?)}.\relax }}{25}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces The {\ttfamily  eval-circle} source.\relax }}{27}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Interaction Handler}{29}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Decision tree to determine the appropriate response to a {\ttfamily  :mouse-clicked} event.\relax }}{31}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1.1}Management of Mutable State}{24}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces A model of \emph  {Nico's} management of mutable state; the sixth agent is omitted as it is not utilised by the back-end.\relax }}{25}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1.2}Circle Management}{25}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Circles are initialised on the current location of the mouse cursor, generating a name {\ttfamily  "c}\emph  {n}{\ttfamily  "}, where \emph  {n} is the number of circles that have previously been created, and with an initial expression of {\ttfamily  (\textbackslash ? \textbackslash ? \textbackslash ?)}.\relax }}{25}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1.3}Evaluation}{27}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1.4}Question Management}{27}}
 \citation{GuiFtw}
 \citation{Seesaw}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Three instances of the question text being highlighted as a corresponding circle is moused-over.\relax }}{34}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{34}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{34}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {}}}{34}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}User Interface}{35}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces A screenshot of a \emph  {Nico} session.\relax }}{35}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Interaction Handler}{28}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2.1}GUI Libraries}{28}}
+\citation{JavaApi}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2.2}Main Window}{29}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Three instances of the question text being highlighted as a corresponding circle is moused-over.\relax }}{30}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{30}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{30}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {}}}{30}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2.3}Control Scheme}{30}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Decision tree to determine the appropriate response to a mouse click event.\relax }}{31}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}User Interface}{32}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces A screenshot of a \emph  {Nico} session.\relax }}{33}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces The dialogue boxes used to modify existing circles in the application.\relax }}{34}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Editing a circle's operator}}}{34}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Editing a circle's argument}}}{34}}
 \citation{Lamberski1983}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces The dialogue boxes used to modify existing circles in the application.\relax }}{37}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Editing a circle's operator}}}{37}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Editing a circle's argument}}}{37}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces An example of where nesting-based colour-coding would be confusing. The circle containing (2+2) can be considered to be both one and two circles removed from the root circle.\relax }}{38}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.9}{\ignorespaces Examples of colour-coding in \emph  {Nico}.\relax }}{39}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Red text indicates that the answer submitted was incorrect}}}{39}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Green text indicates a correct answer; a dialogue box allows the user to progress to the next question when they are ready}}}{39}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {The circle's operator is highlighted when it is being edited}}}{39}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {An argument is highlighted when it is being edited}}}{39}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.0.1}First Revision}{39}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.0.2}Later Revisions}{40}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.0.3}Current Revision}{41}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.10}{\ignorespaces \emph  {Nico}'s user interface went through a number of revisions before reaching its current state.\relax }}{41}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Notation}{41}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.11}{\ignorespaces The notation used also went through a number of revisions before reaching its current state.\relax }}{41}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Summary}{42}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Evaluation}{43}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces An example of where nesting-based colour-coding would be confusing. The circle containing (2+2) can be considered to be both one and two circles removed from the root circle.\relax }}{35}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces Examples of colour-coding in \emph  {Nico}.\relax }}{36}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Red text indicates that the answer submitted was incorrect}}}{36}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Green text indicates a correct answer; a dialogue box allows the user to progress to the next question when they are ready}}}{36}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {The circle's operator is highlighted when it is being edited}}}{36}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {An argument is highlighted when it is being edited}}}{36}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.0.4}First Revision}{36}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.0.5}Later Revisions}{37}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.0.6}Current Revision}{38}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.9}{\ignorespaces \emph  {Nico}'s user interface went through a number of revisions before reaching its current state.\relax }}{38}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Notation}{38}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.10}{\ignorespaces The notation used also went through a number of revisions before reaching its current state.\relax }}{38}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Summary}{39}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Evaluation}{41}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Testing}{43}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces An example of a block of inline tests, taken from {\ttfamily  core.clj}, showing some tests to be run to test the implementation of {\ttfamily  detect-subs}.\relax }}{44}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}UI Evaluation}{44}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Notation Evaluation}{44}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}User Study}{44}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Testing}{41}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces An example of a block of inline tests, taken from {\ttfamily  core.clj}, showing some tests to be run to test the implementation of {\ttfamily  detect-subs}.\relax }}{42}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}UI Evaluation}{42}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Notation Evaluation}{42}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}User Study}{42}}
 \citation{Blackwell2000}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Pilot Study}{45}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Results}{46}}
-\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Table showing the time in milliseconds taken by each test subject to complete each question, by hand and using the software.\relax }}{47}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Time taken in milliseconds per subject to answer Question 1.\relax }}{48}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Time taken in milliseconds per subject to answer Question 2.\relax }}{48}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Time taken in milliseconds per subject to answer Question 3.\relax }}{49}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Time taken in milliseconds per subject to answer Question 4.\relax }}{49}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces Time taken in milliseconds per subject to answer Question 5.\relax }}{50}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces Time taken in milliseconds per subject to answer Question 6.\relax }}{50}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces Time taken in milliseconds per subject to answer Question 7.\relax }}{51}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.9}{\ignorespaces Time taken in milliseconds per subject to answer Question 8.\relax }}{51}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.10}{\ignorespaces Time taken in milliseconds per subject to answer Question 9.\relax }}{52}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.11}{\ignorespaces Time taken in milliseconds per subject to answer Question 10.\relax }}{52}}
-\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Table showing the results of the paired \emph  {t}-test comparing the distribution of times taken to answer each question by hand and using the software, using an \emph  {α} value of 0.05.\relax }}{53}}
-\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Table comparing the mark obtained for each question answered by hand (a correct answer scored 1, whereas an incorrect answer scored 0) to the number of attempts made to answer each question before submitting the correct answer in \emph  {Nico}.\relax }}{54}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2.1}Feedback}{55}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Goals}{55}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.5}Summary}{55}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Conclusions}{57}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Pilot Study}{43}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Results}{44}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Table showing the time in milliseconds taken by each test subject to complete each question, by hand and using the software.\relax }}{45}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Time taken in milliseconds per subject to answer Question 1.\relax }}{46}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Time taken in milliseconds per subject to answer Question 2.\relax }}{46}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Time taken in milliseconds per subject to answer Question 3.\relax }}{47}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Time taken in milliseconds per subject to answer Question 4.\relax }}{47}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces Time taken in milliseconds per subject to answer Question 5.\relax }}{48}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces Time taken in milliseconds per subject to answer Question 6.\relax }}{48}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces Time taken in milliseconds per subject to answer Question 7.\relax }}{49}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.9}{\ignorespaces Time taken in milliseconds per subject to answer Question 8.\relax }}{49}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.10}{\ignorespaces Time taken in milliseconds per subject to answer Question 9.\relax }}{50}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.11}{\ignorespaces Time taken in milliseconds per subject to answer Question 10.\relax }}{50}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Table showing the results of the paired \emph  {t}-test comparing the distribution of times taken to answer each question by hand and using the software, using an \emph  {α} value of 0.05.\relax }}{51}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Table comparing the mark obtained for each question answered by hand (a correct answer scored 1, whereas an incorrect answer scored 0) to the number of attempts made to answer each question before submitting the correct answer in \emph  {Nico}.\relax }}{52}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2.1}Feedback}{53}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Goals}{53}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Summary}{53}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Conclusions}{55}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibdata{refs}
-\bibcite{Abraham2010}{1}
-\bibcite{Blackwell1998}{2}
-\bibcite{Blackwell1999}{3}
-\bibcite{Blackwell2000}{4}
-\bibcite{Blackwell2003}{5}
-\bibcite{Green1996}{6}
-\bibcite{Kanner1968}{7}
-\bibcite{Lamberski1983}{8}
-\bibcite{PiCubed}{9}
-\bibcite{Soulver}{10}
-\bibcite{Myers1990}{11}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{59}}
-\bibcite{Seesaw}{12}
-\bibcite{Roca2004}{13}
-\bibcite{OvertoneEmacsD}{14}
-\bibcite{KillMath}{15}
-\bibcite{ScrubCalc}{16}
-\bibcite{GuiFtw}{17}
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Questionnaire}{61}}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{57}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Questionnaire}{57}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {chapter}{\numberline {B}Project Proposal}{73}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {B}Project Proposal}{69}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}

@@ -27,15 +27,8 @@ A.~F. Blackwell and T.~R.~G. Green.
 
 \bibitem{Green1996}
 T.~R.~G. Green and M.~Petre.
-\newblock Usability analysis of visual programming environments: a ‘cognitive
+\newblock Usability analysis of visual programming environments: a `cognitive
   dimensions’ framework, 1996.
-
-\bibitem{Kanner1968}
-J.~H. Kanner.
-\newblock {\em The instructional effectiveness of color in television: A review
-  of the evidence}.
-\newblock Department of the Army, Office of the Assistant Chief of Staff for
-  Communications-Electronics, Washington, D.C., 1968.
 
 \bibitem{Lamberski1983}
 R.~Lamberski and F.~Dwyer.
@@ -58,11 +51,6 @@ B.~A. Myers.
 \newblock Taxonomies of visual programming and program visualization.
 \newblock {\em Journal of Visual Languages and Computing}, 1:97--123, 1990.
 
-\bibitem{Seesaw}
-D.~Ray.
-\newblock daveray/seesaw.
-\newblock \url{https://github.com/daveray/seesaw}, 2011.
-
 \bibitem{Roca2004}
 A.~Roca and F.~Rousseau.
 \newblock Interactive multimedia and next generation networks.
@@ -84,10 +72,5 @@ B.~Victor.
 B.~Victor.
 \newblock {S}crubbing {C}alculator.
 \newblock \url{http://worrydream.com/ScrubbingCalculator/}, 2011.
-
-\bibitem{GuiFtw}
-S.~Witamborski.
-\newblock santamon/guiftw.
-\newblock \url{https://github.com/santamon/GUIFTW}, 2011.
 
 \end{thebibliography}

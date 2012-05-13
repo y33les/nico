@@ -1290,7 +1290,7 @@ Upon the detection of a mouse click, the software must determine the exact conte
 \begin{center}
 \includegraphics[width=\textwidth-4cm]{figs/nico_click.pdf}
 \end{center}
-\caption{Decision tree to determine the appropriate response to a mouse click event.}
+\caption{Decision tree to determine the appropriate response to a mouse clickf event.}
 \end{figure}
 \end{center}
 
@@ -1697,6 +1697,7 @@ source code.
 \section{UI Evaluation}
 % user testing
 % graphs
+% 300ms test - see below (under goals)
 
 \subsection{Notation Evaluation}
 % user testing
@@ -2020,18 +2021,39 @@ Q10 & 0 & 0 & 1 & 0 & 0 & 5 & 1 & 0\\
 \end{center}
 
 % pearson product-moment correlation coefficient (pearson's r)?
-% R: cor.test(x,y,alternative="g",method="p") to test if x, y have pos. corr. ("l" for neg.)
+% R: cor.test(x,y,alternative="g",method="p") to test if x, y have pos. corr. ("l" instead of "g" for neg.)
 % should maybe concat all marks columns and all wrongs columns, then test marks against wrongs for marks wrongs
 % or perhaps concat as above, then separate into the 1-markers and 0-markers
 % then again, might be better to just take a mean of the wrongs with that data
 % could even do this by question, e.g. if they got q1 wrong on paper they're more likely to get it wrong in the software, but getting q2 wrong might not mean shit
-lol
+The Pearson product-moment correlation coefficient \emph{r} of this data was calculated, comparing the concatenated `marks' data and the concatenated `tries' data (two series of 80 elements each).  The value obtained for \emph{r} was -0.2278926, indicating a weak negative correlation between the mark obtained and the number of wrong submissions using \emph{Nico}.  To determine the significance of this result, the \emph{r} value is compared to a critical value taken from a table, in this case from Fisher, who gives, for a two-tailed test at the 0.05 level and for 80 samples, a critical value of 0.224. \cite{Fisher1972}  Hence, the calculated \emph{r} value shows a statistically-significant, negative correlation between the marks obtained for a handwritten answer and the number of wrong answers provided using the software.
 
 \subsubsection{Feedback}
 % feedback innit
+% TODO: this section
 
 \section{Goals}
 % did it succeed?
+The criterion for the success of this project, as quoted at the beginning of Chapter 3, was
+\begin{center}
+\parbox[c]{\textwidth-2cm}{
+\small
+``[to be] able to generate an abstract syntax tree in Clojure from the graphical language and evaluate such a tree, passing the results back to the graphical application and displaying this to user in less than 300ms.''
+}
+\end{center}
+% TODO: time render, log system time in ms before/after render
+In this regard, \emph{Nico} has met and far exceeded expectations.  A functioning application and accompanying visual metaphor have been developed that allows the user to express a calculation graphically.  From this, the application is able to generate a valid Clojure S-expression -- the tree -- that is able to be passed around and evaluated.  The application takes considerably less than 300ms to interpret the notation and update the user-facing display accordingly.
+
+As an extension, a user study was conducted to assess the suitability of the software to complement traditional methods of mathematical education in the target audience of Year 5 pupils.  The results of this study can be summarised thus:
+\begin{itemize}
+\item There is a statistically-significant difference between the time taken to solve questions by hand and by using the software
+\begin{itemize}
+\item For simple questions that are easily solved mentally, \emph{Nico} increases the solution time
+\item For more complex questions involving large numbers and nested calculations, \emph{Nico} decreases the solution time
+\end{itemize}
+\item There is a statistically-significant negative correlation between whether a question is answered correctlyy or incorrectly by hand and the number of wrong attempts at an answer before succeeding using the software
+\item Whatever the Feedback section said
+\end{itemize}
 
 \section{Summary}
 

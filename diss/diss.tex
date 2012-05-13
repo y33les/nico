@@ -1699,6 +1699,32 @@ source code.
 % user testing
 % graphs
 % 300ms test - see below (under goals)
+% maybe time render too?
+
+The time taken to generate an S-expression, evaluate it and display the result to the user was required by the project rpoposal to be less than 300ms.  To test this, a \emph{Nico} session was completed, using the same questions as in the user study (below), but with a modified version of the function \verb¬update-answer¬, which generates an S-expression from the user's diagram, evaluates it and displays the result to the user.  The modified version of \verb¬update-answer¬ is shown in \emph{Fig. x.y}, below.
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\begin{minipage}{\textwidth-2cm}
+\begin{Verbatim}[fontsize=\small,numbers=left]
+(defn update-answer
+  "Update the text in the :answer field to the current value of the diagram."
+  []
+  (do
+  (spit logfile (str (system-time) ",") :append true) ;; log begin time
+  (config! (select main-window [:#answer])
+           :text (cond (empty? @used-circles) (str 0)
+                       :else (str (eval (eval-circle (find-root))))))
+  (spit logfile (str (system-time) "\n") :append true)));; log end time
+\end{Verbatim}
+\end{minipage}
+\end{center}
+\caption{The modified version of {\ttfamily update-answer} used to time diagram evaluation.}
+\end{figure}
+\end{center}
+
+A plot of the time taken for each call to \verb¬update-answer¬ to complete over time is shown below. % TODO: this
 
 \subsection{Notation Evaluation}
 % user testing
@@ -2149,6 +2175,8 @@ Users responded to the questions in this section with neutral-to-negative feedba
 
 \mu = 0.1250000
 
+This section was met with neutral-to-positive feedback, with Question 2.4.1 receiving more positive feedback and Question 2.4.2 receiving neutral-to-negative reponses.
+
 \paragraph{Role Expressiveness}\hfill
 
 \mu = 0.5416667
@@ -2183,6 +2211,7 @@ The criterion for the success of this project, as quoted at the beginning of Cha
 }
 \end{center}
 % TODO: time render, log system time in ms before/after render
+% by which of course i mean update-answer
 In this regard, \emph{Nico} has met and far exceeded expectations.  A functioning application and accompanying visual metaphor have been developed that allows the user to express a calculation graphically.  From this, the application is able to generate a valid Clojure S-expression -- the tree -- that is able to be passed around and evaluated.  The application takes considerably less than 300ms to interpret the notation and update the user-facing display accordingly.
 
 As an extension, a user study was conducted to assess the suitability of the software to complement traditional methods of mathematical education in the target audience of Year 5 pupils.  The results of this study can be summarised thus:

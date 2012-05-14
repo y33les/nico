@@ -11,18 +11,19 @@ Warning--entry type for "Blackwell1999" isn't style-file defined
 --line 54 of file refs.bib
 Warning--entry type for "Green1996" isn't style-file defined
 --line 76 of file refs.bib
-Illegal end of database file---line 135 of file refs.bib
- : HOWPUBLISHED = "\url{http://docs.oracle.com/javase/7/docs/api/java/awt/event/MouseEvent.html}"}
- :                                                                                                
+Illegal end of database file---line 150 of file refs.bib
+ : YEAR = "1990"}
+ :               
 I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "Halloway2009"
 Warning--I didn't find a database entry for "GuiFtw"
 Warning--I didn't find a database entry for "Seesaw"
 Warning--I didn't find a database entry for "JavaApi"
+Warning--I didn't find a database entry for "Fisher1990"
 Warning--empty year in Lamberski1983
 You've used 14 entries,
             2118 wiz_defined-function locations,
-            584 strings with 5920 characters,
+            586 strings with 5940 characters,
 and the built_in function-call counts, 3504 in all, are:
 = -- 332
 > -- 146

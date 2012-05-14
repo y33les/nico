@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (TeX Live 2012/dev/Arch Linux) (format=xelatex 2012.3.31)  11 MAY 2012 22:35
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (TeX Live 2012/dev/Arch Linux) (format=xelatex 2012.3.31)  14 MAY 2012 19:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -198,8 +198,8 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 \c@FancyVerbLine=\count104
 \FV@StepNumber=\count105
 \FV@OutFile=\write3
-) (/usr/share/texmf-dist/tex/latex/graphics/lscape.sty
-Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+) (./multirow.sty
+\bigstrutjot=\dimen125
 )
 (/usr/share/texmf-dist/tex/latex/fontspec/fontspec.sty
 Package: fontspec 2011/09/18 v2.2a Advanced font selection for XeLaTeX/LuaLaTeX
@@ -276,11 +276,11 @@ Package: l3file 2011/10/09 v2896 L3 Experimental file operations
 )
 (/usr/share/texmf-dist/tex/latex/l3kernel/l3skip.sty
 Package: l3skip 2011/11/14 v2959 L3 Experimental dimensions and skips
-\l_tmpa_dim=\dimen125
-\l_tmpb_dim=\dimen126
-\l_tmpc_dim=\dimen127
-\g_tmpa_dim=\dimen128
-\g_tmpb_dim=\dimen129
+\l_tmpa_dim=\dimen126
+\l_tmpb_dim=\dimen127
+\l_tmpc_dim=\dimen128
+\g_tmpa_dim=\dimen129
+\g_tmpb_dim=\dimen130
 \l_tmpa_skip=\skip52
 \l_tmpb_skip=\skip53
 \l_tmpc_skip=\skip54
@@ -346,52 +346,52 @@ Package: l3fp 2011/09/26 v2857 L3 Experimental floating-point operations
 \l_fp_trig_sign_int=\count175
 \l_fp_trig_decimal_int=\count176
 \l_fp_trig_extended_int=\count177
-\l_fp_tmp_dim=\dimen130
+\l_fp_tmp_dim=\dimen131
 \l_fp_tmp_skip=\skip57
 )
 (/usr/share/texmf-dist/tex/latex/l3kernel/l3box.sty
 Package: l3box 2011/11/15 v2960 L3 Experimental boxes
 \l_tmpb_box=\box34
-\l_box_top_dim=\dimen131
-\l_box_bottom_dim=\dimen132
-\l_box_left_dim=\dimen133
-\l_box_right_dim=\dimen134
-\l_box_top_new_dim=\dimen135
-\l_box_bottom_new_dim=\dimen136
-\l_box_left_new_dim=\dimen137
-\l_box_right_new_dim=\dimen138
+\l_box_top_dim=\dimen132
+\l_box_bottom_dim=\dimen133
+\l_box_left_dim=\dimen134
+\l_box_right_dim=\dimen135
+\l_box_top_new_dim=\dimen136
+\l_box_bottom_new_dim=\dimen137
+\l_box_left_new_dim=\dimen138
+\l_box_right_new_dim=\dimen139
 \l_box_tmp_box=\box35
 )
 (/usr/share/texmf-dist/tex/latex/l3kernel/l3coffins.sty
 Package: l3coffins 2011/11/15 v2963 L3 Experimental coffin code layer
 \l_coffin_tmp_box=\box36
-\l_coffin_tmp_dim=\dimen139
-\l_coffin_offset_x_dim=\dimen140
-\l_coffin_offset_y_dim=\dimen141
-\l_coffin_x_dim=\dimen142
-\l_coffin_y_dim=\dimen143
-\l_coffin_x_prime_dim=\dimen144
-\l_coffin_y_prime_dim=\dimen145
-\l_coffin_Depth_dim=\dimen146
-\l_coffin_Height_dim=\dimen147
-\l_coffin_TotalHeight_dim=\dimen148
-\l_coffin_Width_dim=\dimen149
+\l_coffin_tmp_dim=\dimen140
+\l_coffin_offset_x_dim=\dimen141
+\l_coffin_offset_y_dim=\dimen142
+\l_coffin_x_dim=\dimen143
+\l_coffin_y_dim=\dimen144
+\l_coffin_x_prime_dim=\dimen145
+\l_coffin_y_prime_dim=\dimen146
+\l_coffin_Depth_dim=\dimen147
+\l_coffin_Height_dim=\dimen148
+\l_coffin_TotalHeight_dim=\dimen149
+\l_coffin_Width_dim=\dimen150
 \c_empty_coffin=\box37
 \l_coffin_aligned_coffin=\box38
 \l_coffin_aligned_internal_coffin=\box39
-\l_coffin_bounding_shift_dim=\dimen150
-\l_coffin_left_corner_dim=\dimen151
-\l_coffin_right_corner_dim=\dimen152
-\l_coffin_bottom_corner_dim=\dimen153
-\l_coffin_top_corner_dim=\dimen154
-\l_coffin_scaled_total_height_dim=\dimen155
-\l_coffin_scaled_width_dim=\dimen156
+\l_coffin_bounding_shift_dim=\dimen151
+\l_coffin_left_corner_dim=\dimen152
+\l_coffin_right_corner_dim=\dimen153
+\l_coffin_bottom_corner_dim=\dimen154
+\l_coffin_top_corner_dim=\dimen155
+\l_coffin_scaled_total_height_dim=\dimen156
+\l_coffin_scaled_width_dim=\dimen157
 \l_coffin_display_coffin=\box40
 \l_coffin_display_coord_coffin=\box41
 \l_coffin_display_pole_coffin=\box42
-\l_coffin_display_offset_dim=\dimen157
-\l_coffin_display_x_dim=\dimen158
-\l_coffin_display_y_dim=\dimen159
+\l_coffin_display_offset_dim=\dimen158
+\l_coffin_display_x_dim=\dimen159
+\l_coffin_display_y_dim=\dimen160
 )
 (/usr/share/texmf-dist/tex/latex/l3kernel/l3color.sty
 Package: l3color 2011/09/07 v2776 L3 Experimental colour support
@@ -412,9 +412,9 @@ Package: xparse 2011/11/19 v2966 L3 Experimental document command parser
 \l_fontspec_script_int=\count185
 \l_fontspec_language_int=\count186
 \l_fontspec_strnum_int=\count187
-\l_fontspec_tmpa_dim=\dimen160
-\l_fontspec_tmpb_dim=\dimen161
-\l_fontspec_tmpc_dim=\dimen162
+\l_fontspec_tmpa_dim=\dimen161
+\l_fontspec_tmpb_dim=\dimen162
+\l_fontspec_tmpc_dim=\dimen163
 Variant \tl_gset:cV already defined; not changing it on line 66
 
 (/usr/share/texmf-dist/tex/latex/fontspec/fontspec-patches.sty
@@ -625,7 +625,7 @@ LaTeX Info: Redefining \upshape on input line 1893.
 . O/BI/ICU:script=latn;language=DFLT;mapping=tex-text;"
 .................................................
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 30.
+(Font)              scaled to size 10.0pt on input line 31.
 .................................................
 . fontspec info: "no-scripts"
 . 
@@ -832,39 +832,39 @@ LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/n' will be
 (/usr/share/texmf-dist/tex/generic/epsf/epsf.tex
 This is `epsf.tex' v2.7.4 <14 February 2011>
 \epsffilein=\read4
-\epsfframemargin=\dimen163
-\epsfframethickness=\dimen164
-\epsfrsize=\dimen165
-\epsftmp=\dimen166
-\epsftsize=\dimen167
-\epsfxsize=\dimen168
-\epsfysize=\dimen169
-\pspoints=\dimen170
+\epsfframemargin=\dimen164
+\epsfframethickness=\dimen165
+\epsfrsize=\dimen166
+\epsftmp=\dimen167
+\epsftsize=\dimen168
+\epsfxsize=\dimen169
+\epsfysize=\dimen170
+\pspoints=\dimen171
 ) (./diss.aux)
 \openout1 = `diss.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 65.
-LaTeX Font Info:    Try loading font information for T3+cmr on input line 65.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 66.
+LaTeX Font Info:    Try loading font information for T3+cmr on input line 66.
  (/usr/share/texmf-dist/tex/latex/tipa/t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
-LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    ... okay on input line 66.
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/n' will be
-(Font)              scaled to size 12.0pt on input line 65.
+(Font)              scaled to size 12.0pt on input line 66.
 \AtBeginShipoutBox=\box43
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
@@ -877,123 +877,123 @@ Package caption Info: End \AtBeginDocument code.
 .................................................
 \symlegacymaths=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 65.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 65.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 65.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 65.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 65.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 65.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 65.
-LaTeX Font Info:    Redeclaring math accent \check on input line 65.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 65.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 65.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 65.
-LaTeX Font Info:    Redeclaring math symbol \colon on input line 65.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 65.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 65.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 65.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 65.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 65.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 65.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 65.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 65.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 65.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 65.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 65.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 65.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 65.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 66.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 66.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 66.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 66.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 66.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 66.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 66.
+LaTeX Font Info:    Redeclaring math accent \check on input line 66.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 66.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 66.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 66.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 66.
 LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
-(Font)              `operators' in the math version `normal' on input line 65.
+(Font)              `operators' in the math version `normal' on input line 66.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> EU1/LinuxLibertineO(0)/m/n on input lin
-e 65.
+e 66.
 LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
-(Font)              `operators' in the math version `bold' on input line 65.
+(Font)              `operators' in the math version `bold' on input line 66.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/cmr/bx/n --> EU1/LinuxLibertineO(0)/m/n on input li
-ne 65.
+ne 66.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  EU1/LinuxLibertineO(0)/m/n --> EU1/LinuxLibertineO(0)/m
-/n on input line 65.
+/n on input line 66.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
 (Font)                  EU1/LinuxLibertineO(0)/m/n --> EU1/LinuxLibertineO(0)/m
-/n on input line 65.
+/n on input line 66.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 (Font)                  OT1/cmr/m/it --> EU1/LinuxLibertineO(0)/m/it on input l
-ine 65.
+ine 66.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
 (Font)                  OT1/cmr/bx/n --> EU1/LinuxLibertineO(0)/bx/n on input l
-ine 65.
+ine 66.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> EU1/RobotoBold(0)/m/n on input line 65
+(Font)                  OT1/cmss/m/n --> EU1/RobotoBold(0)/m/n on input line 66
 .
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> EU1/Monaco(0)/m/n on input line 65.
+(Font)                  OT1/cmtt/m/n --> EU1/Monaco(0)/m/n on input line 66.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  EU1/LinuxLibertineO(0)/m/n --> EU1/LinuxLibertineO(0)/b
-x/n on input line 65.
+x/n on input line 66.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
 (Font)                  EU1/LinuxLibertineO(0)/m/n --> EU1/LinuxLibertineO(0)/b
-x/n on input line 65.
+x/n on input line 66.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> EU1/LinuxLibertineO(0)/bx/it on input
- line 65.
+ line 66.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
 (Font)                  OT1/cmss/bx/n --> EU1/RobotoBold(0)/bx/n on input line 
-65.
+66.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> EU1/Monaco(0)/bx/n on input line 65.
+(Font)                  OT1/cmtt/m/n --> EU1/Monaco(0)/bx/n on input line 66.
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/n' will be
-(Font)              scaled to size 17.28pt on input line 77.
+(Font)              scaled to size 17.28pt on input line 78.
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/n' will be
-(Font)              scaled to size 20.74pt on input line 81.
-LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/n' will be
 (Font)              scaled to size 20.74pt on input line 82.
+LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/n' will be
+(Font)              scaled to size 20.74pt on input line 83.
 
 
 LaTeX Font Warning: Font shape `EU1/RobotoBold(1)/bx/n' undefined
-(Font)              using `EU1/RobotoBold(1)/m/n' instead on input line 82.
+(Font)              using `EU1/RobotoBold(1)/m/n' instead on input line 83.
 
 LaTeX Font Info:    Font shape `EU1/RobotoBold(1)/m/n' will be
-(Font)              scaled to size 25.925pt on input line 82.
+(Font)              scaled to size 25.925pt on input line 83.
 [1
 
 ] [2
 
 ]
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/n' will be
-(Font)              scaled to size 24.88pt on input line 103.
+(Font)              scaled to size 24.88pt on input line 104.
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/n' will be
-(Font)              scaled to size 24.88pt on input line 103.
+(Font)              scaled to size 24.88pt on input line 104.
 
 
 LaTeX Font Warning: Font shape `EU1/RobotoBold(0)/bx/n' undefined
-(Font)              using `EU1/RobotoBold(0)/m/n' instead on input line 103.
+(Font)              using `EU1/RobotoBold(0)/m/n' instead on input line 104.
 
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 105.
+(Font)              scaled to size 14.4pt on input line 106.
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 106.
+(Font)              scaled to size 7.0pt on input line 107.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 106.
+(Font)              <14.4> on input line 107.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 106.
+(Font)              <7> on input line 107.
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/n' will be
-(Font)              scaled to size 14.4pt on input line 107.
+(Font)              scaled to size 14.4pt on input line 108.
 LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 11.80809pt on input line 114.
+(Font)              scaled to size 11.80809pt on input line 115.
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 120.
+(Font)              scaled to size 5.0pt on input line 121.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 120.
+(Font)              <5> on input line 121.
 LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 8.20007pt on input line 120.
+(Font)              scaled to size 8.20007pt on input line 121.
 LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 5.74005pt on input line 120.
+(Font)              scaled to size 5.74005pt on input line 121.
 LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 4.10004pt on input line 120.
+(Font)              scaled to size 4.10004pt on input line 121.
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/n' will be
-(Font)              scaled to size 17.28pt on input line 124.
+(Font)              scaled to size 17.28pt on input line 125.
 [1
 
 ] [2] [3] [4
@@ -1042,17 +1042,17 @@ Chapter 1.
 
 LaTeX Font Warning: Font shape `EU1/LinuxLibertineO(0)/m/sl' undefined
 (Font)              using `EU1/LinuxLibertineO(0)/m/n' instead on input line 30
-0.
+1.
 
 [2]
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/sl' will be
-(Font)              scaled to size 12.0pt on input line 337.
+(Font)              scaled to size 12.0pt on input line 338.
  [3] [4
 
 ]
 Chapter 2.
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/n' will be
-(Font)              scaled to size 10.95pt on input line 376.
+(Font)              scaled to size 10.95pt on input line 377.
 [5
 
 ] [6] [7]
@@ -1094,7 +1094,7 @@ File: figs/mockups/sketches/12/12c.jpg Graphic file (type QTm)
 File: figs/mockups/sketches/12/12f.jpg Graphic file (type QTm)
 
 <use  "figs/mockups/sketches/12/12f.jpg" >
-Overfull \hbox (55.30531pt too wide) in paragraph at lines 625--640
+Overfull \hbox (55.30531pt too wide) in paragraph at lines 626--641
  [][][][] 
  []
 
@@ -1155,17 +1155,17 @@ File: figs/mockups/sketches/12/12gi.jpg Graphic file (type QTm)
 
 <use  "figs/mockups/sketches/12/12gi.jpg" >
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <24.88> on input line 764.
+(Font)              <24.88> on input line 765.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <20.74> on input line 764.
+(Font)              <20.74> on input line 765.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <17.28> on input line 764.
+(Font)              <17.28> on input line 765.
 LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 20.40178pt on input line 764.
+(Font)              scaled to size 20.40178pt on input line 765.
 LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 17.00694pt on input line 764.
+(Font)              scaled to size 17.00694pt on input line 765.
 LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 14.16972pt on input line 764.
+(Font)              scaled to size 14.16972pt on input line 765.
 File: figs/mockups/sketches/12/12gii.jpg Graphic file (type QTm)
 
 <use  "figs/mockups/sketches/12/12gii.jpg" >
@@ -1185,7 +1185,7 @@ Overfull \vbox (16.12376pt too high) has occurred while \output is active []
 File: figs/mockups/flowgraph/img/fg-000.jpg Graphic file (type QTm)
  <use  "figs/mockups/flowgraph/img/fg-000.jpg" > [13]
 LaTeX Font Info:    Font shape `EU1/RobotoRegular(0)/m/n' will be
-(Font)              scaled to size 9.84009pt on input line 835.
+(Font)              scaled to size 9.84009pt on input line 836.
  [14] [15] [16]
 File: figs/mockups/sierp/sierp_mockup_full.png Graphic file (type QTm)
 
@@ -1199,29 +1199,29 @@ Chapter 3.
 
 ]
 
-LaTeX Warning: Citation `Halloway2009' on page 24 undefined on input line 1182.
+LaTeX Warning: Citation `Halloway2009' on page 24 undefined on input line 1183.
 
 
 File: figs/nico_backend.pdf Graphic file (type QTm)
 <use  "figs/nico_backend.pdf" >
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/it' will be
-(Font)              scaled to size 10.0pt on input line 1190.
+(Font)              scaled to size 10.0pt on input line 1191.
  [24]
 LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 8.97906pt on input line 1203.
+(Font)              scaled to size 8.97906pt on input line 1204.
  [25] [26] [27]
 
-LaTeX Warning: Citation `GuiFtw' on page 28 undefined on input line 1259.
+LaTeX Warning: Citation `GuiFtw' on page 28 undefined on input line 1260.
 
 
-LaTeX Warning: Citation `Seesaw' on page 28 undefined on input line 1263.
+LaTeX Warning: Citation `Seesaw' on page 28 undefined on input line 1264.
 
 [28]
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/n' will be
-(Font)              scaled to size 10.0pt on input line 1269.
+(Font)              scaled to size 10.0pt on input line 1270.
 
 
-LaTeX Warning: Citation `JavaApi' on page 29 undefined on input line 1269.
+LaTeX Warning: Citation `JavaApi' on page 29 undefined on input line 1270.
 
 File: figs/nico_hi1.png Graphic file (type QTm)
 <use  "figs/nico_hi1.png" >
@@ -1250,68 +1250,102 @@ File: figs/nico_right.png Graphic file (type QTm)
 File: figs/nico_op_hi.png Graphic file (type QTm)
 
 <use  "figs/nico_op_hi.png" >
-Underfull \hbox (badness 1117) in paragraph at lines 1463--1463
+Underfull \hbox (badness 1117) in paragraph at lines 1464--1464
 []\EU1/LinuxLibertineO(0)/m/n/10 (c) |The circle’s operator is high-
  []
 
 File: figs/nico_arg_hi.png Graphic file (type QTm)
 <use  "figs/nico_arg_hi.png" >
-Underfull \hbox (badness 3872) in paragraph at lines 1466--1466
+Underfull \hbox (badness 3872) in paragraph at lines 1467--1467
 []\EU1/LinuxLibertineO(0)/m/n/10 (d) |An argument is highlighted
  []
 
 [35] [36] [37]
 LaTeX Font Info:    Font shape `EU1/RobotoRegular(0)/m/n' will be
-(Font)              scaled to size 20.40178pt on input line 1534.
+(Font)              scaled to size 20.40178pt on input line 1535.
  [38] [39] [40
 
 ]
 Chapter 4.
 [41
 
-] [42] [43]
-Overfull \hbox (27.71332pt too wide) in paragraph at lines 1787--1818
+] [42]
+File: figs/graphs/update_times_full.png Graphic file (type QTm)
+ <use  "figs/graphs/update_times_full.png" >
+File: figs/graphs/update_times_cut30.png Graphic file (type QTm)
+
+<use  "figs/graphs/update_times_cut30.png" > [43]
+Overfull \vbox (170.88045pt too high) has occurred while \output is active []
+
+
+[44] [45] [46]
+Overfull \hbox (27.71332pt too wide) in paragraph at lines 1836--1867
  [] 
  []
 
-[44]
-File: figs/graphs/q1.png Graphic file (type QTm)
- <use  "figs/graphs/q1.png" > [45]
-File: figs/graphs/q2.png Graphic file (type QTm)
- <use  "figs/graphs/q2.png" >
+[47]
 File: figs/graphs/q3.png Graphic file (type QTm)
-
-<use  "figs/graphs/q3.png" > [46]
-File: figs/graphs/q4.png Graphic file (type QTm)
- <use  "figs/graphs/q4.png" >
-File: figs/graphs/q5.png Graphic file (type QTm)
-
-<use  "figs/graphs/q5.png" > [47]
+ <use  "figs/graphs/q3.png" > [48]
 File: figs/graphs/q6.png Graphic file (type QTm)
  <use  "figs/graphs/q6.png" >
+Underfull \hbox (badness 10000) in paragraph at lines 1889--1889
+[]\EU1/LinuxLibertineO(0)/m/n/10 Figure 4.5: |Time taken in milliseconds per pa
+rticipant to answer Question 6:
+ []
+
+[49]
 File: figs/graphs/q7.png Graphic file (type QTm)
-
-<use  "figs/graphs/q7.png" > [48]
-File: figs/graphs/q8.png Graphic file (type QTm)
- <use  "figs/graphs/q8.png" >
+ <use  "figs/graphs/q7.png" > [50]
 File: figs/graphs/q9.png Graphic file (type QTm)
+ <use  "figs/graphs/q9.png" > [51]
+[52] [53] [54]
 
-<use  "figs/graphs/q9.png" > [49]
-File: figs/graphs/q10.png Graphic file (type QTm)
- <use  "figs/graphs/q10.png" > [50] [51]
-[52] [53] [54
+LaTeX Warning: Citation `Fisher1990' on page 55 undefined on input line 2028.
+
+[55] [56]
+File: figs/graphs/stacked-scores.png Graphic file (type QTm)
+ <use  "figs/graphs/stacked-scores.png" > [57] [58] [59] [60] [61]
+[62] [63] [64
 
 ]
 Chapter 5.
-[55
+[65
 
-] [56
+] [66
+
+] (./diss.bbl [67
+
+]) [68]
+Appendix A.
+File: figs/graphs/q1.png Graphic file (type QTm)
+<use  "figs/graphs/q1.png" >
+File: figs/graphs/q2.png Graphic file (type QTm)
+ <use  "figs/graphs/q2.png" > [69
+
 
 ]
-No file diss.bbl.
-Appendix A.
-[57
+File: figs/graphs/q3.png Graphic file (type QTm)
 
+<use  "figs/graphs/q3.png" > [70]
+File: figs/graphs/q4.png Graphic file (type QTm)
+ <use  "figs/graphs/q4.png" > [71]
+File: figs/graphs/q5.png Graphic file (type QTm)
+
+<use  "figs/graphs/q5.png" > [72]
+File: figs/graphs/q6.png Graphic file (type QTm)
+ <use  "figs/graphs/q6.png" > [73]
+File: figs/graphs/q7.png Graphic file (type QTm)
+
+<use  "figs/graphs/q7.png" > [74]
+File: figs/graphs/q8.png Graphic file (type QTm)
+ <use  "figs/graphs/q8.png" > [75]
+File: figs/graphs/q9.png Graphic file (type QTm)
+
+<use  "figs/graphs/q9.png" > [76]
+File: figs/graphs/q10.png Graphic file (type QTm)
+ <use  "figs/graphs/q10.png" > [77] [78]
+Appendix B.
+[79
 
 ]
 File: qs.pdf Graphic file (type QTm)
@@ -1330,79 +1364,79 @@ File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page1>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page1> [58]
+<use  "qs.pdf"  page1> [80]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page2>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page2>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page2> [59]
+<use  "qs.pdf"  page2> [81]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page3>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page3>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page3> [60]
+<use  "qs.pdf"  page3> [82]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page4>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page4>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page4> [61]
+<use  "qs.pdf"  page4> [83]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page5>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page5>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page5> [62]
+<use  "qs.pdf"  page5> [84]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page6>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page6>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page6> [63]
+<use  "qs.pdf"  page6> [85]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page7>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page7>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page7> [64]
+<use  "qs.pdf"  page7> [86]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page8>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page8>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page8> [65]
+<use  "qs.pdf"  page8> [87]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page9>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page9>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page9> [66]
+<use  "qs.pdf"  page9> [88]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page10>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page10>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page10> [67]
+<use  "qs.pdf"  page10> [89]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page11>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page11>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page11> [68]
-Appendix B.
-[69
+<use  "qs.pdf"  page11> [90]
+Appendix C.
+[91
 
 
 ]
@@ -1422,7 +1456,7 @@ File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page1>
 File: proposal_rev04.pdf Graphic file (type QTm)
- <use  "proposal_rev04.pdf"  page1> [70]
+ <use  "proposal_rev04.pdf"  page1> [92]
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page2>
@@ -1430,14 +1464,14 @@ File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page2>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
-<use  "proposal_rev04.pdf"  page2> [71]
+<use  "proposal_rev04.pdf"  page2> [93]
 File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page3>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page3>
 File: proposal_rev04.pdf Graphic file (type QTm)
- <use  "proposal_rev04.pdf"  page3> [72]
+ <use  "proposal_rev04.pdf"  page3> [94]
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page4>
@@ -1445,14 +1479,14 @@ File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page4>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
-<use  "proposal_rev04.pdf"  page4> [73]
+<use  "proposal_rev04.pdf"  page4> [95]
 File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page5>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page5>
 File: proposal_rev04.pdf Graphic file (type QTm)
- <use  "proposal_rev04.pdf"  page5> [74]
+ <use  "proposal_rev04.pdf"  page5> [96]
 (./diss.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1462,12 +1496,12 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 16741 strings out of 494146
- 347149 string characters out of 3157637
- 379625 words of memory out of 3000000
- 19679 multiletter control sequences out of 15000+200000
+ 16751 strings out of 494146
+ 347283 string characters out of 3157637
+ 384667 words of memory out of 3000000
+ 19684 multiletter control sequences out of 15000+200000
  11318 words of font info for 91 fonts, out of 3000000 for 9000
  1018 hyphenation exceptions out of 8191
  44i,18n,48p,1802b,498s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on diss.pdf (86 pages).
+Output written on diss.pdf (108 pages).

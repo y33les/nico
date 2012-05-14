@@ -1730,13 +1730,13 @@ A plot of the time taken for each call to \verb¬update-answer¬ to complete ove
 \begin{figure}[H]
 \begin{center}
 \subfloat[]{
-\includegraphics[width=\textwidth/2-2cm]{figs/graphs/update_times_full.png}
-}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/update_times_full.png}
+}\\
 \subfloat[]{
-\includegraphics[width=\textwidth/2-2cm]{figs/graphs/update_times_cut30.png}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/update_times_cut30.png}
 }
 \end{center}
-\caption{Plot and detail of the time taken for {\ttfamily update-answer} to complete, over the course of one session.}
+\caption{a) Plot and b) detail of the time taken for {\ttfamily update-answer} to complete, over the course of one session.}
 \end{figure}
 \end{center}
 
@@ -1905,9 +1905,9 @@ This data can be visualised using a series of plots, as below.  The complete set
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth-2cm]{figs/graphs/q9.png}
-\label{fig:PlotQ9}
 \end{center}
 \caption{Time taken in milliseconds per participant to answer Question 9: 120÷((2×10)+5+5).}
+\label{fig:PlotQ9}
 \end{figure}
 \end{center}
 
@@ -1925,19 +1925,19 @@ question) was deemed to be too small for such a test to have meaningful results.
 \begin{center}
 \begin{table}[H]
 \begin{center}
-\begin{tabular}{|r|r|r|r|r|}
+\begin{tabular}{|r|r|r|r|}
 \hline
-Question & \emph{t} & \emph{df} & \emph{p} & Significant?\\ \hline \hline
-Q1 & -8.0204 & 7 & 0.00008968 & Yes\\ \hline
-Q2 & -8.0493 & 7 & 0.00008764 & Yes\\ \hline
-Q3 & -8.9296 & 7 & 0.00004489 & Yes\\ \hline
-Q4 & -2.9592 & 7 & 0.02113 & Yes\\ \hline
-Q5 & -5.288 & 7 &  0.001138 & Yes\\ \hline
-Q6 & -1.3149 & 7 & 0.2300 & No\\ \hline
-Q7 & 2.3688 & 7 &  0.0497 & Yes\\ \hline
-Q8 & 3.1 & 7 & 0.01732 & Yes\\ \hline
-Q9 & 4.0293 & 7 & 0.005 & Yes\\ \hline
-Q10 & 2.1298 & 7 & 0.0707 & No\\
+Question & \emph{t} & \emph{p} & Significant?\\ \hline \hline
+Q1 & -8.0204 & 0.00008968 & Yes\\ \hline
+Q2 & -8.0493 & 0.00008764 & Yes\\ \hline
+Q3 & -8.9296 & 0.00004489 & Yes\\ \hline
+Q4 & -2.9592 & 0.02113 & Yes\\ \hline
+Q5 & -5.288 & 0.001138 & Yes\\ \hline
+Q6 & -1.3149 & 0.2300 & No\\ \hline
+Q7 & 2.3688 & 0.0497 & Yes\\ \hline
+Q8 & 3.1 & 0.01732 & Yes\\ \hline
+Q9 & 4.0293 & 0.005 & Yes\\ \hline
+Q10 & 2.1298 & 0.0707 & No\\
 \hline
 \end{tabular}
 \end{center}
@@ -1975,7 +1975,7 @@ end,  this question is not especially challenging to solve by hand, and as such
 the lack of a significant difference between using the software and not doing
 so is not entirely unexpected.  The simple subcalculations are easier to
 perform by hand, and combining them is faster using \emph{Nico}.  Indeed, this
-conclusion is borne out by the plots shown above: \emph{Fig. ~\ref{fig:PlotQ3}} shows a clear advantage to calculating a simple question by hand.  By Question 6, (\emph{Fig. ~\ref{fig:PlotQ6}}), there seems to be no clear advantage to using either method, and for Questions 7 and 9 (\emph{Fig. ~\ref{fig:PlotQ7}} and \emph{Fig. ~\ref{fig:PlotQ9}}), which are `complex' questions as described above, \emph{Nico} is shown to be a faster means of calculation.  This is especially the case with Question 7.
+conclusion is borne out by the plots shown above: \emph{Fig. \ref{fig:PlotQ3}} shows a clear advantage to calculating a simple question by hand.  By Question 6, (\emph{Fig. \ref{fig:PlotQ6}}), there seems to be no clear advantage to using either method, and for Questions 7 and 9 (\emph{Fig. \ref{fig:PlotQ7}} and \emph{Fig. \ref{fig:PlotQ9}}), which are `complex' questions as described above, \emph{Nico} is shown to be a faster means of calculation.  This is especially the case with Question 7.
 
 Data were also collected regarding how well the questions were answered by each
 user, which follow.
@@ -2036,10 +2036,10 @@ The final section of the questionnaire constituted a series of questions adapted
 \begin{center}
 \begin{table}[H]
 \begin{center}
-\begin{tabluar}{|r||r|r|r|r||r|r|r|r||r|r|r|}
+\begin{tabular}{|r||r|r|r|r||r|r|r|r||r|r|r|}
 \cline{2-12}
- & \multicolumn{4}{|c|}{Group 1} & \multicolumn{4}{c||}{Group 2} & \multicolumn{3}{c|}{Totals}\\ \hline
-\multicolumn{1}{|c||}{Question} & \multicolumn{1}{c|}{Participant 1} & \multicolumn{1}{c|}{Participant 2} & \multicolumn{1}{c|}{Participant 3} & \multicolumn{1}{c||}{Participant 4} & \multicolumn{1}{c|}{Participant 1} & \multicolumn{1}{c|}{Participant 2} & \multicolumn{1}{c|}{Participant 3} & \multicolumn{1}{c||}{Participant 4} & \multicolumn{1}{c|}{Positive} & \multicolumn{1}{c|}{Neutral} & \multicolumn{1}{c|}{Negative}\\ \hline \hline
+\multicolumn{1}{c}{} & \multicolumn{4}{|c|}{Group 1} & \multicolumn{4}{c||}{Group 2} & \multicolumn{3}{c|}{Totals}\\ \hline
+\multicolumn{1}{|c||}{Question} & \multicolumn{1}{c|}{P1} & \multicolumn{1}{c|}{P2} & \multicolumn{1}{c|}{P3} & \multicolumn{1}{c||}{P4} & \multicolumn{1}{c|}{P1} & \multicolumn{1}{c|}{P2} & \multicolumn{1}{c|}{P3} & \multicolumn{1}{c||}{P4} & \multicolumn{1}{c|}{+} & \multicolumn{1}{c|}{±} & \multicolumn{1}{c|}{-}\\ \hline \hline
 2.1.1 & 1 & 1 & -1 & 0 & 1 & 1 & 1 & 1 & 6 & 1 & 1\\ \hline
 2.1.2 & -1 & 1 & -1 & -1 & -1 & -1 & 1 & -1 & 2 & 0 & 6\\ \hline
 2.1.3 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 8 & 0 & 0\\ \hline
@@ -2062,7 +2062,7 @@ The final section of the questionnaire constituted a series of questions adapted
 2.9.2 & 0 & 0 & -1 & 0 & 0 & 1 & 0 & 0 & 1 & 6 & 1\\ \hline
 2.9.3 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 7 & 0\\ \hline
 3.1 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 3 & 5 & 0\\ \hline
-3.2 & 0 & 1 & -1 & 0 & -1 & 1 & -1 & -1 & 2 & 2 & 4
+3.2 & 0 & 1 & -1 & 0 & -1 & 1 & -1 & -1 & 2 & 2 & 4\\
 \hline
 \end{tabular}
 \end{center}
@@ -2075,7 +2075,7 @@ This data can also be visualised using a diagram, as follows.
 \begin{center}
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=\textwidth-2cm]{figs/graphs/stacked-scores.png}
+\includegraphics[width=\textwidth]{figs/graphs/stacked-scores.png}
 \end{center}
 \caption{Diagram showing the proportions of positive, neutral and negative feedback per question.}
 \end{figure}
@@ -2088,32 +2088,32 @@ The mean feedback scores both by question and by topic are shown below.
 \begin{center}
 \begin{table}[H]
 \begin{center}
-\begin{tabular}{|r|r||r|}
+\begin{tabular}{|c|r||r|}
 \hline
 \multicolumn{1}{|c|}{Topic} & \multicolumn{1}{c||}{Question} & \multicolumn{1}{c|}{Mean Score}\\ \hline \hline
-\multirow{3}{|c|}{Visibility \& Juxtaposability \\ \mu = 0.3750000} & 2.1.1 & 0.625\\ \hline
- & 2.1.2 & -0.500\\ \hline
+\multirow{3}{*}{Visibility \& Juxtaposability, \emph{μ} = 0.3750000} & 2.1.1 & 0.625\\
+ & 2.1.2 & -0.500\\
  & 2.1.3 & 1.000\\ \hline
-\multirow{3}{|c|}{Viscosity \\ \mu = 0.4375000} & 2.2.1 & 0.875\\ \hline
+\multirow{3}{*}{Viscosity, \emph{μ} = 0.4375000} & 2.2.1 & 0.875\\
  & 2.2.2 & 0.000\\ \hline
-\multirow{3}{|c|}{Error Proneness \\ \mu = -0.3125000} & 2.3.1 & -0.500\\ \hline
+\multirow{3}{*}{Error Proneness, \emph{μ} = -0.3125000} & 2.3.1 & -0.500\\
  & 2.3.2 & -0.125\\ \hline
-\multirow{3}{|c|}{Closeness of Mapping \\ \mu = 0.1250000} & 2.4.1 & 0.500\\ \hline
+\multirow{3}{*}{Closeness of Mapping, \emph{μ} = 0.1250000} & 2.4.1 & 0.500\\
  & 2.4.2 & -0.250\\ \hline
-\multirow{3}{|c|}{Role Expressiveness \\ \mu = 0.5416667} & 2.5.1 & 0.500\\ \hline
- & 2.5.2 & 0.375\\ \hline
+\multirow{3}{*}{Role Expressiveness, \emph{μ} = 0.5416667} & 2.5.1 & 0.500\\
+ & 2.5.2 & 0.375\\
  & 2.5.3 & 0.750\\ \hline
-\multirow{3}{|c|}{Hidden Dependencies \\ \mu = 0.1875000} & 2.6.1 & 0.750\\ \hline
+\multirow{3}{*}{Hidden Dependencies, \emph{μ} = 0.1875000} & 2.6.1 & 0.750\\
  & 2.6.2 & -0.375\\ \hline
-\multirow{3}{|c|}{Progressive Evaluation \\ \mu = 0.2916667} & 2.7.1 & 0.375\\ \hline
- & 2.7.2 & 0.125\\ \hline
+\multirow{3}{*}{Progressive Evaluation, \emph{μ} = 0.2916667} & 2.7.1 & 0.375\\
+ & 2.7.2 & 0.125\\
  & 2.7.3 & 0.375\\ \hline
-\multirow{3}{|c|}{Provisionality \\ \mu = 0.7500000} & 2.8.1 & 0.750\\ \hline
-\multirow{3}{|c|}{Secondary Notation \\ \mu = 0.1250000} & 2.9.1 & 0.250\\ \hline
- & 2.9.2 & 0.000\\ \hline
+\multirow{3}{*}{Provisionality, \emph{μ} = 0.7500000} & 2.8.1 & 0.750\\
+\multirow{3}{*}{Secondary Notation, \emph{μ} = 0.1250000} & 2.9.1 & 0.250\\ \hline
+ & 2.9.2 & 0.000\\
  & 2.9.3 & 0.125\\ \hline
-\multirow{3}{|c|}{Feedback \\ \mu = 0.0625000} & 3.1 & 0.375\\ \hline
- & 3.2 & -0.250
+\multirow{3}{*}{Feedback, \emph{μ} = 0.0625000} & 3.1 & 0.375\\
+ & 3.2 & -0.250\\
 \hline
 \end{tabular}
 \end{center}
@@ -2127,31 +2127,31 @@ The mean feedback score across all questions was also taken, giving a value of 0
 
 \paragraph{Visibility \& Juxtaposability}\hfill
 
-\mu = 0.3750000
+\emph{μ} = 0.3750000
 
 Feedback with regard to the software's visibility and juxtaposability was broadly netural-to-positive.  One participant described the notation as ``very intuitive to use'', although another noted that ``circles +[sic] operators could be larger''.  Questions 2.1.1 and 2.1.3 received mostly positive feedback; the mean feedback score for this section is lowered somewhat by the mean score of -0.5 for Question 2.2.2, in which several users noted that the connecting lines between circles could occasionally become confusing when there were particularly many.
 
 \paragraph{Viscosity}\hfill
 
-\mu = 0.4375000
+\emph{μ} = 0.4375000
 
 Feedback on the perceived level of viscosity in the software was also neutral-to-positive, verging upon positive. Question 2.2.1 received mostly positive feedback, whereas Question 2.2.2 received neutral feedback.  Users noted that it was ``very easy'' to make changes to previous work, and that it was ``easy to do and obvious how to do so''.  However, they also felt that it was ``more difficult to get rid of arguments [using Ctrl]''.  Another user concurred with this: ``deleting additional numbers [...] is the most difficult, but still simple to remember''.
 
 \paragraph{Error Proneness}\hfill
 
-\mu = -0.3125000
+\emph{μ} = -0.3125000
 
 Users responded to the questions in this section with neutral-to-negative feedback, verging on negative for Question 2.3.1.  Several users felt that the drag-and-drop mechanism for joining circles was easily misunderstood, having tried to terminate lines in invalid locations, although one user notes (for both questions in this section) that ``I didn't make any mistakes!''.
 
 \paragraph{Closeness of Mapping}\hfill
 
-\mu = 0.1250000
+\emph{μ} = 0.1250000
 
 This section was met with neutral-to-positive feedback, with Question 2.4.1 receiving more positive feedback and Question 2.4.2 receiving neutral-to-negative reponses.  Participants felt that the notation was ``very close[ly]'' related to the result that they were describing, with one user going so far as to say that it was ``exactly so''.  Several users found that the limitation of available numbers to the range -10 to 10 to be a strange way of working: this limitation was not mentioned in the tutorial video, with the expectation that users would appreciate the need for such a feature, to prevent the software from becoming equivalent to a calculator, rather than a means of expressing method.  As it was particularly difficult to explain this without imposing a subjective method of calculation upon the user, some participants concluded that it was a flaw in the software, rather than an conscious design choice.
 
 \paragraph{Role Expressiveness}\hfill
 
-\mu = 0.5416667
+\emph{μ} = 0.5416667
 
 Feedback on this section was broadly positive, with Question 2.5.3 receiving particularly positive responses.  User opinions were varied with regard to the clarity of the notation.  A small majority felt that it was ``well laid out'', and several users found the colour-coding ``useful''.  Some, however, found that they were liable to forget the meaning of some parts of the notation.  One user felt that
 \begin{center}
@@ -2164,23 +2164,23 @@ Most users felt that there were no parts of the notation that were especially di
 
 \paragraph{Hidden Dependencies}\hfill
 
-\mu = 0.1875000
+\emph{μ} = 0.1875000
 
 \paragraph{Progressive Evaluation}\hfill
 
-\mu = 0.2916667
+\emph{μ} = 0.2916667
 
 \paragraph{Provisionality}\hfill
 
-\mu = 0.7500000
+\emph{μ} = 0.7500000
 
 \paragraph{Secondary Notation}\hfill
 
-\mu = 0.1250000
+\emph{μ} = 0.1250000
 
 \paragraph{Feedback}\hfill
 
-\mu = 0.0625000
+\emph{μ} = 0.0625000
 
 \section{Goals}
 % did it succeed?
@@ -2242,7 +2242,7 @@ The plots of the times taken for each user to answer each question follow.
 \begin{center}
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=\textwidth-2cm]{figs/graphs/q1.png}
+\includegraphics[height=\textheight/2-2cm]{figs/graphs/q1.png}
 \end{center}
 \caption{Time taken in milliseconds per participant to answer Question 1.}
 \end{figure}
@@ -2251,7 +2251,7 @@ The plots of the times taken for each user to answer each question follow.
 \begin{center}
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=\textwidth-2cm]{figs/graphs/q2.png}
+\includegraphics[height=\textheight/2-2cm]{figs/graphs/q2.png}
 \end{center}
 \caption{Time taken in milliseconds per participant to answer Question 2.}
 \end{figure}
@@ -2260,7 +2260,7 @@ The plots of the times taken for each user to answer each question follow.
 \begin{center}
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=\textwidth-2cm]{figs/graphs/q3.png}
+\includegraphics[height=\textheight/2-2cm]{figs/graphs/q3.png}
 \end{center}
 \caption{Time taken in milliseconds per participant to answer Question 3.}
 \end{figure}
@@ -2269,7 +2269,7 @@ The plots of the times taken for each user to answer each question follow.
 \begin{center}
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=\textwidth-2cm]{figs/graphs/q4.png}
+\includegraphics[height=\textheight/2-2cm]{figs/graphs/q4.png}
 \end{center}
 \caption{Time taken in milliseconds per participant to answer Question 4.}
 \end{figure}
@@ -2278,7 +2278,7 @@ The plots of the times taken for each user to answer each question follow.
 \begin{center}
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=\textwidth-2cm]{figs/graphs/q5.png}
+\includegraphics[height=\textheight/2-2cm]{figs/graphs/q5.png}
 \end{center}
 \caption{Time taken in milliseconds per participant to answer Question 5.}
 \end{figure}
@@ -2287,7 +2287,7 @@ The plots of the times taken for each user to answer each question follow.
 \begin{center}
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=\textwidth-2cm]{figs/graphs/q6.png}
+\includegraphics[height=\textheight/2-2cm]{figs/graphs/q6.png}
 \end{center}
 \caption{Time taken in milliseconds per participant to answer Question 6.}
 \end{figure}
@@ -2296,7 +2296,7 @@ The plots of the times taken for each user to answer each question follow.
 \begin{center}
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=\textwidth-2cm]{figs/graphs/q7.png}
+\includegraphics[height=\textheight/2-2cm]{figs/graphs/q7.png}
 \end{center}
 \caption{Time taken in milliseconds per participant to answer Question 7.}
 \end{figure}
@@ -2305,7 +2305,7 @@ The plots of the times taken for each user to answer each question follow.
 \begin{center}
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=\textwidth-2cm]{figs/graphs/q8.png}
+\includegraphics[height=\textheight/2-2cm]{figs/graphs/q8.png}
 \end{center}
 \caption{Time taken in milliseconds per participant to answer Question 8.}
 \end{figure}
@@ -2314,7 +2314,7 @@ The plots of the times taken for each user to answer each question follow.
 \begin{center}
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=\textwidth-2cm]{figs/graphs/q9.png}
+\includegraphics[height=\textheight/2-2cm]{figs/graphs/q9.png}
 \end{center}
 \caption{Time taken in milliseconds per participant to answer Question 9.}
 \end{figure}
@@ -2323,7 +2323,7 @@ The plots of the times taken for each user to answer each question follow.
 \begin{center}
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=\textwidth-2cm]{figs/graphs/q10.png}
+\includegraphics[height=\textheight/2-2cm]{figs/graphs/q10.png}
 \end{center}
 \caption{Time taken in milliseconds per participant to answer Question 10.}
 \end{figure}

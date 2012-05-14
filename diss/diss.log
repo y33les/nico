@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (TeX Live 2012/dev/Arch Linux) (format=xelatex 2012.3.31)  14 MAY 2012 19:40
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (TeX Live 2012/dev/Arch Linux) (format=xelatex 2012.3.31)  14 MAY 2012 22:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1305,11 +1305,10 @@ LaTeX Warning: Citation `Fisher1990' on page 55 undefined on input line 2028.
 [55] [56]
 File: figs/graphs/stacked-scores.png Graphic file (type QTm)
  <use  "figs/graphs/stacked-scores.png" > [57] [58] [59] [60] [61]
-[62] [63] [64
-
-]
+[62] [63] [64]
 Chapter 5.
 [65
+
 
 ] [66
 
@@ -1326,26 +1325,26 @@ File: figs/graphs/q2.png Graphic file (type QTm)
 ]
 File: figs/graphs/q3.png Graphic file (type QTm)
 
-<use  "figs/graphs/q3.png" > [70]
+<use  "figs/graphs/q3.png" >
 File: figs/graphs/q4.png Graphic file (type QTm)
- <use  "figs/graphs/q4.png" > [71]
+ <use  "figs/graphs/q4.png" > [70]
 File: figs/graphs/q5.png Graphic file (type QTm)
 
-<use  "figs/graphs/q5.png" > [72]
+<use  "figs/graphs/q5.png" >
 File: figs/graphs/q6.png Graphic file (type QTm)
- <use  "figs/graphs/q6.png" > [73]
+ <use  "figs/graphs/q6.png" > [71]
 File: figs/graphs/q7.png Graphic file (type QTm)
 
-<use  "figs/graphs/q7.png" > [74]
+<use  "figs/graphs/q7.png" >
 File: figs/graphs/q8.png Graphic file (type QTm)
- <use  "figs/graphs/q8.png" > [75]
+ <use  "figs/graphs/q8.png" > [72]
 File: figs/graphs/q9.png Graphic file (type QTm)
 
-<use  "figs/graphs/q9.png" > [76]
+<use  "figs/graphs/q9.png" >
 File: figs/graphs/q10.png Graphic file (type QTm)
- <use  "figs/graphs/q10.png" > [77] [78]
+ <use  "figs/graphs/q10.png" > [73] [74]
 Appendix B.
-[79
+[75
 
 ]
 File: qs.pdf Graphic file (type QTm)
@@ -1364,79 +1363,79 @@ File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page1>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page1> [80]
+<use  "qs.pdf"  page1> [76]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page2>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page2>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page2> [81]
+<use  "qs.pdf"  page2> [77]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page3>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page3>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page3> [82]
+<use  "qs.pdf"  page3> [78]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page4>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page4>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page4> [83]
+<use  "qs.pdf"  page4> [79]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page5>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page5>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page5> [84]
+<use  "qs.pdf"  page5> [80]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page6>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page6>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page6> [85]
+<use  "qs.pdf"  page6> [81]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page7>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page7>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page7> [86]
+<use  "qs.pdf"  page7> [82]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page8>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page8>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page8> [87]
+<use  "qs.pdf"  page8> [83]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page9>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page9>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page9> [88]
+<use  "qs.pdf"  page9> [84]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page10>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page10>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page10> [89]
+<use  "qs.pdf"  page10> [85]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page11>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page11>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page11> [90]
+<use  "qs.pdf"  page11> [86]
 Appendix C.
-[91
+[87
 
 
 ]
@@ -1456,7 +1455,7 @@ File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page1>
 File: proposal_rev04.pdf Graphic file (type QTm)
- <use  "proposal_rev04.pdf"  page1> [92]
+ <use  "proposal_rev04.pdf"  page1> [88]
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page2>
@@ -1464,14 +1463,14 @@ File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page2>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
-<use  "proposal_rev04.pdf"  page2> [93]
+<use  "proposal_rev04.pdf"  page2> [89]
 File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page3>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page3>
 File: proposal_rev04.pdf Graphic file (type QTm)
- <use  "proposal_rev04.pdf"  page3> [94]
+ <use  "proposal_rev04.pdf"  page3> [90]
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page4>
@@ -1479,14 +1478,14 @@ File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page4>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
-<use  "proposal_rev04.pdf"  page4> [95]
+<use  "proposal_rev04.pdf"  page4> [91]
 File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page5>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page5>
 File: proposal_rev04.pdf Graphic file (type QTm)
- <use  "proposal_rev04.pdf"  page5> [96]
+ <use  "proposal_rev04.pdf"  page5> [92]
 (./diss.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1504,4 +1503,4 @@ Here is how much of TeX's memory you used:
  1018 hyphenation exceptions out of 8191
  44i,18n,48p,1802b,498s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on diss.pdf (108 pages).
+Output written on diss.pdf (104 pages).

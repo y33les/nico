@@ -51,14 +51,13 @@
 \contentsline {paragraph}{\numberline {4.3.3.1.4}Closeness of Mapping}{60}
 \contentsline {paragraph}{\numberline {4.3.3.1.5}Role Expressiveness}{61}
 \contentsline {paragraph}{\numberline {4.3.3.1.6}Hidden Dependencies}{61}
-\contentsline {paragraph}{\numberline {4.3.3.1.7}Progressive Evaluation}{61}
-\contentsline {paragraph}{\numberline {4.3.3.1.8}Provisionality}{61}
+\contentsline {paragraph}{\numberline {4.3.3.1.7}Progressive Evaluation}{62}
+\contentsline {paragraph}{\numberline {4.3.3.1.8}Provisionality}{62}
 \contentsline {paragraph}{\numberline {4.3.3.1.9}Secondary Notation}{62}
-\contentsline {paragraph}{\numberline {4.3.3.1.10}Feedback}{62}
-\contentsline {section}{\numberline {4.4}Goals}{62}
-\contentsline {section}{\numberline {4.5}Summary}{63}
+\contentsline {paragraph}{\numberline {4.3.3.1.10}Feedback}{63}
+\contentsline {section}{\numberline {4.4}Summary}{63}
 \contentsline {chapter}{\numberline {5}Conclusions}{65}
 \contentsline {chapter}{Bibliography}{67}
 \contentsline {chapter}{\numberline {A}User Response Times}{69}
-\contentsline {chapter}{\numberline {B}Questionnaire}{79}
-\contentsline {chapter}{\numberline {C}Project Proposal}{91}
+\contentsline {chapter}{\numberline {B}Questionnaire}{75}
+\contentsline {chapter}{\numberline {C}Project Proposal}{87}

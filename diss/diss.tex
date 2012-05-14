@@ -397,6 +397,7 @@ used in the development of the project.
 \end{center}}}
 \end{center}
 \caption{Illustrating the hidden dependencies and viscosity inherent in pre-algebra, handwritten arithmetic.  The original calculation is shown in (a), has its otherwise-hidden dependencies highlighted in (b), and is altered slightly in (c).}
+\label{fig:ArithHDs}
 % \end{wrapfigure}
 \end{figure}
 % cogdims
@@ -422,7 +423,7 @@ time-consuming to change it everywhere it appears in the working.  If several
 calculations are dependent upon each other, then this entails a lot of knock-on
 viscosity in recalculating each stage after changing the number.  This is
 exacerbated by the hidden dependencies between chained calculations in
-handwritten arithmetic (\emph{Fig. 2.1}).  The problem of hidden dependencies
+handwritten arithmetic (\emph{Fig. \ref{fig:ArithHDs}}).  The problem of hidden dependencies
 is made worse by the low juxtaposability of the system; although the notation
 is quite visible, in that every calculation can be seen easily on the page,
 juxtaposing two sets of calculations entails considerable premature commitment
@@ -1701,7 +1702,7 @@ source code.
 % 300ms test - see below (under goals)
 % maybe time render too?
 
-The time taken to generate an S-expression, evaluate it and display the result to the user was required by the project rpoposal to be less than 300ms.  To test this, a \emph{Nico} session was completed, using the same questions as in the user study (below), but with a modified version of the function \verb¬update-answer¬, which generates an S-expression from the user's diagram, evaluates it and displays the result to the user.  The modified version of \verb¬update-answer¬ is shown in \emph{Fig. x.y}, below.
+The time taken to generate an S-expression, evaluate it and display the result to the user was required by the project proposal to be less than 300ms.  To test this, a \emph{Nico} session was completed, using the same questions as in the user study (below), but with a modified version of the function \verb¬update-answer¬, which generates an S-expression from the user's diagram, evaluates it and displays the result to the user.  The modified version of \verb¬update-answer¬ is shown in \emph{Fig. x.y}, below.
 
 \begin{center}
 \begin{figure}[H]
@@ -1740,10 +1741,10 @@ A plot of the time taken for each call to \verb¬update-answer¬ to complete ove
 \end{figure}
 \end{center}
 
-\subsection{Notation Evaluation}
-% user testing
-% graphs
-
+% \subsection{Notation Evaluation}
+% % user testing
+% % graphs
+%
 \section{User Study}
 % results
 % pilot study - ellie suggested switching left/right-clicks in control scheme, implemented before main study
@@ -2081,8 +2082,6 @@ This data can also be visualised using a diagram, as follows.
 \end{figure}
 \end{center}
 
-blah blah this shows some bullshit probs innit
-
 The mean feedback scores both by question and by topic are shown below.
 
 \begin{center}
@@ -2108,8 +2107,8 @@ The mean feedback scores both by question and by topic are shown below.
 \multirow{3}{*}{Progressive Evaluation, \emph{μ} = 0.2916667} & 2.7.1 & 0.375\\
  & 2.7.2 & 0.125\\
  & 2.7.3 & 0.375\\ \hline
-\multirow{3}{*}{Provisionality, \emph{μ} = 0.7500000} & 2.8.1 & 0.750\\
-\multirow{3}{*}{Secondary Notation, \emph{μ} = 0.1250000} & 2.9.1 & 0.250\\ \hline
+\multirow{1}{*}{Provisionality, \emph{μ} = 0.7500000} & 2.8.1 & 0.750\\ \hline
+\multirow{3}{*}{Secondary Notation, \emph{μ} = 0.1250000} & 2.9.1 & 0.250\\
  & 2.9.2 & 0.000\\
  & 2.9.3 & 0.125\\ \hline
 \multirow{3}{*}{Feedback, \emph{μ} = 0.0625000} & 3.1 & 0.375\\
@@ -2147,7 +2146,7 @@ Users responded to the questions in this section with neutral-to-negative feedba
 
 \emph{μ} = 0.1250000
 
-This section was met with neutral-to-positive feedback, with Question 2.4.1 receiving more positive feedback and Question 2.4.2 receiving neutral-to-negative reponses.  Participants felt that the notation was ``very close[ly]'' related to the result that they were describing, with one user going so far as to say that it was ``exactly so''.  Several users found that the limitation of available numbers to the range -10 to 10 to be a strange way of working: this limitation was not mentioned in the tutorial video, with the expectation that users would appreciate the need for such a feature, to prevent the software from becoming equivalent to a calculator, rather than a means of expressing method.  As it was particularly difficult to explain this without imposing a subjective method of calculation upon the user, some participants concluded that it was a flaw in the software, rather than an conscious design choice.
+This section was met with neutral-to-positive feedback, with Question 2.4.1 receiving more positive feedback and Question 2.4.2 receiving neutral-to-negative reponses.  Participants felt that the notation was ``very close[ly]'' related to the result that they were describing, with one user going so far as to say that it was ``exactly so''.  Several users found that the limitation of available numbers to the range -10 to 10 to be a strange way of working: this limitation was not mentioned in the tutorial video, with the expectation that users would appreciate the need for such a feature, to prevent the software from becoming equivalent to a calculator, rather than a means of expressing method.  As it was particularly difficult to explain this without imposing a subjective method of calculation upon the user, some participants concluded that it was a flaw in the software, rather than a conscious design choice.
 
 \paragraph{Role Expressiveness}\hfill
 
@@ -2166,23 +2165,40 @@ Most users felt that there were no parts of the notation that were especially di
 
 \emph{μ} = 0.1875000
 
+Feedback on this section was neutral-to-positive, though closer to neutral.  Question 2.6.1 received a mostly positive response, whereas the feedback on Question 2.6.2 was mildly negative.  Most users found that dependencies between units of the notation were made very clear, apart from one user who found the dependencies clear, but found it difficult to infer the results of their calculations whilst constructing them, and one user who neglected to answer the question.  Once again, several users found that the notation became harder to read, and dependencies harder to follow, when the number of circles on-screen was especially large.  This suggests that either circles should be made smaller, or the canvas made larger, or that an alternative to lines, which can become ``tangled'', should be sought as a means of linking circles.
+
 \paragraph{Progressive Evaluation}\hfill
 
 \emph{μ} = 0.2916667
+
+Once again, feedback was neutral-to-positive.  Users found the running total in the information panel to be a useful means of tracking their progress, but noted that it was difficult to keep track of the value of partially-completed calculations where several trees of circles were kept separate until the end, due to the single answer display in the information panel.
 
 \paragraph{Provisionality}\hfill
 
 \emph{μ} = 0.7500000
 
+Response to this question was very positive.  Users found that the running total displayed in the information panel, coupled with the prominent bin icon to faciliate easy deletion, allowed them to explore potential solutions before submitting their final answer.  One user comments:
+\begin{center}
+\parbox[c]{\textwidth-2cm}{
+\small
+``I could create notations [i.e. circles] and throw them in the bin if they didn't help.''
+}
+\end{center}
+This is in accordance with the intention of the project, which is to allow users to explore potential solutions, and to be able to determine more easily why a given method may or may not work.
+
 \paragraph{Secondary Notation}\hfill
 
 \emph{μ} = 0.1250000
+
+Feedback here was positive, though only mildly so.  A means of making notes or comments is not provided in the software, though this was neither well- nor poorly-received by the users.  Several users mentioned that, given to opportunity to annotate their diagrams in paper form, they would make notes keeping track of the totals of subcalculations: ``[I would] keep a track of the different sums I had done so far''.  Users commented that they did not add any extra marks in the software to clarify or emphasise the information displayed onscreen.
 
 \paragraph{Feedback}\hfill
 
 \emph{μ} = 0.0625000
 
-\section{Goals}
+Feedback in this section was largely neutral.  Question 3.1 received slightly positive responses, whereas Question 3.2 received slightly negative feedback.  Most users did not feel that they were using the software in a way which was `wrong' or `unusual', though one user did feel that having to create larger numbers from the limited range available constituted such behaviour, once again suggesting problems with the tutorial.  Furthermore, several users suggested that an improvement to the software would be to allow numbers outside of the range of -10 to 10 to be used.  Others felt that the circles should be larger, or that the canvas should be more capacious.
+
+\section{Summary}
 % did it succeed?
 The criterion for the success of this project, as quoted at the beginning of Chapter 3, was
 \begin{center}
@@ -2203,10 +2219,14 @@ As an extension, a user study was conducted to assess the suitability of the sof
 \item For more complex questions involving large numbers and nested calculations, \emph{Nico} decreases the solution time
 \end{itemize}
 \item There is a statistically-significant negative correlation between whether a question is answered correctly or incorrectly by hand and the number of wrong attempts at an answer before succeeding using the software
-\item Whatever the Feedback section said
+\item Feedback on the software was broadly neutral-to-positive, with users concluding that:
+\begin{itemize}
+\item The notation was clear, with few hidden dependencies
+\item For a large number of circles, the canvas could sometimes become overcrowded
+\item The software encourages exploration, and it is easy to try out many potential solutions
+\item The limitation of numbers to the range -10 to 10 was confusing, especially as it was explained poorly
 \end{itemize}
-
-\section{Summary}
+\end{itemize}
 
 
 \cleardoublepage

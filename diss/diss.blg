@@ -11,55 +11,45 @@ Warning--entry type for "Blackwell1999" isn't style-file defined
 --line 54 of file refs.bib
 Warning--entry type for "Green1996" isn't style-file defined
 --line 76 of file refs.bib
-Illegal end of database file---line 150 of file refs.bib
- : YEAR = "1990"}
- :               
-I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "Halloway2009"
-Warning--I didn't find a database entry for "GuiFtw"
-Warning--I didn't find a database entry for "Seesaw"
-Warning--I didn't find a database entry for "JavaApi"
-Warning--I didn't find a database entry for "Fisher1990"
-Warning--empty year in Lamberski1983
-You've used 14 entries,
+You've used 22 entries,
             2118 wiz_defined-function locations,
-            586 strings with 5940 characters,
-and the built_in function-call counts, 3504 in all, are:
-= -- 332
-> -- 146
+            628 strings with 6851 characters,
+and the built_in function-call counts, 5255 in all, are:
+= -- 494
+> -- 208
 < -- 1
-+ -- 60
-- -- 44
-* -- 161
-:= -- 589
-add.period$ -- 39
-call.type$ -- 14
-change.case$ -- 64
++ -- 88
+- -- 62
+* -- 222
+:= -- 894
+add.period$ -- 64
+call.type$ -- 22
+change.case$ -- 92
 chr.to.int$ -- 0
-cite$ -- 15
-duplicate$ -- 129
-empty$ -- 322
-format.name$ -- 44
-if$ -- 757
+cite$ -- 22
+duplicate$ -- 210
+empty$ -- 498
+format.name$ -- 62
+if$ -- 1136
 int.to.chr$ -- 0
-int.to.str$ -- 14
-missing$ -- 5
-newline$ -- 69
-num.names$ -- 28
-pop$ -- 105
+int.to.str$ -- 22
+missing$ -- 15
+newline$ -- 110
+num.names$ -- 44
+pop$ -- 166
 preamble$ -- 1
-purify$ -- 50
+purify$ -- 75
 quote$ -- 0
-skip$ -- 118
+skip$ -- 171
 stack$ -- 0
-substring$ -- 130
-swap$ -- 23
+substring$ -- 172
+swap$ -- 31
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 56
-warning$ -- 1
-while$ -- 32
-width$ -- 16
-write$ -- 138
-(There was 1 error message)
+type$ -- 78
+warning$ -- 0
+while$ -- 48
+width$ -- 24
+write$ -- 222
+(There were 4 warnings)

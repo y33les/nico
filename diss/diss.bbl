@@ -25,16 +25,53 @@ A.~F. Blackwell and T.~R.~G. Green.
 \newblock {\em HCI Models, Theories, and Frameworks: Toward a Multidisciplinary
   Science}, 2003.
 
+\bibitem{JavaApi}
+Oracle Corporation.
+\newblock Mouseevent (java platform se 7).
+\newblock
+  \url{http://docs.oracle.com/javase/7/docs/api/java/awt/event/MouseEvent.html},
+  2012.
+
+\bibitem{Fisher1990}
+R.~A. Fisher.
+\newblock {\em Statistical Methods, Experimental Design and Scientific
+  Inference}.
+\newblock Oxford University Press, 1990.
+
+\bibitem{Fogus2011}
+M.~Fogus and C.~Houser.
+\newblock {\em The Joy of Clojure: Thinking the Clojure Way}.
+\newblock Manning Publications, 2011.
+
 \bibitem{Green1996}
 T.~R.~G. Green and M.~Petre.
 \newblock Usability analysis of visual programming environments: a `cognitive
   dimensions’ framework, 1996.
 
+\bibitem{Halloway2009}
+S.~Halloway.
+\newblock {\em Programming Clojure}.
+\newblock Pragmatic Bookshelf, 2009.
+
+\bibitem{Hugill1991}
+Michael Hugill.
+\newblock {\em Advanced Statistics}.
+\newblock CollinsEducational, 1991.
+
+\bibitem{Kanner1968}
+J.~H. Kanner.
+\newblock {\em The instructional effectiveness of color in television: A review
+  of the evidence}.
+\newblock Department of the Army, Office of the Assistant Chief of Staff for
+  Communications-Electronics, Washington, D.C., 1968.
+
 \bibitem{Lamberski1983}
 R.~Lamberski and F.~Dwyer.
 \newblock The instructional effect of coding (color and black and white) on
   information acquisition and retrieval.
-\newblock {\em Educational Technology Research and Development}, 31:9--21.
+\newblock {\em Educational Technology Research and Development}, 31:9--21,
+  1983.
+\newblock 10.1007/BF02765207.
 
 \bibitem{PiCubed}
 Sunset Lake~Software LLC.
@@ -50,6 +87,11 @@ Acqualia Software~Pty. Ltd.
 B.~A. Myers.
 \newblock Taxonomies of visual programming and program visualization.
 \newblock {\em Journal of Visual Languages and Computing}, 1:97--123, 1990.
+
+\bibitem{Seesaw}
+D.~Ray.
+\newblock daveray/seesaw.
+\newblock \url{https://github.com/daveray/seesaw}, 2011.
 
 \bibitem{Roca2004}
 A.~Roca and F.~Rousseau.
@@ -72,5 +114,10 @@ B.~Victor.
 B.~Victor.
 \newblock {S}crubbing {C}alculator.
 \newblock \url{http://worrydream.com/ScrubbingCalculator/}, 2011.
+
+\bibitem{GuiFtw}
+S.~Witamborski.
+\newblock santamon/guiftw.
+\newblock \url{https://github.com/santamon/GUIFTW}, 2011.
 
 \end{thebibliography}

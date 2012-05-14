@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (TeX Live 2012/dev/Arch Linux) (format=xelatex 2012.3.31)  14 MAY 2012 22:54
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (TeX Live 2012/dev/Arch Linux) (format=xelatex 2012.3.31)  14 MAY 2012 23:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1198,32 +1198,16 @@ Chapter 3.
 
 
 ]
-
-LaTeX Warning: Citation `Halloway2009' on page 24 undefined on input line 1195.
-
-
 File: figs/nico_backend.pdf Graphic file (type QTm)
-<use  "figs/nico_backend.pdf" >
+ <use  "figs/nico_backend.pdf" >
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/it' will be
 (Font)              scaled to size 10.0pt on input line 1203.
  [24]
 LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
 (Font)              scaled to size 8.97906pt on input line 1217.
- [25] [26] [27]
-
-LaTeX Warning: Citation `GuiFtw' on page 28 undefined on input line 1274.
-
-
-LaTeX Warning: Citation `Seesaw' on page 28 undefined on input line 1278.
-
-[28]
-LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/n' will be
-(Font)              scaled to size 10.0pt on input line 1284.
-
-
-LaTeX Warning: Citation `JavaApi' on page 29 undefined on input line 1284.
-
+ [25] [26] [27] [28]
 File: figs/nico_hi1.png Graphic file (type QTm)
+
 <use  "figs/nico_hi1.png" >
 File: figs/nico_hi2.png Graphic file (type QTm)
  <use  "figs/nico_hi2.png" >
@@ -1298,14 +1282,10 @@ File: figs/graphs/q7.png Graphic file (type QTm)
  <use  "figs/graphs/q7.png" > [50]
 File: figs/graphs/q9.png Graphic file (type QTm)
  <use  "figs/graphs/q9.png" > [51]
-[52] [53] [54]
-
-LaTeX Warning: Citation `Fisher1990' on page 55 undefined on input line 2065.
-
-[55] [56]
+[52] [53] [54] [55] [56]
 File: figs/graphs/stacked-scores.png Graphic file (type QTm)
- <use  "figs/graphs/stacked-scores.png" > [57] [58] [59] [60] [61]
-[62] [63] [64]
+ <use  "figs/graphs/stacked-scores.png" > [57] [58]
+[59] [60] [61] [62] [63] [64]
 Chapter 5.
 [65
 
@@ -1490,16 +1470,13 @@ File: proposal_rev04.pdf Graphic file (type QTm)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
  ) 
 Here is how much of TeX's memory you used:
- 16782 strings out of 494146
- 347716 string characters out of 3157637
+ 16783 strings out of 494146
+ 347641 string characters out of 3157637
  384667 words of memory out of 3000000
- 19715 multiletter control sequences out of 15000+200000
- 11318 words of font info for 91 fonts, out of 3000000 for 9000
+ 19717 multiletter control sequences out of 15000+200000
+ 11310 words of font info for 90 fonts, out of 3000000 for 9000
  1018 hyphenation exceptions out of 8191
  44i,18n,48p,1802b,498s stack positions out of 5000i,500n,10000p,200000b,50000s
 

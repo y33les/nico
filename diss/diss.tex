@@ -230,8 +230,8 @@ My motivations behind this project lay in the limitations of the handwritten
 approach to solving mathematical problems that I had observed both in my own
 learning and in my own teaching experience.  What follows is an evaluation of
 the pros and cons of the handwritten method of performing arithmetic
-calculations according to Blackwell and Green's ``Cognitive Dimensions''
-framework \cite{Blackwell1998}, and a discussion of the properties a useful
+calculations according to Petre and Green's `Cognitive Dimensions'
+framework \cite{Green1996}, and a discussion of the properties a useful
 alternative notation should have.
 
 \pagebreak
@@ -1306,7 +1306,7 @@ Upon the detection of a mouse click, the software must determine the exact conte
 \begin{center}
 \includegraphics[width=\textwidth-4cm]{figs/nico_click.pdf}
 \end{center}
-\caption{Decision tree to determine the appropriate response to a mouse clickf event.}
+\caption{Decision tree to determine the appropriate response to a mouse click event.}
 \label{fig:ClickTree}
 \end{figure}
 \end{center}
@@ -1659,10 +1659,10 @@ Throughout the development of the software, I performed unit tests to ensure
 the integrity of my code.  My development environment of choice, GNU Emacs
 using SLIME/SWANK and clojure-mode, includes functionality such that
 commented-out lines of code can be evaluated at will.  As such, it was possible
-for me to write unit tests into the main body of my code, evaluating them
+for me to write unit and integration tests into the main body of my code, evaluating them
 whenever a change may have affected how a function behaved.  In the interests
 of tidiness and code readability, many tests were removed as they became
-unnecessary later on in the devlopment in the project, but \emph{Fig. \ref{fig:SlimeTests}}
+unnecessary later in the development in the project, but \emph{Fig. \ref{fig:SlimeTests}}
 shows one of the test blocks that were left in the most recent revision of the
 source code.
 
@@ -1773,6 +1773,8 @@ A plot of the time taken for each call to \verb¬update-answer¬ to complete ove
 \label{fig:UpdateTimes}
 \end{figure}
 \end{center}
+
+\emph{Nico}, in almost all cases in which a measurement was taken, was able to interpret the user's diagram and display the result in much less than the upper limit of 300ms, with a mean time of 6.751852ms.  Of the 810 samples taken, there was one anomalous time of 308ms.
 
 % \subsection{Notation Evaluation}
 % % user testing
@@ -2266,6 +2268,8 @@ As an extension, a user study was conducted to assess the suitability of the sof
 \end{itemize}
 \end{itemize}
 
+The final chapter summarises what has been achieved and what has been learnt over the course of this project, and draws some final conclusions.
+
 
 \cleardoublepage
 \chapter{Conclusions}
@@ -2275,7 +2279,23 @@ As an extension, a user study was conducted to assess the suitability of the sof
 % what could be improved?
 % overall, is it actually useful?
 
-% lol
+Overall, this project has been very successful.  Not only has an application meeting the requirements specified for success been developed, with a suitable new metaphor for calculation, it has also been shown to have a statistically-significant effect on the calculation speed and correctness of a group of users.
+
+The software itself comprises a three-layer structure, with a back-end that interprets and manipulates user-input data, an interaction handler that provides an iterface between the back-end and the user interface, and the user interface itself, the environment in which the user performs actions, interacting with the notation to express calculations.
+
+The user study conducted as an extension to the main project concluded that \emph{Nico} made a statistically-significant difference both to the users' speed of answering questions and to the users' likelihood to answer questions correctly.  It was observed that for simple questions involving small numbers and few steps in the calculation, the software increased the time taken to answer.  For more complex questions, with many subcalculations and larger numbers, the software was shown to decrease the time taken for users to answer.  There was also a statistically-significant negative correlation between the number of marks obtained in handwritten tests and the number of incorrect answers submitted to the software.  User feedback was mildly positive, with users finding that the software made it easy to explore many possible solutions, but also that the notation could become confusing where a large number of circles occupied much of the canvas' available area.  However, it was also noted that the notation had few hidden dependencies, and was easy to read in most cases.
+
+The project suggests a number of potential improvements and extensions:
+\begin{itemize}
+\item To improve the notation in accordance with the feedback received from this user study
+\item To consider other metaphors for calculation as an alternative to the handwritten method
+\item To conduct a larger-scale user study with a similar premise, with participants from the target audience
+\item To conduct a study into the long-term effects of using such software as an aid to learning in a real school environment
+\end{itemize}
+
+The application of Petre and Green's `Cognitive Dimensions' framework to metaphors in educational software might yield further worthwhile research, extending Blackwell and Green's research into visual programming languages into the domain of educational software. \cite{Green1996} \cite{Blackwell1999}
+
+This project will be further developed and maintained in the future, with a view to its introduction into actual learning environments.
 
 
 

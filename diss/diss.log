@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (TeX Live 2012/dev/Arch Linux) (format=xelatex 2012.3.31)  14 MAY 2012 23:06
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (TeX Live 2012/dev/Arch Linux) (format=xelatex 2012.3.31)  15 MAY 2012 00:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1263,7 +1263,7 @@ Overfull \vbox (170.88045pt too high) has occurred while \output is active []
 
 
 [44] [45] [46]
-Overfull \hbox (27.71332pt too wide) in paragraph at lines 1870--1901
+Overfull \hbox (27.71332pt too wide) in paragraph at lines 1872--1903
  [] 
  []
 
@@ -1272,7 +1272,7 @@ File: figs/graphs/q3.png Graphic file (type QTm)
  <use  "figs/graphs/q3.png" > [48]
 File: figs/graphs/q6.png Graphic file (type QTm)
  <use  "figs/graphs/q6.png" >
-Underfull \hbox (badness 10000) in paragraph at lines 1924--1924
+Underfull \hbox (badness 10000) in paragraph at lines 1926--1926
 []\EU1/LinuxLibertineO(0)/m/n/10 Figure 4.5: |Time taken in milliseconds per pa
 rticipant to answer Question 6:
  []
@@ -1290,9 +1290,8 @@ Chapter 5.
 [65
 
 
-] [66
+] [66] (./diss.bbl [67
 
-] (./diss.bbl [67
 
 ]) [68]
 Appendix A.

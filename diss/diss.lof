@@ -65,8 +65,9 @@
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Green text indicates a correct answer; a dialogue box allows the user to progress to the next question when they are ready}}}{36}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {The circle's operator is highlighted when it is being edited}}}{36}
 \contentsline {subfigure}{\numberline {(d)}{\ignorespaces {An argument is highlighted when it is being edited}}}{36}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces \emph {Nico}'s user interface went through a number of revisions before reaching its current state.\relax }}{38}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces The notation used also went through a number of revisions before reaching its current state.\relax }}{38}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces \relax }}{38}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces \emph {Nico}'s user interface went through a number of revisions before reaching its current state.\relax }}{38}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces The notation used also went through a number of revisions before reaching its current state.\relax }}{38}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces An example of a block of inline tests, taken from {\ttfamily core.clj}, showing some tests to be run to test the implementation of {\ttfamily detect-subs}.\relax }}{42}
 \contentsline {figure}{\numberline {4.2}{\ignorespaces The modified version of {\ttfamily update-answer} used to time diagram evaluation.\relax }}{43}

@@ -551,6 +551,7 @@ were deemed good enough to warrant an application mockup, as detailed in
 \end{center}}}
 \end{center}
 \caption{Early designs for flowgraph-based calculation metaphors.}
+\label{fig:Flows1}
 % \end{wrapfigure}
 \end{figure}
 \end{center}
@@ -561,6 +562,7 @@ were deemed good enough to warrant an application mockup, as detailed in
 \includegraphics[width=\textwidth]{figs/mockups/sketches/11/11jii.jpg}
 \end{center}
 \caption{A more refined sketch of a flowgraph-based language and application.}
+\label{fig:Flows2}
 \end{figure}
 \end{center}
 
@@ -599,6 +601,7 @@ were deemed good enough to warrant an application mockup, as detailed in
 \end{center}}}
 \end{center}
 \caption{Early designs for triangle-based calculation metaphors.}
+\label{fig:Tris1}
 % \end{wrapfigure}
 \end{figure}
 \end{center}
@@ -609,6 +612,7 @@ were deemed good enough to warrant an application mockup, as detailed in
 \includegraphics[width=\textwidth]{figs/mockups/sketches/31/31a.jpg}
 \end{center}
 \caption{A more refined sketch of a triangle-based language.}
+\label{fig:Tris2}
 \end{figure}
 \end{center}
 
@@ -657,6 +661,7 @@ were deemed good enough to warrant an application mockup, as detailed in
 \end{center}}}
 \end{center}
 \caption{Early designs for circle-based calculation metaphors.}
+\label{fig:Circs1}
 % \end{wrapfigure}
 \end{figure}
 \end{center}
@@ -667,6 +672,7 @@ were deemed good enough to warrant an application mockup, as detailed in
 \includegraphics[width=\textwidth]{figs/mockups/sketches/21/21a.jpg}
 \end{center}
 \caption{A more refined sketch of a circle-based language.}
+\label{fig:Circs2}
 \end{figure}
 \end{center}
 
@@ -751,6 +757,7 @@ were deemed good enough to warrant an application mockup, as detailed in
 \end{center}}}
 \end{center}
 \caption{Assorted early designs for other calculation metaphors.}
+\label{fig:Others1}
 % \end{wrapfigure}
 \end{figure}
 \end{center}
@@ -789,6 +796,7 @@ were deemed good enough to warrant an application mockup, as detailed in
 \end{center}}}
 \end{center}
 \caption{A sample progression of a calculation in a language based around infinitely halving a rectangle.}
+\label{fig:Others2}
 \end{figure}
 \end{center}
 
@@ -813,6 +821,7 @@ project.
 \begin{center}
 \includegraphics[width=\textwidth-4cm]{figs/mockups/flowgraph/img/fg-000.jpg}
 \caption{The prototype flowgraph-style language.}
+\label{fig:ProtoFlow}
 \end{center}
 \end{figure}
 
@@ -867,7 +876,7 @@ operation.  When {\sfapp Define} is activated, dragging the mouse on the canvas
 draws a box around sections of the diagram -- the user is able to define
 functions by doing so, and by providing a label for the section of diagram that
 has been highlighted, a corresponding box can be dragged-and-dropped from the
-list of icons (as show in \emph{Fig. 2.2} with the {\sfapp times ten}
+list of icons (as shown in \emph{Fig. \ref{fig:ProtoFlow}} with the {\sfapp times ten}
 function).  When {\sfapp Join} is active, dragging between two points on the
 canvas creates an arrow between them that means that the source of the arrow is
 used as an argument to the destination of the arrow.  In defining functions,
@@ -882,7 +891,7 @@ minimising the number of hidden dependencies between calculations by making
 every connection explicit: as a dataflow representation of a calculation
 \cite{Blackwell1998}, the flow of information through the diagram is made very
 clear.  This language is considerably less viscous than the handwritten method,
-as it is trivial (albeit not demonstrated in \emph{Fig. 2.2}) to remove and
+as it is trivial (albeit not demonstrated in \emph{Fig. \ref{fig:ProtoFlow}}) to remove and
 replace a box or arrow in the diagram, as opposed to writing out a new set of
 calculations or replacing several instances of a component by crossing them
 out.  Each box is able to be relocated on the canvas, increasing the
@@ -925,6 +934,7 @@ other than the author.
 \begin{center}
 \includegraphics[width=\textwidth]{figs/mockups/sierp/sierp_mockup_full.png}
 \caption{The prototype Sierpiński-triangle-based language.}
+\label{fig:ProtoTri}
 \end{center}
 \end{figure}
 
@@ -996,6 +1006,7 @@ notation.
 \begin{center}
 \includegraphics[width=\textwidth]{figs/mockups/circles/nico_circmock.png}
 \caption{The prototype circle-based language.}
+\label{fig:ProtoCirc}
 \end{center}
 \end{figure}
 
@@ -1015,7 +1026,7 @@ canvas creates a new circle at that location.  When {\sfapp Split} is active,
 clicking on a circle increases the number of arguments it has (initially two,
 up to a maximum of eight).  When {\sfapp Function} is selected, clicking on a
 circle presents the user with a choice of +, -, × and ÷ to use as that circle's
-operation.  When {\sfapp Input} is selected, as shown in \emph{Fig. 2.4}, the
+operation.  When {\sfapp Input} is selected, as shown in \emph{Fig. \ref{fig:ProtoCirc}}, the
 user is presented with two further options, {\sfapp Number} and
 {\sfapp Circle}.  When {\sfapp Number} is active, clicking on a circle's
 argument allows the user to change the value of that argument.  When
@@ -1190,6 +1201,7 @@ several threads. \cite{Halloway2009}
 \end{center}
 % \caption{A rough model of \emph{Nico's} management of mutable state.}
 \caption{A model of \emph{Nico's} management of mutable state; the sixth agent is omitted as it is not utilised by the back-end.}
+\label{fig:Backend}
 \end{figure}
 \end{center}
 
@@ -1211,6 +1223,7 @@ several threads. \cite{Halloway2009}
 \end{minipage}
 \end{center}
 \caption{Circles are initialised on the current location of the mouse cursor, generating a name {\ttfamily "c}\emph{n}{\ttfamily "}, where \emph{n} is the number of circles that have previously been created, and with an initial expression of {\ttfamily (\textbackslash? \textbackslash? \textbackslash?)}.}
+\label{fig:InitCirc}
 \end{figure}
 \end{center}
 
@@ -1280,12 +1293,13 @@ Of particular note are the various listeners embedded into the main window struc
 \subfloat[]{\includegraphics[height=\textwidth/3-1cm]{figs/nico_hi3.png}}
 \end{center}
 \caption{Three instances of the question text being highlighted as a corresponding circle is moused-over.}
+\label{fig:Highlighting}
 \end{figure}
 \end{center}
 
 \subsubsection{Control Scheme}
 
-Upon the detection of a mouse click, the software must determine the exact context in whcih the mouse was clicked, as this constitutes much of the application's control scheme.  The mouse's current co-ordinates on the canvas, as well as information regarding which mouse button was pressed and any modifiers that were active, are used to determine the correct action to take, as illustrated in \emph{Fig. x.y}.
+Upon the detection of a mouse click, the software must determine the exact context in whcih the mouse was clicked, as this constitutes much of the application's control scheme.  The mouse's current co-ordinates on the canvas, as well as information regarding which mouse button was pressed and any modifiers that were active, are used to determine the correct action to take, as illustrated in \emph{Fig. \ref{fig:ClickTree}}.
 
 \begin{center}
 \begin{figure}[H]
@@ -1293,6 +1307,7 @@ Upon the detection of a mouse click, the software must determine the exact conte
 \includegraphics[width=\textwidth-4cm]{figs/nico_click.pdf}
 \end{center}
 \caption{Decision tree to determine the appropriate response to a mouse clickf event.}
+\label{fig:ClickTree}
 \end{figure}
 \end{center}
 
@@ -1362,12 +1377,13 @@ overall project, being primarily an experiment in human-computer interaction.
 \includegraphics[width=\textwidth]{figs/nico_screen_01.png}
 \end{center}
 \caption{A screenshot of a \emph{Nico} session.}
+\label{fig:Nico1}
 \end{figure}
 \end{center}
 
 The application itself was kept fairly minimal: the aim was to emphasise the
 notation as the most important aspect of the software.  As such, the main
-application window, as shown above in \emph{Fig. x.y}, is mostly dedicated to
+application window, as shown above in \emph{Fig. \ref{fig:Nico1}}, is mostly dedicated to
 the canvas area in which the user answers the question.  The main application
 window is split up into two main sections, the information panels that display the question being answered and the current
 total of the user's calculation, as well as the {\sfapp Check} button to submit
@@ -1390,7 +1406,7 @@ canvas by left-clicking and dragging the circle to the desired location.  If a
 circle is dragged to the bin icon in the bottom left-hand corner of the screen,
 then it is removed.  Originally, deletion was mapped to a mouse control, but in the interest of a simpler control scheme and with a limited number of mouse buttons, it was decided that an icon should be used instead.  This also has the advantage of demonstrating to the new user that work can be easily undone, encouraging exploration.  Left-clicking on a circle's operator brings up a dialogue
 box with a selection of operators in it, with a radio button for each (see
-\emph{Fig. x.y}).  Similarly, left-clicking on a circle's argument brings up a
+\emph{Fig. \ref{fig:Dialogues}}).  Similarly, left-clicking on a circle's argument brings up a
 dialogue box containing a spinner, which can be used to set a new value for
 that argument, between -10 and 10.  The spinner is limited to this particular
 range as this prevents the user from effectively using the software as a simple
@@ -1413,6 +1429,7 @@ circle.
 }
 \end{center}
 \caption{The dialogue boxes used to modify existing circles in the application.}
+\label{fig:Dialogues}
 \end{figure}
 \end{center}
 
@@ -1433,7 +1450,7 @@ Circles are coloured according to their operators, clearly separating different
 kinds of operations and making the notation more readable.  An alternative
 method of colour-coding by the level of nesting was considered, but rejected on
 the grounds that it could become confusing if a circle were reused (see
-\emph{Fig. x.y}).
+\emph{Fig. \ref{fig:Nico2}}).
 
 \begin{center}
 \begin{figure}[H]
@@ -1441,6 +1458,7 @@ the grounds that it could become confusing if a circle were reused (see
 \includegraphics[width=\textwidth-2cm]{figs/nico_screen_02.png}
 \end{center}
 \caption{An example of where nesting-based colour-coding would be confusing.  The circle containing (2+2) can be considered to be both one and two circles removed from the root circle.}
+\label{fig:Nico2}
 \end{figure}
 \end{center}
 
@@ -1468,6 +1486,7 @@ continue uninterrupted (i.e. no input is required) if their answer is wrong.
 }
 \end{center}
 \caption{Examples of colour-coding in \emph{Nico}.}
+\label{fig:ColourCoding}
 \end{figure}
 \end{center}
 
@@ -1476,7 +1495,7 @@ revisions.  Details of how the UI design developed over time follow.
 
 \subsubsection{First Revision}
 Initially, the application was intended to use more buttons (see
-the prototype in \emph{Fig. x.y}, above), having more controls immediately
+the prototype in \emph{Fig. \ref{fig:ProtoCirc}}, above), having more controls immediately
 visible to the user.  In the first usable version of the interface, there were
 a number of buttons that appeared down the side of the application.  Each
 button ({\sfapp New}, {\sfapp Edit}, {\sfapp Delete}, etc.) would cause a
@@ -1492,8 +1511,8 @@ Later revisions of the software removed the buttons and implemented a system of
 context menus with which to construct answers. Right-clicking on a blank patch
 of the canvas gave the user the option to create a new circle, and right-
 clicking on an existing circle presented the user with the option to either
-edit or delete that circle.  Choosing to either create of edit a circle
-displayed a dialogue box (\emph{Fig. x.y}), with many options for the user to
+edit or delete that circle.  Choosing to either create or edit a circle
+displayed a dialogue box (\emph{Fig. \ref{fig:GUDB}}), with many options for the user to
 choose from: the name and operator of a circle could be set, with up to eight
 arguments could be enabled, with a choice of either a number (set by a slider)
 or another circle (chosen using a list of radio buttons that was generated upon
@@ -1517,6 +1536,16 @@ chance to review their answer before proceeding.  Indeed, it did not give the
 user a chance to learn from their mistakes; for example, if they had
 accidentally reached the right answer as part of a larger, incorrect
 calculation that they had previously intended to make.
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+% \includegraphics{figs/nico_gudb.png}
+{\Huge \sfapp GRAND UNIFIED DIALOGUE BOX LOL}
+\end{center}
+\caption{}
+\label{fig:GUDB}
+\end{figure}
+\end{center}
 
 \subsubsection{Final Revision}
 The final revision of the software reintroduces the {\sfapp Check}
@@ -1536,6 +1565,7 @@ was not an ideal approach, as detailed above.
 {\Huge \sfapp OLD VERSIONS OF THE APP LOL}
 \end{center}
 \caption{\emph{Nico}'s user interface went through a number of revisions before reaching its current state.}
+\label{fig:OldApps}
 \end{figure}
 \end{center}
 
@@ -1552,12 +1582,13 @@ was not an ideal approach, as detailed above.
 {\Huge \sfapp OLD VERSIONS OF THE NOTATION LOL}
 \end{center}
 \caption{The notation used also went through a number of revisions before reaching its current state.}
+\label{fig:OldNots}
 \end{figure}
 \end{center}
 
 The notation itself was also revised several times during the development of
 the application.  The original vision of the notation can be seen in
-\emph{Fig. x.y}.  The first implementation of the notation consisted of
+\emph{Fig. \ref{fig:ProtoCirc}}.  The first implementation of the notation consisted of
 uniformly-coloured circles connected by lines feeding into the centre of the
 recipient circle.  There were no placeholder values; these were unnecessary as
 the system of dialogue boxes meant that at no point could a circle have any
@@ -1576,7 +1607,6 @@ not at all clear in which order the input circles evaluated, neither relative
 to each other nor to the other arguments in the circle.
 
 % TODO: poss. a figure showing close-ups/details of newest notation?
-
 The design of the notation was changed to address the problems listed above.  In its
 final revision, the notation has had a number of features added.  Firstly,
 the circles are now colour-coded by operator, making it easier for the user to
@@ -1632,7 +1662,7 @@ commented-out lines of code can be evaluated at will.  As such, it was possible
 for me to write unit tests into the main body of my code, evaluating them
 whenever a change may have affected how a function behaved.  In the interests
 of tidiness and code readability, many tests were removed as they became
-unnecessary later on in the devlopment in the project, but \emph{Fig. x.y}
+unnecessary later on in the devlopment in the project, but \emph{Fig. \ref{fig:SlimeTests}}
 shows one of the test blocks that were left in the most recent revision of the
 source code.
 
@@ -1692,6 +1722,7 @@ source code.
 \end{minipage}
 \end{center}
 \caption{An example of a block of inline tests, taken from {\ttfamily core.clj}, showing some tests to be run to test the implementation of {\ttfamily detect-subs}.}
+\label{fig:SlimeTests}
 \end{figure}
 \end{center}
 
@@ -1702,7 +1733,7 @@ source code.
 % 300ms test - see below (under goals)
 % maybe time render too?
 
-The time taken to generate an S-expression, evaluate it and display the result to the user was required by the project proposal to be less than 300ms.  To test this, a \emph{Nico} session was completed, using the same questions as in the user study (below), but with a modified version of the function \verb¬update-answer¬, which generates an S-expression from the user's diagram, evaluates it and displays the result to the user.  The modified version of \verb¬update-answer¬ is shown in \emph{Fig. x.y}, below.
+The time taken to generate an S-expression, evaluate it and display the result to the user was required by the project proposal to be less than 300ms.  To test this, a \emph{Nico} session was completed, using the same questions as in the user study (below), but with a modified version of the function \verb¬update-answer¬, which generates an S-expression from the user's diagram, evaluates it and displays the result to the user.  The modified version of \verb¬update-answer¬ is shown in \emph{Fig. \ref{fig:TimeCode}}, below.
 
 \begin{center}
 \begin{figure}[H]
@@ -1722,6 +1753,7 @@ The time taken to generate an S-expression, evaluate it and display the result t
 \end{minipage}
 \end{center}
 \caption{The modified version of {\ttfamily update-answer} used to time diagram evaluation.}
+\label{fig:TimeCode}
 \end{figure}
 \end{center}
 
@@ -1738,6 +1770,7 @@ A plot of the time taken for each call to \verb¬update-answer¬ to complete ove
 }
 \end{center}
 \caption{a) Plot and b) detail of the time taken for {\ttfamily update-answer} to complete, over the course of one session.}
+\label{fig:UpdateTimes}
 \end{figure}
 \end{center}
 
@@ -1828,7 +1861,7 @@ functions such as changing the number of arguments.
 % q9:  t = 4.0293, df = 7, p-value = 0.005      <- sig
 % q10: t = 2.1298, df = 7, p-value = 0.0707
 
-The results of the tests are shown in \emph{Table x.y}, listing the times taken
+The results of the tests are shown in \emph{Table \ref{tab:BigTimes}}, listing the times taken
 for each participant to answer the questions both by hand and using \emph{Nico}.
 
 \begin{center}
@@ -1867,6 +1900,7 @@ Q10 & 357300 & 238300 & 261600 & 203110 & 237500 & 324581 & 472900 & 270177\\
 \end{tabular}
 \end{center}
 \caption{Table showing the time in milliseconds taken by each participant to complete each question, by hand and using the software.}
+\label{tab:BigTimes}
 \end{table}
 \end{center}
 
@@ -1917,7 +1951,7 @@ determine whether or not the difference between the mean time taken to answer
 each question by hand and using \emph{Nico} was statistically-significant.  The
 paired \emph{t}-test was chosen as the samples are not independent.  The
 results of the \emph{t}-tests on each question's datasets are shown in
-\emph{Table x.y}.  The data is assumed to fit a normal distribution.  A
+\emph{Table \ref{tab:TTests}}.  The data is assumed to fit a normal distribution.  A
 Shapiro-Wilk test was considered to test each dataset for normality, but the
 sample size of eight data points per set (i.e. eight participants for each
 question) was deemed to be too small for such a test to have meaningful results.
@@ -1943,6 +1977,7 @@ Q10 & 2.1298 & 0.0707 & No\\
 \end{tabular}
 \end{center}
 \caption{Table showing the results of the paired \emph{t}-test comparing the distribution of times taken to answer each question by hand and using the software, using an \emph{α} value of 0.05.}
+\label{tab:TTests}
 \end{table}
 \end{center}
 
@@ -2017,6 +2052,7 @@ Q10 & 0 & 0 & 1 & 0 & 0 & 5 & 1 & 0\\
 \end{tabular}
 \end{center}
 \caption{Table comparing the mark obtained for each question answered by hand (a correct answer scored 1, whereas an incorrect answer scored 0) to the number of attempts made to answer each question before submitting the correct answer in \emph{Nico}.}
+\label{tab:MarksTries}
 \end{table}
 \end{center}
 
@@ -2067,7 +2103,8 @@ The final section of the questionnaire constituted a series of questions adapted
 \hline
 \end{tabular}
 \end{center}
-\caption{Table showing the tone of feedback (-1 indicates negative feedback, 0 indicates neutral feedback, 1 indicates positive feedback) by qubject and question, with the totals for each type of feedback by question.}
+\caption{Table showing the tone of feedback (-1 indicates negative feedback, 0 indicates neutral feedback, 1 indicates positive feedback) by participant and question, with the totals for each type of feedback by question.}
+\label{tab:FeedbackScores}
 \end{table}
 \end{center}
 
@@ -2079,6 +2116,7 @@ This data can also be visualised using a diagram, as follows.
 \includegraphics[width=\textwidth]{figs/graphs/stacked-scores.png}
 \end{center}
 \caption{Diagram showing the proportions of positive, neutral and negative feedback per question.}
+\label{fig:StackedScores}
 \end{figure}
 \end{center}
 
@@ -2116,7 +2154,7 @@ The mean feedback scores both by question and by topic are shown below.
 \hline
 \end{tabular}
 \end{center}
-\caption{Table showing the mean feedback values (using the same scoring system as in \emph{Table x.y}) by question and by groups of questions.}
+\caption{Table showing the mean feedback values (using the same scoring system as in \emph{Table \ref{tab:FeedbackScores}}) by question and by groups of questions.}
 \end{table}
 \end{center}
 

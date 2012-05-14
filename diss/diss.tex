@@ -1513,12 +1513,12 @@ visualising the circle to be created whilst setting the many options available
 in the dialogue box constituted an unnecessary \emph{hard mental operation}.
 The automatic answer-checking was also a problem, as it did not give the user a
 chance to review their answer before proceeding.  Indeed, it did not give the
-user a chance to learn from their mistakes, say for example if they had
+user a chance to learn from their mistakes; for example, if they had
 accidentally reached the right answer as part of a larger, incorrect
 calculation that they had previously intended to make.
 
-\subsubsection{Current Revision}
-The final, current revision of the software reintroduces the {\sfapp Check}
+\subsubsection{Final Revision}
+The final revision of the software reintroduces the {\sfapp Check}
 button to address the issues with the automatic answer-checking in the
 previous version of the application.  It also introduces the control scheme
 detailed above, allowing the user to feel more like they are directly
@@ -1576,8 +1576,8 @@ to each other nor to the other arguments in the circle.
 
 % TODO: poss. a figure showing close-ups/details of newest notation?
 
-The notation changed somewhat to address the problems listed above.  In its
-current revision, the notation has had a number of features added.  Firstly,
+The design of the notation was changed to address the problems listed above.  In its
+final revision, the notation has had a number of features added.  Firstly,
 the circles are now colour-coded by operator, making it easier for the user to
 distinguish between different kinds of circles.  The circles themselves have
 also been embellished slightly with the addition of a line denoting the star of
@@ -1724,7 +1724,21 @@ The time taken to generate an S-expression, evaluate it and display the result t
 \end{figure}
 \end{center}
 
-A plot of the time taken for each call to \verb¬update-answer¬ to complete over time is shown below. % TODO: this
+A plot of the time taken for each call to \verb¬update-answer¬ to complete over time is shown below.
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\subfloat[]{
+\includegraphics[width=\textwidth/2-2cm]{figs/graphs/update_times_full.png}
+}
+\subfloat[]{
+\includegraphics[width=\textwidth/2-2cm]{figs/graphs/update_times_cut30.png}
+}
+\end{center}
+\caption{Plot and detail of the time taken for {\ttfamily update-answer} to complete, over the course of one session.}
+\end{figure}
+\end{center}
 
 \subsection{Notation Evaluation}
 % user testing
@@ -1737,8 +1751,10 @@ A plot of the time taken for each call to \verb¬update-answer¬ to complete ove
 To assess the utility of the software relative to handwritten arithmetic, a
 user study was conducted, allowing real users to get to grips with the system,
 and provide feedback on it.  To this end, users were given a tutorial video and
-a questionnaire (see \emph{Appendix A} for the full questionnaire) to complete
+a questionnaire (see \emph{Appendix B} for the full questionnaire) to complete
 whilst using the software.
+
+\subsection{Experimental Design}
 
 Originally, it was the intention of this project to perform a user study upon
 a `test class' of Year 5 pupils at an actual school, but the ethical
@@ -1767,6 +1783,11 @@ the system time as the user progressed and the handwritten questions being
 timed using a stopwatch.  Both groups were then asked to complete a series of
 questions to provide feedback on the software, taking questions from Blackwell
 and Green's sample questionnaire. \cite{Blackwell2000}
+
+% TODO: You need an experimental design section that describes why you used the cognitive dimensions questionnaire for evaluation instead of other means of evaluation, why you compared paper questions with nico instead of a calculator, why you used a tutorial video instead of a text based tutorial, why you used a likert scale instead of another scale, why you used time as a metric of comparison,
+This approach was chosen for a number of reasons.  \emph{Nico} was compared to questions answered by hand, rather than a calculator, as its intention is not to calculate answers for the student, but as more of a technique of visualising a mathematical method (hence the decision to limit available arguments to functions to a range of values between -10 and 10).  To compare \emph{Nico} to questions answered using a calculator would not be a useful comparison, as a calculator is able to perform calculations using larger numbers without requiring the user to put into practice similar methods to those that they would use when calculating by hand.  The users were divided into two groups, each completing the same tasks but in a different order, to eliminate any bias that might have arisen from both groups having already completed the questions using one method, before using the other.  The decision to use two methods of evaluation of the software (timing users and the cognitive dimensions questionnaire) allows several aspects of the software to be assessed: by timing users' responses to questions both by hand and using the software, we are able to gauge the length of time taken by the participant to think about how to answer a question.  It is expected that \emph{Nico} should decrease the amount of time taken to work through complex problems involving several subcalculations.  The cognitive dimensions questionnaire also allows users to appraise the design of the user interface themselves, criticising aspects they disliked and praising those that they found useful.
+
+With regard to the design of the questionnaire itself, it was decided to use a Likert item to assess the users' initial level of confidence in their arithmetic ability as this provides a simple approach that can easily map to numerical data, which can then be analysed more easily than a verbal response.  A tutorial video was decided upon, rather than a textual approach, as it provides a means of demonstrating an example session in a standardised way, rather than a live demonstration, in which important elements could potentially be accidentally omitted by the demonstrator, or a textual description, which may not make certain terminology or processes as clear to the reader as a demonstration.
 
 \subsection{Pilot Study}
 % changes, improvements
@@ -1848,50 +1869,15 @@ Q10 & 357300 & 238300 & 261600 & 203110 & 237500 & 324581 & 472900 & 270177\\
 \end{table}
 \end{center}
 
-This data can be visualised using a series of plots, as follows.
-
-\begin{center}
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=\textwidth-2cm]{figs/graphs/q1.png}
-\end{center}
-\caption{Time taken in milliseconds per participant to answer Question 1.}
-\end{figure}
-\end{center}
-
-\begin{center}
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=\textwidth-2cm]{figs/graphs/q2.png}
-\end{center}
-\caption{Time taken in milliseconds per participant to answer Question 2.}
-\end{figure}
-\end{center}
+This data can be visualised using a series of plots, as below.  The complete set of plots can be found in Appendix A.
 
 \begin{center}
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth-2cm]{figs/graphs/q3.png}
 \end{center}
-\caption{Time taken in milliseconds per participant to answer Question 3.}
-\end{figure}
-\end{center}
-
-\begin{center}
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=\textwidth-2cm]{figs/graphs/q4.png}
-\end{center}
-\caption{Time taken in milliseconds per participant to answer Question 4.}
-\end{figure}
-\end{center}
-
-\begin{center}
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=\textwidth-2cm]{figs/graphs/q5.png}
-\end{center}
-\caption{Time taken in milliseconds per participant to answer Question 5.}
+\caption{Time taken in milliseconds per participant to answer Question 3: 1+2+3+4+5.}
+\label{fig:PlotQ3}
 \end{figure}
 \end{center}
 
@@ -1900,7 +1886,8 @@ This data can be visualised using a series of plots, as follows.
 \begin{center}
 \includegraphics[width=\textwidth-2cm]{figs/graphs/q6.png}
 \end{center}
-\caption{Time taken in milliseconds per participant to answer Question 6.}
+\caption{Time taken in milliseconds per participant to answer Question 6: ((1+2+3+4+5)+(2×4×6×8×10))×1×2×(1+2+3+4+5).}
+\label{fig:PlotQ6}
 \end{figure}
 \end{center}
 
@@ -1909,16 +1896,8 @@ This data can be visualised using a series of plots, as follows.
 \begin{center}
 \includegraphics[width=\textwidth-2cm]{figs/graphs/q7.png}
 \end{center}
-\caption{Time taken in milliseconds per participant to answer Question 7.}
-\end{figure}
-\end{center}
-
-\begin{center}
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=\textwidth-2cm]{figs/graphs/q8.png}
-\end{center}
-\caption{Time taken in milliseconds per participant to answer Question 8.}
+\caption{Time taken in milliseconds per participant to answer Question 7: 12+14.}
+\label{fig:PlotQ7}
 \end{figure}
 \end{center}
 
@@ -1926,17 +1905,9 @@ This data can be visualised using a series of plots, as follows.
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth-2cm]{figs/graphs/q9.png}
+\label{fig:PlotQ9}
 \end{center}
-\caption{Time taken in milliseconds per participant to answer Question 9.}
-\end{figure}
-\end{center}
-
-\begin{center}
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=\textwidth-2cm]{figs/graphs/q10.png}
-\end{center}
-\caption{Time taken in milliseconds per participant to answer Question 10.}
+\caption{Time taken in milliseconds per participant to answer Question 9: 120÷((2×10)+5+5).}
 \end{figure}
 \end{center}
 
@@ -2003,7 +1974,8 @@ more calculations to perform, and one operation involving a large number at the
 end,  this question is not especially challenging to solve by hand, and as such
 the lack of a significant difference between using the software and not doing
 so is not entirely unexpected.  The simple subcalculations are easier to
-perform by hand, and combining them is faster using \emph{Nico}.
+perform by hand, and combining them is faster using \emph{Nico}.  Indeed, this
+conclusion is borne out by the plots shown above: \emph{Fig. ~\ref{fig:PlotQ3}} shows a clear advantage to calculating a simple question by hand.  By Question 6, (\emph{Fig. ~\ref{fig:PlotQ6}}), there seems to be no clear advantage to using either method, and for Questions 7 and 9 (\emph{Fig. ~\ref{fig:PlotQ7}} and \emph{Fig. ~\ref{fig:PlotQ9}}), which are `complex' questions as described above, \emph{Nico} is shown to be a faster means of calculation.  This is especially the case with Question 7.
 
 Data were also collected regarding how well the questions were answered by each
 user, which follow.
@@ -2053,13 +2025,13 @@ Q10 & 0 & 0 & 1 & 0 & 0 & 5 & 1 & 0\\
 % or perhaps concat as above, then separate into the 1-markers and 0-markers
 % then again, might be better to just take a mean of the wrongs with that data
 % could even do this by question, e.g. if they got q1 wrong on paper they're more likely to get it wrong in the software, but getting q2 wrong might not mean shit
-The Pearson product-moment correlation coefficient \emph{r} of this data was calculated, comparing the concatenated `marks' data and the concatenated `tries' data (two series of 80 elements each).  The value obtained for \emph{r} was -0.2278926, indicating a weak negative correlation between the mark obtained and the number of wrong submissions using \emph{Nico}.  To determine the significance of this result, the \emph{r} value is compared to a critical value taken from a table, in this case from Fisher, who gives, for a two-tailed test at the 0.05 level and for 80 samples, a critical value of 0.224. \cite{Fisher1972}  Hence, the calculated \emph{r} value shows a statistically-significant, negative correlation between the marks obtained for a handwritten answer and the number of wrong answers provided using the software.
+The Pearson product-moment correlation coefficient \emph{r} of this data was calculated, comparing the concatenated `marks' data and the concatenated `tries' data (two series of 80 elements each).  The value obtained for \emph{r} was -0.2278926, indicating a weak negative correlation between the mark obtained and the number of wrong submissions using \emph{Nico}.  To determine the significance of this result, the \emph{r} value is compared to a critical value taken from a table, in this case from Fisher, who gives, for a test at the 0.05 level and for 80 samples, a critical value of 0.2172. \cite{Fisher1990}  Hence, the calculated \emph{r} value shows a statistically-significant, negative correlation between the marks obtained for a handwritten answer and the number of wrong answers provided using the software.
 
 \subsubsection{Feedback}
 % feedback innit
 % TODO: this section
 
-The final section of the questionnaire constituted a series of questions adapted from Blackwell and Green's paper. \cite{Blackwell2000}  The results of the questionnaire follow.
+The final section of the questionnaire constituted a series of questions adapted from Blackwell and Green's paper. \cite{Blackwell2000}  The users' responses were graded based upon their tone, scoring -1 for negative, 0 for neutral and 1 for positive.  The results follow.
 
 \begin{center}
 \begin{table}[H]
@@ -2175,11 +2147,20 @@ Users responded to the questions in this section with neutral-to-negative feedba
 
 \mu = 0.1250000
 
-This section was met with neutral-to-positive feedback, with Question 2.4.1 receiving more positive feedback and Question 2.4.2 receiving neutral-to-negative reponses.
+This section was met with neutral-to-positive feedback, with Question 2.4.1 receiving more positive feedback and Question 2.4.2 receiving neutral-to-negative reponses.  Participants felt that the notation was ``very close[ly]'' related to the result that they were describing, with one user going so far as to say that it was ``exactly so''.  Several users found that the limitation of available numbers to the range -10 to 10 to be a strange way of working: this limitation was not mentioned in the tutorial video, with the expectation that users would appreciate the need for such a feature, to prevent the software from becoming equivalent to a calculator, rather than a means of expressing method.  As it was particularly difficult to explain this without imposing a subjective method of calculation upon the user, some participants concluded that it was a flaw in the software, rather than an conscious design choice.
 
 \paragraph{Role Expressiveness}\hfill
 
 \mu = 0.5416667
+
+Feedback on this section was broadly positive, with Question 2.5.3 receiving particularly positive responses.  User opinions were varied with regard to the clarity of the notation.  A small majority felt that it was ``well laid out'', and several users found the colour-coding ``useful''.  Some, however, found that they were liable to forget the meaning of some parts of the notation.  One user felt that
+\begin{center}
+\parbox[c]{\textwidth-2cm}{
+\small
+``if I were looking at a completed diagram it might be confusing but when you work through a question and break it down it is easy to see what's what because you create each part of it as you get there.''
+}
+\end{center}
+Most users felt that there were no parts of the notation that were especially difficult to interpret, although a few note that the screen can become busy for more complex calculations.  One user agrees with the feedback from the `Visibility \& Juxtaposability' section from that connecting lines between circles can become ``like a spiderweb, difficult to take in altogether'' when numerous.  All users responded to Question 2.5.3 with ``no'', ``none'' or equivalent answers, indicating that there were no parts of the notation that were unclear but included as a result of a feeling of obligation to do so.
 
 \paragraph{Hidden Dependencies}\hfill
 
@@ -2221,7 +2202,7 @@ As an extension, a user study was conducted to assess the suitability of the sof
 \item For simple questions that are easily solved mentally, \emph{Nico} increases the solution time
 \item For more complex questions involving large numbers and nested calculations, \emph{Nico} decreases the solution time
 \end{itemize}
-\item There is a statistically-significant negative correlation between whether a question is answered correctlyy or incorrectly by hand and the number of wrong attempts at an answer before succeeding using the software
+\item There is a statistically-significant negative correlation between whether a question is answered correctly or incorrectly by hand and the number of wrong attempts at an answer before succeeding using the software
 \item Whatever the Feedback section said
 \end{itemize}
 
@@ -2253,6 +2234,100 @@ As an extension, a user study was conducted to assess the suitability of the sof
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % the appendices
 \appendix
+
+\chapter{User Response Times}
+
+The plots of the times taken for each user to answer each question follow.
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q1.png}
+\end{center}
+\caption{Time taken in milliseconds per participant to answer Question 1.}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q2.png}
+\end{center}
+\caption{Time taken in milliseconds per participant to answer Question 2.}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q3.png}
+\end{center}
+\caption{Time taken in milliseconds per participant to answer Question 3.}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q4.png}
+\end{center}
+\caption{Time taken in milliseconds per participant to answer Question 4.}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q5.png}
+\end{center}
+\caption{Time taken in milliseconds per participant to answer Question 5.}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q6.png}
+\end{center}
+\caption{Time taken in milliseconds per participant to answer Question 6.}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q7.png}
+\end{center}
+\caption{Time taken in milliseconds per participant to answer Question 7.}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q8.png}
+\end{center}
+\caption{Time taken in milliseconds per participant to answer Question 8.}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q9.png}
+\end{center}
+\caption{Time taken in milliseconds per participant to answer Question 9.}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-2cm]{figs/graphs/q10.png}
+\end{center}
+\caption{Time taken in milliseconds per participant to answer Question 10.}
+\end{figure}
+\end{center}
 
 \chapter{Questionnaire}
 

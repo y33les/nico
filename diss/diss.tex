@@ -191,7 +191,7 @@ Stead and Sam Aaron for their encouragement and patience.
 \chapter{Introduction}
 % TODO: sort out cogdims: apparently the proper way to do it is to mention cogdims and cite petra & green, then put all the cogdims terms in italics
 
-The aim of this project has been to design and develop a notation and accompanying application to act as a learning aid for pre-algebra arithmetic in schools.  Using Petre and Green's `Cognitive Dimensions' framework, the project aims to increase the \emph{visibility} of the notation, to reduce the number of \emph{hidden dependencies} between units of notation, to reduce the \emph{viscosity} of the notation and to make the flow of data obvious to the user. \cite{Green1996}  I have successfully developed such a system, intended initially for pupils in Year 5 (though extensible, through the creation of alternative question sets, to other age groups), and, as an extension, conducted a user study to assess its utility.
+The aim of this project has been to design and develop a notation and accompanying application to act as a learning aid for pre-algebra arithmetic in schools.  Using Petre and Green's `Cognitive Dimensions' framework, the project aims to increase the \emph{visibility} of the notation, to reduce the number of \emph{hidden dependencies} between units of notation, to reduce the \emph{viscosity} of the notation, and to make the flow of data obvious to the user. \cite{Green1996}  I have successfully developed such a system, intended initially for pupils in Year 5 (though extensible, through the creation of alternative question sets, to other age groups), and, as an extension, conducted a user study to assess its utility.
 
 In this chapter, I will discuss my motivations for choosing this project, the pros and cons of the handwritten system it is attempting to augment, the technical challenges involved in developing such a system and related work that has previously been conducted with similar goals.
 
@@ -200,7 +200,7 @@ In this chapter, I will discuss my motivations for choosing this project, the pr
 % cogdims of handwritten method(s)
 % system requirements (cogdims)
 
-My motivations behind this project lay in the limitations of the handwritten approach to solving mathematical problems that I had observed both in my own learning and in my own teaching experience.  What follows is an assessment of the technical challenges involved in this project, and an evaluation of the pros and cons of the handwritten method of performing arithmetic calculations according to the `Cognitive Dimensions' framework cited above, and a discussion of the properties that a useful alternative notation should have.
+My motivations behind this project lay in the limitations of the handwritten approach to solving mathematical problems that I have observed both in my own learning and in my own teaching experience.  What follows is an assessment of the technical challenges involved in this project, followed by a discussion of the ideal properties of a useful alternative notation.
 
 \pagebreak
 
@@ -216,17 +216,14 @@ My motivations behind this project lay in the limitations of the handwritten app
 % also need good gui libraries for app - familiar with java/swing so that works (esp. with seesaw), also the option of jfx2 and swt/guiftw
 % difficulty of learning clojure over summer in preparation
 
-Developing such an application comprises three main challenges: developing a back-end that is capable of creating, storing, editing, deleting, evaluating, and nesting calculations, an interaction-handler layer that is able to interpret user input and events occurring in the user interface, and a graphical user interface that is able to render calculations into the devised notation, and allow the user to perform operations upon the notation that affect the underlying calculation.
+Developing such an application comprises three main challenges.  Firstly, developing a back-end that is capable of creating, storing, editing, deleting, evaluating and nesting calculations.  Secondly, developing an interaction-handler layer that is able to interpret user input and events occurring in the user interface.  Finally, implementing a graphical user interface that is able to render calculations into the devised notation, and allow the user to perform operations upon the notation that affect the underlying calculation.
 
-Such a project will require a strong foundation from which to construct a user interface, as this is a crucial factor in its success.  An external library or libraries to provide GUI functionality would be suitbale.  The fact that it is also being built with the intention of being deployed in schools, in which there is a great variety of computing environments, necessitates a portable system.
+Such a project requires a strong foundation from which to construct a user interface, as this is a crucial factor in its success.  An external library or libraries to provide GUI functionality would be suitable.  That it is also being built with the intention of being deployed in schools, in which there is a variety of computing environments, necessitates a portable system.
 
-With regard to the representation and processing of calculations, a framework in which calculations are easy to store and manipulate, and in which evaluation can be delayed, would be advantageous.% TODO: this bit, wtf
+With regard to the representation and processing of calculations, a framework in which calculations are easy to store and manipulate, and in which evaluation can be delayed, would be advantageous.  The Clojure language was chosen as it provides many features that solve the problems described above.  As a dialect of LISP, Clojure is a homoiconic programming language; a programming language in which code is represented as a data structure.  This makes passing around and performing operations upon calculations themselves, rather than just their results, considerably easier: a calculation can simply be represented as a piece of code, which can then be utilised as needed.
 
-I chose to use the Clojure language as it provided many features that would solve the problems described above.  As a dialect of LISP, Clojure is a homoiconic programming language; a programming language in which code is represented as a data structure.  This made passing around and performing operations upon calculations themselves, rather than just their results, considerably easier.  A calculation can simply be represented as a piece of code, which can then be utilised as needed.
-
-Clojure also provides the aforementioned libraries needed for effective GUI implementation.  It runs on the Java Virtual Machine (JVM), which puts Java's considerable standard library at one's disposal, whilst still being able to program in a LISP.  As the author is familiar with Java and the Swing GUI libraries, it was advantageous to be able to leverage this knowledge in designing the application's interface.
-
-In addition to this, running on the JVM means that the software is suitably portable.  A Java-based solution standardises the \emph{Nico} experience across many environments.
+% TODO: functional programs => easy to test?
+Clojure also provides the aforementioned libraries needed for effective GUI implementation.  It runs on the Java Virtual Machine (JVM), which puts Java's considerable standard library at one's disposal, whilst still allowing the developer to program in a LISP.  As the author is familiar with Java and the Swing GUI libraries, it is advantageous to be able to draw upon this knowledge in designing the application's interface.  In addition to this, running on the JVM means that the software is suitably portable.  A Java-based solution standardises the \emph{Nico} experience across many environments.
 
 \section{Previous Work}
 % scrubbing calculator http://worrydream.com/ScrubbingCalculator/
@@ -241,7 +238,7 @@ In addition to this, running on the JVM means that the software is suitably port
 % nico is unabashedly *not* a game, rather a tool, much like a pen or calculator
 % problem with calculators?
 
-There already exists a wide variety of educational software for mathematics, often in the form of `games', in which mathematical problems are presented in the context of a computer game.  Although such games have repeatedly been shown to be of benefit to the learner, a barrier to their widespread use in education can be the preconceptions of the users. \cite{Swan2009} \cite{Delacruz2010}  Indeed, Bragg notes that
+There already exists a wide variety of educational software for mathematics, which often present mathematical problems in the context of a computer game.  Although such games have repeatedly been shown to be of benefit to the learner, a barrier to their widespread use in education can be the users' preconceptions about the educational value of computer games. \cite{Swan2009} \cite{Delacruz2010}  Indeed, Bragg notes that
 \begin{center}
 \parbox[c]{\textwidth-2cm}{
 \small
@@ -255,25 +252,17 @@ This is reinforced in a later paper by the same author, where Bragg concludes th
 ``It appeared that game-playing negatively affected attitudes'' \cite{Bragg2007}
 }
 \end{center}
-Although it was also concluded that such problems could be addressed by dedicating lesson time to explaining the benefits of game-playing as a pedagogical tool, an alternative approach, and one that is taken by this project, is to introduce computers into the classroom as a {\bf tool}, rather than as a means of playing games.  In the same way that calculators are used in mathematics lessons, it is the intention of this project to introduce a new tool to complement learning, to be incorporated into students' repertoires.
+Although it was also concluded that such problems could be addressed by dedicating lesson time to explaining the benefits of game-playing as a pedagogical tool, an alternative approach, and one that is taken by this project, is to introduce software into the classroom as a {\bf tool}, rather than `just a game'.  In the same way that calculators are used in mathematics lessons, it is the intention of this project to introduce a new tool to complement learning.
 
-There also exist a few applications intended to represent calculations on a
-computer in novel ways.  A relatively common approach to this has been to try
-to make on-screen calculations more like on-paper calculations.
-
-\emph{Pi Cubed} takes this approach by trying to make complex calculations appear as they would be written in an exam or exercise book \cite{PiCubed}.  \emph{Soulver}, conversely, tries to achieve this by simulating `back-of-the-envelope' calculations, whereby notes in English augment the calculation \cite{Soulver}.
+There also exist a few applications intended to represent calculations on a computer in novel ways.  A relatively common approach to this has been to try to make on-screen calculations more like on-paper calculations.  One such example is \emph{Pi Cubed}, which tries to make complex calculations appear as they would be written in an exam or exercise book. \cite{PiCubed}  \emph{Soulver}, conversely, tries to achieve this by simulating `back-of-the-envelope' calculations, whereby notes in English augment the calculation. \cite{Soulver}
 
 % TODO: image?  but copyright issues...
-Another approach is that of the \emph{Scrubbing Calculator} \cite{ScrubCalc}, which extends the \emph{Soulver}-style environment by helping the user to solve equations by dragging values to increase and decrease them, showing how changing a value affects the overall result.  Values can be linked by dragging a line between them, which means that they are two instances of the same value -- hence dragging one changes the value at every location in which it appears.
-
-This is a neat means of visualising equations, but it, too, is not intended for use in education, and still requires the user to be able to formulate some kind of equation.  The \emph{Scrubbing Calculator} is more a tool for facilitating algebraic understanding, as opposed to arithmetic understanding; indeed, it is inherently a {\bf calculator}, and so does not encourage thinking about how to work out the arithmetic parts of a calculation manually.
+Another approach is that of the \emph{Scrubbing Calculator} \cite{ScrubCalc}, which extends the \emph{Soulver}-style environment by helping the user to solve equations by dragging values to increase and decrease them, showing how changing a value affects the overall result.  Values can be linked by dragging a line between them, which means that they are two instances of the same value: dragging one changes the value at every location in which it appears.  This is a neat means of visualising equations, but it, too, is not intended for use in education, and still requires the user to be able to formulate some kind of equation.  The \emph{Scrubbing Calculator} is more a tool for facilitating algebraic understanding, as opposed to arithmetic understanding; indeed, it is inherently a {\bf calculator}, and so does not encourage thinking about how to work out the arithmetic parts of a calculation manually.
 
 \section{Summary}
 % need a system that incorporates these features: foo, bar, baz, quux
 
-Existing educational `games' for mathematics, although valid as a means of teaching, face obstacles from teachers' and pupils' attitudes toward them, as a result of their status as games, rather than learning tools.  There exists software to aid in calculation and arithmetic by representing it clearly, but it is not intended for educational use, and often its purpose is to make on-screen calculations appear as one would handwrite them.  A new application is proposed to be used as a tool to complement teaching, as one would use a calculator.
-
-There is a niche for a tool for use in education that represents calculations in a visual manner, with a particular focus on making the method by which arithmetic problems are solved clear, whilst remaining not a calculator.  This project aims to provide such an environment, in which the user can explore the many ways in which a problem can be solved using a novel graphical notation.% TODO: emphasise? wtf
+Existing educational games for mathematics, although valid as a means of teaching, face obstacles from teachers' and pupils' attitudes toward them, as a result of their status as games rather than learning tools.  There exists software to aid in calculation and arithmetic by representing it clearly, but it is not intended for pedagogical use, and often its purpose is to make on-screen calculations appear as one would handwrite them.  A new application is proposed to be used as a tool to complement teaching, as one would use a calculator in the classroom.  There is a niche for a tool for use in education that represents calculations in a visual manner, with a particular focus on making the {\bf method} by which arithmetic problems are solved clear.  This project aims to create such an environment, in which the user can explore the many ways in which a problem can be solved using a novel graphical notation.% TODO: emphasise? wtf
 
 \cleardoublepage
 
@@ -287,11 +276,7 @@ There is a niche for a tool for use in education that represents calculations in
 % comprises a requirements analysis, followed by an overview of the system
 % architecture and a discussion of the additional tools used in the development of
 % the project.
-This chapter concerns the work that was completed prior to beginning the
-project proper.  It comprises a requirements analysis, followed by a discussion
-of the prototyping process of the graphical notation to be implemented in the
-final application.  Finally, there will be a brief examination of the tools
-used in the development of the project.
+This chapter concerns the work that was completed prior to beginning the project proper.  It comprises a requirements analysis, followed by a discussion of the prototyping process of the graphical notation that was to be implemented in the final application.  Finally, there will be a list of the tools used in the development of the project.
 
 \section{Requirements Analysis}
 % http://www.cs.fsu.edu/~lacher/courses/COP3331/rad.html
@@ -335,7 +320,7 @@ used in the development of the project.
 {\color{red}\sout{131}} {\color{green}121}+{\color{blue}61}= {\color{red}\sout{192}} 182}
 \end{center}}}
 \end{center}
-\caption{Illustrating the hidden dependencies and viscosity inherent in pre-algebra, handwritten arithmetic.  The original calculation is shown in (a), has its otherwise-hidden dependencies highlighted in (b), and is altered slightly in (c).}
+\caption{Illustrating the hidden dependencies and viscosity inherent in pre-algebra, handwritten arithmetic.  The original calculation is shown in a); in b), it has its otherwise-hidden dependencies highlighted; and it is altered slightly in c).}
 \label{fig:ArithHDs}
 % \end{wrapfigure}
 \end{figure}
@@ -352,41 +337,39 @@ used in the development of the project.
 % no abstraction barrier to arithmetic though
 % secondary notation - notes around calculations
 % visibility - visible, but only juxtaposable if juxtaposed at the start (premature commitment) or with the help of secondary notation
-There are a number of problems with handwritten, pre-algebra arithmetic that this project seeks to rectify.  An analysis of the handwritten method according to the `Cognitive Dimensions' framework follows.
+There are a number of problems with handwritten, pre-algebra arithmetic that this project seeks to rectify.  This section includes an analysis of the handwritten method according to the `Cognitive Dimensions' framework.
 
-First of all, the fact that it is handwritten entails a high level of \emph{viscosity}: it is difficult to make changes to a written calculation without sacrificing clarity.  In particular, there is a lot of \emph{repetition viscosity} involved in the modification of an existing piece of work; if a number is changed that is used in several calculations, then it is time-consuming to change it everywhere it appears in the working.
+First of all, the fact that the traditional notation for arithmetic is handwritten entails a high level of \emph{viscosity}: it is difficult to make changes to a written calculation without sacrificing clarity.  In particular, there is a lot of \emph{repetition viscosity} involved in the modification of an existing piece of work: if a number is changed that is used in several calculations, then it is time-consuming to change it everywhere it appears in the working.  If several calculations are dependent upon each other, then this entails a lot of \emph{knock-on viscosity} in recalculating each stage after changing the number.  This is exacerbated by the \emph{hidden dependencies} between chained calculations in handwritten arithmetic (\emph{Fig.~\ref{fig:ArithHDs}}).
 
-If several calculations are dependent upon each other, then this entails a lot of \emph{knock-on viscosity} in recalculating each stage after changing the number.  This is exacerbated by the \emph{hidden dependencies} between chained calculations in handwritten arithmetic (\emph{Fig.~\ref{fig:ArithHDs}}).
+The problem of \emph{hidden dependencies} is made worse by the low \emph{juxtaposability of notation} of the system.  Although the notation is quite \emph{visible}, in that every calculation can be seen easily on the page, juxtaposing two sets of calculations entails considerable \emph{premature commitment} on the part of the user, where decisions regarding the placement of components have to be made before the required information is available.  Components cannot easily be edited or relocated due to the system's high \emph{viscosity}.
 
-The problem of \emph{hidden dependencies} is made worse by the low \emph{juxtaposability of notation} of the system; although the notation is quite \emph{visible}, in that every calculation can be seen easily on the page, juxtaposing two sets of calculations entails considerable \emph{premature commitment} on the part of the user, as components cannot easily be edited or relocated due to the system's high \emph{viscosity}.
+Whilst \emph{viscosity} can be acceptable in some situations, it is harmful with regard to modification and exploration within a notational system, once again requiring a non-trivial amount of \emph{premature commitment}.  It can actually be quicker for the user to start all over again, as opposed to making the changes required to rectify their calculations.
 
-Whilst \emph{viscosity} can be acceptable in some situations, it is harmful with regard to modification and exploration within a notational system, once again requiring a non-trivial amount of \emph{premature commitment} on the part of the user.  In many cases, it can actually quicker for the user to start all over again, as opposed to making the changes required to rectify their calculations.
+Handwritten arithmetic does have one key advantage: it has a very low initial \emph{abstraction barrier}.  Once the appropriate symbols and rules for each operation and digit have been learnt, the traditional system of arithmetic allows a learner to begin using it almost immediately.  Although it is possible to add abstractions to arithmetic by the use of secondary notation, there is no provision for abstraction included in the primary notation.  It can then be said, as an example, that algebra, requiring the concept of a variable rather than a set quantity, is an \emph{abstraction-hungry} system, whereas arithmetic is an \emph{abstraction-hating} system.  Without abstractions, arithmetic is easy to get started with, but can be very verbose and \emph{viscous}, with low \emph{visibility of notation}, as outlined above.
 
-Handwritten arithmetic does have one key advantage: it has a very low initial \emph{abstraction barrier}.  Other than learning the appropriate symbols for each operation and digit, and how to combine them, the traditional system of arithmetic allows a learner to begin using it almost immediately.  Algebra, on the other hand, has a much higher \emph{abstraction barrier}, requiring the much more abstract concept of a variable, rather than a set quantity, to be used effectively.  Although it is possible to add abstractions to arithmetic by the use of secondary notation, there is no provision for abstraction included in the primary notation.  It can, therefore, be said that algebra is an \emph{abstraction-hungry} system, whereas arithmetic is an \emph{abstraction-hating} system.  Without abstractions, arithmetic is easy to get started with, but can be a very verbose and inefficient notation with low \emph{visibility of notation}, as outlined above.
+To improve upon the standard approach of listing the steps comprising a calculation, a notational system must acknowledge and try to overcome the drawbacks listed above.  To this end, I have designed and developed such a system and accompanying application, with the intention of reducing \emph{viscosity}, increasing \emph{visibility of notation} and removing many of the \emph{hidden dependencies} that beleaguer the traditional method.  The functional and non-functional requirements of this system follow.
 
-\subsection{Proposed System}
+%\subsection{Proposed System}
+%
+%\subsubsection{Overview}
+%% cogdims!!
+%% need to develop useful notation - early studies, talk about other notations we came up with, notations looked at with alistair (get link)
+%% hidden dependencies - nico shows a data flow representation (p19, blackwell1998) to make dependencies explicit
+%% TODO: this bit.  not even sure if it should be in the intro...
+%
+%The proposed system is a novel graphical notation
+%
+\subsection{Functional Requirements}
 
-\subsubsection{Overview}
-% cogdims!!
-% need to develop useful notation - early studies, talk about other notations we came up with, notations looked at with alistair (get link)
-% hidden dependencies - nico shows a data flow representation (p19, blackwell1998) to make dependencies explicit
-
-% TODO: this bit.  not even sure if it should be in the intro...
-
-To improve upon the standard approach of listing the steps comprising a calculation, a system must acknowledge and try to overcome the drawbacks listed above.  To this end, I have designed and developed a notational system and accompanying applciation that aims to overcome many of the disadvantages inherent in traditional, handwritten arithmetic.  The intention of the system is to reduce \emph{viscosity}, increase \emph{visibility of notation} and to remove many of the \emph{hidden dependencies} that beleaguer the traditional method.
-% TODO: not happy with this; not sure it counts as an overview
-
-\subsubsection{Functional Requirements}
-
-The new system must satisfy the following functional requirements to be considered acceptable.
+The new system must satisfy the following functional requirements to be considered acceptable.  It must be able to:
 
 \begin{itemize}
-\item Is able to present the user with a series of problems to solve
-\item Accepts a file containing the set of questions to be answered
-\item Displays the current question being answered
-\item Is able to determine whether or not the user's solution is correct
-\item Progresses through the current question set as the user answers each question correctly
-\item Is able to interpret the user's work and display the result interactively \footnote{Roca and Rousseau have this to say on the subject of interactivity: ``An abundance of studies into user tolerance of round-trip latency [...] has been conducted and generally agrees upon the following levels of tolerance: excellent, 0-300ms; good, 300-600ms; poor, 600-700ms; and quality becomes unacceptable [...] in excess of 700ms.'' \cite{Roca2004}}
+\item Present the user with a series of problems to solve
+\item Accept a file containing the set of questions to be answered
+\item Display the current question being answered
+\item Determine whether or not the user's solution is correct
+\item Progress through the current question set as the user answers each question correctly
+\item Interpret the user's work and display the result interactively \footnote{Roca and Rousseau note that: ``An abundance of studies into user tolerance of round-trip latency [...] has been conducted and generally agrees upon the following levels of tolerance: excellent, 0-300ms; good, 300-600ms; poor, 600-700ms; and quality becomes unacceptable [...] in excess of 700ms.'' \cite{Roca2004}}
 \end{itemize}
 %To be an improvement upon the current system detailed above, the new system must
 %satisfy the following properties:-- % TODO: not happy with this
@@ -401,27 +384,23 @@ The new system must satisfy the following functional requirements to be consider
 %\item Progresses through the current question set as the user answers each question correctly
 %\end{itemize}
 
-\subsubsection{Non-Functional Requirements}
+\subsection{Non-Functional Requirements}
 
-The system must also satisfy a number of non-functional requirements.  These are listed below.
+The system must also satisfy a number of non-functional requirements.  It must:
+
 \begin{itemize}
-\item Offers a significant improvement in \emph{visibility of notation} over handwritten arithmetic
-\item Offers a significant improvement in \emph{juxtaposability of notation} over handwritten arithmetic
-\item Reduces \emph{premature commitment} relative to handwritten arithmetic
-\item Reduces \emph{hidden dependencies} relative to handwritten arithmetic
-\item Has a visually simple interface whilst remaining accessible to older users
+\item Offer a significant improvement in \emph{visibility of notation} over handwritten arithmetic
+\item Offer a significant improvement in \emph{juxtaposability of notation} over handwritten arithmetic
+\item Reduce \emph{premature commitment} relative to handwritten arithmetic
+\item Reduce \emph{hidden dependencies} relative to handwritten arithmetic
+\item Have a visually simple interface whilst remaining accessible to older users
 \end{itemize}
 
 \section{User Interface}
 % section rather than subsection?  def. section if we don't have system overview
 % prototypes!  dig out the preliminary drawings, take screenshots of old versions for later
 
-As this project is primarily concerned with human-computer interaction, the
-user interface and experience, and the design thereof, constitutes a
-significant part of this project.  As such, this section outlines the initial
-development stages of the user interface, first introducing several designs for
-the graphical notation, and then discussing in more detail three that were
-developed further.
+As this project is primarily concerned with human-computer interaction, the user interface and experience, and the design thereof, constitutes a significant part of this project.  As such, this section outlines the initial development stages of the user interface, first introducing several designs for the graphical notation, then proceeding to discuss in more detail three examples that were developed further.
 
 \subsection{Prototyping}
 
@@ -429,12 +408,7 @@ developed further.
 
 % drawings 'n' shit
 % talk about how decided to come up with 20 different designs then thin them out
-To try to get some initial ideas for what could become the calculation metaphor
-of choice for the project, a target was set of devising at least twenty,
-significantly different, potential designs.  These were recorded as very rough
-sketches, a few of which were refined in larger examples, and three of which
-were deemed good enough to warrant an application mockup, as detailed in
-\emph{Sec.~2.2.1.2}.
+To devise initial ideas for what could become the calculation metaphor, a target was set of devising at least twenty significantly-different potential designs.  These were recorded as very rough sketches, some of which were refined in larger examples, and three of which were warranted an application mockup, as detailed in \emph{Sec.~2.2.1.2}.
 
 \begin{center}
 \begin{figure}[H]
@@ -457,14 +431,14 @@ were deemed good enough to warrant an application mockup, as detailed in
 \end{figure}
 \end{center}
 
-The designs in \emph{Fig.~\ref{fig:Flows1}} use a flowgraph-based metaphor, in which variables and functions are represented as nodes in the graph.  Dataflow is extremely clear in such diagrams, giving these designs high \emph{visibility of notation}.  These designs are similar to the original one illustrated in the project proposal (\emph{Appendix C}).  The boxes and arrows used in such notation also occupy relatively little screen estate, which is advantageous in cases where a question necessitates a lot of subcalculations.  \emph{Fig.~\ref{fig:Flows2}} shows a more refined version of a flowgraph notation, with a potential environment for it to exist in.
+The designs in \emph{Fig.~\ref{fig:Flows1}} use a flowgraph-based metaphor, in which variables and functions are represented as nodes in the graph.  Dataflow is extremely clear in such diagrams, giving these designs high \emph{visibility of notation}.  These designs are similar to the original one illustrated in the project proposal (\emph{Appendix C}).  The boxes and arrows used in such a metaphor also occupy relatively little screen-estate, which is advantageous in cases where a question necessitates a lot of subcalculations.  \emph{Fig.~\ref{fig:Flows2}} shows a more refined version of a flowgraph notation, with a potential environment in which to utilise it.
 
 \begin{center}
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth]{figs/mockups/sketches/11/11jii.jpg}
 \end{center}
-\caption{A more refined sketch of a flowgraph-based language and application.}
+\caption{A refined sketch of a flowgraph-based language and application.}
 \label{fig:Flows2}
 \end{figure}
 \end{center}
@@ -505,14 +479,14 @@ The designs in \emph{Fig.~\ref{fig:Flows1}} use a flowgraph-based metaphor, in w
 \end{figure}
 \end{center}
 
-Triangle-based notations were also considered.  Drawing inspiration from the formula triangles used in science education (\emph{Fig.~\ref{fig:Tris1}}, \emph{c)} and \emph{d)}) and from the Sierpiński triangle fractal (\emph{Fig.~\ref{fig:Flows2}}, \emph{a)} and \emph{e)}), such notations not only appear in a form familiar to many users, but also have high \emph{visibility of notation}.  \emph{Juxtaposability of notation}, however, is low, as this design enforces a rigid structure upon calculations.  Nevertheless, a more refined sketch is shown in \emph{Fig.~\ref{fig:Tris2}}.
+Triangle-based notations were also considered, drawing inspiration from the formula triangles used in science education (\emph{Fig.~\ref{fig:Tris1}}, \emph{c)} and \emph{d)}) and from the Sierpiński triangle fractal (\emph{Fig.~\ref{fig:Flows2}}, \emph{a)} and \emph{e)}).  Such notations not only appear in a form familiar to many users, but also have high \emph{visibility of notation}.  \emph{Juxtaposability of notation}, however, is low, as this design imposes a rigid structure upon calculations.  A more refined sketch is shown in \emph{Fig.~\ref{fig:Tris2}}.
 
 \begin{center}
 \begin{figure}
 \begin{center}
 \includegraphics[width=\textwidth]{figs/mockups/sketches/31/31a.jpg}
 \end{center}
-\caption{A more refined sketch of a triangle-based language.}
+\caption{A refined sketch of a triangle-based language.}
 \label{fig:Tris2}
 \end{figure}
 \end{center}
@@ -563,14 +537,14 @@ Triangle-based notations were also considered.  Drawing inspiration from the for
 \end{figure}
 \end{center}
 
-Several circle-based designs were also considered, the focus here being on subcalculations, rather than numbers and operations separately, as individual units within a larger solution to a problem.  Such a notation provides high \emph{juxtaposability of notation}, as whole subexpressions can easily be relocated, and also offers an improvement in \emph{visibility of notation} over handwritten arithmetic.  A more detailed sketch is shown below.
+Several circle-based designs were also considered, the focus here being on subexpressions, providing high \emph{juxtaposability of notation}, as whole units can easily be relocated. This is opposed to using separate numbers and operations as individual units of calculation.  It also offers an improvement in \emph{visibility of notation} over handwritten arithmetic, as discussed in \emph{Sec.~2.2.1.2.3}.  A more detailed sketch is shown below.
 
 \begin{center}
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth]{figs/mockups/sketches/21/21a.jpg}
 \end{center}
-\caption{A more refined sketch of a circle-based language.}
+\caption{A refined sketch of a circle-based language.}
 \label{fig:Circs2}
 \end{figure}
 \end{center}
@@ -694,7 +668,7 @@ Several circle-based designs were also considered, the focus here being on subca
 \includegraphics[width=4cm]{figs/mockups/sketches/12/12gv.jpg}
 \end{center}}}
 \end{center}
-\caption{A sample progression of a calculation in a language based around infinitely halving a rectangle.}
+\caption{A sample progression of a calculation using a language based around an infinitely-subdivided rectangle.}
 \label{fig:Others2}
 \end{figure}
 \end{center}
@@ -705,7 +679,7 @@ Various other metaphors for calculation were also considered, as illustrated in 
 % examples done using that prototyping software - balsamiq mockups
 % draft designs on pwf
 
-Some preliminary designs for the application and graphical language follow, being more mature versions of three of the low-fidelity prototypes presented above.  First is a combined flowgraph representation and Read-Evaluate-Print-Loop (REPL) design.  The second design uses the Sierpiński triangle as a basis for the visual metaphor.  The final design is a circle-based language, similar to the one shown in \emph{Fig.~\ref{fig:Circs2}}.
+Preliminary designs for the application and graphical language follow, being more mature versions of three of the low-fidelity prototypes presented above.  First is a combined flowgraph representation and Read-Evaluate-Print-Loop (REPL) design.  The second design uses the Sierpiński triangle as a basis for the visual metaphor.  The final design is a circle-based language, similar to the one shown in \emph{Fig.~\ref{fig:Circs2}}.
 
 % TODO: these fuckers
 \paragraph{Flowgraph Metaphor}\hfill
@@ -718,29 +692,21 @@ Some preliminary designs for the application and graphical language follow, bein
 \end{center}
 \end{figure}
 
-The flowgraph idea initially outlined in the project proposal and included in the low-fidelity prototypes above appears here as a more mature, revised prototype, showing two screens of a sample application.  The top screen shows the proposed application manipulating the graphical language, whilst the bottom screen shows a REPL utilising a simple text-based language.
+The flowgraph idea initially outlined in the project proposal and included in the low-fidelity prototypes above appears here, showing two screens of a sample application.  The top screen shows manipulation of the graphical language, whilst the bottom screen shows a REPL utilising a simple text-based language.  The flowgraph metaphor was used as it offers much \emph{visibility of notation}, making the flow of data very clear to the user and allowing them to see much of their structure at once.  The notation also occupies little screen estate, allowing it to accommodate large calculations.
 
-The application is comprised of one window containing information panels at the top, a `toolbox' of available functions that can be dragged on to the canvas at the side and a canvas area upon which calculations are constructed.  There are buttons to zoom in and out, and a help button.  The user is able to use the tabs at the bottom of the canvas to switch between the graphical mode ({\sfapp Flow}) and the REPL mode ({\sfapp Worksheet}).
+The application is comprised of one window containing information panels, a `toolbox' of available functions that can be dragged on to the canvas, and a canvas area upon which calculations are constructed.  There are buttons to zoom in and out, and a help button.  The user is able to use the tabs at the bottom of the canvas to switch between the graphical mode ({\sfapp Flow}) and the REPL mode ({\sfapp Worksheet}).
 
-This design is moderately faithful to the origin application sketched out in the project proposal.  The application layout has been expanded to include the toolbox, and the {\sfapp Worksheet} mode has been added.  The ability to define functions has also been included.
+This design is moderately faithful to the origin application sketched out in the project proposal.  The application layout has been expanded to include the toolbox, zoom and help buttons, and the {\sfapp Worksheet}.
 
-The flowgraph metaphor was used as it offers much \emph{visibility of notation}, making the flow of data very clear to the user and allowing them to see much of their structure at once.  The notation also occupies little screen estate, allowing it to accommodate large calculations.
+The toolbox was included to make it clear to the user what functions are available to them.  In the original design, no control scheme was specified; the user was expected to have control over many different functions, so either it needed to be memorable, or the user (especially the novice) required guidance.  There are two buttons in the toolbox, {\sfapp Join}, which allows dragging the mouse to join boxes with arrows, and {\sfapp Define}, which allows dragging the mouse to draw a box around a subsection of the diagram to define a function.  This was introduced to allow the user to create abstractions for repeated tasks, thus increasing the compactness of the language.  It was decided to use these modes, combined with the dragging of boxes in the normal mode, so that the entire control scheme could be implemented using solely one mouse button.
 
-The toolbox was included to make it clear to the user what functions are available to them.  In the original design, no control scheme was specified; the user is expected to have control over many different functions, so the control scheme either needs to be simple and memorable, or the user, espcially the novice, needs guidance.
-
-In the toolbox are two buttons {\sfapp Define} and {\sfapp Join} that change modes such that dragging the mouse either joins boxes with arrows, or draws a box around a subsection of the diagram to define a function.  It was decided to use these modes, combined with the dragging of boxes in the normal mode, so that the entire control scheme could be implemented using solely one mouse button.
-
-The zoom buttons were included to help accommodate particularly large diagrams, and allow the user to view their work at a size that is comfortable for them.  If the user requires more canvas space, wishes to focus on a particular part of the diagram or would prefer to have the notation made larger, they are able to do so using these buttons.
-
-The help button was included to provide users with a simple system to aid in their getting used to the system.  Activating help would bring up an information box, allowing users to look through a manual.
-
-Function definition was introduced to allow the user to create abstractions for repeated tasks, thus increasing the compactness of the language.
+The zoom buttons were included to help accommodate particularly large diagrams, and to allow the user to view their work at a size that is comfortable for them.  The help button was included to provide a simple system to assist new users.  Activating help would bring up an information box, allowing users to look through a manual.
 
 The {\sfapp Worksheet} mode was included for users who may feel more comfortable working in a written environment, rather than using the graphical metaphor.
 
-This design was abandoned as it was deemed to be too complex for the target audience (Year 5).  The intention of this project is not to implement yet another programming language for learners, and by providing features like the REPL and function definition, the system unnecessarily overprovides.  The REPL itself is unnecessary, as users comfortable working in a textual environment are likely to be comfortable using the traditional, handwritten method. The REPL simply adds complexity to the existing system.
+This design was abandoned as it was deemed to be too complex for the target audience (Year 5).  The intention of this project was not to implement a programming language for learners, and by including functionality such as the REPL and {\sfapp Define}, the system unnecessarily overprovides.  The REPL itself is superfluous, as users comfortable working in a textual environment are likely to be comfortable using the handwritten method.
 
-In addition to this, the flowgraph representation had a number of shortcomings. For example, it is not immediately clear in what order the arguments feed into an operation, which is confusing for non-commutative functions such as subtraction.  Furthermore, the language is quite verbose.  Although this is not inherently a disadvantage, a more compact representation would be preferable, in order to make expressions written in the notations more readable to people other than the original author and to decrease the time spent by the user searching for information within the notation.  It is also fairly \emph{viscous} at the scale of replacing whole components, rather than just numbers or operators, though less so than handwritten arithmetic.
+In addition to this, the flowgraph representation had a number of more general shortcomings. For example, it is not immediately clear in what order the arguments feed into an operation, which is confusing for non-commutative functions such as subtraction.  Furthermore, the language is quite verbose.  This is not inherently a disadvantage but a more compact representation would be preferable in order to make expressions written in the notations more readable, and to decrease the time spent by the user searching for information within the notation.  It is also fairly \emph{viscous} at the scale of replacing whole subcalculations, rather than just numbers or operators, though less so than handwritten arithmetic.
 
 \paragraph{Sierpiński Triangle Metaphor}\hfill
 

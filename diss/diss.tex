@@ -1121,21 +1121,41 @@ This design was ultimately abandoned as, again, it separated the user from their
 
 The automatic answer-checking was also a problem, as it did not give the user a chance to review their answer before proceeding.  Indeed, it did not give the user a chance to learn from their mistakes; for example, if they had accidentally reached the right answer as part of a larger, incorrect calculation that they had previously intended to make.
 
-The final revision of the software reintroduced the {\sfapp Check} button to address the issues with the automatic answer-checking in the previous version of the application, and replaced the system of context menus with a new control scheme, as discussed in \emph{Sec. 3.2.1}.
+The final revision of the software reintroduced the {\sfapp Check} button to address the issues with the automatic answer-checking in the previous version of the application, and replaced the system of context menus with a new control scheme, as discussed in \emph{Sec. 3.2.3}.
 
 \begin{center}
 \begin{figure}[H]
 \begin{center}
-{\Huge \sfapp OLD VERSIONS OF THE APP}
+\includegraphics[width=\textwidth-4cm]{figs/nico_screen_oldest.png}
 \end{center}
-\caption{\emph{Nico}'s user interface went through a number of revisions before reaching its current state.}
-\label{fig:OldApps}
+\caption{A very early version of the user interface.  Many features are yet to be implemented, but the layout with the buttons and the early revision of the notation is evident.}
+\label{fig:OldApps1}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-4cm]{figs/nico_screen_older.png}
+\end{center}
+\caption{A later revision of the user interface.  The screen has been cleared, allowing context menus to replace buttons.  The facility for checking an answer has been removed, due to the automatic answer-checking in this version.  The notation has now been fully implemented, but still lacks many features of the final version.}
+\label{fig:OldApps2}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth-4cm]{figs/nico_screen_new.png}
+\end{center}
+\caption{The final revision of the user interface.  The layout is similar to the previous version, but now includes highlighting and the bin icon for deletion.  The notation is now colour-coded, and the answer-checking button has been reintroduced.}
+\label{fig:OldApps3}
 \end{figure}
 \end{center}
 
 \subsubsection{Dialogue Boxes}
 
-Dialogue boxes have been a consistent feature of the user interface since its first revision.  Initially, dialogue boxes were triggered by the buttons at the side of the application (\emph{Fig.~\ref{fig:OldApps}}), and consisted of a simple text field, into which the user typed a circle's name, followed by, in the case of the creation and editing of circles, an S-expression specifying the mathematical expression that the circle was to represent.
+Dialogue boxes have been a consistent feature of the user interface since its first revision.  Initially, dialogue boxes were triggered by the buttons at the side of the application (\emph{Fig.~\ref{fig:OldApps1}}), and consisted of a simple text field, into which the user typed a circle's name, followed by, in the case of the creation and editing of circles, an S-expression specifying the mathematical expression that the circle was to represent.
 
 This was never intended to be the final version of the user interface, but was useful for testing the rest of the user interface and interaction handler at the time.  Requiring a user to be familiar with LISP syntax ran somewhat counter to the intentions of this project, being to provide an accessible alternative notation for arithmetic for the non-programmer, pre-algebra user.
 
@@ -1143,7 +1163,7 @@ This was never intended to be the final version of the user interface, but was u
 \begin{figure}[H]
 \begin{center}
 % \includegraphics{figs/nico_gudb.png}
-{\Huge \sfapp GRAND UNIFIED DIALOGUE BOX}
+\includegraphics[height=\textheight/2-2cm]{figs/nico_gudb.png}
 \end{center}
 \caption{The unified dialogue box.}
 \label{fig:GUDB}
@@ -1261,7 +1281,12 @@ As \emph{Nico}'s notation and user interface are quite reliant upon colour to ex
 \begin{center}
 \begin{figure}[H]
 \begin{center}
-{\Huge \sfapp OLD VERSIONS OF THE NOTATION}
+\subfloat[An old version of the notation.  Circles are uniformly coloured, and links feed into the centre of their target circles.  There is no indication of argument evaluation order.]{
+\includegraphics[width=\textwidth/2-2cm]{figs/nico_notn_old.png}
+}\hspace{1cm}
+\subfloat[The final version of the notation.  Circles are colour-coded by operation, highlighting has been implemented and links fill argument slots, ending in a circle to indicate their destination.  The diagonal line and arrows have been added to circles to indicate evaluation order.]{
+\includegraphics[width=\textwidth/2-2cm]{figs/nico_notn_new.png}
+}
 \end{center}
 \caption{The notation used also went through a number of revisions before reaching its current state.}
 \label{fig:OldNots}
@@ -1421,50 +1446,69 @@ In the interests of improving the study, I acted upon the participant's advice. 
 % q9:  t = 4.0293, df = 7, p-value = 0.005      <- sig
 % q10: t = 2.1298, df = 7, p-value = 0.0707
 
-The results of the tests are shown in \emph{Table \ref{tab:BigTimes}}, listing the times taken
-for each participant to answer the questions both by hand and using \emph{Nico}.
+The results of the tests are shown in \emph{Figs.~\ref{fig:StacksGp1}} and \emph{\ref{fig:StacksGp2}}, listing the times taken for each participant to answer the questions both by hand and using \emph{Nico}.
+
+%\begin{center}
+%\begin{table}[H]
+%\begin{center}
+%\begin{tabular}{|r||r|r||r|r||r|r||r|r|}
+%\cline{2-9}
+%\multicolumn{1}{c|}{} & \multicolumn{8}{c|}{Group 1}\\ \cline{2-9}
+%\multicolumn{1}{c|}{} & \multicolumn{2}{c||}{Participant 1} & \multicolumn{2}{c||}{Participant 2} & \multicolumn{2}{c||}{Participant 3} & \multicolumn{2}{c|}{Participant 4}\\ \hline
+%\multicolumn{1}{|c||}{Question} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c|}{\emph{Nico}}\\ \hline \hline
+%Q1 & 4600 & 19547 & 3100 & 34094 & 1800 & 24657 & 1300 & 38891\\ \hline
+%Q2 & 8800 & 23313 & 7000 & 24329 & 6300 & 17437 & 5400 & 12031\\ \hline
+%Q3 & 20600 & 53500 & 13600 & 36360 & 10100 & 40798 & 10700 & 31813\\ \hline
+%Q4 & 36200 & 54375 & 26400 & 60156 & 14200 & 79704 & 23800 & 50094\\ \hline
+%Q5 & 61900 & 103344 & 39600 & 79844 & 26500 & 103221 & 33400 & 61064\\ \hline
+%Q6 & 213400 & 224406 & 190300 & 215376 & 84900 & 172940 & 181700 & 154691\\ \hline
+%Q7 & 235200 & 165813 & 1996000 & 103376 & 909000 & 48922 & 194200 & 52595\\ \hline
+%Q8 & 259500 & 306625 & 282500 & 158094 & 147200 & 138581 & 256700 & 155347\\ \hline
+%Q9 & 304400 & 230953 & 313500 & 123626 & 159800 & 183722 & 271700 & 196144\\ \hline
+%Q10 & 416500 & 307734 & 357700 & 213642 & 197100 & 245161 & 322200 & 235364\\ \hline
+%\multicolumn{9}{c}{}\\ \cline{2-9}
+%\multicolumn{1}{c|}{} & \multicolumn{8}{c|}{Group 2}\\ \cline{2-9}
+%\multicolumn{1}{c|}{} & \multicolumn{2}{c||}{Participant 1} & \multicolumn{2}{c||}{Participant 2} & \multicolumn{2}{c||}{Participant 3} & \multicolumn{2}{c|}{Participant 4}\\ \hline
+%\multicolumn{1}{|c||}{Question} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c|}{\emph{Nico}}\\ \hline \hline
+%Q1 & 1200 & 22299 & 2100 & 23516 & 2600 & 16142 & 2600 & 21985\\ \hline
+%Q2 & 2200 & 24530 & 5600 & 19015 & 7200 & 16875 & 7200 & 23422\\ \hline
+%Q3 & 17300 & 47620 & 7600 & 29735 & 18400 & 27923 & 15900 & 48470\\ \hline
+%Q4 & 23000 & 50704 & 20700 & 43094 & 25300 & 37516 & 38600 & 174160\\ \hline
+%Q5 & 46600 & 134828 & 33300 & 70313 & 35500 & 58954 & 72400 & 98846\\ \hline
+%Q6 & 199900 & 629835 & 136400 & 164891 & 99000 & 113659 & 266600 & 252708\\ \hline
+%Q7 & 202400 & 80277 & 142200 & 48890 & 1106000 & 52954 & 272900 & 72767\\ \hline
+%Q8 & 295900 & 248736 & 182000 & 107375 & 184700 & 78001 & 348900 & 257224\\ \hline
+%Q9 & 312900 & 152185 & 204100 & 118594 & 200500 & 67485 & 384500 & 144753\\ \hline
+%Q10 & 357300 & 238300 & 261600 & 203110 & 237500 & 324581 & 472900 & 270177\\
+%\hline
+%\end{tabular}
+%\end{center}
+%\caption{Table showing the time in milliseconds taken by each participant to complete each question, by hand and using the software.}
+%\label{tab:BigTimes}
+%\end{table}
+%\end{center}
+%
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[height=\textheight/2-2cm]{figs/graphs/stacked-bar-times-gp1.png}
+\end{center}
+\caption{Time taken in milliseconds for each participant in Group 1 to complete the questions, both by hand and using the software.  Names are formatted as P\emph{n}[HC], where P\emph{n} is Participant \emph{n}, H denotes Handwritten and C denotes Computer.}
+\label{fig:StacksGp1}
+\end{figure}
+\end{center}
 
 \begin{center}
-\begin{table}[H]
+\begin{figure}[H]
 \begin{center}
-\begin{tabular}{|r||r|r||r|r||r|r||r|r|}
-\cline{2-9}
-\multicolumn{1}{c|}{} & \multicolumn{8}{c|}{Group 1}\\ \cline{2-9}
-\multicolumn{1}{c|}{} & \multicolumn{2}{c||}{Participant 1} & \multicolumn{2}{c||}{Participant 2} & \multicolumn{2}{c||}{Participant 3} & \multicolumn{2}{c|}{Participant 4}\\ \hline
-\multicolumn{1}{|c||}{Question} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c|}{\emph{Nico}}\\ \hline \hline
-Q1 & 4600 & 19547 & 3100 & 34094 & 1800 & 24657 & 1300 & 38891\\ \hline
-Q2 & 8800 & 23313 & 7000 & 24329 & 6300 & 17437 & 5400 & 12031\\ \hline
-Q3 & 20600 & 53500 & 13600 & 36360 & 10100 & 40798 & 10700 & 31813\\ \hline
-Q4 & 36200 & 54375 & 26400 & 60156 & 14200 & 79704 & 23800 & 50094\\ \hline
-Q5 & 61900 & 103344 & 39600 & 79844 & 26500 & 103221 & 33400 & 61064\\ \hline
-Q6 & 213400 & 224406 & 190300 & 215376 & 84900 & 172940 & 181700 & 154691\\ \hline
-Q7 & 235200 & 165813 & 1996000 & 103376 & 909000 & 48922 & 194200 & 52595\\ \hline
-Q8 & 259500 & 306625 & 282500 & 158094 & 147200 & 138581 & 256700 & 155347\\ \hline
-Q9 & 304400 & 230953 & 313500 & 123626 & 159800 & 183722 & 271700 & 196144\\ \hline
-Q10 & 416500 & 307734 & 357700 & 213642 & 197100 & 245161 & 322200 & 235364\\ \hline
-\multicolumn{9}{c}{}\\ \cline{2-9}
-\multicolumn{1}{c|}{} & \multicolumn{8}{c|}{Group 2}\\ \cline{2-9}
-\multicolumn{1}{c|}{} & \multicolumn{2}{c||}{Participant 1} & \multicolumn{2}{c||}{Participant 2} & \multicolumn{2}{c||}{Participant 3} & \multicolumn{2}{c|}{Participant 4}\\ \hline
-\multicolumn{1}{|c||}{Question} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c|}{\emph{Nico}}\\ \hline \hline
-Q1 & 1200 & 22299 & 2100 & 23516 & 2600 & 16142 & 2600 & 21985\\ \hline
-Q2 & 2200 & 24530 & 5600 & 19015 & 7200 & 16875 & 7200 & 23422\\ \hline
-Q3 & 17300 & 47620 & 7600 & 29735 & 18400 & 27923 & 15900 & 48470\\ \hline
-Q4 & 23000 & 50704 & 20700 & 43094 & 25300 & 37516 & 38600 & 174160\\ \hline
-Q5 & 46600 & 134828 & 33300 & 70313 & 35500 & 58954 & 72400 & 98846\\ \hline
-Q6 & 199900 & 629835 & 136400 & 164891 & 99000 & 113659 & 266600 & 252708\\ \hline
-Q7 & 202400 & 80277 & 142200 & 48890 & 1106000 & 52954 & 272900 & 72767\\ \hline
-Q8 & 295900 & 248736 & 182000 & 107375 & 184700 & 78001 & 348900 & 257224\\ \hline
-Q9 & 312900 & 152185 & 204100 & 118594 & 200500 & 67485 & 384500 & 144753\\ \hline
-Q10 & 357300 & 238300 & 261600 & 203110 & 237500 & 324581 & 472900 & 270177\\
-\hline
-\end{tabular}
+\includegraphics[height=\textheight/2-2cm]{figs/graphs/stacked-bar-times-gp2.png}
 \end{center}
-\caption{Table showing the time in milliseconds taken by each participant to complete each question, by hand and using the software.}
-\label{tab:BigTimes}
-\end{table}
+\caption{Time taken in milliseconds for each participant in Group 2 to complete the questions, both by hand and using the software.  Names are formatted as P\emph{n}[HC], where P\emph{n} is Participant \emph{n}, H denotes Handwritten and C denotes Computer.}
+\label{fig:StacksGp2}
+\end{figure}
 \end{center}
 
-This data can be visualised using a series of plots, as below.  The complete set of plots can be found in Appendix A.
+This data can be visualised using a series of plots, as below.  The complete set of plots and full table of times can be found in Appendix A.
 
 \begin{center}
 \begin{figure}[H]
@@ -1857,7 +1901,47 @@ This project will be further developed and maintained in the future, with a view
 
 \chapter{User Response Times}
 
-The plots of the times taken for each user to answer each question follow.
+The table and plots of the times taken for each user to answer each question follow.
+
+\begin{center}
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|r||r|r||r|r||r|r||r|r|}
+\cline{2-9}
+\multicolumn{1}{c|}{} & \multicolumn{8}{c|}{Group 1}\\ \cline{2-9}
+\multicolumn{1}{c|}{} & \multicolumn{2}{c||}{Participant 1} & \multicolumn{2}{c||}{Participant 2} & \multicolumn{2}{c||}{Participant 3} & \multicolumn{2}{c|}{Participant 4}\\ \hline
+\multicolumn{1}{|c||}{Question} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c|}{\emph{Nico}}\\ \hline \hline
+Q1 & 4600 & 19547 & 3100 & 34094 & 1800 & 24657 & 1300 & 38891\\ \hline
+Q2 & 8800 & 23313 & 7000 & 24329 & 6300 & 17437 & 5400 & 12031\\ \hline
+Q3 & 20600 & 53500 & 13600 & 36360 & 10100 & 40798 & 10700 & 31813\\ \hline
+Q4 & 36200 & 54375 & 26400 & 60156 & 14200 & 79704 & 23800 & 50094\\ \hline
+Q5 & 61900 & 103344 & 39600 & 79844 & 26500 & 103221 & 33400 & 61064\\ \hline
+Q6 & 213400 & 224406 & 190300 & 215376 & 84900 & 172940 & 181700 & 154691\\ \hline
+Q7 & 235200 & 165813 & 1996000 & 103376 & 909000 & 48922 & 194200 & 52595\\ \hline
+Q8 & 259500 & 306625 & 282500 & 158094 & 147200 & 138581 & 256700 & 155347\\ \hline
+Q9 & 304400 & 230953 & 313500 & 123626 & 159800 & 183722 & 271700 & 196144\\ \hline
+Q10 & 416500 & 307734 & 357700 & 213642 & 197100 & 245161 & 322200 & 235364\\ \hline
+\multicolumn{9}{c}{}\\ \cline{2-9}
+\multicolumn{1}{c|}{} & \multicolumn{8}{c|}{Group 2}\\ \cline{2-9}
+\multicolumn{1}{c|}{} & \multicolumn{2}{c||}{Participant 1} & \multicolumn{2}{c||}{Participant 2} & \multicolumn{2}{c||}{Participant 3} & \multicolumn{2}{c|}{Participant 4}\\ \hline
+\multicolumn{1}{|c||}{Question} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c||}{\emph{Nico}} & \multicolumn{1}{c|}{Hand} & \multicolumn{1}{c|}{\emph{Nico}}\\ \hline \hline
+Q1 & 1200 & 22299 & 2100 & 23516 & 2600 & 16142 & 2600 & 21985\\ \hline
+Q2 & 2200 & 24530 & 5600 & 19015 & 7200 & 16875 & 7200 & 23422\\ \hline
+Q3 & 17300 & 47620 & 7600 & 29735 & 18400 & 27923 & 15900 & 48470\\ \hline
+Q4 & 23000 & 50704 & 20700 & 43094 & 25300 & 37516 & 38600 & 174160\\ \hline
+Q5 & 46600 & 134828 & 33300 & 70313 & 35500 & 58954 & 72400 & 98846\\ \hline
+Q6 & 199900 & 629835 & 136400 & 164891 & 99000 & 113659 & 266600 & 252708\\ \hline
+Q7 & 202400 & 80277 & 142200 & 48890 & 1106000 & 52954 & 272900 & 72767\\ \hline
+Q8 & 295900 & 248736 & 182000 & 107375 & 184700 & 78001 & 348900 & 257224\\ \hline
+Q9 & 312900 & 152185 & 204100 & 118594 & 200500 & 67485 & 384500 & 144753\\ \hline
+Q10 & 357300 & 238300 & 261600 & 203110 & 237500 & 324581 & 472900 & 270177\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Table showing the time in milliseconds taken by each participant to complete each question, by hand and using the software.}
+\label{tab:BigTimes}
+\end{table}
+\end{center}
 
 \begin{center}
 \begin{figure}[H]

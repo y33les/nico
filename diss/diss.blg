@@ -11,45 +11,47 @@ Warning--entry type for "Blackwell1999" isn't style-file defined
 --line 54 of file refs.bib
 Warning--entry type for "Green1996" isn't style-file defined
 --line 76 of file refs.bib
-You've used 22 entries,
+Warning--entry type for "Delacruz2010" isn't style-file defined
+--line 172 of file refs.bib
+You've used 27 entries,
             2118 wiz_defined-function locations,
-            628 strings with 6851 characters,
-and the built_in function-call counts, 5255 in all, are:
-= -- 494
-> -- 208
-< -- 1
-+ -- 88
-- -- 62
-* -- 222
-:= -- 894
-add.period$ -- 64
-call.type$ -- 22
-change.case$ -- 92
+            663 strings with 7929 characters,
+and the built_in function-call counts, 7115 in all, are:
+= -- 690
+> -- 266
+< -- 4
++ -- 111
+- -- 80
+* -- 330
+:= -- 1170
+add.period$ -- 81
+call.type$ -- 27
+change.case$ -- 116
 chr.to.int$ -- 0
-cite$ -- 22
-duplicate$ -- 210
-empty$ -- 498
-format.name$ -- 62
-if$ -- 1136
+cite$ -- 27
+duplicate$ -- 297
+empty$ -- 661
+format.name$ -- 80
+if$ -- 1570
 int.to.chr$ -- 0
-int.to.str$ -- 22
-missing$ -- 15
-newline$ -- 110
-num.names$ -- 44
-pop$ -- 166
+int.to.str$ -- 27
+missing$ -- 19
+newline$ -- 134
+num.names$ -- 54
+pop$ -- 199
 preamble$ -- 1
-purify$ -- 75
+purify$ -- 94
 quote$ -- 0
-skip$ -- 171
+skip$ -- 242
 stack$ -- 0
-substring$ -- 172
-swap$ -- 31
-text.length$ -- 1
+substring$ -- 296
+swap$ -- 63
+text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 78
+type$ -- 98
 warning$ -- 0
-while$ -- 48
-width$ -- 24
-write$ -- 222
-(There were 4 warnings)
+while$ -- 65
+width$ -- 29
+write$ -- 280
+(There were 5 warnings)

@@ -117,7 +117,6 @@ Selwyn College\\
 \end{tabular}
 }
 \footnotetext[1]{This word count was computed using the web interface to {\ttfamily texcount}, which can be found at \url{http://app.uio.no/ifi/texcount/online.php}.}
-}
 \stepcounter{footnote}
 
 
@@ -146,7 +145,11 @@ I have successfully designed and implemented an application using the Clojure pr
 
 \section*{Special Difficulties}
 
-Learning the Clojure programming language. % TODO: expand
+\begin{itemize}
+\item Learning the Clojure programming language % TODO: expand
+\item Learning to choose appropriate mutable data structures of those that Clojure provides
+\item Learning to incorporate tests into the development cycle
+\end{itemize}
 
 \newpage
 \section*{Declaration of Originality}
@@ -188,29 +191,16 @@ Stead and Sam Aaron for their encouragement and patience.
 \chapter{Introduction}
 % TODO: sort out cogdims: apparently the proper way to do it is to mention cogdims and cite petra & green, then put all the cogdims terms in italics
 
-The aim of this project has been to design and develop a notation and
-accompanying application to act as a learning aid for pre-algebra arithmetic in schools.  Using Petre and Green's `Cognitive Dimensions' framework, the project aims to increase the \emph{visibility} of the notation, reduce the number of \emph{hidden dependencies} between units of notation and make the flow of data obvious to the user. \cite{Green1996}  I have successfully developed such a system,
-intended initially for pupils in Year 5 (though extensible, through the creation
-of alternative question sets, to other age groups), and, as an extension,
-conducted a user study to assess its utility.
+The aim of this project has been to design and develop a notation and accompanying application to act as a learning aid for pre-algebra arithmetic in schools.  Using Petre and Green's `Cognitive Dimensions' framework, the project aims to increase the \emph{visibility} of the notation, to reduce the number of \emph{hidden dependencies} between units of notation, to reduce the \emph{viscosity} of the notation and to make the flow of data obvious to the user. \cite{Green1996}  I have successfully developed such a system, intended initially for pupils in Year 5 (though extensible, through the creation of alternative question sets, to other age groups), and, as an extension, conducted a user study to assess its utility.
 
-In this chapter, I will discuss my motivations for choosing this project, the
-pros and cons of the handwritten system it is attempting to augment, the
-technical challenges involved in developing such a system and related work that
-has previously been conducted with similar goals.
+In this chapter, I will discuss my motivations for choosing this project, the pros and cons of the handwritten system it is attempting to augment, the technical challenges involved in developing such a system and related work that has previously been conducted with similar goals.
 
 \section{Motivations}
 % evaluation of problems with writing it down on paper
 % cogdims of handwritten method(s)
 % system requirements (cogdims)
 
-My motivations behind this project lay in the limitations of the handwritten
-approach to solving mathematical problems that I had observed both in my own
-learning and in my own teaching experience.  What follows is an evaluation of
-the pros and cons of the handwritten method of performing arithmetic
-calculations according to the `Cognitive Dimensions'
-framework cited above, and a discussion of the properties that a useful
-alternative notation should have.
+My motivations behind this project lay in the limitations of the handwritten approach to solving mathematical problems that I had observed both in my own learning and in my own teaching experience.  What follows is an assessment of the technical challenges involved in this project, and an evaluation of the pros and cons of the handwritten method of performing arithmetic calculations according to the `Cognitive Dimensions' framework cited above, and a discussion of the properties that a useful alternative notation should have.
 
 \pagebreak
 
@@ -230,25 +220,13 @@ Developing such an application comprises three main challenges: developing a bac
 
 Such a project will require a strong foundation from which to construct a user interface, as this is a crucial factor in its success.  An external library or libraries to provide GUI functionality would be suitbale.  The fact that it is also being built with the intention of being deployed in schools, in which there is a great variety of computing environments, necessitates a portable system.
 
-With regard to the representation and processing of calculations, a framework in which calculations are easy to store and manipulate, and in which evaluation can be delayed, would be advantageous. % TODO: this bit, wtf
+With regard to the representation and processing of calculations, a framework in which calculations are easy to store and manipulate, and in which evaluation can be delayed, would be advantageous.% TODO: this bit, wtf
 
-I chose to use the Clojure language as it provided many features that would
-prove to be useful over the course of the application's development.  As a
-dialect of LISP, Clojure is a homoiconic programming language -- that is, a
-programming language in which code is represented as a data structure -- which
-made passing around and performing operations upon calculations themselves,
-rather than just their results, considerably easier.  A calculation can simply
-be represented as a piece of code, which can then be utilised as needed.
+I chose to use the Clojure language as it provided many features that would solve the problems described above.  As a dialect of LISP, Clojure is a homoiconic programming language; a programming language in which code is represented as a data structure.  This made passing around and performing operations upon calculations themselves, rather than just their results, considerably easier.  A calculation can simply be represented as a piece of code, which can then be utilised as needed.
 
-As the user experience is so crucial to the success of the application, it was
-also important that there be well-established GUI libraries available.  Clojure
-runs on the Java Virtual Machine (JVM), which puts Java's considerable standard
-library at one's disposal, whilst still being able to program in a LISP.  As I
-am familiar with Java and the Swing GUI libraries, it was advantageous to be
-able to leverage this knowledge in designing the application's interface.  In
-addition to this, Java's portability was an advantage, due to the wide range of
-platforms available both in educational and home settings.  A Java-based
-solution standardises the \emph{Nico} experience across many environments.
+Clojure also provides the aforementioned libraries needed for effective GUI implementation.  It runs on the Java Virtual Machine (JVM), which puts Java's considerable standard library at one's disposal, whilst still being able to program in a LISP.  As the author is familiar with Java and the Swing GUI libraries, it was advantageous to be able to leverage this knowledge in designing the application's interface.
+
+In addition to this, running on the JVM means that the software is suitably portable.  A Java-based solution standardises the \emph{Nico} experience across many environments.
 
 \section{Previous Work}
 % scrubbing calculator http://worrydream.com/ScrubbingCalculator/
@@ -281,30 +259,21 @@ Although it was also concluded that such problems could be addressed by dedicati
 
 There also exist a few applications intended to represent calculations on a
 computer in novel ways.  A relatively common approach to this has been to try
-to make on-screen calculations more like on-paper calculations.  \emph{Pi Cubed}
-takes this approach by trying to make complex calculations appear as they would
-be written in an exam or exercise book \cite{PiCubed}.  \emph{Soulver},
-conversely, tries to achieve this by simulating ``back-of-the-envelope''
-calculations, whereby notes in English augment the calculation \cite{Soulver}.
-Another approach is that of the \emph{Scrubbing Calculator} \cite{ScrubCalc},
-which extends the \emph{Soulver}-style environment by helping the user to solve
-equations by dragging values to increase and decrease them, showing how changing
-a value affects the overall result.  Values can be linked by dragging a line
-between them, which means that they are two instances of the same value -- hence
-dragging one changes the value at every location in which it appears.  This is a
-neat means of visualising equations, but it, too, is not intended for use in
-education, and still requires the user to be able to formulate some kind of
-equation.  The \emph{Scrubbing Calculator} is more a tool for facilitating
-algebraic understanding, as opposed to arithmetic understanding; indeed, it is
-inherently a {\bf calculator}, and so does not encourage thinking about how to
-work out the arithmetic parts of a calculation manually.
+to make on-screen calculations more like on-paper calculations.
+
+\emph{Pi Cubed} takes this approach by trying to make complex calculations appear as they would be written in an exam or exercise book \cite{PiCubed}.  \emph{Soulver}, conversely, tries to achieve this by simulating `back-of-the-envelope' calculations, whereby notes in English augment the calculation \cite{Soulver}.
+
+% TODO: image?  but copyright issues...
+Another approach is that of the \emph{Scrubbing Calculator} \cite{ScrubCalc}, which extends the \emph{Soulver}-style environment by helping the user to solve equations by dragging values to increase and decrease them, showing how changing a value affects the overall result.  Values can be linked by dragging a line between them, which means that they are two instances of the same value -- hence dragging one changes the value at every location in which it appears.
+
+This is a neat means of visualising equations, but it, too, is not intended for use in education, and still requires the user to be able to formulate some kind of equation.  The \emph{Scrubbing Calculator} is more a tool for facilitating algebraic understanding, as opposed to arithmetic understanding; indeed, it is inherently a {\bf calculator}, and so does not encourage thinking about how to work out the arithmetic parts of a calculation manually.
 
 \section{Summary}
 % need a system that incorporates these features: foo, bar, baz, quux
 
 Existing educational `games' for mathematics, although valid as a means of teaching, face obstacles from teachers' and pupils' attitudes toward them, as a result of their status as games, rather than learning tools.  There exists software to aid in calculation and arithmetic by representing it clearly, but it is not intended for educational use, and often its purpose is to make on-screen calculations appear as one would handwrite them.  A new application is proposed to be used as a tool to complement teaching, as one would use a calculator.
 
-There is a niche for a tool for use in education that represents calculations in a visual manner, with a particular focus on making the method by which arithmetic problems are solved clear.  This project aims to provide an environment in which the user can explore the many ways in which a problem can be solved using a novel graphical notation. % TODO: emphasise? wtf
+There is a niche for a tool for use in education that represents calculations in a visual manner, with a particular focus on making the method by which arithmetic problems are solved clear, whilst remaining not a calculator.  This project aims to provide such an environment, in which the user can explore the many ways in which a problem can be solved using a novel graphical notation.% TODO: emphasise? wtf
 
 \cleardoublepage
 
@@ -327,7 +296,6 @@ used in the development of the project.
 \section{Requirements Analysis}
 % http://www.cs.fsu.edu/~lacher/courses/COP3331/rad.html
 % http://www.nd.gov/itd/files/services/pm/requirements-analysis-guidebook.pdf
-
 % TODO: write about the requirements analysis and why we're doing one
 
 \subsection{Current System}
@@ -489,7 +457,7 @@ were deemed good enough to warrant an application mockup, as detailed in
 \end{figure}
 \end{center}
 
-The designs in \emph{Fig.~\ref{fig:Flows1}} use a flowgraph-based metaphor, in which variables and functions are represented as nodes in the graph.  Dataflow is extremely clear in such diagrams, giving these designs high \emph{visibility of notation}.  The boxes and arrows used in such notation also occupy relatively little screen estate, which is advantageous in cases where a question necessitates a lot of subcalculations.  \emph{Fig.~\ref{fig:Flows2}} shows a more refined version of a flowgraph notation, with a potential environment for it to exist in.
+The designs in \emph{Fig.~\ref{fig:Flows1}} use a flowgraph-based metaphor, in which variables and functions are represented as nodes in the graph.  Dataflow is extremely clear in such diagrams, giving these designs high \emph{visibility of notation}.  These designs are similar to the original one illustrated in the project proposal (\emph{Appendix C}).  The boxes and arrows used in such notation also occupy relatively little screen estate, which is advantageous in cases where a question necessitates a lot of subcalculations.  \emph{Fig.~\ref{fig:Flows2}} shows a more refined version of a flowgraph notation, with a potential environment for it to exist in.
 
 \begin{center}
 \begin{figure}[H]
@@ -598,7 +566,7 @@ Triangle-based notations were also considered.  Drawing inspiration from the for
 Several circle-based designs were also considered, the focus here being on subcalculations, rather than numbers and operations separately, as individual units within a larger solution to a problem.  Such a notation provides high \emph{juxtaposability of notation}, as whole subexpressions can easily be relocated, and also offers an improvement in \emph{visibility of notation} over handwritten arithmetic.  A more detailed sketch is shown below.
 
 \begin{center}
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth]{figs/mockups/sketches/21/21a.jpg}
 \end{center}
@@ -644,7 +612,7 @@ Several circle-based designs were also considered, the focus here being on subca
 \parbox{4cm}{
 \begin{center}
 \includegraphics[width=4cm]{figs/mockups/sketches/11/11h.jpg}
-\end{center}}}
+\end{center}}}\\
 %\end{center}
 %\end{figure}
 %\newpage
@@ -750,108 +718,29 @@ Some preliminary designs for the application and graphical language follow, bein
 \end{center}
 \end{figure}
 
-The flowgraph idea initially outlined in the project proposal and included in
-the low-fidelity prototypes above appears here as a more mature, revised
-prototype, showing two screens of a sample application.  The top screen shows
-the proposed application manipulating the graphical language, whilst the bottom
-screen shows a REPL utilising a simple text-based language for users more
-comfortable with writing than the visual metaphor.
+The flowgraph idea initially outlined in the project proposal and included in the low-fidelity prototypes above appears here as a more mature, revised prototype, showing two screens of a sample application.  The top screen shows the proposed application manipulating the graphical language, whilst the bottom screen shows a REPL utilising a simple text-based language.
 
-% TODO: add scroll bar to box selection panel?  have claimed that it's scrollable but it's not showing it!
-% TODO: similarly for the canvas
-The application is comprised of one window containing several panels.  The
-current question being answered is displayed in the top left-hand corner.
-Below this, a scrollable panel running down the left side of the window
-contains the fundamental components of the notation: boxes representing numbers
-and operations, both provided and user-defined, with two buttons below to
-change the action of clicking the mouse (explained in greater detail below).  A
-panel that runs along the top of the window contains output boxes, areas that
-display the result of a calculation at a user-determined point in the
-application.  Further boxes appear here as the user demands them, by using the
-{\sfapp Show} function.  The {\sfapp ANS} box is a specialised case of this,
-which displays what the user currently wishes to submit as the answer to the
-question.  The canvas panel occupies the majority of the window, and this is
-the area in which the answer is constructed using the various components of the
-graphical language.  In the top right-hand corner of the canvas are three
-buttons, to zoom in and out of the current calculation and to bring up a help
-window.  For especially large or zoomed-in calculations, the canvas is
-scrollable.  At the bottom of the window are two tabs, {\sfapp Flow} and
-{\sfapp Worksheet}.  When {\sfapp Flow} is selected, the graphical language is
-available for use in answering the question.  When {\sfapp Worksheet} is
-selected, the user is able to use a simple textual language in a REPL to answer
-the question.
+The application is comprised of one window containing information panels at the top, a `toolbox' of available functions that can be dragged on to the canvas at the side and a canvas area upon which calculations are constructed.  There are buttons to zoom in and out, and a help button.  The user is able to use the tabs at the bottom of the canvas to switch between the graphical mode ({\sfapp Flow}) and the REPL mode ({\sfapp Worksheet}).
 
-Of all the prototypes shown here, this version of the graphical language is the
-most like a traditional programming language, in that it allows the user to
-define reusable functions, and includes functionality similar to print
-statements.  The icons at the side of the application are used to select the
-desired function, from a set that includes addition, subtraction,
-multiplication, division, exponentiation, number input, {\sfapp Show},
-{\sfapp Define} and {\sfapp Join}.  Addition, subtraction, multiplication,
-division and exponentiation are all dragged-and-dropped from the icons at the
-side to a point on the canvas, causing a box containing their respective
-functions to appear at that point.  Number input ({\sfapp \#}) is similar, but
-the user inputs a number using the keyboard after the box is created.  The box
-then contains that number.  {\sfapp Show} displays the output of the junction to
-which its arrow points, in the output box at the top of the screen with the label
-input by the user after placing it.  If the box with the label does not yet
-exist, it is created next to the existing output boxes.  {\sfapp Define} and
-{\sfapp Join} are not boxes to be dragged-and-dropped; they are modes of
-operation.  When {\sfapp Define} is activated, dragging the mouse on the canvas
-draws a box around sections of the diagram -- the user is able to define
-functions by doing so, and by providing a label for the section of diagram that
-has been highlighted, a corresponding box can be dragged-and-dropped from the
-list of icons (as shown in \emph{Fig.~\ref{fig:ProtoFlow}} with the {\sfapp times ten}
-function).  When {\sfapp Join} is active, dragging between two points on the
-canvas creates an arrow between them that means that the source of the arrow is
-used as an argument to the destination of the arrow.  In defining functions,
-if arrows cross the boundary of the definition box and they are incoming, input
-is required to future uses of the function.  One outgong arrow is allowed to
-indicate the output of the function.  Using this notation, answers are submitted
-by {\sfapp Show}ing the output at a point in the calculation to the output box
-{\sfapp ANS}.
+This design is moderately faithful to the origin application sketched out in the project proposal.  The application layout has been expanded to include the toolbox, and the {\sfapp Worksheet} mode has been added.  The ability to define functions has also been included.
 
-This particular graphical language tries to have a very high visibility,
-minimising the number of hidden dependencies between calculations by making
-every connection explicit: as a dataflow representation of a calculation
-\cite{Blackwell1998}, the flow of information through the diagram is made very
-clear.  This language is considerably less viscous than the handwritten method,
-as it is trivial (albeit not demonstrated in \emph{Fig.~\ref{fig:ProtoFlow}}) to remove and
-replace a box or arrow in the diagram, as opposed to writing out a new set of
-calculations or replacing several instances of a component by crossing them
-out.  Each box is able to be relocated on the canvas, increasing the
-juxtaposability of the system, and the user is able to define their own
-abstractions.
+The flowgraph metaphor was used as it offers much \emph{visibility of notation}, making the flow of data very clear to the user and allowing them to see much of their structure at once.  The notation also occupies little screen estate, allowing it to accommodate large calculations.
 
-The textual language improves upon the traditional means of handwriting
-arithmetic by revealing otherwise-hidden dependencies using references to line
-numbers.  As the target audience is not yet required to have formally learnt
-(or, indeed, encountered) algebra, this notation includes a function \verb¬:¬,
-which takes a single number \emph{n} as an argument and returns the result of the
-calculation performed on line \emph{n}.  Answers are submitted using a function
-\verb¬answer¬ that takes a single number (shown here using a line reference that
-is resolved to a number) as an argument.  Other functions include addition,
-subtraction, multiplication, division and exponentiation, all of which take two
-or more numerical arguments and are used in the familiar infix form.  A function
-\verb¬define¬ is also included, although not shown here.  Finally, there is the
-\verb¬show¬ function, which behaves similarly to a print statement.  It takes a
-numerical argument \emph{n} followed by a string argument \verb¬str¬, and
-displays \emph{n} in the output box named \verb¬str¬ at the top of the screen.
-If there exists no such output box, it is created next to the existing boxes.
-Note that \verb¬answer n¬ is logically equivalent to \verb¬show n "ANS"¬; the
-\verb¬answer¬ function was included here to increase clarity.
+The toolbox was included to make it clear to the user what functions are available to them.  In the original design, no control scheme was specified; the user is expected to have control over many different functions, so the control scheme either needs to be simple and memorable, or the user, espcially the novice, needs guidance.
 
-This design was abandoned as it was deemed to be too complex for the target
-audience (Year 5).  The intention of this project is not to implement yet
-another programming language for learners, and by providing features like the
-REPL and function definition, the system unnecessarily overprovides.  In
-addition to this, the flowgraph representation had a number of shortcomings.
-For example, it is not immediately clear in what order the arguments feed into
-an operation, which is confusing for non-commutative functions such as
-subtraction.  Furthermore, the language is quite verbose.  Although this is not
-inherently a disadvantage, a more compact representation would be preferable,
-in order to make expressions written in the notations more readable to people
-other than the author.
+In the toolbox are two buttons {\sfapp Define} and {\sfapp Join} that change modes such that dragging the mouse either joins boxes with arrows, or draws a box around a subsection of the diagram to define a function.  It was decided to use these modes, combined with the dragging of boxes in the normal mode, so that the entire control scheme could be implemented using solely one mouse button.
+
+The zoom buttons were included to help accommodate particularly large diagrams, and allow the user to view their work at a size that is comfortable for them.  If the user requires more canvas space, wishes to focus on a particular part of the diagram or would prefer to have the notation made larger, they are able to do so using these buttons.
+
+The help button was included to provide users with a simple system to aid in their getting used to the system.  Activating help would bring up an information box, allowing users to look through a manual.
+
+Function definition was introduced to allow the user to create abstractions for repeated tasks, thus increasing the compactness of the language.
+
+The {\sfapp Worksheet} mode was included for users who may feel more comfortable working in a written environment, rather than using the graphical metaphor.
+
+This design was abandoned as it was deemed to be too complex for the target audience (Year 5).  The intention of this project is not to implement yet another programming language for learners, and by providing features like the REPL and function definition, the system unnecessarily overprovides.  The REPL itself is unnecessary, as users comfortable working in a textual environment are likely to be comfortable using the traditional, handwritten method. The REPL simply adds complexity to the existing system.
+
+In addition to this, the flowgraph representation had a number of shortcomings. For example, it is not immediately clear in what order the arguments feed into an operation, which is confusing for non-commutative functions such as subtraction.  Furthermore, the language is quite verbose.  Although this is not inherently a disadvantage, a more compact representation would be preferable, in order to make expressions written in the notations more readable to people other than the original author and to decrease the time spent by the user searching for information within the notation.  It is also fairly \emph{viscous} at the scale of replacing whole components, rather than just numbers or operators, though less so than handwritten arithmetic.
 
 \paragraph{Sierpiński Triangle Metaphor}\hfill
 
@@ -863,60 +752,25 @@ other than the author.
 \end{center}
 \end{figure}
 
-This prototype uses a zooming instance of the Sierpiński triangle fractal as
-the basis of its notation.  It is shown here manipulating a simple calculation.
+This prototype uses a zooming instance of the Sierpiński triangle fractal as the basis of its notation.  It is shown in \emph{Fig.~\ref{fig:ProtoTri}} manipulating a simple calculation.
 
-The application consists of a single window containing two panels and a canvas
-area.  The right-hand panel displays the current total of the calculation,
-and the other panel displays the question currently being answered.  In the
-canvas area, there are buttons for zooming in and out, a help button and
-buttons controlling the composition of structures within the language.  When a
-triangle has been selected by clicking on it, clicking the {\sfapp Op} button
-presents the user with a choice of operations (namely +, -, × and ÷) to use in
-the bottom segment of the triangle.  Clicking either of the {\sfapp Input}
-buttons allows the user to input a value into their respective sections, and
-clicking on the {\sfapp Split} button creates a new triangle expression within
-the left-hand triangle.
+The application consists of a single window with information panels and a canvas area, featuring zoom and help buttons, as well as control buttons for the construction of an answer.
 
-This notational system is based around binary operations represented as the
-component triangles of a Sierpiński fractal, the logic behind this being that
-the fractal structure emphasises that each calculation is part of a larger
-whole.  The notation is read by using the left and right sub-triangles as
-arguments (left first, right second) to the operation in the bottom triangle.
-The structure is colour-coded, such that each subexpression is a different
-colour to its precedent superexpression.  This allows the user to abstract away
-subexpressions as units to be manipulated as any other input to an operation
-would be.  The hidden dependencies of the handwritten method are greatly
-diminished in this manner, as viewing the internal structure of a
-calculation's subexpressions is simply a matter of zooming-in to the
-appropriate triangle.  Viscosity is also considerably reduced, as making a
-change in one expression does not require the change to made anywhere else, as
-the results of that expression are passed to the rest of the calculation.  This
-does not completely remove viscosity, as a misresrepresented value still has to
-be replaced several times if it appears in several different expressions, but
-this is still an improvement over handwriting.  Indeed, the fact that
-calculations are editable more than once, by virtue of using a computer rather
-than paper, makes this less viscous than pen and paper.  The system is quite
-visible, but has a very low juxtaposability, as all calculations are restricted
-to their respective places in the triangle template.
+This prototype marks a significant departure from the flowgraph metaphor outlined above and in the project proposal; to address the problems with the flowgraph notation that were discussed in the previous section, new notations were considered.  The application in which the notation is used also had to change to suit the new notation: in this case, a toolbox would not be suitable, as the user is limited to one structure: the triangle.
 
-This design was ultimately abandoned as it was deemed to be awkward for a
-number of reasons, not least because it was based solely around binary
-operations, meaning that to solve the simple question 1+2+3+4, one has to either
-calculate ((1+2)+3)+4, which is inefficient, or mentally calculate that
-1+2+3=6, and then calculate 6+4, which is obviously unacceptable for a system
-that intends to help the user express themselves mathematically.  The severe
-lack of juxtaposability is also a problem: as each expression must fit into the
-larger structure, it is not possible to reorder them at will, without
-fundamentally altering the calculation being performed.  It also enforces a
-top-down approach to calculation: one is required by the system to begin with the
-outermost calculation and work inwards.  There is no provision for putting a
-larger triangle around an existing calculation.  In addition to this, a
-somewhat-informal survey of potential notations was conducted, asking
-approximately ten participants to answer some sample questions in this notation and
-the circle-based notation (below).  Participants found this notation less clear,
-and were much better able to complete questions correctly using the circle
-notation.
+The triangle notation was chosen as it offers more \emph{visibility of notation} than the handwritten method, and places considerable emphasis on structure, making it clear how smaller calculations can be built up to form larger ones by using a fractal-based notation.  It is colour-coding by the amount which each triangle is nested, to clarify at which level the user is working and allowing the user to abstract away smaller triangles as simply units of the calculation to be manipulated, as one would a number.
+
+Zoom buttons were included as, although the size of the overall structure always remains the same in this notation, it becomes necessary to read very small sections quite quickly, as nested calculations are built up.  Indeed, each section of the triangle has a quarter of the area of its the triangle that contains it, meaning that the triangle containing the value 3 in \emph{Fig.~\ref{fig:ProtoTri}} has $ \frac{1}{256} $ of the area of the overall structure, and this is with only four levels of nesting.
+
+As in the previous prototype, a help button was included to ease initiation into using the software.
+
+A control scheme using buttons was chosen, again, so that the user is only required to use one mouse button.  The control buttons map to the structure of a triangle unit.  This design was chosen to make it clear to the user how each control will affect the structure being worked upon: each {\sfapp Input} button allows the user to modify the corresponding section of the triangle, and similarly for the {\sfapp Op} button.  The user is able to submit answers using the {\sfapp Answer} button, to allow them to check and change their answers before submission.
+
+This design was ultimately abandoned as it was deemed to be awkward for a number of reasons, not least because it was based solely around binary operations, meaning that to solve the simple question 1+2+3+4, one has to either calculate ((1+2)+3)+4, which is inefficient, or mentally calculate that 1+2+3=6, and then calculate 6+4, which is obviously unacceptable for a system that intends to help the user express themselves mathematically.
+
+The severe lack of juxtaposability is also a problem: as each expression must fit into the larger structure, it is not possible to reorder them at will, without fundamentally altering the calculation being performed.  It also enforces a top-down approach to calculation: one is required by the system to begin with the outermost calculation and work inwards.  There is no provision for putting a larger triangle around an existing calculation.
+
+In addition to this, an informal survey of potential notations was conducted, asking approximately ten participants to answer some sample questions in this notation and the circle-based notation (below).  Participants found this notation less clear, and were much better able to complete questions correctly using the circle notation described below.
 % survey
 % TODO: can't put subexpressions into right-hand triangle
 
@@ -935,73 +789,23 @@ notation.
 \end{center}
 \end{figure}
 
-This prototype uses a notation based around circles as individual units of
-calculation, linked in such a way as to indicate the flow of information.
-Although it is related to the flowgraph metaphor (above), it has a number of
-key differences.
+This prototype uses a notation based around circles as individual units of calculation, linked in such a way as to indicate the flow of information. Each circle consists of an operator, around which arguments orbit, being evaluated clockwise from 0°.  Although it is related to the flowgraph metaphor (above), it has a number of key differences.
 
-The application comprises, similarly to the Sierpiński model above, a single
-window with two panels and a scrollable canvas area, with some buttons to
-control the input of data.  The right-hand panel shows a running total of the
-user's calculation, and the other panel shows the question currently being
-answered.  The canvas area has three buttons at the bottom: zoom in, zoom out
-and help.  The larger buttons above these control the action that clicking the
-mouse on the canvas performs.  When {\sfapp New} is active, clicking on the
-canvas creates a new circle at that location.  When {\sfapp Split} is active,
-clicking on a circle increases the number of arguments it has (initially two,
-up to a maximum of eight).  When {\sfapp Function} is selected, clicking on a
-circle presents the user with a choice of +, -, × and ÷ to use as that circle's
-operation.  When {\sfapp Input} is selected, as shown in \emph{Fig.~\ref{fig:ProtoCirc}}, the
-user is presented with two further options, {\sfapp Number} and
-{\sfapp Circle}.  When {\sfapp Number} is active, clicking on a circle's
-argument allows the user to change the value of that argument.  When
-{\sfapp Circle} is active, the user is able to click and drag from one circle
-to an argument of another, indicating that they wish to use the results of one
-circle's calculation as the argument to another circle's calculation.  Finally,
-the {\sfapp Answer} button submits the current total as the answer to the
-current question.
+The application comprises a single window with information panels and a canvas, which includes control, zoom and help buttons, similarly to the above prototype.
 
-This notational system uses linked circles representing individual expressions
-as its primary metaphor for constructing calculations.  It is similar to the
-flowgraph metaphor presented above, except that instead of boxes for each
-argument and operation all linked together, single, linkable objects in this
-system are complete expressions, rather than components.  Also, there is only
-one visible output, namely the overall result of the calculation as a whole.
-As for the circles themselves, they consist of an operation at the centre,
-orbited by arguments, which are evaluated clockwise from 0°.  Each argument can
-either be a number or the tail of another circle, representing the result of
-the calculation that that circle stands for.  The circles are colour-coded,
-with each `layer' having its own colour.  In this case, the root circle is red,
-the circles feeding directly into it are yellow, the circles feeding into those
-circles are green and the circles feeding into those are blue.  It is possible
-to move circles around the canvas by clicking and dragging them to the desired
-location.  Compared to the handwritten approach, this notational system is much
-more visible, and very much more juxtaposable, allowing the user to construct
-the diagram in a way that is comfortable for them, and allowing them to compare
-elements side-by-side if they need to.  Unlike with the Sierpiński metaphor,
-the user is not restricted to one order or pattern of constructing a
-calculation: calculations can be performed bottom-up, top-down or a mixture of
-both, as is comfortable for the individual user.  The system of tails feeding
-into other circles also makes the dataflow clear, eliminating many of the
-hidden dependencies of handwritten calculation.  For similar reasons to the
-flowgraph metaphor, the circle notation also reduces viscosity, as changing a
-subexpression automatically alters all of its superexpressions.  Finally, the
-system requires little premature commitment, as piece of the diagram can be
-created, deleted and swapped in and out at will, so it is ideal for
-exploration, allowing the user to try many ways of solving a problem within the
-application, rather than having to use a secondary notation or device to help
-work through a problem in a more familiar manner and then transcripting that
-solution into the new notation.
+Once again, this prototype is markedly different to the original idea for the project, as a means of addressing its shortcomings.  The application has also changed to accommodate the new notation.  A toolbox is unsuitable for this notation, as it only uses one fundamental structure, being a circle, and the controls used in the Sierpiński model above (\emph{Fig.~\ref{fig:ProtoTri}}) do not map to the circle structure.
 
-This design was the one that was ultimately chosen as the basis for the project
-as it neatly solved, or at least ameliorated, many of the problems listed with
-handwritten arithmetic, without being too complex for the target audience (as
-with the flowgraph system), and without being too restrictive with regard to
-mathematical expression.  In addition to this, the results of the survey
-mentioned above also indicated that people got on well with this notation; the
-participants found it considerably easier to use than the Sierpiński notation,
-and made fewer mistakes in handwriting this notation than the alternative.
-% survey
+The circle metaphor was chosen for similar reasons to the triangle model: it emphasises the idea of subcalculations as individual units, to be abstracted away and treated as any other entity being provided as an argument to an operator.  This model has greater \emph{visibility of notation} than handwritten arithmetic, and also offers more flexibility than the previous two models, decreasing \emph{viscosity} by allowing the user to edit whole units (i.e. circles) within a calculation, and to swap them in and out as needed.  \emph{Juxtaposability of notation} is increased using this metaphor, as whole subcalculations are easily repositioned.
+
+Unlike with the Sierpiński metaphor, the user is not restricted to one order or pattern of constructing a calculation: calculations can be performed bottom-up, top-down or a mixture of both, as is comfortable for the individual user.  The circle `tails' make the flow of information through the diagram clear, and circles are also colour-coded by their level of nesting, to further clarify dataflow and to eliminate as many \emph{hidden dependencies} as possible.
+
+The system also requires little \emph{premature commitment}, as any piece of the diagram can be created, deleted and modified at will, so it is ideal for exploration, allowing the user to try many ways of solving a problem within the application, rather than having to use a secondary notation or device to help work through a problem in a more familiar manner and then transcribing that solution into the new notation.
+
+As in the flowgraph-based prototype, zoom buttons are included to accomodate large diagrams, to allow the user to focus on small sections and to allow the user to work at a size that is comfortable for them.  Again, a help button is included to ease initiation.
+
+Similarly to the {\sfapp Define} and {\sfapp Join} buttons in \emph{Fig.~\ref{fig:ProtoFlow}}, the buttons here specify mouse modes: {\sfapp New} causes clicking to create new circles, {\sfapp Split} causes circles that are clicked to gain an argument, and so on. This had similar motivatoins to the modes in the flowgraph model: to be able to control the software using just one mouse button.  The user is able to submit answers using the {\sfapp Answer} button, to allow them to check and change their answers before submission.
+
+This design was the one that was ultimately chosen as the basis for the project as it neatly solved, or at least ameliorated, many of the problems listed with handwritten arithmetic, without being too complex for the target audience (as with the flowgraph system), and without being too restrictive with regard to mathematical expression.  In addition to this, the results of the survey mentioned above also indicated that people got on well with this notation; the participants found it considerably easier to use than the Sierpiński notation, and made fewer mistakes in handwriting this notation than the alternative.
 
 % what/mockup
 % application
@@ -1322,7 +1126,7 @@ The final revision of the software reintroduced the {\sfapp Check} button to add
 \begin{center}
 \begin{figure}[H]
 \begin{center}
-{\Huge \sfapp OLD VERSIONS OF THE APP LOL}
+{\Huge \sfapp OLD VERSIONS OF THE APP}
 \end{center}
 \caption{\emph{Nico}'s user interface went through a number of revisions before reaching its current state.}
 \label{fig:OldApps}
@@ -1339,7 +1143,7 @@ This was never intended to be the final version of the user interface, but was u
 \begin{figure}[H]
 \begin{center}
 % \includegraphics{figs/nico_gudb.png}
-{\Huge \sfapp GRAND UNIFIED DIALOGUE BOX LOL}
+{\Huge \sfapp GRAND UNIFIED DIALOGUE BOX}
 \end{center}
 \caption{The unified dialogue box.}
 \label{fig:GUDB}
@@ -1348,7 +1152,7 @@ This was never intended to be the final version of the user interface, but was u
 
 In later revisions of the software, as mentioned in the previous section, the many dialogue boxes were combined into one, with many options available to specify the parameters of a circle.  This was implemented to eliminate the need for typing in S-expressions, as in the previous incarnation of the user interface, and dynamically generated its layout, making new circles available to use as arguments as they were created.
 
-It was decided to combine all parameters into one dialogue box (\emph{Fig.~\ref{fig:GUDB}}), rather than many smaller dialogue boxes, to minimise the time spent sarching for controls by the user.  However, the grand unified dialogue box still required the user to perform operations without it being entirely obvious what the consequences would be, thus requiring an unnecessary amount of \emph{premature commitment} from the user.  In addition to this, the act of visualising the circle to be created whilst setting the many options available in the dialogue box constituted a superfluous \emph{hard mental operation}.
+It was decided to combine all parameters into one dialogue box (\emph{Fig.~\ref{fig:GUDB}}), rather than many smaller dialogue boxes, to minimise the time spent searching for controls by the user.  However, the grand unified dialogue box still required the user to perform operations without it being entirely obvious what the consequences would be, thus requiring an unnecessary amount of \emph{premature commitment} from the user.  In addition to this, the act of visualising the circle to be created whilst setting the many options available in the dialogue box constituted a superfluous \emph{hard mental operation}.
 
 \begin{center}
 \begin{figure}[H]
@@ -1457,7 +1261,7 @@ As \emph{Nico}'s notation and user interface are quite reliant upon colour to ex
 \begin{center}
 \begin{figure}[H]
 \begin{center}
-{\Huge \sfapp OLD VERSIONS OF THE NOTATION LOL}
+{\Huge \sfapp OLD VERSIONS OF THE NOTATION}
 \end{center}
 \caption{The notation used also went through a number of revisions before reaching its current state.}
 \label{fig:OldNots}
@@ -1487,25 +1291,21 @@ Firstly, the circles are now colour-coded by operator, making it easier for the 
 Throughout the development of the software, unit tests were performed to ensure the integrity of the code.  GNU Emacs, in combination with SLIME/SWANK and clojure-mode, includes functionality such that commented-out lines of code can be evaluated at will.  As such, it was possible to write unit and integration tests into the main body of my code and to evaluate them whenever a change may have affected how a function behaved.  In the interests of tidiness and code readability, many tests were removed as they became unnecessary later on in the development in the project.
 
 % TODO: chat shit about assertions
+Assertions were also used to perform tests: Clojure provides the developer with the ability to specify runtime tests as part of function definition, throwing exceptions if any assertions.  Such tests were used in addition to the previous method to unit-test and integration-test the functions within the application.
 
 \section{Summary}
 
-In this chapter, the implementation of the project was discussed in some
-detail, as well as the challenges that were faced during this development
-phase.  The software itself fulfils and exceeds the criteria for success
-outlined in the project proposal, being a complete and usable system that
-improves greatly, in terms of cognitive dimensions, upon the traditional method
-of handwritten arithmetic.  Third-party libraries, in particular Seesaw, were
-used where appropriate.  The application divides into three main sections: the
-back-end, handling mathematical operations and memory management, the
-interaction handler, helping the user interface to interface with the back-end,
-and the user interface itself.  The user interface was revised many times to
-correct deficiencies in the design that would have led to a poor user
-experience, and the back-end and interaction handler were also both restructured
-as new demands upon the software became apparent.
+In this chapter, the implementation of the project was discussed in some detail, as well as the challenges that were faced during this development phase.
 
-In the next chapter, the software will be evaluated, discussing test results
-and the user study that was conducted as an extension to the project.
+The software itself fulfils and exceeds the criteria for success outlined in the project proposal, being a complete and usable system that improves greatly, in terms of cognitive dimensions, upon the traditional method of handwritten arithmetic.
+
+Third-party libraries, in particular Seesaw, were used where appropriate.
+
+The application divides into three main sections: the back-end, handling mathematical operations and memory management, the interaction handler, helping the user interface to interface with the back-end, and the user interface itself.
+
+The user interface was revised many times to correct deficiencies in the design that would have led to a poor user experience, and the back-end and interaction handler were also both restructured as new demands upon the software became apparent.
+
+In the next chapter, the software will be evaluated, discussing test results and the user study that was conducted as an extension to the project.
 
 \cleardoublepage
 \chapter{Evaluation}
@@ -1538,29 +1338,7 @@ This chapter concerns the testing and evaluation of \emph{Nico}; carried out to 
 % 300ms test - see below (under goals)
 % maybe time render too?
 
-The time taken to generate an S-expression, evaluate it and display the result to the user was required by the project proposal to be less than 300ms.  To test this, a \emph{Nico} session was completed, using the same questions as in the user study (below), but with a modified version of the function \verb¬update-answer¬, which generates an S-expression from the user's diagram, evaluates it and displays the result to the user.  The modified version of \verb¬update-answer¬ is shown in \emph{Fig.~\ref{fig:TimeCode}}, below.
-
-\begin{center}
-\begin{figure}[H]
-\begin{center}
-\begin{minipage}{\textwidth-2cm}
-\begin{Verbatim}[fontsize=\small,numbers=left]
-(defn update-answer
-  "Update the text in the :answer field to the current value of the diagram."
-  []
-  (do
-  (spit logfile (str (system-time) ",") :append true) ;; log begin time
-  (config! (select main-window [:#answer])
-           :text (cond (empty? @used-circles) (str 0)
-                       :else (str (eval (eval-circle (find-root))))))
-  (spit logfile (str (system-time) "\n") :append true)));; log end time
-\end{Verbatim}
-\end{minipage}
-\end{center}
-\caption{The modified version of {\ttfamily update-answer} used to time diagram evaluation.}
-\label{fig:TimeCode}
-\end{figure}
-\end{center}
+The time taken to generate an S-expression, evaluate it and display the result to the user was required by the project proposal to be less than 300ms.  To test this, a \emph{Nico} session was completed, using the same questions as in the user study (below), but with a modified version of the function \verb¬update-answer¬, which generates an S-expression from the user's diagram, evaluates it and displays the result to the user, that included functionality such that the system time upon entering and exiting the function was recorded in an external log file.
 
 A plot of the time taken for each call to \verb¬update-answer¬ to complete over time is shown below.
 
@@ -1589,70 +1367,45 @@ A plot of the time taken for each call to \verb¬update-answer¬ to complete ove
 % results
 % pilot study - ellie suggested switching left/right-clicks in control scheme, implemented before main study
 
-To assess the utility of the software relative to handwritten arithmetic, a
-user study was conducted, allowing real users to get to grips with the system,
-and provide feedback on it.  To this end, users were given a tutorial video and
-a questionnaire (see \emph{Appendix B} for the full questionnaire) to complete
-whilst using the software.
+To assess the utility of the software relative to handwritten arithmetic, a user study was conducted, allowing real users to get to grips with the system, and provide feedback on it.  To this end, users were given a tutorial video and a questionnaire (see \emph{Appendix B} for the full questionnaire) to complete whilst using the software.
 
 \subsection{Experimental Design}
 
-Originally, it was the intention of this project to perform a user study upon
-a `test class' of Year 5 pupils at an actual school, but the ethical
-complications involved with working with vulnerable individuals were so great
-as to make such a study impractical, given the time constraints of this
-dissertation; in addition to obtaining the approval of the Ethics Committee and
-the permission of a school to conduct the study, consent forms would have to be
-distributed to the test class, taken home, signed by the pupils' guardians,
-returned to the school and returned to myself.  It was, therefore, decided that
-the software should be tested upon a group of students not currently reading a
-`mathematical' subject, such as the Natural Sciences Tripos, the Mathematical
-Tripos or the Computer Science Tripos, which necessitate a high level of
-mathematical aptitude and experience.
+Originally, it was the intention of this project to perform a user study upon a `test class' of Year 5 pupils at an actual school, but the ethical complications involved with working with vulnerable individuals were so great as to make such a study impractical, given the time constraints of this dissertation; in addition to obtaining the approval of the Ethics Committee and the permission of a school to conduct the study, consent forms would have to be distributed to the test class, taken home, signed by the pupils' guardians, returned to the school and returned to the author.  It was, therefore, decided that the software should be tested upon a group of students not currently reading a `mathematical' subject, such as the Natural Sciences Tripos, the Mathematical Tripos or the Computer Science Tripos, which necessitate a high level of mathematical aptitude and experience.
 
-Participants were first asked to sign a statement of informed consent, giving
-their consent to participate in the study, and were then asked if they had
-previously used \emph{Nico}, and to indicate their confidence in their ability
-to solve simple mathematical problems on a five-point Likert item.  Users were
-then divided into two groups.  The first watched the tutorial video and were
-allowed to explore the application in a `sandbox' environment for five
-minutes.  They then completed one question set using \emph{Nico}, and answered
-the same questions by hand.  The second group completed the questions by hand
-before watching the video and using the software.  The time taken to answer
-each question was recorded, with \emph{Nico} including functionality to query
-the system time as the user progressed and the handwritten questions being
-timed using a stopwatch.  Both groups were then asked to complete a series of
-questions to provide feedback on the software, taking questions from Blackwell
-and Green's sample questionnaire. \cite{Blackwell2000}
+Participants were first asked to sign a statement of informed consent, giving their consent to participate in the study, and were then asked if they had previously used \emph{Nico}, and to indicate their confidence in their ability to solve simple mathematical problems on a five-point Likert item.
+
+Users were then divided into two groups.  The first watched the tutorial video and were allowed to explore the application in a `sandbox' environment for five minutes.  They then completed one question set using \emph{Nico}, and answered the same questions by hand.  The second group completed the questions by hand before watching the video and using the software.
+
+The time taken to answer each question was recorded, with \emph{Nico} including functionality to query the system time as the user progressed and the handwritten questions being timed using a stopwatch.
+
+Both groups were then asked to complete a series of questions to provide feedback on the software, taking questions from Blackwell and Green's sample questionnaire. \cite{Blackwell2000}
 
 % TODO: You need an experimental design section that describes why you used the cognitive dimensions questionnaire for evaluation instead of other means of evaluation, why you compared paper questions with nico instead of a calculator, why you used a tutorial video instead of a text based tutorial, why you used a likert scale instead of another scale, why you used time as a metric of comparison,
-This approach was chosen for a number of reasons.  \emph{Nico} was compared to questions answered by hand, rather than a calculator, as its intention is not to calculate answers for the student, but as more of a technique of visualising a mathematical method (hence the decision to limit available arguments to functions to a range of values between -10 and 10).  To compare \emph{Nico} to questions answered using a calculator would not be a useful comparison, as a calculator is able to perform calculations using larger numbers without requiring the user to put into practice similar methods to those that they would use when calculating by hand.  The users were divided into two groups, each completing the same tasks but in a different order, to eliminate any bias that might have arisen from both groups having already completed the questions using one method, before using the other.  The decision to use two methods of evaluation of the software (timing users and the cognitive dimensions questionnaire) allows several aspects of the software to be assessed: by timing users' responses to questions both by hand and using the software, we are able to gauge the length of time taken by the participant to think about how to answer a question.  It is expected that \emph{Nico} should decrease the amount of time taken to work through complex problems involving several subcalculations.  The cognitive dimensions questionnaire also allows users to appraise the design of the user interface themselves, criticising aspects they disliked and praising those that they found useful.
+This approach was chosen for a number of reasons.  \emph{Nico} was compared to questions answered by hand, rather than a calculator, as its intention is not to calculate answers for the student, but as more of a technique of visualising a mathematical method (hence the decision to limit available arguments to functions to a range of values between -10 and 10).  To compare \emph{Nico} to questions answered using a calculator would not be a useful comparison, as a calculator is able to perform calculations using larger numbers without requiring the user to put into practice similar methods to those that they would use when calculating by hand.
 
-With regard to the design of the questionnaire itself, it was decided to use a Likert item to assess the users' initial level of confidence in their arithmetic ability as this provides a simple approach that can easily map to numerical data, which can then be analysed more easily than a verbal response.  A tutorial video was decided upon, rather than a textual approach, as it provides a means of demonstrating an example session in a standardised way, rather than a live demonstration, in which important elements could potentially be accidentally omitted by the demonstrator, or a textual description, which may not make certain terminology or processes as clear to the reader as a demonstration.
+The users were divided into two groups, each completing the same tasks but in a different order, to eliminate any bias that might have arisen from both groups having already completed the questions using one method, before using the other.
+
+The decision to use two methods of evaluation of the software (timing users and the cognitive dimensions questionnaire) allows several aspects of the software to be assessed: by timing users' responses to questions both by hand and using the software, we are able to gauge the length of time taken by the participant to think about how to answer a question.
+
+It is expected that \emph{Nico} should decrease the amount of time taken to work through complex problems involving several subcalculations.  The cognitive dimensions questionnaire also allows users to appraise the design of the user interface themselves, criticising aspects they disliked and praising those that they found useful.
+
+With regard to the design of the questionnaire itself, it was decided to use a Likert item to assess the users' initial level of confidence in their arithmetic ability as this provides a simple approach that can easily map to numerical data, which can then be analysed more easily than a verbal response.
+
+A tutorial video was decided upon, rather than a textual approach, as it provides a means of demonstrating an example session in a standardised way, rather than a live demonstration, in which important elements could potentially be accidentally omitted by the demonstrator, or a textual description, which may not make certain terminology or processes as clear to the reader as a demonstration.
 
 \subsection{Pilot Study}
 % changes, improvements
 
-A pilot study was conducted with one participant, to assess the feasibility of
-the experiment that had been designed.  The outcome of this study was to make
-changes to several areas of the test, and a small change to the control scheme
-of the application itself.  Firstly, the participant in the pilot study noted that the
-original version of the tutorial video for \emph{Nico} was hard to follow; it
-used subtitles to convey information, which the participant felt were hard to
-read and understand in the time given.  The participant also noted that some of the
-questions in the feedback section were confusing or seemingly irrelevant to
-this particular application, and was unsure of how to answer them.  The final
-piece of feedback that the participant provided was that the control scheme of the
-application seemed counterintuitively focussed upon the right mouse button,
-where it would have felt more natural to the user to have used the left.
+A pilot study was conducted with one participant, to assess the feasibility of the experiment that had been designed.  The outcome of this study was to make changes to several areas of the test, and a small change to the control scheme of the application itself.
 
-In the interests of improving the study, I acted upon the participant's advice.
-The video was reproduced using a voiceover rather than subtitles, making it
-easier to follow.  Some of the less relevant questions were removed from the
-feedback section, leaving those more applicable to \emph{Nico}.  Finally, the
-control scheme was revised, assigning the left mouse button to primary
-functions such as the creation and editing of circles, and the right to
-functions such as changing the number of arguments.
+Firstly, the participant in the pilot study noted that the original version of the tutorial video for \emph{Nico} was hard to follow; it used subtitles to convey information, which the participant felt were hard to read and understand in the time given.
+
+The participant also noted that some of the questions in the feedback section were confusing or seemingly irrelevant to this particular application, and was unsure of how to answer them.
+
+The final piece of feedback that the participant provided was that the control scheme of the application seemed counterintuitively focussed upon the right mouse button, where it would have felt more natural to the user to have used the left.
+
+In the interests of improving the study, I acted upon the participant's advice. The video was reproduced using a voiceover rather than subtitles, making it easier to follow.  Some of the less relevant questions were removed from the feedback section, leaving those more applicable to \emph{Nico}.  Finally, the control scheme was revised, assigning the left mouse button to primary functions such as the creation and editing of circles, and the right to functions such as changing the number of arguments.
 
 \subsection{Results}
 % data, graphs, analyses
@@ -1788,40 +1541,17 @@ Q10 & 2.1298 & 0.0707 & No\\
 \end{table}
 \end{center}
 
-As the \emph{p}-values in the above table indicate, there was a significant
-difference in performance between using \emph{Nico} and completing the
-questions by hand.  For the first five questions, the time taken to complete
-the questions is markedly increased by using the software.  This is somewhat to
-be expected;  the first five questions were `warm-up' questions, requiring a
-maximum of three separate calculations to solve and with all numbers involved
-in each calculation being less than ten.  Such questions were included to give
-the user a chance to get used to solving simple problems using \emph{Nico},
-before moving on to more complex tasks.  By the sixth question, there is no
-longer a statistically-significant difference between using the software and
-completing the questions by hand.  This particular question still uses numbers
-less than ten, but requires several more nested calculations to solve,
-suggesting that \emph{Nico} offers some improvement where the handwritten
-method is lacking, but also that this is offset by the greater time required to
-input very simple expressions into the application.  The final four questions
-introduced numbers greater than ten, include many subcalculations and large
-numbers.  For the seventh, eighth and ninth questions, \emph{Nico} offers a
-statistically-significant improvement.  These questions involve the
-manipulation of larger numbers, requiring strategies that go beyond simply
-recalling number bonds, such as partitioning or long multiplication.  It is
-these types of questions that \emph{Nico} is intended to make easier for the
-user, and the often-dramatic decrease in the time taken to solve such questions
-is shown to great effect here.  The tenth question, on reflection, was not
-well-chosen.  It is comparable in difficulty to the fifth question, being a
-series of simple subcalculations with numbers less than ten.  Though there are
-more calculations to perform, and one operation involving a large number at the
-end,  this question is not especially challenging to solve by hand, and as such
-the lack of a significant difference between using the software and not doing
-so is not entirely unexpected.  The simple subcalculations are easier to
-perform by hand, and combining them is faster using \emph{Nico}.  Indeed, this
-conclusion is borne out by the plots shown above: \emph{Fig.~\ref{fig:PlotQ3}} shows a clear advantage to calculating a simple question by hand.  By Question 6, (\emph{Fig.~\ref{fig:PlotQ6}}), there seems to be no clear advantage to using either method, and for Questions 7 and 9 (\emph{Fig.~\ref{fig:PlotQ7}} and \emph{Fig.~\ref{fig:PlotQ9}}), which are `complex' questions as described above, \emph{Nico} is shown to be a faster means of calculation.  This is especially the case with Question 7.
+As the \emph{p}-values in the above table indicate, there was a significant difference in performance between using \emph{Nico} and completing the questions by hand.
 
-Data were also collected regarding how well the questions were answered by each
-user, which follow.
+For the first five questions, the time taken to complete the questions is markedly increased by using the software.  This is somewhat to be expected;  the first five questions were `warm-up' questions, requiring a maximum of three separate calculations to solve and with all numbers involved in each calculation being less than ten.  Such questions were included to give the user a chance to get used to solving simple problems using \emph{Nico}, before moving on to more complex tasks.
+
+By the sixth question, there is no longer a statistically-significant difference between using the software and completing the questions by hand.  This particular question still uses numbers less than ten, but requires several more nested calculations to solve, suggesting that \emph{Nico} offers some improvement where the handwritten method is lacking, but also that this is offset by the greater time required to input very simple expressions into the application.
+
+The final four questions introduced numbers greater than ten, include many subcalculations and large numbers.  For the seventh, eighth and ninth questions, \emph{Nico} offers a statistically-significant improvement.  These questions involve the manipulation of larger numbers, requiring strategies that go beyond simply recalling number bonds, such as partitioning or long multiplication.  It is these types of questions that \emph{Nico} is intended to make easier for the user, and the often-dramatic decrease in the time taken to solve such questions is shown to great effect here.
+
+The tenth question, on reflection, was not well-chosen.  It is comparable in difficulty to the fifth question, being a series of simple subcalculations with numbers less than ten.  Though there are more calculations to perform, and one operation involving a large number at the end,  this question is not especially challenging to solve by hand, and as such the lack of a significant difference between using the software and not doing so is not entirely unexpected.  The simple subcalculations are easier to perform by hand, and combining them is faster using \emph{Nico}.
+
+This conclusion is borne out by the plots shown above: \emph{Fig.~\ref{fig:PlotQ3}} shows a clear advantage to calculating a simple question by hand.  By Question 6, (\emph{Fig.~\ref{fig:PlotQ6}}), there seems to be no clear advantage to using either method, and for Questions 7 and 9 (\emph{Fig.~\ref{fig:PlotQ7}} and \emph{Fig.~\ref{fig:PlotQ9}}), which are `complex' questions as described above, \emph{Nico} is shown to be a faster means of calculation.  This is especially the case with Question 7.  Data were also collected regarding how well the questions were answered by each user, which follow.
 
 \begin{center}
 \begin{table}[H]
@@ -1991,7 +1721,9 @@ Users responded to the questions in this section with neutral-to-negative feedba
 
 \emph{μ} = 0.1250000
 
-This section was met with neutral-to-positive feedback, with Question 2.4.1 receiving more positive feedback and Question 2.4.2 receiving neutral-to-negative reponses.  Participants felt that the notation was ``very close[ly]'' related to the result that they were describing, with one user going so far as to say that it was ``exactly so''.  Several users found that the limitation of available numbers to the range -10 to 10 to be a strange way of working: this limitation was not mentioned in the tutorial video, with the expectation that users would appreciate the need for such a feature, to prevent the software from becoming equivalent to a calculator, rather than a means of expressing method.  As it was particularly difficult to explain this without imposing a subjective method of calculation upon the user, some participants concluded that it was a flaw in the software, rather than a conscious design choice.
+This section was met with neutral-to-positive feedback, with Question 2.4.1 receiving more positive feedback and Question 2.4.2 receiving neutral-to-negative reponses.  Participants felt that the notation was ``very close[ly]'' related to the result that they were describing, with one user going so far as to say that it was ``exactly so''.
+
+Several users found that the limitation of available numbers to the range -10 to 10 to be a strange way of working: this limitation was not mentioned in the tutorial video, with the expectation that users would appreciate the need for such a feature, to prevent the software from becoming equivalent to a calculator, rather than a means of expressing method.  As it was particularly difficult to explain this without imposing a subjective method of calculation upon the user, some participants concluded that it was a flaw in the software, rather than a conscious design choice.
 
 \paragraph{Role Expressiveness}\hfill
 
@@ -2004,6 +1736,7 @@ Feedback on this section was broadly positive, with Question 2.5.3 receiving par
 ``if I were looking at a completed diagram it might be confusing but when you work through a question and break it down it is easy to see what's what because you create each part of it as you get there.''
 }
 \end{center}
+
 Most users felt that there were no parts of the notation that were especially difficult to interpret, although a few note that the screen can become busy for more complex calculations.  One user agrees with the feedback from the `Visibility \& Juxtaposability' section from that connecting lines between circles can become ``like a spiderweb, difficult to take in altogether'' when numerous.  All users responded to Question 2.5.3 with ``no'', ``none'' or equivalent answers, indicating that there were no parts of the notation that were unclear but included as a result of a feeling of obligation to do so.
 
 \paragraph{Hidden Dependencies}\hfill
@@ -2088,7 +1821,11 @@ Overall, this project has been very successful.  Not only has an application mee
 
 The software itself comprises a three-layer structure, with a back-end that interprets and manipulates user-input data, an interaction handler that provides an iterface between the back-end and the user interface, and the user interface itself, the environment in which the user performs actions, interacting with the notation to express calculations.
 
-The user study conducted as an extension to the main project concluded that \emph{Nico} made a statistically-significant difference both to the users' speed of answering questions and to the users' likelihood to answer questions correctly.  It was observed that for simple questions involving small numbers and few steps in the calculation, the software increased the time taken to answer.  For more complex questions, with many subcalculations and larger numbers, the software was shown to decrease the time taken for users to answer.  There was also a statistically-significant negative correlation between the number of marks obtained in handwritten tests and the number of incorrect answers submitted to the software.  User feedback was mildly positive, with users finding that the software made it easy to explore many possible solutions, but also that the notation could become confusing where a large number of circles occupied much of the canvas' available area.  However, it was also noted that the notation had few hidden dependencies, and was easy to read in most cases.
+The user study conducted as an extension to the main project concluded that \emph{Nico} made a statistically-significant difference both to the users' speed of answering questions and to the users' likelihood to answer questions correctly.  It was observed that for simple questions involving small numbers and few steps in the calculation, the software increased the time taken to answer.  For more complex questions, with many subcalculations and larger numbers, the software was shown to decrease the time taken for users to answer.
+
+There was also a statistically-significant negative correlation between the number of marks obtained in handwritten tests and the number of incorrect answers submitted to the software.
+
+User feedback was mildly positive, with users finding that the software made it easy to explore many possible solutions, but also that the notation could become confusing where a large number of circles occupied much of the canvas' available area.  However, it was also noted that the notation had few \emph{hidden dependencies}, and was easy to read in most cases.
 
 The project suggests a number of potential improvements and extensions:
 \begin{itemize}

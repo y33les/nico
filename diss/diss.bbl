@@ -25,12 +25,32 @@ A.~F. Blackwell and T.~R.~G. Green.
 \newblock {\em HCI Models, Theories, and Frameworks: Toward a Multidisciplinary
   Science}, 2003.
 
+\bibitem{Bragg2006}
+L.~Bragg.
+\newblock Students' impressions of the value of games for the learning of
+  mathematics.
+\newblock In {\em Proceedings of the 30th conference of the international group
+  for the psychology of mathematics education}, pages 217--224, Cape Town,
+  South Africa, July 2006. International Group for the Psychology of
+  Mathematics Education.
+
+\bibitem{Bragg2007}
+L.~Bragg.
+\newblock Students' conflicting attitudes towards games as a vehicle for
+  learning mathematics: a methodological dilemma.
+\newblock {\em Mathematics education research journal}, 19:29--44, 2007.
+
 \bibitem{JavaApi}
 Oracle Corporation.
 \newblock Mouseevent (java platform se 7).
 \newblock
   \url{http://docs.oracle.com/javase/7/docs/api/java/awt/event/MouseEvent.html},
   2012.
+
+\bibitem{Delacruz2010}
+G.~C. Delacruz, G.~K.~.W.~K. Chung, and E.~L. Baker.
+\newblock Cresst report 773: Validity evidence for games as assessment
+  environments, 2010.
 
 \bibitem{Fisher1990}
 R.~A. Fisher.
@@ -104,6 +124,20 @@ A.~Roca and F.~Rousseau.
 samaaron and jlr.
 \newblock overtone/live-coding-emacs.
 \newblock \url{https://github.com/overtone/live-coding-emacs}, 2011.
+
+\bibitem{Marshall2009}
+P.~Swan and L.~Marshall.
+\newblock Mathematics games as a pedagogical tool.
+\newblock In {\em CoSMEd 2009 3rd International Conference on Science and
+  Mathematics Education Proceedings}, pages 402--406, Penang, Malaysia,
+  November 2009. SEAMEO RECSAM.
+
+\bibitem{Swan2009}
+P.~Swan and L.~Marshall.
+\newblock Mathematics games: Time wasters or time well spent?
+\newblock In {\em Proceedings of the 10th International Conference ``Models in
+  Developing Mathematics Education''}, pages 540--544, Dresden, Saxony,
+  Germany, September 2009. University of Applied Sciences, Dresden.
 
 \bibitem{KillMath}
 B.~Victor.

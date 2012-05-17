@@ -191,7 +191,7 @@ Stead and Sam Aaron for their encouragement and patience.
 \chapter{Introduction}
 % TODO: sort out cogdims: apparently the proper way to do it is to mention cogdims and cite petra & green, then put all the cogdims terms in italics
 
-The aim of this project has been to design and develop a notation and accompanying application to act as a learning aid for pre-algebra arithmetic in schools.  Using Petre and Green's `Cognitive Dimensions' framework, the project aims to increase the \emph{visibility} of the notation, to reduce the number of \emph{hidden dependencies} between units of notation, to reduce the \emph{viscosity} of the notation, and to make the flow of data obvious to the user \cite{Green1996}.  I have successfully developed such a system, intended initially for pupils in Year 5 (though extensible, through the creation of alternative question sets, to other age groups), and, as an extension, conducted a user study to assess its utility.
+The aim of this project has been to design and develop a notation and accompanying application to act as a learning aid for pre-algebra arithmetic in schools.  Using Petre and Green's `Cognitive Dimensions' framework as a means of evaluation, the project aims to increase the \emph{visibility} of the notation, to reduce the number of \emph{hidden dependencies} between units of notation, to reduce the \emph{viscosity} of the notation, and to make the flow of data obvious to the user \cite{Green1996}.  I have successfully developed such a system, intended initially for pupils in Year 5 (though extensible, through the creation of alternative question sets, to other age groups), and, as an extension, conducted a user study to assess its utility.
 
 In this chapter, I will discuss my motivations for choosing this project, the pros and cons of the handwritten system it is attempting to augment, the technical challenges involved in developing such a system and related work that has previously been conducted with similar goals.
 
@@ -218,9 +218,9 @@ My motivations behind this project lay in the limitations of the handwritten app
 
 Developing such an application comprises three main challenges.  Firstly, developing an infrastructure that is capable of creating, storing, editing, deleting, evaluating and nesting calculations.  Secondly, developing an interaction-handler layer that is able to interpret user input and events occurring in the user interface.  Finally, implementing a graphical user interface that is able to render calculations into the devised notation, and allow the user to perform operations upon the notation that affect the underlying calculation.  Such an interface should also be able to display and update the results of a calculation with low latency (a limit of 300ms is set and discussed in footnote 1, \emph{Sec. 2.1.2})).
 
-The application described above must be portable, to account for the diversity of computing environments available to the target audience.  It must also provide a standardised user experience across the platforms on which it is deployed.  A Java-based application satisfies both of these requirements, as any platform on which the Java Virtual Machine (JVM) can be installed is able to run it.  Java also makes GUI libraries such as JavaFX and Swing that are explicitly designed to provide similar GUI functionality on many platforms.
+The application described above must be portable, to account for the diversity of computing environments available to the target audience.  It must also provide a standardised user experience across the platforms on which it is deployed.  A Java-based application satisfies both of these requirements, as any platform on which the Java Virtual Machine (JVM) can be installed is able to run it.  Java also makes GUI libraries available, such as JavaFX and Swing, that are explicitly designed to provide similar GUI functionality on many platforms.
 
-The application would also benefit from functional programming paradigms such as immutability, which results in functions that behave predictably and are easy to test; and homoiconicity, which allows data structures to be evaluated as code and code to be treated as data structures, allowing mathematical method to be represented in a form that can be interpreted and manipulated by the application.
+The application would also benefit from functional programming paradigms such as immutability, which results in functions that behave predictably and are easy to test; and homoiconicity, in which data structures can be evaluated as code and code as data structures, allowing mathematical method to be represented in a form that can be interpreted and manipulated by the application.
 
 The Clojure language meets both of the above requirements, being a dialect of LISP that compiles to JVM bytecode.  This gives the developer access to the Java standard library and offers the portability afforded by Java, whilst also providing the benefits of a homoiconic, functional language as described above.  It also has the added benefit of being efficient, as it compiles directly to JVM bytecode.
 
@@ -241,7 +241,7 @@ There already exists a wide variety of educational software for mathematics, whi
 \begin{center}
 \parbox[c]{\textwidth-2cm}{
 \small
-``One barrier for the employment of games as a pedagogical tool may be possible negative attitudes held by students towards the likelihood of the games' effectiveness in assisting mathematical learning.'' \cite{Bragg2006}
+``One barrier [...] may be possible negative attitudes held by students towards the likelihood of the games' effectiveness in assisting mathematical learning.'' \cite{Bragg2006}
 }
 \end{center}
 This is reinforced in a later paper by the same author, where Bragg concludes that
@@ -251,17 +251,17 @@ This is reinforced in a later paper by the same author, where Bragg concludes th
 ``It appeared that game-playing negatively affected attitudes'' \cite{Bragg2007}
 }
 \end{center}
-Although it was also concluded that such problems could be addressed by dedicating lesson time to explaining the benefits of game-playing as a pedagogical tool, an alternative approach, and one that is taken by this project, is to introduce software into the classroom as a {\bf tool}, rather than `just a game'.  In the same way that calculators are used in mathematics lessons, it is the intention of this project to introduce a new tool to complement learning.
+Although it was also concluded that such problems could be addressed by dedicating lesson time to explaining the educational benefits of game-playing, an alternative approach is to introduce software into the classroom as a {\bf tool}, rather than `just a game'.  In the same way that calculators are used in mathematics lessons, it is the intention of this project to introduce a new tool to complement learning.
 
 There also exist a few applications intended to represent calculations on a computer in novel ways.  A relatively common approach to this has been to try to make on-screen calculations more like on-paper calculations.  One such example is \emph{Pi Cubed}, which tries to make complex calculations appear as they would be written in an exam or exercise book \cite{PiCubed}.  \emph{Soulver}, conversely, tries to achieve this by simulating `back-of-the-envelope' calculations, whereby notes in English augment the calculation \cite{Soulver}.
 
 % TODO: image?  but copyright issues...
-Another approach is that of the \emph{Scrubbing Calculator}, which extends the \emph{Soulver}-style environment by helping the user to solve equations by dragging values to increase and decrease them, showing how changing a value affects the overall result \cite{ScrubCalc}.  Values can be linked by dragging a line between them, which means that they are two instances of the same value: dragging one changes the value at every location in which it appears.  This is a neat means of visualising equations, but it, too, is not intended for use in education, and still requires the user to be able to formulate some kind of equation.  The \emph{Scrubbing Calculator} is more a tool for facilitating algebraic understanding, as opposed to arithmetic understanding; indeed, it is inherently a {\bf calculator}, and so does not encourage thinking about how to work out the arithmetic parts of a calculation manually.
+Another approach is that of the \emph{Scrubbing Calculator}, which extends the \emph{Soulver}-style environment by helping the user to solve equations by dragging values to edit them, showing how changing a value affects the overall result \cite{ScrubCalc}.  Values can be linked by dragging a line between them, which means that they are two instances of the same value: dragging one changes the value at every location in which it appears.  This is a neat means of visualising equations, but it, too, is not intended for use in education, and still requires the user to be able to formulate an equation.  The \emph{Scrubbing Calculator} is more a tool for facilitating algebraic, rather than arithmetic, understanding; indeed, it is inherently a {\bf calculator}, and so does not encourage thinking about a method of manual calculation.
 
 \section{Summary}
 % need a system that incorporates these features: foo, bar, baz, quux
 
-Existing educational games for mathematics, although valid as a means of teaching, face obstacles from teachers' and pupils' attitudes toward them, as a result of their status as games rather than learning tools.  There exists software to aid in calculation and arithmetic by representing it clearly, but it is not intended for pedagogical use, and often its purpose is to make on-screen calculations appear as one would handwrite them.  A new application is proposed to be used as a tool to complement teaching, as one would use a calculator in the classroom.  There is a niche for a tool for use in education that represents calculations in a visual manner, with a particular focus on making the {\bf method} by which arithmetic problems are solved clear.  This project aims to create such an environment, in which the user can explore the many ways in which a problem can be solved using a novel graphical notation.% TODO: emphasise? wtf
+Existing educational games for mathematics, although valid as a pedagogical tool, face obstacles from teachers' and pupils' attitudes toward them, as a result of their status as `just games'.  There exists software to aid in calculation and arithmetic by representing it clearly, but it is not intended for classroom use, and often its purpose is to make on-screen calculations simulate handwritten ones.  An application is proposed to complement teaching, as one would use a calculator in the classroom.  There is a niche for a tool for use in education that represents calculations in a visual manner, with a particular focus on making mathematical {\bf method} clear.  The application is to provide such an environment, in which the user can explore the many ways in which a problem can be solved using a novel graphical notation.% TODO: emphasise? wtf
 
 \cleardoublepage
 
@@ -275,7 +275,7 @@ Existing educational games for mathematics, although valid as a means of teachin
 % comprises a requirements analysis, followed by an overview of the system
 % architecture and a discussion of the additional tools used in the development of
 % the project.
-This chapter concerns the work that was completed prior to beginning the project proper.  It comprises a requirements analysis, followed by a discussion of the prototyping process of the graphical notation that was to be implemented in the final application.  Finally, there will be a list of the tools used in the development of the project.
+This chapter concerns the work that was completed prior to development.  It comprises a requirements analysis, followed by a discussion of the prototyping of the graphical notation that was to be implemented in the final application.
 
 \section{Requirements Analysis}
 % http://www.cs.fsu.edu/~lacher/courses/COP3331/rad.html
@@ -339,16 +339,16 @@ This chapter concerns the work that was completed prior to beginning the project
 There are a number of problems with handwritten, pre-algebra arithmetic that this project seeks to rectify.  This section includes an analysis of the handwritten method according to the `Cognitive Dimensions' framework.
 
 \subsubsection{Disadvantages}
-First of all, the fact that the traditional notation for arithmetic is handwritten entails a high level of \emph{viscosity}: it is difficult to make changes to a written calculation without sacrificing clarity.  In particular, there is a lot of \emph{repetition viscosity} involved in the modification of an existing piece of work: if a number is changed that is used in several calculations, then it is time-consuming to change it everywhere it appears in the working.  If several calculations are dependent upon each other, then this entails a lot of \emph{knock-on viscosity} in recalculating each stage after changing the number.  This is exacerbated by the \emph{hidden dependencies} between chained calculations in handwritten arithmetic (\emph{Fig.~\ref{fig:ArithHDs}}).
+First of all, the fact that the traditional notation for arithmetic is handwritten entails a high level of \emph{viscosity}: it is difficult to make changes to a calculation without sacrificing clarity.  In particular, there is a lot of \emph{repetition viscosity} involved in modification: if a number is changed that is reused, it is time-consuming to change it everywhere it appears in the working.  If several calculations are dependent upon each other, then this entails a lot of \emph{knock-on viscosity} in recalculating each stage after making modifications.  This is exacerbated by the \emph{hidden dependencies} between chained calculations in handwritten arithmetic (\emph{Fig.~\ref{fig:ArithHDs}}).
 
-The problem of \emph{hidden dependencies} is made worse by the low \emph{juxtaposability of notation} of the system.  Although the notation is quite \emph{visible}, in that every calculation can be seen easily on the page, juxtaposing two sets of calculations entails considerable \emph{premature commitment} on the part of the user, where decisions regarding the placement of components have to be made before the required information is available.  Components cannot easily be edited or relocated due to the system's high \emph{viscosity}.
+The problem of \emph{hidden dependencies} is made worse by the low \emph{juxtaposability} of the notation.  Although the notation is quite \emph{visible}, in that every calculation can be seen easily on the page, juxtaposing two sets of calculations entails considerable \emph{premature commitment}, where decisions regarding the placement of components have to be made before the required information is available.  Components cannot easily be edited or relocated due to the system's high \emph{viscosity}.
 
-Whilst \emph{viscosity} can be acceptable in some situations, it is harmful with regard to modification and exploration within a notational system, once again requiring a non-trivial amount of \emph{premature commitment}.  It can actually be quicker for the user to start all over again, as opposed to making the changes required to rectify their calculations.
+Whilst \emph{viscosity} can be acceptable in some situations, it is harmful with regard to modification and exploration within a notational system, once again requiring a non-trivial amount of \emph{premature commitment}.  It can actually be quicker for the user to start over again, as opposed to simply amending their calculations.
 
 \subsubsection{Abstraction}
-Handwritten arithmetic does have one key advantage: it has a very low initial \emph{abstraction barrier}.  Once the appropriate symbols and rules for each operation and digit have been learnt, the traditional system of arithmetic allows a learner to begin using it almost immediately.  Although it is possible to add abstractions to arithmetic by the use of secondary notation, there is no provision for abstraction included in the primary notation.  It can then be said, as an example, that algebra, requiring the concept of a variable rather than a set quantity, is an \emph{abstraction-hungry} system, whereas arithmetic is an \emph{abstraction-hating} system.  Without abstractions, arithmetic is easy to get started with, but can be very verbose and \emph{viscous}, with low \emph{visibility of notation}, as outlined above.
+Handwritten arithmetic does have one key advantage: it has a very low initial \emph{abstraction barrier}.  Once the symbols and rules for each operation and digit have been learnt, the traditional system of arithmetic allows a learner to begin using it almost immediately.  Although it is possible to add abstractions to arithmetic by the use of secondary notation, there is no provision for abstraction included in the primary.  Thus algebra, as an example, is an \emph{abstraction-hungry} system, requiring the concept of a variable rather than a set quantity; whereas arithmetic is an \emph{abstraction-hating} system.  Without abstractions, arithmetic is easy to begin using, but can be very verbose and \emph{viscous}, with low \emph{visibility}.
 
-To improve upon the standard approach of listing the steps comprising a calculation, a notational system must acknowledge and try to overcome the drawbacks listed above.  To this end, I have designed and developed such a system and accompanying application, with the intention of reducing \emph{viscosity}, increasing \emph{visibility of notation} and removing many of the \emph{hidden dependencies} that beleaguer the traditional method.  The functional and non-functional requirements of this system follow.
+To improve upon the standard approach of listing the steps comprising a calculation, a notational system must acknowledge and try to overcome the drawbacks listed above.  To this end, I have designed and developed such a system and accompanying application, with the intention of reducing \emph{viscosity}, increasing \emph{visibility} and removing many of the \emph{hidden dependencies} that beleaguer arithmetic.  The functional and non-functional requirements of this system follow.
 
 %\subsection{Proposed System}
 %
@@ -387,13 +387,18 @@ The new system must satisfy the following functional requirements to be consider
 
 \subsection{Non-Functional Requirements}
 
-The system must also satisfy a number of non-functional requirements.  It must:
+The system must also satisfy a number of non-functional requirements.  It must, compared to handwritten arithmetic:
 
 \begin{itemize}
-\item Offer a significant improvement in \emph{visibility of notation} over handwritten arithmetic
-\item Offer a significant improvement in \emph{juxtaposability of notation} over handwritten arithmetic
-\item Reduce \emph{premature commitment} relative to handwritten arithmetic
-\item Reduce \emph{hidden dependencies} relative to handwritten arithmetic
+\item Offer an improvement in \emph{visibility}
+\item Offer an improvement in \emph{juxtaposability}
+\item Reduce \emph{premature commitment}
+\item Reduce \emph{hidden dependencies}
+\end{itemize}
+
+And also:
+
+\begin{itemize}
 \item Have a visually simple interface whilst remaining accessible to older users
 \end{itemize}
 
@@ -401,7 +406,7 @@ The system must also satisfy a number of non-functional requirements.  It must:
 % section rather than subsection?  def. section if we don't have system overview
 % prototypes!  dig out the preliminary drawings, take screenshots of old versions for later
 
-As this project is primarily concerned with human-computer interaction, the user interface and experience, and the design thereof, constitutes a significant part of this project.  As such, this section outlines the initial development stages of the user interface, first introducing several designs for the graphical notation, then proceeding to discuss in more detail three examples that were developed further.
+As this project is primarily concerned with human-computer interaction, the user interface and experience is significant.  As such, this section outlines the initial development stages of the user interface, first introducing several designs for the graphical notation, then proceeding to discuss in more detail three examples that were developed further.
 
 \subsection{Prototyping}
 
@@ -409,7 +414,7 @@ As this project is primarily concerned with human-computer interaction, the user
 
 % drawings 'n' shit
 % talk about how decided to come up with 20 different designs then thin them out
-To devise initial ideas for what could become the calculation metaphor, a target was set of devising at least twenty significantly-different potential designs.  These were recorded as very rough sketches, some of which were refined in larger examples, and three of which were warranted an application mockup, as detailed in \emph{Sec.~2.2.1.2}.
+To devise initial ideas for what could become the calculation metaphor, a target was set of devising at least twenty significantly-different potential designs.  These were recorded as rough sketches, three of which were warranted an application mockup, as detailed in \emph{Sec.~2.2.1.2}.
 
 \begin{center}
 \begin{figure}[H]
@@ -432,7 +437,7 @@ To devise initial ideas for what could become the calculation metaphor, a target
 \end{figure}
 \end{center}
 
-The designs in \emph{Fig.~\ref{fig:Flows1}} use a flowgraph-based metaphor, in which variables and functions are represented as nodes in the graph.  Dataflow is extremely clear in such diagrams, giving these designs high \emph{visibility of notation}.  These designs are similar to the original one illustrated in the project proposal (\emph{Appendix D}).  The boxes and arrows used in such a metaphor also occupy relatively little screen-estate, which is advantageous in cases where a question necessitates a lot of subcalculations.  \emph{Fig.~\ref{fig:Flows2}} shows a more refined version of a flowgraph notation, with a potential environment in which to utilise it.
+The designs in \emph{Fig.~\ref{fig:Flows1}} use a flowgraph-based metaphor, in which variables and functions are represented as nodes in the graph.  Dataflow is extremely clear in such diagrams, giving these notations high \emph{visibility}.  These designs are similar to the original one illustrated in the project proposal (\emph{Appendix D}).  The boxes and arrows used in such a metaphor also occupy relatively little screen-estate, which is advantageous in cases where a question necessitates many subcalculations.  \emph{Fig.~\ref{fig:Flows2}} shows a refined version of a flowgraph notation, with a potential environment in which to utilise it.
 
 \begin{center}
 \begin{figure}[H]
@@ -480,7 +485,7 @@ The designs in \emph{Fig.~\ref{fig:Flows1}} use a flowgraph-based metaphor, in w
 \end{figure}
 \end{center}
 
-Triangle-based notations were also considered, drawing inspiration from the formula triangles used in science education (\emph{Fig.~\ref{fig:Tris1}}, \emph{c)} and \emph{d)}) and from the Sierpiński triangle fractal (\emph{Fig.~\ref{fig:Flows2}}, \emph{a)} and \emph{e)}).  Such notations not only appear in a form familiar to many users, but also have high \emph{visibility of notation}.  \emph{Juxtaposability of notation}, however, is low, as this design imposes a rigid structure upon calculations.  A more refined sketch is shown in \emph{Fig.~\ref{fig:Tris2}}.
+Triangle-based notations were also considered, drawing inspiration from the formula triangles used in science education (\emph{Fig.~\ref{fig:Tris1}}, \emph{c)} and \emph{d)}) and from the Sierpiński triangle fractal (\emph{Fig.~\ref{fig:Flows2}}, \emph{a)} and \emph{e)}).  Such notations not only appear in a form familiar to many users, but also have high \emph{visibility}.  Their \emph{juxtaposability}, however, is low, as a rigid structure is imposed upon calculations.  A more refined sketch is shown in \emph{Fig.~\ref{fig:Tris2}}.
 
 \begin{center}
 \begin{figure}
@@ -538,7 +543,7 @@ Triangle-based notations were also considered, drawing inspiration from the form
 \end{figure}
 \end{center}
 
-Several circle-based designs were also considered, the focus here being on subexpressions, providing high \emph{juxtaposability of notation}, as whole units can easily be relocated. This is opposed to using separate numbers and operations as individual units of calculation.  It also offers an improvement in \emph{visibility of notation} over handwritten arithmetic, as discussed in \emph{Sec.~2.2.1.2.3}.  A more detailed sketch is shown below.
+Several circle-based notations were also considered, the focus here being on subexpressions, providing high \emph{juxtaposability}, as whole units can easily be relocated. This is opposed to using separate numbers and operations as the basic units of a large calculation.  These also offer an improvement in \emph{visibility} over handwritten arithmetic, as discussed in \emph{Sec.~2.2.1.2.3}.  A more detailed sketch is shown below.
 
 \begin{center}
 \begin{figure}[H]
@@ -674,13 +679,13 @@ Several circle-based designs were also considered, the focus here being on subex
 \end{figure}
 \end{center}
 
-Various other metaphors for calculation were also considered, as illustrated in \emph{Figs.~\ref{fig:Others1} and \ref{fig:Others2}}.  \emph{a)} was considered too similar to Google/MIT's \emph{App Inventor} software.  \emph{c)}, \emph{f)}, \emph{l)} and \emph{m)} were deemed too cumbersome, and \emph{d)}, \emph{e)} and \emph{h)} to \emph{k)} were considered not visually appealing enough, looking too similar to existing mathematical notations and constructs.  \emph{b)} and \emph{g)} were inflexible, and would have scaled poorly to larger calculations.  Finally \emph{Fig.~\ref{fig:Others2}} was rejected as it was too similar to the Sierpiński triangle metaphor shown in \emph{Fig.~\ref{fig:Tris2}}.
+Various other metaphors for calculation were also considered, as illustrated in \emph{Figs.~\ref{fig:Others1} and \ref{fig:Others2}}.  \emph{Fig.~\ref{fig:Others1} a)} was considered too similar to Google/MIT's \emph{App Inventor} software.  Sketches \emph{c)}, \emph{f)}, \emph{l)} and \emph{m)} were deemed too cumbersome, and \emph{d)}, \emph{e)} and \emph{h)} to \emph{k)} were not considered visually appealing, appearing too similar to existing mathematical notations and constructs.  Items \emph{b)} and \emph{g)} were inflexible, and would have scaled poorly to larger calculations.  Finally \emph{Fig.~\ref{fig:Others2}} was rejected as it was too similar to the Sierpiński triangle metaphor shown in \emph{Fig.~\ref{fig:Tris2}}.
 
 \subsubsection{Detailed Mockups}
 % examples done using that prototyping software - balsamiq mockups
 % draft designs on pwf
 
-Preliminary designs for the application and graphical language follow, being more mature versions of three of the low-fidelity prototypes presented above.  First is a combined flowgraph representation and Read-Evaluate-Print-Loop (REPL) design.  The second design uses the Sierpiński triangle as a basis for the visual metaphor.  The final design is a circle-based language, similar to the one shown in \emph{Fig.~\ref{fig:Circs2}}.
+More mature designs for the application and graphical language follow.  First is a combined flowgraph representation and Read-Evaluate-Print-Loop (REPL) design.  The second uses the Sierpiński triangle as a basis for the visual metaphor.  The final design is a circle-based language, similar to \emph{Fig.~\ref{fig:Circs2}}.
 
 % TODO: these fuckers
 \paragraph{Flowgraph Metaphor}\hfill
@@ -688,56 +693,52 @@ Preliminary designs for the application and graphical language follow, being mor
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth-4cm]{figs/mockups/flowgraph/img/fg-000.jpg}
-\caption{The prototype flowgraph-style language.}
+\caption{The prototype flowgraph-style language and accompanying application.}
 \label{fig:ProtoFlow}
 \end{center}
 \end{figure}
 
-The flowgraph idea initially outlined in the project proposal and included in the low-fidelity prototypes above appears here, showing two screens of a sample application.  The top screen shows manipulation of the graphical language, whilst the bottom screen shows a REPL utilising a simple text-based language.  The flowgraph metaphor was used as it offers much \emph{visibility of notation}, making the flow of data very clear to the user and allowing them to see much of their structure at once.  The notation also occupies little screen estate, allowing it to accommodate large calculations.
+This layout expands the application prototyped in the project proposal.  The application now comprises one window containing information panels, a `toolbox' of available functions that can be dragged on to the canvas, and a canvas area upon which calculations are constructed.  Zoom and help buttons are provided.  The user is able to use the {\sfapp Flow} and {\sfapp Worksheet} tabs to switch between the graphical mode and the REPL mode respectively.
 
-The application is comprised of one window containing information panels, a `toolbox' of available functions that can be dragged on to the canvas, and a canvas area upon which calculations are constructed.  There are buttons to zoom in and out, and a help button.  The user is able to use the tabs at the bottom of the canvas to switch between the graphical mode ({\sfapp Flow}) and the REPL mode ({\sfapp Worksheet}).
+The top screen in \emph{Fig.~\ref{fig:ProtoFlow}} shows manipulation of the graphical language, whilst the bottom screen shows a REPL utilising a simple text-based language.  The flowgraph notation was used as it is \emph{visible}, making the flow of data very clear to the user and allowing them to see much of their structure at once.  The notation also occupies little screen-estate, allowing it to accommodate large calculations.
 
-This design is moderately faithful to the origin application sketched out in the project proposal.  The application layout has been expanded to include the toolbox, zoom and help buttons, and the {\sfapp Worksheet}.
+The toolbox was included to exhibit available functions.  In the original design, no control scheme was specified; the user was expected to have control over many different functions, meaning that unless it were simple, the user may require guidance.  There are two buttons in the toolbox: {\sfapp Join}, which changes the function of the mouse to join boxes with arrows; and {\sfapp Define}, which similarly allows the user to draw a box around a subsection of the diagram to define a function.  This was introduced to allow for the creation of abstractions for repeated tasks, making the language more compact.  It was decided to use these modes, combined with the placement of boxes in the default mode, so that the entire control scheme could be implemented using one mouse button.
 
-The toolbox was included to make it clear to the user what functions are available to them.  In the original design, no control scheme was specified; the user was expected to have control over many different functions, so either it needed to be memorable, or the user (especially the novice) required guidance.  There are two buttons in the toolbox, {\sfapp Join}, which allows dragging the mouse to join boxes with arrows, and {\sfapp Define}, which allows dragging the mouse to draw a box around a subsection of the diagram to define a function.  This was introduced to allow the user to create abstractions for repeated tasks, thus increasing the compactness of the language.  It was decided to use these modes, combined with the dragging of boxes in the normal mode, so that the entire control scheme could be implemented using solely one mouse button.
-
-The zoom buttons were included to help accommodate particularly large diagrams, and to allow the user to view their work at a size that is comfortable for them.  The help button was included to provide a simple system to assist new users.  Activating help would bring up an information box, allowing users to look through a manual.
+The zoom buttons were included to accommodate large diagrams, and to allow the user to view their work at a comfortable size.  The help button was included to provide assistance for new users.  Activating help would provide information explaining how the application works.
 
 The {\sfapp Worksheet} mode was included for users who may feel more comfortable working in a written environment, rather than using the graphical metaphor.
 
-This design was abandoned as it was deemed to be too complex for the target audience (Year 5).  The intention of this project was not to implement a programming language for learners, and by including functionality such as the REPL and {\sfapp Define}, the system unnecessarily overprovides.  The REPL itself is superfluous, as users comfortable working in a textual environment are likely to be comfortable using the handwritten method.
+This design was abandoned as it was deemed to be too complex for the target audience (Year 5).  The intention of this project was not to implement an educational programming language, and by including functionality such as the REPL and {\sfapp Define}, the system overprovides.  The REPL itself is superfluous, as users comfortable working in a textual environment are likely to be comfortable using the handwritten method.
 
-In addition to this, the flowgraph representation had a number of more general shortcomings. For example, it is not immediately clear in what order the arguments feed into an operation, which is confusing for non-commutative functions such as subtraction.  Furthermore, the language is quite verbose.  This is not inherently a disadvantage but a more compact representation would be preferable in order to make expressions written in the notations more \emph{visible}, and to decrease the time spent by the user searching for information within the notation.  It is also fairly \emph{viscous} at the scale of replacing whole subcalculations, rather than just numbers or operators, though less so than handwritten arithmetic.
+In addition to this, the flowgraph representation had a number of more general shortcomings. For example, the evaluation order of arguments is unclear, which is confusing for non-commutative functions such as subtraction.  Furthermore, the language is verbose.  This is not inherently a disadvantage but a more compact representation would be preferable in order to make expressions more \emph{visible}, and to decrease time spent by the user searching for information within the notation.  It is also \emph{viscous} when replacing whole subcalculations, rather than just numbers or operators, though less so than handwritten arithmetic.
 
 \paragraph{Sierpiński Triangle Metaphor}\hfill
 
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth]{figs/mockups/sierp/sierp_mockup_full.png}
-\caption{The prototype Sierpiński-triangle-based language.}
+\caption{The prototype Sierpiński-triangle-based language and accompanying application.}
 \label{fig:ProtoTri}
 \end{center}
 \end{figure}
 
-This prototype uses a zooming instance of the Sierpiński triangle fractal as the basis of its notation.  It is shown in \emph{Fig.~\ref{fig:ProtoTri}} manipulating a simple calculation.
+This prototype uses a zooming instance of the Sierpiński triangle fractal as the basis of its notation, as shown in \emph{Fig.~\ref{fig:ProtoTri}.  The application consists of a single window with information panels and a canvas area, featuring zoom and help buttons, as well as control buttons for diagram construction.
 
-The application consists of a single window with information panels and a canvas area, featuring zoom and help buttons, as well as control buttons for the construction of an answer.
+This prototype marks a significant departure from the flowgraph metaphor outlined above and in the project proposal to address the above problems with the flowgraph notation.  The application also had to change to suit the new notation: in this case, a toolbox would not be suitable, as the user is limited to one structure.
 
-This prototype marks a significant departure from the flowgraph metaphor outlined above and in the project proposal; to address the problems with the flowgraph notation that were discussed in the previous section, new notations were considered.  The application in which the notation is used also had to change to suit the new notation: in this case, a toolbox would not be suitable, as the user is limited to one structure: the triangle.
+The triangle notation was chosen as it is more \emph{visible} than the handwritten method, and places considerable emphasis on structure, making it clear how smaller calculations can combine to form larger ones by using a fractal-based notation.  It is colour-coded by the level of nesting of each triangle, clarifying at which level the user is working and allowing the user to abstract away smaller triangles as arguments to encompassing calculations.
 
-The triangle notation was chosen as it offers more \emph{visibility of notation} than the handwritten method, and places considerable emphasis on structure, making it clear how smaller calculations can be built up to form larger ones by using a fractal-based notation.  It is colour-coding by the amount which each triangle is nested, to clarify at which level the user is working and allowing the user to abstract away smaller triangles as simply units of the calculation to be manipulated, as one would a number.
+Zoom buttons were included as, although the size of the overall structure always remains the same in this notation, it becomes necessary to read very small sections quite quickly, as nested calculations are built up.  Indeed, each section constitutes a quarter of the area of the triangle that contains it, as illustrated in \emph{Fig.~\ref{fig:ProtoTri}}.
 
-Zoom buttons were included as, although the size of the overall structure always remains the same in this notation, it becomes necessary to read very small sections quite quickly, as nested calculations are built up.  Indeed, each section of the triangle has a quarter of the area of its the triangle that contains it, meaning that the triangle containing the value 3 in \emph{Fig.~\ref{fig:ProtoTri}} has $ \frac{1}{256} $ of the area of the overall structure, and this is with only four levels of nesting.
+As in the previous prototype, a help button was included to ease initiation.
 
-As in the previous prototype, a help button was included to ease initiation into using the software.
+A control scheme using buttons was again chosen so that only one mouse-button was required.  The arrangement of the control buttons maps to the arrangement of triangles within the diagram.  This design was chosen to clarify the consequences of each control upon the structure: the {\sfapp Input} and {\sfapp Op} buttons allow the user to modify the corresponding section of the triangle.  The user is able to submit answers using the {\sfapp Answer} button, allowing them to check and change their solutions before submission.
 
-A control scheme using buttons was chosen, again, so that the user is only required to use one mouse button.  The control buttons map to the structure of a triangle unit.  This design was chosen to make it clear to the user how each control will affect the structure being worked upon: each {\sfapp Input} button allows the user to modify the corresponding section of the triangle, and similarly for the {\sfapp Op} button.  The user is able to submit answers using the {\sfapp Answer} button, to allow them to check and change their answers before submission.
+This design was ultimately abandoned as it was awkward. It is based around binary operations, meaning that to solve the simple question 1+2+3+4, one has to either calculate ((1+2)+3)+4, which is inefficient; or deduce that 1+2+3=6 and then calculate 6+4, which is unacceptable for a system designed to aid arithmetic learning.
 
-This design was ultimately abandoned as it was deemed to be awkward for a number of reasons, not least because it was based solely around binary operations, meaning that to solve the simple question 1+2+3+4, one has to either calculate ((1+2)+3)+4, which is inefficient, or mentally calculate that 1+2+3=6, and then calculate 6+4, which is obviously unacceptable for a system that intends to help the user express themselves mathematically.
+The severe lack of \emph{juxtaposability} is also problematic: as each expression must fit into the larger structure, it is not possible to reorder them without fundamentally altering the calculation being performed.  It also enforces a top-down approach to calculation: one is required to begin with the outermost calculation and work inwards.  There is no provision for encapsulating an existing calculation within another triangle without significant \emph{premature commitment}.
 
-The severe lack of juxtaposability is also a problem: as each expression must fit into the larger structure, it is not possible to reorder them at will, without fundamentally altering the calculation being performed.  It also enforces a top-down approach to calculation: one is required by the system to begin with the outermost calculation and work inwards.  There is no provision for putting a larger triangle around an existing calculation.
-
-In addition to this, an informal survey of potential notations was conducted, asking approximately ten participants to answer some sample questions in this notation and the circle-based notation (below).  Participants found this notation less clear, and were much better able to complete questions correctly using the circle notation described below.
+In addition to this, an informal survey regarding potential notations was conducted, asking approximately ten participants to answer some sample questions in this notation and the circle-based notation below.  Participants found this notation less clear, and were able to complete more questions correctly using the circle notation.
 % survey
 % TODO: can't put subexpressions into right-hand triangle
 
@@ -751,28 +752,24 @@ In addition to this, an informal survey of potential notations was conducted, as
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth]{figs/mockups/circles/nico_circmock.png}
-\caption{The prototype circle-based language.}
+\caption{The prototype circle-based language and accompanying application.}
 \label{fig:ProtoCirc}
 \end{center}
 \end{figure}
 
-This prototype uses a notation based around circles as individual units of calculation, linked in such a way as to indicate the flow of information. Each circle consists of an operator, around which arguments orbit, being evaluated clockwise from 0°.  Although it is related to the flowgraph metaphor (above), it has a number of key differences.
+In this prototype, circles constitute individual units of calculation, linked to indicate the flow of information. Each circle consists of an operator, around which arguments orbit, which are evaluated clockwise from 0°.  It is related to the flowgraph metaphor above, but has a number of key differences.
 
-The application comprises a single window with information panels and a canvas, which includes control, zoom and help buttons, similarly to the above prototype.
+The application comprises a single window with information panels and a canvas, which includes control, zoom and help buttons, similar to the previous two models.  Zoom buttons accomodate large diagrams, again allowing the user to focus on small sections and to work at a scale that is comfortable.  The help button eases initiation.
 
-Once again, this prototype is markedly different to the original idea for the project, as a means of addressing its shortcomings.  The application has also changed to accommodate the new notation.  A toolbox is unsuitable for this notation, as it only uses one fundamental structure, being a circle, and the controls used in the Sierpiński model above (\emph{Fig.~\ref{fig:ProtoTri}}) do not map to the circle structure.
+Similar to the {\sfapp Define} and {\sfapp Join} buttons in \emph{Fig.~\ref{fig:ProtoFlow}}, the buttons specify mouse modes: {\sfapp New} causes clicking to create new circles, {\sfapp Split} causes clicked circles to gain an argument, and so on. The motivations for this were similar to that for the modes in the flowgraph model, including the ability to control the software using one mouse button.  The user is able to submit answers using the {\sfapp Answer} button, to allow them to check and change their answers before submission.
 
-The circle metaphor was chosen for similar reasons to the triangle model: it emphasises the idea of subcalculations as individual units, to be abstracted away and treated as any other entity being provided as an argument to an operator.  This model has greater \emph{visibility of notation} than handwritten arithmetic, and also offers more flexibility than the previous two models, decreasing \emph{viscosity} by allowing the user to edit whole units (i.e. circles) within a calculation, and to swap them in and out as needed.  \emph{Juxtaposability of notation} is increased using this metaphor, as whole subcalculations are easily repositioned.
+Again, this prototype is markedly different to the idea originally proposed.  The application has changed to accommodate the new notation: a toolbox is unsuitable as the notation uses only one fundamental structure, a circle, and the controls in the Sierpiński model (\emph{Fig.~\ref{fig:ProtoTri}}) are inappropriate.
 
-Unlike with the Sierpiński metaphor, the user is not restricted to one order or pattern of constructing a calculation: calculations can be performed bottom-up, top-down or a mixture of both, as is comfortable for the individual user.  The circle `tails' make the flow of information through the diagram clear, and circles are also colour-coded by their level of nesting, to further clarify dataflow and to eliminate as many \emph{hidden dependencies} as possible.
+Unlike the Sierpiński metaphor, the user is not restricted to one order or pattern of constructing a calculation.  The circle `tails' make the flow of information through the diagram clear, and are colour-coded by their level of nesting, to further clarify dataflow and to eliminate \emph{hidden dependencies}.
 
-The system also requires little \emph{premature commitment}, as any piece of the diagram can be created, deleted and modified at will, so it is ideal for exploration, allowing the user to try many ways of solving a problem within the application, rather than having to use a secondary notation or device to help work through a problem in a more familiar manner and then transcribing that solution into the new notation.
+The circle metaphor was chosen for similar reasons to the triangle model: it emphasises the idea of subcalculations as individual units to be abstracted away and treated as any other argument.  This notation has greater \emph{visibility} than handwritten arithmetic, and offers more flexibility than the previous two models, decreasing \emph{viscosity} by allowing the user to edit whole expressions within a calculation and exchange them as needed.  \emph{Juxtaposability} is increased as whole subcalculations are easily repositioned.  The system requires little \emph{premature commitment}, as any piece of the diagram can be modified at will.  This is ideal for exploration, allowing the user to try many ways of solving a problem within the application, rather than having to use a secondary notation or device to help work through a problem and transcribing the result.
 
-As in the flowgraph-based prototype, zoom buttons are included to accomodate large diagrams, to allow the user to focus on small sections and to allow the user to work at a size that is comfortable for them.  Again, a help button is included to ease initiation.
-
-Similarly to the {\sfapp Define} and {\sfapp Join} buttons in \emph{Fig.~\ref{fig:ProtoFlow}}, the buttons here specify mouse modes: {\sfapp New} causes clicking to create new circles, {\sfapp Split} causes circles that are clicked to gain an argument, and so on. This had similar motivatoins to the modes in the flowgraph model: to be able to control the software using just one mouse button.  The user is able to submit answers using the {\sfapp Answer} button, to allow them to check and change their answers before submission.
-
-This design was the one that was ultimately chosen as the basis for the project as it neatly solved, or at least ameliorated, many of the problems listed with handwritten arithmetic, without being too complex for the target audience (as with the flowgraph system), and without being too restrictive with regard to mathematical expression.  In addition to this, the results of the survey mentioned above also indicated that people got on well with this notation; the participants found it considerably easier to use than the Sierpiński notation, and made fewer mistakes in handwriting this notation than the alternative.
+This design was ultimately chosen as it solved, or at least ameliorated, many of the problems listed with handwritten arithmetic, without being too complex for the target audience, and without being too restrictive with regard to mathematical expression.  Furthermore, the results of the survey mentioned above also indicated that participants found this notation more intuitive, and made fewer mistakes.
 
 % what/mockup
 % application
@@ -789,31 +786,26 @@ This design was the one that was ultimately chosen as the basis for the project 
 
 \section{Summary}
 
-In this chapter, the work done in preparation for beginning the main implementation of the project was detailed.  A thorough requirements analysis has been conducted to outline the expected behaviour of the product, contrasting it with the existing system of handwritten calculations.  In \emph{Sec.~2.2}, prototype designs for a suitable graphical notation were introduced.  Three in particular were explored in detail, before deciding on the final notation upon which to base the project.
-
-In devloping prototypes for the notation, the original design from the project proposal was found to be flawed, and several alternatives were devised.  The final choice of the circle-based metaphor has many advantanges over the flowgraph notation.
-
-The next chapter contains a detailed analysis of the work completed to implement the project.
+Prior to the implementation of the project, a thorough requirements analysis was conducted to outline the expected behaviour of the application, contrasting it with the existing system of handwritten calculations.  In \emph{Sec.~2.2}, prototypes for a suitable graphical notation were developed, and three were explored in detail.  Two of these were offered as alternatives to the flawed original design.  The final choice of the circle-based metaphor has many advantanges over the original flowgraph notation.
 
 \cleardoublepage
 \chapter{Implementation}
 
-This chapter details the implementation of the project.  The code itself totals approximately 1,500 lines of Clojure, and the resultant application, \emph{Nico}, satisfies the requirements laid out in the project proposal,
-namely:--
+This chapter includes a discussion of the system architecture, detailing the implementation of its infrastructure, management of mutable state, administration of circles, interpretation and evaluation of the notation, and handling of the questions posed to the user.  This is followed by a discussion of the interaction handler, the libraries used, the underlying structure of the user interface and the control scheme.  Next, there is an analysis of the development of the user interface, considering the application itself and its control scheme, use of colour-coding and notation.  Finally there is a discussion of testing methods used.
+
+The code itself totals approximately 1,500 lines of Clojure, and the application satisfies the success criteria in the project proposal, namely:
 \begin{center}
 \parbox[c]{\textwidth-2cm}{
 \small
 ``[to be] able to generate an abstract syntax tree in Clojure from the graphical language and evaluate such a tree, passing the results back to the graphical application and displaying this to user in less than 300ms.''
 }
 \end{center}
-In addition to this, an extension to the project was completed, in the form of a study that tested the software on real people.
-
-This chapter includes a discussion of the system architecture, detailing the implementation of the application infrastructure, its management of the mutable state used in the application, the administration of circles, the interpretation and evaluation of the notation, and the handling of the questions posed to the user.  This is followed by a section on the interaction handler, discussing the libraries used, the underlying structure of the user interface and the control scheme; as well as an analysis of the development of the user interface, tracking the development of the application itself, its control scheme, its use of colour-coding and its notation.  Finally there is a discussion regarding the testing of the software.
+In addition to this, an extension to the project was completed, in the form of a user study.
 
 \section{System Architecture}
 % TODO: intro?
 
-The system comprises three distinct layers of operation: the user interface, the interaction handler and the infrastructure.  The user interface is what the user directly interacts with, with events in this layer being processed by the interaction handler, with the resultant data being passed to the infrastructure, which handles the interpretation of such data, and the memory-management operations.  Data can also flow from the infrastructure to the interaction handler, with output being passed up to the interaction handler to cause effects in the user interface.  A more detailed analysis of each layer follows.
+The system comprises three layers of operation: the user interface, the interaction handler and the infrastructure.  Events occurring in the user interface are processed by the interaction handler, with the resultant data being passed to the infrastructure.  This handles the interpretation of such data, as well as the memory-management operations.  Data can also flow from the infrastructure to the interaction handler, with results being passed to the interaction handler, causing effects in the user interface.  A detailed analysis of each layer follows.
 
 \begin{landscape}
 \begin{center}
@@ -851,25 +843,25 @@ The system comprises three distinct layers of operation: the user interface, the
 % placeholders?  why were they introduced?  how did they make things easier?  what problems did they solve?
 
 % TODO: explain components rather than code, make it higher level
-The application infrastructure handles the mathematical aspect of the application; that is, it is able to interpret data gathered from the user's input and process it as a calculation.
+The application infrastructure handles mathematical operations; that is, it is able to interpret data from the user's input and process it as a calculation.
 
-Circles could not simply be represented in the application as S-expression versions of the calculations they stood for, as they were not defined solely by their expressions.\footnote{``S-expression'', meaning ``symbolic expression'', refers to nested list data structures that are used in LISP and its derivatives to represent both source code and data.  S-expressions are defined by McCarthy as a single atom, or as an expression of the form {\ttfamily (a . b)}, where {\ttfamily a} and {\ttfamily b} are S-expressions, thus creating a tree structure \cite{McCarthy1960}.}  Data were needed regarding their position on the canvas, so it was decided to use an associative map to represent a circle, containing co-ordinate data as well as the calculation itself.
+Circles could not simply be represented in the application as S-expression versions of the calculations they stood for, as they are not defined solely by their expressions.\footnote{``S-expression'', meaning ``symbolic expression'', refers to nested list data structures that are used in LISP and its derivatives to represent both source code and data.  S-expressions are defined by McCarthy as a single atom, or as an expression of the form {\ttfamily (a . b)}, where {\ttfamily a} and {\ttfamily b} are S-expressions, thus creating a tree structure \cite{McCarthy1960}.}  Data were needed regarding their position on the canvas, so it was decided to use an associative map to represent a circle, containing co-ordinate data as well as the calculation S-expression.
 
-Originally, the program was to use two macros, \verb¬defcircle¬ and \verb¬letcircle¬, to be able to define circles at runtime.  After this was implemented, it became apparent that circles defined in this way were not accessible by the interaction handler whilst the program was running.  To solve this problem, `name' data was added to the circle format, and a mutable data structure was chosen to manage a list of circles currently in use.  This allowed the application to access and modify the circles as needed, and also to more easily discard circles that were no longer in use.
+Originally, the program was to use two macros, \verb¬defcircle¬ and \verb¬letcircle¬, to be able to define circles at runtime.  It became apparent that circles defined in this way were not accessible by the interaction handler whilst the program was running.  To solve this problem, `name' data was added to the circle format, and a mutable data structure was chosen to manage a list of circles currently in use.  This allowed the application to access and modify the circles as needed, and also to discard unused circles.
 
 \subsubsection{Management of Mutable State}
 
-\emph{Nico's} infrastructure stores and manages circles and questions using just six mutable data structures.  They are detailed below:
+\emph{Nico's} infrastructure stores and manages circles and questions using just six mutable data structures:
 \begin{itemize}
 \item The list of circles, as detailed above
-\item The current question set, a list of maps containing the question number and the S-expression that constitutes the question to be answered
-\item An integer counting how many circles have previously been created whilst answering this question
+\item The current question set: a list of maps containing the question number and the S-expression that constitutes the question to be answered
+\item An integer counting how many circles have previously been created
 \item A map containing the current co-ordinates of the mouse cursor
 \item An integer indicating the number of the question currently being answered
 \item A temporary store for information about circles that are currently being repositioned by the user
 \end{itemize}
 
-Mutable data structures were chosen for these structures as they needed to be continually updated whilst the program was running.  The fact that the application has so few mutable elements is advantageous.  With few elements able to change during the execution of the program, the application is more stable than an application which has more `moving parts', so to speak.  The structure of the application is also easier both to test and to comprehend: functions called upon immutable objects will not vary in their output, meaning that the parts of the program that do not interact with the mutable elements act predictably.
+Mutable data structures were chosen as these elements needed to be continually updated whilst the program was running, and having so few is advantageous.  By reducing the number of elements able to change during the execution of the program, the application is made more stable.  The structure of the application is also easier to test and to comprehend: functions called upon immutable objects will not vary in their output, thus those parts of the program that do not interact with the mutable elements behave predictably.
 
 %\begin{center}
 %\begin{figure}[H]
@@ -884,37 +876,37 @@ Mutable data structures were chosen for these structures as they needed to be co
 %
 \subsubsection{Circle Management}
 
-Two main functions for the management of circles have been implemented: creation and deletion.\footnote{Editing of circles is accomplished by deleting a circle and recreating a modified version of it.}  New circles are initialised such that they are centred on the current co-ordinates of the mouse cursor, with a name of the format \verb¬"c¬\emph{n}\verb¬"¬, where \emph{n} is the number of circles currently in use.  Upon creating a circle, its expression is initialised to \verb¬(\? \? \?)¬, a meaningless expression using the question mark character \verb¬\?¬ as a placeholder value for both the operator and the two arguments.\footnote{In this dissertation, the placeholder question mark character is represented as {\ttfamily \textbackslash?} when referring to the question mark character literal in Clojure code, and by {\sfapp ?} when referring to the question mark that is displayed for placeholders in the application}
+Two main functions for the management of circles have been implemented: creation and deletion.\footnote{Editing of circles is accomplished by deleting a circle and recreating a modified version of it.}  New circles are initialised such that they are centred on the current co-ordinates of the mouse cursor, with a name of the format \verb¬"c¬\emph{n}\verb¬"¬, where \emph{n} is the number of circles previously created.  Upon creating a circle, its expression is initialised to \verb¬(\? \? \?)¬, a meaningless expression using the question mark character \verb¬\?¬ as a placeholder value for both the operator and the two arguments.\footnote{In this dissertation, the placeholder question mark character is represented as {\ttfamily \textbackslash?} when referring to the question mark character literal in Clojure code, and by {\sfapp ?} when referring to the question mark that is displayed for placeholders in the application.}
 
-It was decided that circles should be created with a placeholder expression so that the user is able to create a circle without having to specify parameters for it beforehand, which would entail some \emph{premature commitment}, as well as the \emph{hard mental operation} of having to visualise a circle before committing to creating it.  Such an approach was exhibited with a previous revision of the software, requiring parameters to be specified in a large dialogue box (\emph{Fig.~\ref{fig:OldNots}}) before a circle would appear.
+Placeholder expressions are used so that the user is able to create a circle without having to specify parameters for it beforehand, which would entail \emph{premature commitment}, as well as the \emph{hard mental operation} of having to visualise a circle before committing to creating it.  Such an approach was exhibited with a previous revision of the software, using a complex dialogue box (\emph{Fig.~\ref{fig:GUDB}}).
 
-It was also decided that the circle should use explicitly placeholder values, rather than an expression of value 0 (such as 0+0) so that new circles did not affect the current total displayed by becoming the new root circle (see \emph{Sec.~3.1.1.3} for a full discussion of how diagrams are evaluated).  The placeholders also indicate to the user, when displayed, that action is needed, whereas an expression of value 0 could appear to be a deliberate inclusion in the user's calculation.
+It was also decided that the circle should use explicitly {\bf placeholder} values, rather than an expression of value 0 (such as (0+0)) so that new circles did not affect the current total displayed by becoming the new root circle (see \emph{Sec.~3.1.1.3} for a full discussion of diagram evaluation).  The placeholders also indicate that action is needed, whereas an expression of value 0 could appear to be a deliberate inclusion in the calculation.
 
-Deletion is a more complex function that removes a circle from the list, by searching through the main circle list and returning a version which lacks the circle matching either the name or the location supplied, which the circle list is updated to.
+Deletion removes a circle from the list by searching through the main circle list and returning a version which lacks the circle matching either the name or the co-ordinates specified.  The circle list is then updated.
 
-This naïve implementation of deletion led to many problems: the function described above does not deal well with circles that are used as arguments to other circles.  When such a circle is removed from the main list, there still remain references to it in the circles that were using it as part of a larger calculation, causing the application to throw \verb¬java.lang.NullPointerException¬s.  As such, an alternative version of circle deletion was implemented, to preserve referential integrity.
+This naïve implementation of deletion led to many problems: it does not deal well with circles that are used as arguments to other circles.  When such a circle is removed from the main list, references to it remain in the circles that were using it, causing the application to throw \verb¬java.lang.NullPointerException¬s.  As such, an alternative version of deletion was implemented, to preserve referential integrity.
 
-The alternative deletion function works by first checking if any of the circles currently in the main list contain references to the circle being deleted.  If it is found that there are circles that contain references to it, the function determines if that circle is a root circle (\emph{Sec.~3.1.1.3}), and, if so, uses the previous method of deletion to remove the circle and replace it with a similar circle that uses placeholder values where there were references that would have been invalidated.  If the circle is non-root, the deletion function recursively calls itself upon the circle, thus removing all circles that formed the original chain dependent upon the circle to be deleted.  The circle can then be deleted using the previous method, and the intermediate circles are replaced.
+The alternative deletion function works by first checking if any of the circles currently in the main list contain references to the circle being deleted.  If it is found that there are circles that do, the function determines if that circle is a root circle (\emph{Sec.~3.1.1.3}).  If so, the root circle is removed using the previous method and replaced, with null references changed to placeholders.  If the circle is non-root, the deletion function recursively calls itself upon the circle, thus removing all circles between the circle to be deleted and the root.  The circle can then be deleted using the original method, and the intermediate circles are replaced.
 
-This solved the problem of the maintaining referential integrity, but it has also given rise to a new problem: using this method, and in particular due to the stage in which the alternative deletion function must call itself upon the other circles in the chain, deleting a circle that forms part of a chain deletes all of the links between the rest of the circles in the chain, from the circle being deleted down to the root circle.  On reflection, a better way to implement deletion would have been to include either as part of the rendering loop or as part of the alternative deletion function a function to inspect the main circle list, checking for any invalid references after deletion and replacing them with \verb¬\?¬s, rather than doing so at delete-time.
+This solved the problem of maintaining referential integrity, but it has also given rise to a new problem: as the alternative deletion function must call itself upon the other circles in the chain, deleting a circle that forms part of a chain deletes all of the links in the chain between the target and the root.  On reflection, a better way to implement deletion would have been to make the alternative deletion function inspect the main circle list after deletion, checking for any invalid references and replacing them with \verb¬\?¬s, rather than doing so at delete-time.
 
 \subsubsection{Evaluation}
 
-There are two main stages required to evaluate the user's work: finding the root circle, into which all other circles feed, and evaluating a circle or collection of circles to give a valid, computable S-expression.
+There are two main stages required to evaluate the user's work: finding the root circle, into which all other circles feed, and evaluating a circle or collection of circles to give a valid S-expression.
 
-The root circle is the one circle in a finished diagram that is not used as an argument to any of the other circles.  Therefore, it can be found by searching through the list of circles, comparing each one to the rest of the list and discarding it if there are references to it in other circles.  As stated, in a {\bf finished} diagram, there can only be one root circle, so this method is sufficient for use in marking answers.
+The root circle is the one circle in a finished diagram that is not used as an argument to any others.  Therefore, it can be found by searching through the list of circles, comparing each one to the rest of the list and discarding it if other circles refer to it.  As stated, in a {\bf finished} diagram, there can only be one root circle, so this method is sufficient for use in marking answers.
 
-Whilst the user is working, it is possible that they may construct two or more calculation structures in parallel, with intent to join them later.  In this case, there can be multiple root circles.  The method chosen to identify the root returns the first instance of a root circle that it comes across.  It would have been possible to, for example, add an extra answer display for each root and maintain a total for each, but it was decided that this would be confusing for the user, who may not expect the structure of the application window to change.  This would also require a labelling system for circles and structures, which was abandoned in the user interface design as it is an unfamiliar concept to non-programmers and those without algebra (the majority of the target audience), so it was decided to simply display the result for one structure.
+It is possible that the user may construct two or more calculation structures in parallel, intending to join them later.  In this case, there can be multiple root circles.  The method chosen to identify the root returns the first instance of a root circle that it encounters.  It would have been possible to, for example, add an extra answer display for each root and to maintain a total for each, but it was decided that this would be confusing, as the user may not expect the structure of the user interface to change.  This would also require reintroducing a labelling system for circles and structures, which was abandoned as it is an unfamiliar concept to non-programmers and those without algebra (the majority of the target audience).
 
-Once the root has been found, the user's diagram can then be evaluated to give an S-expression.  As each circle contains an S-expression for the calculation unit that it represents, the references to other circles can be resolved, creating a nested S-expression that can simply have Clojure's \verb¬eval¬ called on it to return an answer.
+Once the root has been found, the user's diagram can then be evaluated to give an S-expression.  As each circle contains an S-expression for the calculation unit that it represents, the references to other circles can be resolved, creating a nested S-expression that can have Clojure's \verb¬eval¬ called on it to return an answer.
 
-This was, in fact, a significant reason for choosing Clojure, as a dialect of LISP, as the development language for \emph{Nico}; as a homoiconic language, code to be evaluated later can easily be built up as a data structure, which can then be passed around, evaluated and otherwise utilised as is convenient.  By creating one unified S-expression representing the entire diagram, not only can the value of the structure be calculated, but other operations, such as the selective highlighting of the question display (\emph{Sec.~3.1.2.2}), can be performed.
+This was, in fact, a significant reason for choosing Clojure; as a homoiconic language, code to be evaluated later can easily be built up as a data structure, which can then be passed around, evaluated and otherwise utilised as is convenient.  By creating one S-expression representing the entire diagram, not only can the value of the structure be calculated, but other operations, such as the selective highlighting of the question display (\emph{Sec.~3.1.2.2}), can be performed.
 
 \subsubsection{Question Management}
 
-External files containing sets of questions are used to provide tasks for the user to complete.  An NQS (\emph{Nico} Question Set) file is simply a plain text file contaning S-expressions corresponding to questions, separated by newlines.  This particular approach was chosen so that questions can easily be read into a list using functionality provided by Clojure's standard library, meaning that it is possible to navigate between questions by setting the current question to the value of the desired question in the list.
+Sets of questions are written as external, plain-text files contaning S-expressions corresponding to questions, separated by newlines.  This approach was chosen so that questions can be read into a list using Clojure's standard library, meaning that it is possible to navigate between them by setting the current question to the value of the desired question in the list.
 
-A future extension to this project could be to develop a partner application to \emph{Nico} to aid tutors unfamiliar with LISP to develop their own question sets in a more `user-friendly' manner, rather than by transcribing lists of problems into S-expressions.
+A future extension to this project could be to develop a partner application to \emph{Nico} to aid tutors unfamiliar with LISP to develop their own question sets in a more `user-friendly' manner, rather than by transcribing problems into S-expressions.
 
 \subsection{Interaction Handler}
 % the bit that handles all the application shit: render, main-window, etc.
@@ -924,23 +916,21 @@ A future extension to this project could be to develop a partner application to 
 %
 % \emph{{\sc Note:} These paragraphs aren't in the correct order yet; I've just been writing things that I want to include in this subsection, and will reorder them when I have a better idea of where this bit's going.}
 
-The interaction handler is a collection of functions that form the `middle layer' of the application (\emph{Fig.~\ref{fig:NicoArch}}): that is, the functions that arbitrate between the infrastructure and the user interface.
+The interaction handler forms the `middle layer' of the application (\emph{Fig.~\ref{fig:NicoArch}}) that arbitrates between the infrastructure and the user interface.
 
-The rendering function is called every time the mouse is moved, or when what is displayed on the canvas needs to be updated.  It paints a white rectangle over the canvas area, draws a bin icon in the corner (for circle, deletion, see information on the control scheme below) and iterates across the circle list, drawing a circle to match each element.  References to other circles are visualised as lines extending from the source circle to the appropriate argument slot on the recipient circle.  By re-rendering every time the mouse is moved, rather than continously, the application does not have to render when the canvas is not being changed, as every action in the control scheme requires some use of the mouse.
+The rendering function is called every time the mouse is moved, or when the canvas needs to be updated.  It paints a white rectangle over the canvas area, draws a bin icon in the corner (see \emph{Sec.~3.2.2.2}) and iterates across the circle list, drawing corresponding circles.  References to other circles are visualised as lines extending from the source circle to the appropriate argument slot on the recipient.  By re-rendering every time the mouse is moved, rather than continually, the application does not render when the canvas is not changing.  Every action in the control scheme requires some use of the mouse.
 
 \subsubsection{GUI Libraries}
 
-The original intention of the project was to develop \emph{Nico} using the JavaFX library. However, a number of difficulties were encountered with this: firstly, JavaFX version 2.0 was not available for Linux, the primary development environment, at the time of beginning the project.  Installation was attempted on a Windows machine, but caused a number of problems. In the interest of making progress, it was decided to proceed using the Eclipse Foundation's SWT toolkit and Szymon Witamborski's corresponding Clojure bindings, \emph{GUI FTW!} \cite{GuiFtw}.
+The original intention of the project was to develop \emph{Nico} using the JavaFX library. However, a number of difficulties were encountered with this: firstly, JavaFX version 2.0 was not available for the primary development environment.  Installation was attempted on a Windows machine, but caused a number of problems. It was decided to proceed using the Eclipse Foundation's SWT toolkit and Szymon Witamborski's corresponding Clojure bindings \cite{GuiFtw}.
 
-During the development of the user interface, many problems were encountered with SWT and \emph{GUI FTW!}, particularly regarding drawing arbitrary shapes on the canvas area and extracting user input from dialogue boxes.  To keep the project on-schedule, the application was migrated to Java Swing, using David Ray's \emph{Seesaw} library to provide bindings for Clojure \cite{Seesaw}.  This allowed for more efficient development, given the author's previous experience using the Swing library.
+During the development of the user interface, many problems were encountered with SWT, particularly regarding drawing arbitrary shapes on the canvas and extracting user input from dialogue boxes.  To keep the project on-schedule, the application was migrated to Java Swing, using the \emph{Seesaw} library to provide bindings for Clojure \cite{Seesaw}.  Development efficiency was increased as a result of the author's previous experience using Swing.
 
 \subsubsection{Main Window}
 
-At the heart of the interaction handler is the structure defining the main window, which comprises the majority of the user interface.  It controls what is to be displayed and the actions to be performed under certain conditions.  It listens for certain events (i.e. user input), and prompts the user for input when required.  The main window is defined as one large structure as this is how Seesaw structures interfaces: each window is defined separately, with appearance, listeners and other parameters set as options within the structure.  Other structures, such as panels and canvases, can then be used as content.
+At the heart of the interaction handler is the structure defining the main window, which comprises the majority of the user interface.  It controls what is displayed and responds to certain conditions.  It listens for certain events (i.e. user input), and prompts the user for input when required.  Seesaw requires interfaces to be structured such that each window is defined as one large structure, with appearance, listeners and other parameters set as options.  Other structures, such as panels and canvases, can then be used as content.
 
-Embedded into the main window structure are several listeners that monitor the canvas for mouse-based events.  While the application is running, it listens for five mouse-based events: motion, dragging, a button press, a button release and a button click.\footnote{It should be noted that a mouse click is defined by Java as a button press followed by a button release, and that, upon a click, it issues a press event, followed by a release event, followed by a click event \cite{JavaApi}.}
-
-When motion is detected, the canvas is cleared and re-rendered, as mentioned above.  Motion also triggers a check to determine whether or not the mouse is over a circle; if it is, a highlighting function is called.  This draws a ring around the circle currently being moused over, and also performs a string comparison:  using the same function written to convert the questions into traditional mathematics for display in the information panel, the circle's S-expression is converted and compared to the question string to see if it appears as a substring.  If so, the appropriate section of the question string is also highlighted, to help reinforce the notion of the circle notation as a metaphor for calculation.  It was decided to implement this a string search, rather than by using the actual S-expressions for the question and for the circle's calculation as although this would be a more efficient method to determine whether or not a circle corresponds to a part of the question, it is less efficient to do so and then calculate where the matched S-expression appears, rather than just matching a potential substring against a longer string.
+Embedded into the main window are several mouse listeners.  While the application is running, five mouse-based events are listened for: motion, dragging, button presses, button releasees and button clicks.\footnote{It should be noted that a mouse click is defined by Java as a button press followed by a button release, and that, upon a click, it issues a press event, followed by a release event, followed by a click event \cite{JavaApi}.}  When motion is detected, the canvas is cleared and re-rendered.  Motion also triggers a check to determine if the mouse is over a circle; if so, a highlighting function is called, which draws a ring around the circle, and also performs a string comparison.  Using the same function that converts the questions into traditional mathematics for display in the information panel, the circle's S-expression is converted and compared to the question string to see if it appears as a substring.  If so, the appropriate section of the question string is also highlighted, to allow the user to check their work.  It was decided to implement this as a string, rather than S-expression, comparison as the string search is able to return character indices in the question string, indicating the substring to highlight.
 
 \begin{center}
 \begin{figure}[H]
@@ -958,7 +948,7 @@ When motion is detected, the canvas is cleared and re-rendered, as mentioned abo
 
 \subsubsection{Control Scheme}
 
-Upon the detection of a mouse click, the software must determine the exact context in which the mouse was clicked, as this constitutes much of the application's control scheme.  The mouse's current co-ordinates on the canvas, as well as information regarding which mouse button was pressed and any modifiers that were active, are used to determine the correct action to take, as illustrated in \emph{Fig.~\ref{fig:ClickTree}}.
+Upon detection of a mouse click, the software determines the context in which the mouse was clicked, as this constitutes much of the application's control scheme.  The mouse's current co-ordinates on the canvas, as well as which mouse button was pressed and any modifier keys that were active, are used to determine the correct action to take, as illustrated in \emph{Fig.~\ref{fig:ClickTree}}.
 
 \begin{center}
 \begin{figure}[H]
@@ -983,36 +973,36 @@ A more in-depth analysis of the control scheme follows.
 \begin{itemize}
 \item Mouse on argument
 \begin{itemize}
-\item A small blue circle is drawn around the argument and a dialogue box is launched, containing a spinner with which to set the new value of the selected argument.
+\item A small blue circle is drawn around the argument and a dialogue box is launched, using a spinner to set its value.
 \end{itemize}
 \item Mouse on operator
 \begin{itemize}
-\item A small blue circle is drawn around the argument and a dialogue box is launched, containing four radio buttons corresponding to the four arithmetic operations, with which to set the new value of the operator.
+\item A small blue circle is drawn around the operator and a dialogue box is launched, using four radio buttons to set its value.
 \end{itemize}
 \end{itemize}
 \item Right-click
 \begin{itemize}
 \item Ctrl key pressed
 \begin{itemize}
-\item The final argument is removed from the circle, down to a minimum of two arguments.  An alert box warns the user if they try to remove arguments when there are only two remaining.
+\item The final argument is removed from the circle.  There is a minimum of two arguments: an alert box warns the user if they try to use fewer.
 \end{itemize}
 \item Ctrl key not pressed
 \begin{itemize}
-\item A placeholder argument is added to the circle, up to a maximum of eight arguments.  An alert box warns the user if they try to add more than the maximum number of arguments.
+\item A placeholder argument is added to the circle.  There is a maximum of eight arguments: an alert box warns the user if they try to use more.
 \end{itemize}
 \end{itemize}
 \end{itemize}
 \end{itemize}
 
-Drag-and-drop functionality is also included in the control scheme.  When the application detects that a mouse press has occurred, if the event was triggered whilst the mouse cursor was over a circle, that circle's map is stored, along with the current system time in milliseconds and the mouse button that was pressed, in a mutable data structure.  When a drag event is detected, that information is then used to perform one of two operations upon the circle.
+Drag-and-drop functionality is also included in the control scheme.  When the application detects that a mouse press has occurred, if the event was triggered whilst the mouse cursor was over a circle, that circle is stored with the current system time and the button that was pressed in a mutable data structure.  When a drag event is detected, that information is then used to perform one of two operations upon the circle.
 
-If the left mouse button is held whilst dragging, the circle's positioning information is updated to the current co-ordinates of the mouse cursor.  If the right mouse button is held whilst dragging, a line is drawn from the circle to the current location of the mouse cursor, indicating that two circles are to be joined.  When the mouse passes over the argument slot of another circle, that line is fixed, and the target circle is updated such that the argument now has the value of a reference to the source circle.
+If the left mouse button is held whilst dragging, the circle's co-ordinates are updated to the current co-ordinates of the cursor.  If the right mouse button is held whilst dragging, a line is drawn from the circle to the current location of the cursor.  When the mouse passes over the argument slot of another circle, that line is fixed, and the target circle is updated such that the argument is now a reference to the source circle.
 
-The drag-and-drop functionality was implemented thus as a drag-and-drop action constitutes a press event, followed by a drag event, followed by a relase event.  By storing information about the circle being dragged upon detecting a mouse press, the function called when dragging is detected can use and modify this information easily, without encountering the problems of defining new variables at runtime, as mentioned in the discussion of the application infrastructure.  This does not impact upon other mouse events involving presses and releases (e.g. clicking), as this information is discarded upon every mouse release, regardless of whether or not it was being used.
+The drag-and-drop functionality was implemented thus as a drag-and-drop action constitutes a press event, followed by a drag event, followed by a release event.  By storing information about the circle being dragged when the mouse is pressed, the function called upon dragging can use and modify this information easily.  This does not impact upon other mouse events involving presses and releases (e.g. clicking), as this information is discarded upon every mouse release, regardless of whether or not it was being used.
 
-The design of the control scheme is discussed further in \emph{Sec.~3.2}. % TODO: check this, gonna rearrange massively
+The control scheme is almost entirely mouse-based as the mouse is a simpler interface than the keyboard, and is familiar to most computer users in a school environment, regardless of ability (the use of applications that require mouse control, such as many word processors, is mandated by the National Curriculum).  By limiting control to the mouse, the user is required to remember fewer button locations, and is likely to be able to guess controls correctly if forgotten.  A caveat to this is that the use of the Ctrl key is required, as this was preferable to mouse chording (unfamiliar to novices), or to requiring a three-button mouse (not always available).
 
-The control scheme is almost entirely mouse-based as the mouse is a far less complex device than the keyboard, and is familiar to most computer users in a school environment, regardless of ability (indeed, the use of applications that require mouse control, such as many word processors, is mandated by the National Curriculum).  By limiting control to the mouse, the user is required to remember fewer button locations, and is likely to be able to guess controls correctly if forgotten.  A caveat to this is that the use of the Ctrl key in combination is required, as it was decided that this was preferable to mouse chording (unfamiliar to novice users), or to requiring a three-button mouse (diverse computing environments in schools mean that three-button mice may not always be available).
+The design of the control scheme is discussed further in \emph{Sec.~3.2.2}. % TODO: check this, gonna rearrange massively
 
 % do i need to mention *all* the times clear-screen and render are called?  it's kind of implicit (to me anyway)...
 %

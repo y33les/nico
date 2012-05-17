@@ -75,6 +75,46 @@
   ;; File to whcih question completion times are written, named "nico_<system-time>.log".
   (java.io.File. (str "logs/nico_" (system-time) ".log")))
 
+(def col-plus-outer
+  ;; Colour of the outer ring of circles using +.
+  0x88FF88)
+
+(def col-plus-inner
+  ;; Colour of the inner ring of circles using +.
+  0x44BB44)
+
+(def col-minus-outer
+  ;; Colour of the outer ring of circles using -.
+  0xFF8888)
+
+(def col-minus-inner
+  ;; Colour of the inner ring of circles using -.
+  0xBB4444)
+
+(def col-mul-outer
+  ;; Colour of the outer ring of circles using *.
+  0x8888FF)
+
+(def col-mul-inner
+  ;; Colour of the inner ring of circles using *.
+  0x4444BB)
+
+(def col-div-outer
+  ;; Colour of the outer ring of circles using /.
+  0xFFFF88)
+
+(def col-div-inner
+  ;; Colour of the inner ring of circles using /.
+  0xBBBB44)
+
+(def col-null-outer
+  ;; Colour of the outer ring of circles using ?.
+  0xDDDDDD)
+
+(def col-null-inner
+  ;; Colour of the inner ring of circles using ?.
+  0x999999)
+
 (defn lisp-to-maths
   "Translates a sexp into a string of child-readable maths."
   [sexp]
@@ -490,16 +530,16 @@
         args (rest (:circ circ))
         sym  (:name circ)
         n    (mod (read-string (subs sym 1)) 4)
-        cola (cond (= o +) 0x88FF88
-                   (= o -) 0xFF8888
-                   (= o *) 0x8888FF
-                   (= o /) 0xFFFF88
-                   :else   0xDDDDDD)
-        colb (cond (= o +) 0x44BB44
-                   (= o -) 0xBB4444
-                   (= o *) 0x4444BB
-                   (= o /) 0xBBBB44
-                   :else   0x999999)]
+        cola (cond (= o +) col-plus-outer
+                   (= o -) col-minus-outer
+                   (= o *) col-mul-outer
+                   (= o /) col-div-outer
+                   :else   col-null-outer)
+        colb (cond (= o +) col-plus-inner
+                   (= o -) col-minus-inner
+                   (= o *) col-mul-inner
+                   (= o /) col-div-inner
+                   :else   col-null-inner)]
     (do
       (doto g
         (.setColor (java.awt.Color. cola))

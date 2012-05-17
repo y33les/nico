@@ -15,57 +15,58 @@
 \contentsline {subsubsection}{\numberline {2.2.1.1}Low-Fidelity Prototyping}{8}
 \contentsline {subsubsection}{\numberline {2.2.1.2}Detailed Mockups}{14}
 \contentsline {paragraph}{\numberline {2.2.1.2.1}Flowgraph Metaphor}{14}
-\contentsline {paragraph}{\numberline {2.2.1.2.2}Sierpiński Triangle Metaphor}{17}
-\contentsline {paragraph}{\numberline {2.2.1.2.3}Circle Metaphor}{19}
-\contentsline {section}{\numberline {2.3}Summary}{21}
-\contentsline {chapter}{\numberline {3}Implementation}{23}
-\contentsline {section}{\numberline {3.1}System Architecture}{23}
-\contentsline {subsection}{\numberline {3.1.1}Infrastructure}{26}
-\contentsline {subsubsection}{\numberline {3.1.1.1}Management of Mutable State}{27}
-\contentsline {subsubsection}{\numberline {3.1.1.2}Circle Management}{27}
-\contentsline {subsubsection}{\numberline {3.1.1.3}Evaluation}{29}
-\contentsline {subsubsection}{\numberline {3.1.1.4}Question Management}{30}
-\contentsline {subsection}{\numberline {3.1.2}Interaction Handler}{30}
-\contentsline {subsubsection}{\numberline {3.1.2.1}GUI Libraries}{31}
-\contentsline {subsubsection}{\numberline {3.1.2.2}Main Window}{31}
-\contentsline {subsubsection}{\numberline {3.1.2.3}Control Scheme}{33}
-\contentsline {section}{\numberline {3.2}User Interface}{35}
-\contentsline {subsection}{\numberline {3.2.1}Application}{36}
-\contentsline {subsubsection}{\numberline {3.2.1.1}Initial Revision and Control Buttons}{36}
-\contentsline {subsubsection}{\numberline {3.2.1.2}Context Menus and Automated Marking}{37}
-\contentsline {subsubsection}{\numberline {3.2.1.3}Final Revision}{38}
-\contentsline {subsubsection}{\numberline {3.2.1.4}Dialogue Boxes}{40}
-\contentsline {subsection}{\numberline {3.2.2}Control Scheme}{41}
-\contentsline {subsubsection}{\numberline {3.2.2.1}Development}{41}
-\contentsline {subsubsection}{\numberline {3.2.2.2}Control Design}{42}
-\contentsline {subsection}{\numberline {3.2.3}Colour-Coding}{43}
-\contentsline {subsubsection}{\numberline {3.2.3.1}Colour Blindness}{45}
-\contentsline {subsection}{\numberline {3.2.4}Notation}{46}
-\contentsline {section}{\numberline {3.3}Testing}{47}
-\contentsline {section}{\numberline {3.4}Summary}{47}
-\contentsline {chapter}{\numberline {4}Evaluation}{49}
-\contentsline {section}{\numberline {4.1}Testing}{49}
-\contentsline {section}{\numberline {4.2}UI Evaluation}{49}
-\contentsline {section}{\numberline {4.3}User Study}{51}
-\contentsline {subsection}{\numberline {4.3.1}Experimental Design}{51}
-\contentsline {subsection}{\numberline {4.3.2}Pilot Study}{53}
-\contentsline {subsection}{\numberline {4.3.3}Results}{53}
-\contentsline {subsubsection}{\numberline {4.3.3.1}Feedback}{62}
-\contentsline {paragraph}{\numberline {4.3.3.1.1}Visibility \& Juxtaposability}{65}
-\contentsline {paragraph}{\numberline {4.3.3.1.2}Viscosity}{66}
-\contentsline {paragraph}{\numberline {4.3.3.1.3}Error Proneness}{66}
-\contentsline {paragraph}{\numberline {4.3.3.1.4}Closeness of Mapping}{66}
-\contentsline {paragraph}{\numberline {4.3.3.1.5}Role Expressiveness}{67}
-\contentsline {paragraph}{\numberline {4.3.3.1.6}Hidden Dependencies}{67}
-\contentsline {paragraph}{\numberline {4.3.3.1.7}Progressive Evaluation}{68}
-\contentsline {paragraph}{\numberline {4.3.3.1.8}Provisionality}{68}
-\contentsline {paragraph}{\numberline {4.3.3.1.9}Secondary Notation}{68}
-\contentsline {paragraph}{\numberline {4.3.3.1.10}Feedback}{69}
-\contentsline {section}{\numberline {4.4}Summary}{69}
-\contentsline {chapter}{\numberline {5}Conclusions}{71}
-\contentsline {section}{\numberline {5.1}Future Work}{72}
-\contentsline {chapter}{Bibliography}{73}
-\contentsline {chapter}{\numberline {A}Third-Party Tools}{77}
-\contentsline {chapter}{\numberline {B}User Response Times}{78}
-\contentsline {chapter}{\numberline {C}Questionnaire}{85}
-\contentsline {chapter}{\numberline {D}Project Proposal}{97}
+\contentsline {paragraph}{\numberline {2.2.1.2.2}Sierpiński Triangle Metaphor}{16}
+\contentsline {paragraph}{\numberline {2.2.1.2.3}Circle Metaphor}{18}
+\contentsline {section}{\numberline {2.3}Summary}{20}
+\contentsline {chapter}{\numberline {3}Implementation}{21}
+\contentsline {section}{\numberline {3.1}System Architecture}{21}
+\contentsline {subsection}{\numberline {3.1.1}Infrastructure}{24}
+\contentsline {subsubsection}{\numberline {3.1.1.1}Management of Mutable State}{25}
+\contentsline {subsubsection}{\numberline {3.1.1.2}Circle Management}{25}
+\contentsline {subsubsection}{\numberline {3.1.1.3}Evaluation}{27}
+\contentsline {subsubsection}{\numberline {3.1.1.4}Question Management}{27}
+\contentsline {subsection}{\numberline {3.1.2}Interaction Handler}{28}
+\contentsline {subsubsection}{\numberline {3.1.2.1}GUI Libraries}{28}
+\contentsline {subsubsection}{\numberline {3.1.2.2}Main Window}{28}
+\contentsline {subsubsection}{\numberline {3.1.2.3}Control Scheme}{29}
+\contentsline {section}{\numberline {3.2}User Interface}{32}
+\contentsline {subsection}{\numberline {3.2.1}Application}{32}
+\contentsline {subsubsection}{\numberline {3.2.1.1}Initial Revision and Control Buttons}{33}
+\contentsline {subsubsection}{\numberline {3.2.1.2}Context Menus and Automated Marking}{33}
+\contentsline {subsubsection}{\numberline {3.2.1.3}Final Revision}{34}
+\contentsline {subsubsection}{\numberline {3.2.1.4}Dialogue Boxes}{36}
+\contentsline {subsection}{\numberline {3.2.2}Notation}{38}
+\contentsline {subsubsection}{\numberline {3.2.2.1}Early Revisions}{38}
+\contentsline {subsubsection}{\numberline {3.2.2.2}Final Revision}{39}
+\contentsline {subsection}{\numberline {3.2.3}Control Scheme}{39}
+\contentsline {subsubsection}{\numberline {3.2.3.1}Development}{39}
+\contentsline {subsubsection}{\numberline {3.2.3.2}Control Design}{40}
+\contentsline {subsection}{\numberline {3.2.4}Colour-Coding}{41}
+\contentsline {subsubsection}{\numberline {3.2.4.1}Colour Blindness}{44}
+\contentsline {section}{\numberline {3.3}Testing}{44}
+\contentsline {section}{\numberline {3.4}Summary}{45}
+\contentsline {chapter}{\numberline {4}Evaluation}{47}
+\contentsline {section}{\numberline {4.1}UI Evaluation}{47}
+\contentsline {section}{\numberline {4.2}User Study}{49}
+\contentsline {subsection}{\numberline {4.2.1}Experimental Design}{49}
+\contentsline {subsection}{\numberline {4.2.2}Pilot Study}{50}
+\contentsline {subsection}{\numberline {4.2.3}Results}{51}
+\contentsline {subsubsection}{\numberline {4.2.3.1}Feedback}{60}
+\contentsline {paragraph}{\numberline {4.2.3.1.1}Visibility \& Juxtaposability}{62}
+\contentsline {paragraph}{\numberline {4.2.3.1.2}Viscosity}{63}
+\contentsline {paragraph}{\numberline {4.2.3.1.3}Error Proneness}{63}
+\contentsline {paragraph}{\numberline {4.2.3.1.4}Closeness of Mapping}{63}
+\contentsline {paragraph}{\numberline {4.2.3.1.5}Role Expressiveness}{64}
+\contentsline {paragraph}{\numberline {4.2.3.1.6}Hidden Dependencies}{64}
+\contentsline {paragraph}{\numberline {4.2.3.1.7}Progressive Evaluation}{65}
+\contentsline {paragraph}{\numberline {4.2.3.1.8}Provisionality}{65}
+\contentsline {paragraph}{\numberline {4.2.3.1.9}Secondary Notation}{65}
+\contentsline {paragraph}{\numberline {4.2.3.1.10}Feedback}{65}
+\contentsline {section}{\numberline {4.3}Summary}{66}
+\contentsline {chapter}{\numberline {5}Conclusions}{69}
+\contentsline {section}{\numberline {5.1}Future Work}{70}
+\contentsline {chapter}{Bibliography}{71}
+\contentsline {chapter}{\numberline {A}Third-Party Tools}{75}
+\contentsline {chapter}{\numberline {B}User Response Times}{76}
+\contentsline {chapter}{\numberline {C}Questionnaire}{83}
+\contentsline {chapter}{\numberline {D}Project Proposal}{95}

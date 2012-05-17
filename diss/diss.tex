@@ -216,7 +216,7 @@ My motivations behind this project lay in the limitations of the handwritten app
 % also need good gui libraries for app - familiar with java/swing so that works (esp. with seesaw), also the option of jfx2 and swt/guiftw
 % difficulty of learning clojure over summer in preparation
 
-Developing such an application comprises three main challenges.  Firstly, developing an infrastructure that is capable of creating, storing, editing, deleting, evaluating and nesting calculations.  Secondly, developing an interaction-handler layer that is able to interpret user input and events occurring in the user interface.  Finally, implementing a graphical user interface that is able to render calculations into the devised notation, and allow the user to perform operations upon the notation that affect the underlying calculation.  Such an interface should also be able to display and update the results of a calculation with low latency (a limit of 300ms is set and discussed in footnote 1, \emph{Sec. 2.1.2})).
+Developing such an application comprises three main challenges.  Firstly, developing an infrastructure that is capable of creating, storing, editing, deleting, evaluating and nesting calculations.  Secondly, developing an interaction-handler layer that is able to interpret user input and events occurring in the user interface.  Finally, implementing a graphical user interface that is able to render calculations into the devised notation, and allow the user to perform operations upon the notation that affect the underlying calculation.  Such an interface should also be able to display and update the results of a calculation with low latency (a limit of 300ms is set and discussed in footnote 1, \emph{Sec. 2.1.2}).
 
 The application described above must be portable, to account for the diversity of computing environments available to the target audience.  It must also provide a standardised user experience across the platforms on which it is deployed.  A Java-based application satisfies both of these requirements, as any platform on which the Java Virtual Machine (JVM) can be installed is able to run it.  Java also makes GUI libraries available, such as JavaFX and Swing, that are explicitly designed to provide similar GUI functionality on many platforms.
 
@@ -722,7 +722,7 @@ In addition to this, the flowgraph representation had a number of more general s
 \end{center}
 \end{figure}
 
-This prototype uses a zooming instance of the Sierpiński triangle fractal as the basis of its notation, as shown in \emph{Fig.~\ref{fig:ProtoTri}.  The application consists of a single window with information panels and a canvas area, featuring zoom and help buttons, as well as control buttons for diagram construction.
+This prototype uses a zooming instance of the Sierpiński triangle fractal as the basis of its notation, as shown in \emph{Fig.~\ref{fig:ProtoTri}}.  The application consists of a single window with information panels and a canvas area, featuring zoom and help buttons, as well as control buttons for diagram construction.
 
 This prototype marks a significant departure from the flowgraph metaphor outlined above and in the project proposal to address the above problems with the flowgraph notation.  The application also had to change to suit the new notation: in this case, a toolbox would not be suitable, as the user is limited to one structure.
 
@@ -1662,41 +1662,41 @@ The modal feedback scores both by question and by topic are shown below, to dete
 \end{table}
 \end{center}
 
-By considering the modal values by topic, it is possible to determine roughly how well-received the software was, with regard to each aspect of the questionnaire.
+The modal feedback score across all questions was also taken, giving a value of 1, hence the feedback was broadly positive.\footnote{The total number of responses were: 39 negative, 50 neutral, 87 positive.}
 
-The modal feedback score across all questions was also taken, giving a value of 1.  The feedback was broadly positive.
+By considering the modal values by topic, it is possible to determine roughly how well-received the software was, with regard to each aspect of the questionnaire.  Modes also varied by question, the consequences of which are noted within each section.
 
 \paragraph{Visibility \& Juxtaposability}\hfill
 
 Mode = 1
 
-Feedback with regard to the software's visibility and juxtaposability was broadly netural-to-positive.  One participant described the notation as ``very intuitive to use'', although another noted that ``circles +[sic] operators could be larger''.  Questions 2.1.1 and 2.1.3 received mostly positive feedback; the mean feedback score for this section is lowered somewhat by the mean score of -0.5 for Question 2.2.2, in which several users noted that the connecting lines between circles could occasionally become confusing when there were particularly many.
+Feedback in this section was broadly positive.  One participant described the notation as ``very intuitive to use'', although another noted that ``circles +[sic] operators could be larger''.  Questions 2.1.1 and 2.1.3 received mostly positive feedback; however in Question 2.2.2, several users noted that the connecting lines between circles could occasionally become confusing when numerous.
 
 \paragraph{Viscosity}\hfill
 
 Mode = 1
 
-Feedback on the perceived level of viscosity in the software was also neutral-to-positive, verging upon positive. Question 2.2.1 received mostly positive feedback, whereas Question 2.2.2 received neutral feedback.  Users noted that it was ``very easy'' to make changes to previous work, and that it was ``easy to do and obvious how to do so''.  However, they also felt that it was ``more difficult to get rid of arguments [using Ctrl]''.  Another user concurred with this: ``deleting additional numbers [...] is the most difficult, but still simple to remember''.
+Feedback on the perceived level of viscosity in the software was also positive. Question 2.2.1 received mostly positive feedback, whereas Question 2.2.2 was bimodal, having equal numbers of positive and negative responses.  Users noted that it was ``very easy'' to make changes to previous work, and that it was ``easy to do and obvious how to do so''.  However, some felt that it was ``more difficult to get rid of arguments [using Ctrl]''.  Another user concurred with this: ``deleting additional numbers [...] is the most difficult, but still simple to remember''.
 
 \paragraph{Error Proneness}\hfill
 
 Mode = -1
 
-Users responded to the questions in this section with neutral-to-negative feedback, verging on negative for Question 2.3.1.  Several users felt that the drag-and-drop mechanism for joining circles was easily misunderstood, having tried to terminate lines in invalid locations, although one user notes (for both questions in this section) that ``I didn't make any mistakes!''.
+Users responded to the questions in this section with negative feedback.  Several users felt that the drag-and-drop mechanism for joining circles was easily misunderstood, having tried to terminate lines in invalid locations, although one user notes that ``I didn't make any mistakes!''.
 
 \paragraph{Closeness of Mapping}\hfill
 
 Mode = 1
 
-This section was met with neutral-to-positive feedback, with Question 2.4.1 receiving more positive feedback and Question 2.4.2 receiving neutral-to-negative reponses.  Participants felt that the notation was ``very close[ly]'' related to the result that they were describing, with one user going so far as to say that it was ``exactly so''.
+This section was generally met with positive feedback, but Question 2.4.2 received more negative reponses.  Participants felt that the notation was ``very close[ly]'' related to the result that they were describing, with one user going so far as to say that it was ``exactly so''.
 
-Several users found that the limitation of available numbers to the range -10 to 10 to be a strange way of working: this limitation was not mentioned in the tutorial video, with the expectation that users would appreciate the need for such a feature, to prevent the software from becoming equivalent to a calculator, rather than a means of expressing method.  As it was particularly difficult to explain this without imposing a subjective method of calculation upon the user, some participants concluded that it was a flaw in the software, rather than a conscious design choice.
+Several users found that the limitation of available numbers to the range -10 to 10 to be a strange way of working.  This limitation was a conscious design choice, and it was expected that users would appreciate the need to prevent the software from becoming used as simply a calculator.  Additionally, it was difficult to explain this without imposing a method of calculation, and as such this limitation was not mentioned in the tutorial video.  Some participants therefore concluded that it was a flaw in the software.
 
 \paragraph{Role Expressiveness}\hfill
 
 Mode = 1
 
-Feedback on this section was broadly positive, with Question 2.5.3 receiving particularly positive responses.  User opinions were varied with regard to the clarity of the notation.  A small majority felt that it was ``well laid out'', and several users found the colour-coding ``useful''.  Some, however, found that they were liable to forget the meaning of some parts of the notation.  One user felt that
+Feedback on this section was broadly positive, with Question 2.5.3 receiving particularly favourable responses.  User opinions differed with regard to the clarity of the notation.  A majority felt that it was ``well laid out'', and several users found the colour-coding ``useful''.  However, some found that they were liable to forget the meaning of some parts of the notation.  For example:
 \begin{center}
 \parbox[c]{\textwidth-2cm}{
 \small
@@ -1704,77 +1704,67 @@ Feedback on this section was broadly positive, with Question 2.5.3 receiving par
 }
 \end{center}
 
-Most users felt that there were no parts of the notation that were especially difficult to interpret, although a few note that the screen can become busy for more complex calculations.  One user agrees with the feedback from the `Visibility \& Juxtaposability' section in stating that connecting lines between circles can become ``like a spiderweb, difficult to take in altogether'' when numerous.  All users responded to Question 2.5.3 with ``no'', ``none'' or equivalent answers, indicating that there were no parts of the notation that were unclear but included as a result of a feeling of obligation to do so.
+Most users felt that there were no parts of the notation that were especially difficult to interpret, although a few noted that the screen can become busy for more complex calculations.  One user agrees with the feedback from the `Visibility \& Juxtaposability' section in stating that connecting lines between circles can become ``difficult to take in altogether'' when numerous.  All users responded to Question 2.5.3 with ``no'', ``none'' or equivalent answers, indicating that they only used notation that they felt was necessary.
 
 \paragraph{Hidden Dependencies}\hfill
 
 Mode = 1
 
-Feedback on this section was neutral-to-positive, though closer to neutral.  Question 2.6.1 received a mostly positive response, whereas the feedback on Question 2.6.2 was mildly negative.  Most users found that dependencies between units of the notation were made very clear, apart from one user who found the dependencies clear, but found it difficult to infer the results of their calculations whilst constructing them, and one user who neglected to answer the question.  Once again, several users found that the notation became harder to read, and dependencies harder to follow, when the number of circles on-screen was especially large.  This suggests that either circles should be made smaller, or the canvas made larger, or that an alternative to lines, which can become ``tangled'', should be sought as a means of linking circles.
+Feedback on this section was mixed, though modally positive.  Question 2.6.1 received a positive response: most users found that dependencies between units of the notation were made very clear, apart from one user who found that, while dependencies were clear, it was difficult to infer the results of their calculations whilst constructing them.  One user neglected to answer the question.  However, the feedback on Question 2.6.2 was negative.  Once again, several users found that the notation became harder to read, and dependencies harder to follow, for large numbers of circles.  This suggests that either circles should be made smaller, the canvas made larger, or an alternative to linking lines, which can become ``tangled'', should be sought.  Zoom functionality (an unimplemented feature of the prototypes) would also have solved this problem.
 
 \paragraph{Progressive Evaluation}\hfill
 
 Mode = 1
 
-Once again, feedback was neutral-to-positive.  Users found the running total in the information panel to be a useful means of tracking their progress, but noted that it was difficult to keep track of the value of partially-completed calculations where several trees of circles were kept separate until the end, due to the single answer display in the information panel.
+Feedback here was modally positive, though responses to individual question were more mixed.  Users found the running total in the information panel to be a useful means of tracking their progress, but noted that it was difficult to determine the value of partially-completed calculations where several groups of circles were kept separate until the end, due to the single answer-display.
 
 \paragraph{Provisionality}\hfill
 
 Mode = 1
 
-Response to this question was very positive.  Users found that the running total displayed in the information panel, coupled with the prominent bin icon to faciliate easy deletion, allowed them to explore potential solutions before submitting their final answer.  One user comments:
+Response to this question was positive.  Users spoke favourably of the running total displayed in the information panel, coupled with the prominent bin icon to faciliate easy deletion.  One user comments:
 \begin{center}
 \parbox[c]{\textwidth-2cm}{
 \small
 ``I could create notations [i.e. circles] and throw them in the bin if they didn't help.''
 }
 \end{center}
-This is in accordance with the intention of the project, which is to allow users to explore potential solutions, and to be able to determine more easily why a given method may or may not work.
+This is in accordance with the intention of the project, which is to allow users to explore potential solutions and to determine why a given method may or may not work.
 
 \paragraph{Secondary Notation}\hfill
 
 Mode = 0
 
-Feedback here was positive, though only mildly so.  A means of making notes or comments is not provided in the software, though this was neither well- nor poorly-received by the users.  Several users mentioned that, given to opportunity to annotate their diagrams in paper form, they would make notes keeping track of the totals of subcalculations: ``[I would] keep a track of the different sums I had done so far''.  Users commented that they did not add any extra marks in the software to clarify or emphasise the information displayed onscreen.
+Feedback here was neutral.  A means of making notes or comments is not provided in the software, though this was neither well- nor poorly-received by the users.  Several users mentioned that, given the opportunity to annotate their diagrams in paper form, they would: ``keep a track of the different sums I had done so far''.  Users commented that they did not add any extra marks in the software to clarify or emphasise the information displayed onscreen.
 
 \paragraph{Feedback}\hfill
 
 Mode = 0
 
-Feedback in this section was largely neutral.  Question 3.1 received slightly positive responses, whereas Question 3.2 received slightly negative feedback.  Most users did not feel that they were using the software in a way which was `wrong' or `unusual', though one user did feel that having to create larger numbers from the limited range available constituted such behaviour, once again suggesting problems with the tutorial.  Furthermore, several users suggested that an improvement to the software would be to allow numbers outside of the range of -10 to 10 to be used.  Others felt that the circles should be larger, or that the canvas should be more capacious.
+Feedback in this section was largely neutral.  Question 3.1 received neutral responses, whereas Question 3.2 received negative feedback.  Most users did not feel that they were using the software in a way which was `wrong' or `unusual', though one user did feel that having to create larger numbers from the limited range available constituted such behaviour.  Furthermore, several users suggested that an improvement to the software would be to remove the limitation (see `Closeness of Mapping').  Others felt that the circles should be larger, or that the canvas should be more capacious.
 
 \section{Summary}
 % did it succeed?
-The criterion for the success of this project, as quoted at the beginning of Chapter 3, was
-\begin{center}
-\parbox[c]{\textwidth-2cm}{
-\small
-``[to be] able to generate an abstract syntax tree in Clojure from the graphical language and evaluate such a tree, passing the results back to the graphical application and displaying this to user in less than 300ms.''
-}
-\end{center}
 % TODO: time render, log system time in ms before/after render
 % by which of course i mean update-answer
-In this regard, \emph{Nico} has met and far exceeded expectations.  A functioning application and accompanying visual metaphor have been developed that allows the user to express a calculation graphically.  From this, the application is able to generate a valid Clojure S-expression -- the tree -- that is able to be passed around and evaluated.  The application takes considerably less than 300ms to interpret the notation and update the user-facing display accordingly.
+A criterion for the success of the project was to develop an application that was able to represent calculations using a novel visual metaphor, and to be able to evalute and display the results of this in under 300ms.  This has been achieved, with the function \verb¬update-answer¬ taking an average of approximately 7ms to execute.
 
 As an extension, a user study was conducted to assess the suitability of the software to complement traditional methods of mathematical education in the target audience of Year 5 pupils.  The results of this study can be summarised thus:
 \begin{itemize}
 \item There is a statistically-significant difference between the time taken to solve questions by hand and by using the software
 \begin{itemize}
-\item For simple questions that are easily solved mentally, \emph{Nico} increases the solution time
-\item For more complex questions involving large numbers and nested calculations, \emph{Nico} decreases the solution time
+\item For simple questions, \emph{Nico} increases the solution time
+\item For complex questions involving large numbers and nested calculations, \emph{Nico} decreases the solution time
 \end{itemize}
 \item There is a statistically-significant negative correlation between whether a question is answered correctly or incorrectly by hand and the number of wrong attempts at an answer before succeeding using the software
-\item Feedback on the software was broadly neutral-to-positive, with users concluding that:
+\item Feedback on the software was broadly positive, with users concluding that:
 \begin{itemize}
-\item The notation was clear, with few hidden dependencies
-\item For a large number of circles, the canvas could sometimes become overcrowded
+\item The notation had few hidden dependencies
+\item With many circles, the canvas could sometimes become overcrowded
 \item The software encourages exploration, and it is easy to try out many potential solutions
-\item The limitation of numbers to the range -10 to 10 was confusing, especially as it was explained poorly
+\item The limitation of numbers to the range -10 to 10 was confusing, especially as it was not explained
 \end{itemize}
 \end{itemize}
-
-The final chapter summarises what has been achieved and what has been learnt over the course of this project, and draws some final conclusions.
-
 
 \cleardoublepage
 \chapter{Conclusions}
@@ -1784,27 +1774,25 @@ The final chapter summarises what has been achieved and what has been learnt ove
 % what could be improved?
 % overall, is it actually useful?
 
-Overall, this project has been very successful.  Not only has an application meeting the requirements specified for success been developed, with a suitable new metaphor for calculation, it has also been shown to have a statistically-significant effect on the calculation speed and correctness of a group of users.
+Overall this project has been very successful.  Not only have the success criteria for this project been fulfilled, but a user study has also been conducted as an extension.  As quoted at the beginning of Chapter 3, the success criteria were to develop an application that is able to generate and evaluate expressions from a novel graphical notation, displaying results in less than 300ms.  In this regard, \emph{Nico} has met and far exceeded expectations.  A functioning application and accompanying visual metaphor have been developed that allow the user to express a calculation graphically.  From this, the application is able to generate a valid Clojure S-expression -- the tree -- that is able to be passed around and evaluated.  The application takes considerably less than 300ms to interpret the notation and update the display accordingly.
 
-The software itself comprises a three-layer structure, with an infrastructure that interprets and manipulates user-input data, an interaction handler that provides an iterface between the infrastructure and the user interface, and the user interface itself, the environment in which the user performs actions, interacting with the notation to express calculations.
+The software itself comprises a three-layer structure, with an infrastructure that interprets and manipulates user-input data; an interaction handler that provides an iterface between the infrastructure and the user interface; and the user interface itself, the environment in which the user interacts with the notation to express calculations.
 
-The user study conducted as an extension to the main project concluded that \emph{Nico} made a statistically-significant difference both to the users' speed of answering questions and to the users' likelihood to answer questions correctly.  It was observed that for simple questions involving small numbers and few steps in the calculation, the software increased the time taken to answer.  For more complex questions, with many subcalculations and larger numbers, the software was shown to decrease the time taken for users to answer.
+The user study conducted as an extension to the main project concluded that \emph{Nico} made a statistically-significant difference both to the users' speed of answering questions and to the users' likelihood to answer questions correctly.  This was particularly the case for more complex questions, with many subcalculations and larger numbers, the software was shown to decrease the time taken for users to answer.  There was also a statistically-significant negative correlation between the number of marks obtained in handwritten tests and the number of incorrect answers submitted to the software.
 
-There was also a statistically-significant negative correlation between the number of marks obtained in handwritten tests and the number of incorrect answers submitted to the software.
-
-User feedback was mildly positive, with users finding that the software made it easy to explore many possible solutions, but also that the notation could become confusing where a large number of circles occupied much of the canvas' available area.  However, it was also noted that the notation had few \emph{hidden dependencies}, and was easy to read in most cases.
+User feedback was modally positive, with users finding that the software made it easy to explore many possible solutions, but also that the notation could become confusing where a large number of circles occupied much of the canvas' available area.  However, it was also noted that the notation had few \emph{hidden dependencies}, and was easy to read in most cases.
 
 \section{Future Work}
 
 The project suggests a number of potential improvements and extensions:
 \begin{itemize}
-\item To improve the notation in accordance with the feedback received from this user study
-\item To reimplement circle deletion, preserving both references and referential integrity
+\item To improve the notation in accordance with the feedback received
+\item To reimplement deletion, preserving both references and referential integrity
 \item To explore the effects of implementing a negative mark scheme, in which marks are deducted for each incorrect submission
-\item To develop a partner application to allow tutors to design their own question scheme without requiring knowledge of Clojure syntax
-\item To consider other metaphors for calculation as an alternative to the handwritten method
-\item To conduct a larger-scale user study with a similar premise, with participants from the target audience
-\item To conduct a study into the long-term effects of using such software as an aid to learning in a real school environment
+\item To develop a partner application to allow tutors to design their own question sets
+\item To consider other novel metaphors for calculation
+\item To conduct a larger-scale user study with a similar premise, involving participants from the target audience
+\item To conduct a study into the long-term effects of using such software in a real school environment
 \end{itemize}
 
 The application of Petre and Green's `Cognitive Dimensions' framework to metaphors in educational software might yield further worthwhile research, extending Blackwell and Green's research into visual programming languages into the domain of educational software \cite{Green1996} \cite{Blackwell1999}.

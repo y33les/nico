@@ -44,57 +44,57 @@
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{14}
 \contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{14}
 \contentsline {subfigure}{\numberline {(e)}{\ignorespaces {}}}{14}
-\contentsline {figure}{\numberline {2.10}{\ignorespaces The prototype flowgraph-style language.\relax }}{15}
-\contentsline {figure}{\numberline {2.11}{\ignorespaces The prototype Sierpiński-triangle-based language.\relax }}{17}
-\contentsline {figure}{\numberline {2.12}{\ignorespaces The prototype circle-based language.\relax }}{19}
+\contentsline {figure}{\numberline {2.10}{\ignorespaces The prototype flowgraph-style language and accompanying application.\relax }}{15}
+\contentsline {figure}{\numberline {2.11}{\ignorespaces The prototype Sierpiński-triangle-based language and accompanying application.\relax }}{17}
+\contentsline {figure}{\numberline {2.12}{\ignorespaces The prototype circle-based language and accompanying application.\relax }}{19}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces A model of \emph {Nico}'s three-layer architecture.\relax }}{25}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces A diagram of workflow in \emph {Nico}.\relax }}{26}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Three instances of the question text being highlighted as a corresponding circle is moused-over.\relax }}{32}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{32}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{32}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{32}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Decision tree to determine the appropriate response to a mouse click event.\relax }}{33}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces A screenshot of a \emph {Nico} session.\relax }}{36}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces A very early version of the user interface. Many features are yet to be implemented, but the layout with the buttons and the early revision of the notation is evident.\relax }}{38}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces A later revision of the user interface. The screen has been cleared, allowing context menus to replace buttons. The facility for checking an answer has been removed, due to the automatic answer-checking in this version. The notation has now been fully implemented, but still lacks many features of the final version.\relax }}{39}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces The final revision of the user interface. The layout is similar to the previous version, but now includes highlighting and the bin icon for deletion. The notation is now colour-coded, and the answer-checking button has been reintroduced.\relax }}{39}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces The unified dialogue box.\relax }}{40}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces The dialogue boxes used to modify existing circles in the application.\relax }}{41}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Editing a circle's operator}}}{41}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Editing a circle's argument}}}{41}
-\contentsline {figure}{\numberline {3.11}{\ignorespaces An example of where nesting-based colour-coding would be confusing. The circle containing (2+2) can be considered to be both one and two circles removed from the root circle.\relax }}{44}
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Examples of colour-coding in \emph {Nico}.\relax }}{45}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Red text indicates that the answer submitted was incorrect}}}{45}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Green text indicates a correct answer; a dialogue box allows the user to progress to the next question when they are ready}}}{45}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {The circle's operator is highlighted when it is being edited}}}{45}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {An argument is highlighted when it is being edited}}}{45}
-\contentsline {figure}{\numberline {3.13}{\ignorespaces The notation used also went through a number of revisions before reaching its current state.\relax }}{46}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {An old version of the notation. Circles are uniformly coloured, and links feed into the centre of their target circles. There is no indication of argument evaluation order.}}}{46}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {The final version of the notation. Circles are colour-coded by operation, highlighting has been implemented and links fill argument slots, ending in a circle to indicate their destination. The diagonal line and arrows have been added to circles to indicate evaluation order.}}}{46}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces A model of \emph {Nico}'s three-layer architecture.\relax }}{23}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces A diagram of workflow in \emph {Nico}.\relax }}{24}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Decision tree to determine the appropriate response to a mouse click event.\relax }}{30}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces A screenshot of a \emph {Nico} session.\relax }}{32}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces A very early version of the user interface. Many features are yet to be implemented, but the button-based layout and the early revision of the notation is evident.\relax }}{34}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces A later revision of the user interface. The screen has been cleared, allowing context menus to replace buttons. The facility for checking an answer has been removed, due to its automation in this version. The notation has now been fully implemented, but still lacks many features of the final version.\relax }}{35}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces The final revision of the user interface. The layout is similar to the previous version, but now includes highlighting and a bin icon for deletion. The notation is now colour-coded, and the answer-checking button has been reintroduced.\relax }}{35}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces The unified dialogue box.\relax }}{36}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces The dialogue boxes used to modify existing circles in the application.\relax }}{37}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Editing a circle's operator}}}{37}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Editing a circle's argument}}}{37}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces The notation used went through a number of revisions before reaching its current state.\relax }}{38}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {An old version of the notation. Circles are uniformly coloured, and links feed into the centre of their target circles. There is no indication of argument evaluation order.}}}{38}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {The final version of the notation. Circles are colour-coded by operation, highlighting has been implemented and links fill argument slots, ending in a circle to indicate their destination. The diagonal line and arrows have been added to circles to indicate evaluation order.}}}{38}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces An example of where nesting-based colour-coding would be confusing. The circle containing (2+2) can be considered to be both one and two circles removed from the root circle.\relax }}{42}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Three instances of the question text being highlighted as a corresponding circle is moused-over.\relax }}{43}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{43}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{43}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{43}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Examples of colour-coding in \emph {Nico}.\relax }}{44}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Red text indicates that the answer submitted was incorrect}}}{44}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Green text indicates a correct answer; a dialogue box allows the user to progress to the next question when they are ready}}}{44}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {The circle's operator is highlighted when it is being edited}}}{44}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {An argument is highlighted when it is being edited}}}{44}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces a) Plot and b) detail of the time taken for {\ttfamily update-answer} to complete, over the course of one session.\relax }}{50}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{50}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{50}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Time taken in milliseconds for each participant in Group 1 to complete the questions, both by hand and using the software. Names are formatted as P\emph {n}[HC], where P\emph {n} is Participant \emph {n}, H denotes Handwritten and C denotes Computer.\relax }}{54}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Time taken in milliseconds for each participant in Group 2 to complete the questions, both by hand and using the software. Names are formatted as P\emph {n}[HC], where P\emph {n} is Participant \emph {n}, H denotes Handwritten and C denotes Computer.\relax }}{54}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Time taken in milliseconds per participant to answer Question 3: 1+2+3+4+5.\relax }}{55}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Time taken in milliseconds per participant to answer Question 6: ((1+2+3+4+5)+(2×4×6×8×10))×1×2×(1+2+3+4+5).\relax }}{56}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Time taken in milliseconds per participant to answer Question 7: 12+14.\relax }}{57}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Time taken in milliseconds per participant to answer Question 9: 120÷((2×10)+5+5).\relax }}{58}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Diagram showing the proportions of positive, neutral and negative feedback per question.\relax }}{64}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces \emph {a)} plot and \emph {b)} detail of the time taken for {\ttfamily update-answer} to complete over the course of one session.\relax }}{48}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{48}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{48}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Time taken in milliseconds for each participant in Group 1 to complete the questions, both by hand and using the software. Names are formatted as P\emph {n}[HC], where P\emph {n} is Participant \emph {n}, H denotes Handwritten and C denotes Computer.\relax }}{52}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Time taken in milliseconds for each participant in Group 2 to complete the questions, both by hand and using the software. Names are formatted as in \emph {Fig.\nobreakspace {}4.2\hbox {}}.\relax }}{52}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Time taken in milliseconds per participant to answer Question 3: 1+2+3+4+5.\relax }}{53}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Time taken in milliseconds per participant to answer Question 6: ((1+2+3+4+5)+(2×4×6×8×10))×1×2×(1+2+3+4+5).\relax }}{54}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Time taken in milliseconds per participant to answer Question 7: 12+14.\relax }}{55}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Time taken in milliseconds per participant to answer Question 9: 120÷((2×10)+5+5).\relax }}{56}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Diagram showing the proportions of positive, neutral and negative feedback per question.\relax }}{61}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {B.1}{\ignorespaces Time taken in milliseconds per participant to answer Question 1.\relax }}{80}
-\contentsline {figure}{\numberline {B.2}{\ignorespaces Time taken in milliseconds per participant to answer Question 2.\relax }}{80}
-\contentsline {figure}{\numberline {B.3}{\ignorespaces Time taken in milliseconds per participant to answer Question 3.\relax }}{81}
-\contentsline {figure}{\numberline {B.4}{\ignorespaces Time taken in milliseconds per participant to answer Question 4.\relax }}{81}
-\contentsline {figure}{\numberline {B.5}{\ignorespaces Time taken in milliseconds per participant to answer Question 5.\relax }}{82}
-\contentsline {figure}{\numberline {B.6}{\ignorespaces Time taken in milliseconds per participant to answer Question 6.\relax }}{82}
-\contentsline {figure}{\numberline {B.7}{\ignorespaces Time taken in milliseconds per participant to answer Question 7.\relax }}{83}
-\contentsline {figure}{\numberline {B.8}{\ignorespaces Time taken in milliseconds per participant to answer Question 8.\relax }}{83}
-\contentsline {figure}{\numberline {B.9}{\ignorespaces Time taken in milliseconds per participant to answer Question 9.\relax }}{84}
-\contentsline {figure}{\numberline {B.10}{\ignorespaces Time taken in milliseconds per participant to answer Question 10.\relax }}{84}
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Time taken in milliseconds per participant to answer Question 1.\relax }}{78}
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Time taken in milliseconds per participant to answer Question 2.\relax }}{78}
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Time taken in milliseconds per participant to answer Question 3.\relax }}{79}
+\contentsline {figure}{\numberline {B.4}{\ignorespaces Time taken in milliseconds per participant to answer Question 4.\relax }}{79}
+\contentsline {figure}{\numberline {B.5}{\ignorespaces Time taken in milliseconds per participant to answer Question 5.\relax }}{80}
+\contentsline {figure}{\numberline {B.6}{\ignorespaces Time taken in milliseconds per participant to answer Question 6.\relax }}{80}
+\contentsline {figure}{\numberline {B.7}{\ignorespaces Time taken in milliseconds per participant to answer Question 7.\relax }}{81}
+\contentsline {figure}{\numberline {B.8}{\ignorespaces Time taken in milliseconds per participant to answer Question 8.\relax }}{81}
+\contentsline {figure}{\numberline {B.9}{\ignorespaces Time taken in milliseconds per participant to answer Question 9.\relax }}{82}
+\contentsline {figure}{\numberline {B.10}{\ignorespaces Time taken in milliseconds per participant to answer Question 10.\relax }}{82}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

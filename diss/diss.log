@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.2-0.9995.2 (TeX Live 2009/Debian) (format=xelatex 2012.3.2)  17 MAY 2012 16:46
+This is XeTeX, Version 3.1415926-2.2-0.9995.2 (TeX Live 2009/Debian) (format=xelatex 2012.3.2)  17 MAY 2012 21:25
 entering extended mode
  %&-line parsing enabled.
 **\input diss.tex
@@ -563,13 +563,8 @@ LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/it' will be
 
 ]
 LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 9.84009pt on input line 76.
-
-
-LaTeX Warning: Reference `fig:StacksGp1' on page 52 undefined on input line 80.
-
-
-[8])
+(Font)              scaled to size 9.84009pt on input line 74.
+ [8])
 \tf@lof=\write5
 \openout5 = `diss.lof'.
 
@@ -736,37 +731,35 @@ Overfull \hbox (71.3331pt too wide) in paragraph at lines 814--815
 
 [23
 
-]
-File: figs/nico_arch.pdf Graphic file (type QTm)
- <use  "figs/nico_arch.pdf" > [24
+] [24
 
 ]
 LaTeX Font Info:    Font shape `EU1/RobotoRegular(0)/m/n' will be
 (Font)              scaled to size 8.20007pt on input line 879.
  [25] [26] [27] [28]
 File: figs/nico_click.pdf Graphic file (type QTm)
-
-<use  "figs/nico_click.pdf" > [29]
+ <use  "figs/nico_click.pdf" >
 LaTeX Font Info:    Try loading font information for OMS+LinuxLibertineO(0) on 
 input line 962.
 LaTeX Font Info:    No file OMSLinuxLibertineO(0).fd. on input line 962.
 LaTeX Font Info:    Font shape `OMS/LinuxLibertineO(0)/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
 (Font)              for symbol `textperiodcentered' on input line 962.
- [30] [31]
+ [29] [30]
 File: figs/nico_screen_01.png Graphic file (type QTm)
- <use  "figs/nico_screen_01.png" >
-[32] [33]
+
+<use  "figs/nico_screen_01.png" > [31] [32]
 File: figs/nico_screen_oldest.png Graphic file (type QTm)
- <use  "figs/nico_screen_oldest.png" >
+
+<use  "figs/nico_screen_oldest.png" > [33]
 File: figs/nico_screen_older.png Graphic file (type QTm)
 
-<use  "figs/nico_screen_older.png" > [34]
+<use  "figs/nico_screen_older.png" >
 File: figs/nico_screen_new.png Graphic file (type QTm)
  <use  "figs/nico_screen_new.png" >
-[35]
+[34]
 File: figs/nico_gudb.png Graphic file (type QTm)
- <use  "figs/nico_gudb.png" > [36]
+ <use  "figs/nico_gudb.png" > [35] [36]
 File: figs/nico_op.png Graphic file (type QTm)
  <use  "figs/nico_op.png" >
 File: figs/nico_arg.png Graphic file (type QTm)
@@ -781,9 +774,9 @@ Underfull \hbox (badness 2111) in paragraph at lines 1131--1131
 \EU1/LinuxLibertineO(0)/m/n/10 highlighting has been implemented
  []
 
-[37] [38] [39] [40]
+[37] [38] [39]
 File: figs/nico_screen_02.png Graphic file (type QTm)
- <use  "figs/nico_screen_02.png" > [41]
+ <use  "figs/nico_screen_02.png" > [40]
 File: figs/nico_hi1.png Graphic file (type QTm)
 
 <use  "figs/nico_hi1.png" >
@@ -791,7 +784,7 @@ File: figs/nico_hi2.png Graphic file (type QTm)
  <use  "figs/nico_hi2.png" >
 File: figs/nico_hi3.png Graphic file (type QTm)
 
-<use  "figs/nico_hi3.png" > [42]
+<use  "figs/nico_hi3.png" > [41]
 File: figs/nico_wrong.png Graphic file (type QTm)
  <use  "figs/nico_wrong.png" >
 File: figs/nico_right.png Graphic file (type QTm)
@@ -809,7 +802,10 @@ Underfull \hbox (badness 3872) in paragraph at lines 1238--1238
 []\EU1/LinuxLibertineO(0)/m/n/10 (d) |An argument is highlighted
  []
 
-[43] [44] [45] [46
+[42] [43]
+LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
+(Font)              scaled to size 8.97906pt on input line 1259.
+ [44] [45] [46
 
 ]
 Chapter 4.
@@ -834,7 +830,7 @@ File: figs/graphs/q3.png Graphic file (type QTm)
 <use  "figs/graphs/q3.png" >
 File: figs/graphs/q6.png Graphic file (type QTm)
  <use  "figs/graphs/q6.png" >
-Underfull \hbox (badness 10000) in paragraph at lines 1459--1459
+Underfull \hbox (badness 10000) in paragraph at lines 1505--1505
 []\EU1/LinuxLibertineO(0)/m/n/10 Figure 4.5: |Time taken in milliseconds per pa
 rticipant to answer Question 6:
  []
@@ -844,59 +840,62 @@ File: figs/graphs/q7.png Graphic file (type QTm)
  <use  "figs/graphs/q7.png" > [54]
 File: figs/graphs/q9.png Graphic file (type QTm)
  <use  "figs/graphs/q9.png" > [55]
-[56] [57] [58] [59] [60]
+[56] [57] [58] [59]
 File: figs/graphs/stacked-scores.png Graphic file (type QTm)
- <use  "figs/graphs/stacked-scores.png" > [61] [62]
-[63] [64] [65] [66] [67] [68
-
-]
+ <use  "figs/graphs/stacked-scores.png" > [60] [61] [62]
+[63] [64] [65] [66]
 Chapter 5.
-[69
-
-] [70] (./diss.bbl [71
+[67
 
 
-] [72]) [73] [74
+] [68] (./diss.bbl [69
+
+
+] [70]) [71] [72
 
 ]
 Appendix A.
-[75
+[73
 
 ]
 Appendix B.
 
-Overfull \hbox (27.71333pt too wide) in paragraph at lines 1862--1893
+Overfull \hbox (27.71333pt too wide) in paragraph at lines 1896--1927
  [] 
  []
 
-[76
+[74
 
 ]
 File: figs/graphs/q1.png Graphic file (type QTm)
- <use  "figs/graphs/q1.png" > [77]
+ <use  "figs/graphs/q1.png" > [75]
 File: figs/graphs/q2.png Graphic file (type QTm)
  <use  "figs/graphs/q2.png" >
 File: figs/graphs/q3.png Graphic file (type QTm)
 
-<use  "figs/graphs/q3.png" > [78]
+<use  "figs/graphs/q3.png" > [76]
 File: figs/graphs/q4.png Graphic file (type QTm)
  <use  "figs/graphs/q4.png" >
 File: figs/graphs/q5.png Graphic file (type QTm)
 
-<use  "figs/graphs/q5.png" > [79]
+<use  "figs/graphs/q5.png" > [77]
 File: figs/graphs/q6.png Graphic file (type QTm)
  <use  "figs/graphs/q6.png" >
 File: figs/graphs/q7.png Graphic file (type QTm)
 
-<use  "figs/graphs/q7.png" > [80]
+<use  "figs/graphs/q7.png" > [78]
 File: figs/graphs/q8.png Graphic file (type QTm)
  <use  "figs/graphs/q8.png" >
 File: figs/graphs/q9.png Graphic file (type QTm)
 
-<use  "figs/graphs/q9.png" > [81]
+<use  "figs/graphs/q9.png" > [79]
 File: figs/graphs/q10.png Graphic file (type QTm)
- <use  "figs/graphs/q10.png" > [82]
+ <use  "figs/graphs/q10.png" > [80]
 Appendix C.
+[81
+
+] [82]
+Appendix D.
 [83
 
 ]
@@ -987,7 +986,7 @@ File: qs.pdf Graphic file (type QTm)
 File: qs.pdf Graphic file (type QTm)
 
 <use  "qs.pdf"  page11> [94]
-Appendix D.
+Appendix E.
 [95
 
 
@@ -1041,17 +1040,13 @@ File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page5> [100]
 (./diss.aux)
 LaTeX Font Info:    Some font shapes were not available, defaults substituted.
-
-
-LaTeX Warning: There were undefined references.
-
  ) 
 Here is how much of TeX's memory you used:
- 7850 strings out of 495724
- 130198 string characters out of 1189347
+ 7851 strings out of 495724
+ 130232 string characters out of 1189347
  226104 words of memory out of 3000000
- 10761 multiletter control sequences out of 15000+50000
- 11214 words of font info for 78 fonts, out of 3000000 for 9000
+ 10762 multiletter control sequences out of 15000+50000
+ 11222 words of font info for 79 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  44i,16n,83p,1297b,577s stack positions out of 5000i,500n,10000p,200000b,50000s
 

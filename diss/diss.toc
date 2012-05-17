@@ -21,29 +21,29 @@
 \contentsline {chapter}{\numberline {3}Implementation}{21}
 \contentsline {section}{\numberline {3.1}System Architecture}{21}
 \contentsline {subsection}{\numberline {3.1.1}Infrastructure}{24}
-\contentsline {subsubsection}{\numberline {3.1.1.1}Management of Mutable State}{25}
+\contentsline {subsubsection}{\numberline {3.1.1.1}Management of Mutable State}{24}
 \contentsline {subsubsection}{\numberline {3.1.1.2}Circle Management}{25}
-\contentsline {subsubsection}{\numberline {3.1.1.3}Evaluation}{27}
+\contentsline {subsubsection}{\numberline {3.1.1.3}Evaluation}{26}
 \contentsline {subsubsection}{\numberline {3.1.1.4}Question Management}{27}
-\contentsline {subsection}{\numberline {3.1.2}Interaction Handler}{28}
+\contentsline {subsection}{\numberline {3.1.2}Interaction Handler}{27}
 \contentsline {subsubsection}{\numberline {3.1.2.1}GUI Libraries}{28}
 \contentsline {subsubsection}{\numberline {3.1.2.2}Main Window}{28}
 \contentsline {subsubsection}{\numberline {3.1.2.3}Control Scheme}{29}
-\contentsline {section}{\numberline {3.2}User Interface}{32}
+\contentsline {section}{\numberline {3.2}User Interface}{31}
 \contentsline {subsection}{\numberline {3.2.1}Application}{32}
-\contentsline {subsubsection}{\numberline {3.2.1.1}Initial Revision and Control Buttons}{33}
+\contentsline {subsubsection}{\numberline {3.2.1.1}Initial Revision and Control Buttons}{32}
 \contentsline {subsubsection}{\numberline {3.2.1.2}Context Menus and Automated Marking}{33}
-\contentsline {subsubsection}{\numberline {3.2.1.3}Final Revision}{34}
-\contentsline {subsubsection}{\numberline {3.2.1.4}Dialogue Boxes}{36}
-\contentsline {subsection}{\numberline {3.2.2}Notation}{38}
-\contentsline {subsubsection}{\numberline {3.2.2.1}Early Revisions}{38}
-\contentsline {subsubsection}{\numberline {3.2.2.2}Final Revision}{39}
-\contentsline {subsection}{\numberline {3.2.3}Control Scheme}{39}
-\contentsline {subsubsection}{\numberline {3.2.3.1}Development}{39}
-\contentsline {subsubsection}{\numberline {3.2.3.2}Control Design}{40}
-\contentsline {subsection}{\numberline {3.2.4}Colour-Coding}{41}
-\contentsline {subsubsection}{\numberline {3.2.4.1}Colour Blindness}{44}
-\contentsline {section}{\numberline {3.3}Testing}{44}
+\contentsline {subsubsection}{\numberline {3.2.1.3}Final Revision}{33}
+\contentsline {subsubsection}{\numberline {3.2.1.4}Dialogue Boxes}{35}
+\contentsline {subsection}{\numberline {3.2.2}Notation}{37}
+\contentsline {subsubsection}{\numberline {3.2.2.1}Early Revisions}{37}
+\contentsline {subsubsection}{\numberline {3.2.2.2}Final Revision}{38}
+\contentsline {subsection}{\numberline {3.2.3}Control Scheme}{38}
+\contentsline {subsubsection}{\numberline {3.2.3.1}Development}{38}
+\contentsline {subsubsection}{\numberline {3.2.3.2}Control Design}{39}
+\contentsline {subsection}{\numberline {3.2.4}Colour-Coding}{40}
+\contentsline {subsubsection}{\numberline {3.2.4.1}Colour Blindness}{43}
+\contentsline {section}{\numberline {3.3}Testing}{43}
 \contentsline {section}{\numberline {3.4}Summary}{45}
 \contentsline {chapter}{\numberline {4}Evaluation}{47}
 \contentsline {section}{\numberline {4.1}UI Evaluation}{47}
@@ -63,10 +63,11 @@
 \contentsline {paragraph}{\numberline {4.2.3.1.9}Secondary Notation}{65}
 \contentsline {paragraph}{\numberline {4.2.3.1.10}Feedback}{65}
 \contentsline {section}{\numberline {4.3}Summary}{66}
-\contentsline {chapter}{\numberline {5}Conclusions}{69}
-\contentsline {section}{\numberline {5.1}Future Work}{70}
-\contentsline {chapter}{Bibliography}{71}
-\contentsline {chapter}{\numberline {A}Third-Party Tools}{75}
-\contentsline {chapter}{\numberline {B}User Response Times}{76}
-\contentsline {chapter}{\numberline {C}Questionnaire}{83}
-\contentsline {chapter}{\numberline {D}Project Proposal}{95}
+\contentsline {chapter}{\numberline {5}Conclusions}{67}
+\contentsline {section}{\numberline {5.1}Future Work}{68}
+\contentsline {chapter}{Bibliography}{69}
+\contentsline {chapter}{\numberline {A}Third-Party Tools}{73}
+\contentsline {chapter}{\numberline {B}User Response Times}{74}
+\contentsline {chapter}{\numberline {C}User Feedback}{81}
+\contentsline {chapter}{\numberline {D}Questionnaire}{83}
+\contentsline {chapter}{\numberline {E}Project Proposal}{95}

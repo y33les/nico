@@ -1248,13 +1248,59 @@ As \emph{Nico}'s notation and user interface are reliant upon colour to express 
 
 \section{Testing}
 
-Development of the software was primarily REPL-driven, allowing for rapid development and testing whilst the application was running.  A suite of tests were derived from assertions made in the REPL.  The fact that the system had few mutable elements meant that most of it behaved very predictably; the only components which required integration testing were those that interacted with the application's mutable structures, thus reducing complexity.% TODO: this bit, wtf
-%
+Development of the software was primarily REPL-driven, allowing for rapid development and testing whilst the application was running.  A suite of unit tests were derived from assertions made in the REPL, using Leiningen's testing framework and the \verb¬clojure.test¬ library.  These constituted a number of tests containing several assertions that were able to be run all at once by using the command \verb¬lein test¬ in a terminal.  This was advantageous as it allowed for quick assessment of many functions within the software.
+
+Unit tests were performed on many infrastructure functions, especially those that did not require access to mutable state.  Such functions behaved very predictably; as pure functions with no side effects and being called upon immutable data, once unit tested, these did not require further testing.  An example of a unit test is shown in \emph{Fig.~\ref{fig:LeinTest}}.
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\begin{minipage}{10.9cm}
+\begin{Verbatim}[fontsize=\small,numbers=left]
+(deftest lisp-maths
+  (is (= (lisp-to-maths '(+ 2 3)) "2+3"))
+  (is (= (lisp-to-maths '(- 2 3)) "2-3"))
+  (is (= (lisp-to-maths '(* 2 3)) "2×3"))
+  (is (= (lisp-to-maths '(/ 2 3)) "2÷3"))
+  (is (= (lisp-to-maths '(+ 19 28 30 1 -4)) "19+28+30+1+-4"))
+  (is (= (lisp-to-maths '(+ (- 2 3) (* 4 5))) "(2-3)+(4×5)"))
+  (is (= (lisp-to-maths '(+ 3 4 (- 2 1) 1)) "3+4+(2-1)+1")))
+\end{Verbatim}
+\end{minipage}
+\end{center}
+\caption{A unit test taken from the test file.  Several assertions are made within the body of a test.  The command {\ttfamily lein test} causes all such tests to be run, providing the developer with the number of passes and failures, and details of any failures that occurred.}
+\label{fig:LeinTest}
+\end{figure}
+\end{center}
+
+Integration testing was required for larger components, and especially those that accessed mutable data structures.  The REPL-driven nature of development meant that it was possible to evaluate certain statements while the application was running, for example to compare the updated value of a circle after a modification operation (\emph{Fig.~\ref{fig:ReplTest}}).
+
+\begin{center}
+\begin{figure}[H]
+\begin{center}
+\begin{minipage}{9.5cm}
+\begin{Verbatim}[fontsize=\small,numbers=left]
+nico.core> (:circ (find-circle "c0"))
+(#<core$_PLUS_ clojure.core$_PLUS_@24de1f47> 1 2 3)
+nico.core> (remove-last-arg (find-circle "c0"))
+[redacted: output stating successful update of agent]
+nico.core> (:circ (find-circle "c0"))
+(#<core$_PLUS_ clojure.core$_PLUS_@24de1f47> 1 2)
+\end{Verbatim}
+\end{minipage}
+\end{center}
+\caption{A REPL-based integration test for a function to remove the final argument of a circle.  The expression contained within a circle is checked, the removal function is called, and the expression is checked again.  The effect is visible; the final argument has been removed.}
+\label{fig:ReplTest}
+\end{figure}
+\end{center}
+
+Testing was made much easier by the small number of mutable data structures.  Fewer integration tests were required, as after it was established that a pure function that did not interact with mutable objects behaved as expected, it could be assumed that it would behave as expected outside of the unit-testing situation.
+
 %5Throughout the development of the software, unit tests were performed to ensure the integrity of the code.  GNU Emacs, in combination with SLIME/SWANK and clojure-mode, includes functionality such that commented-out lines of code can be evaluated at will.  As such, it was possible to write unit and integration tests into the main body of my code and to evaluate them whenever a change may have affected how a function behaved.  In the interests of tidiness and code readability, many tests were removed as they became unnecessary later on in the development in the project.
 %
 %% TODO: chat shit about assertions
 %Assertions were also used to perform tests: Clojure provides the developer with the ability to specify runtime tests as part of function definition, throwing exceptions if any assertions.  Such tests were used in addition to the previous method to unit-test and integration-test the functions within the application.
-
+%
 \section{Summary}
 
 The software fulfils and exceeds the criteria for success outlined in the project proposal, being a complete and usable system that improves upon the traditional method of handwritten arithmetic.

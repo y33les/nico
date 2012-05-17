@@ -1,20 +1,20 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Illustrating the hidden dependencies and viscosity inherent in pre-algebra, handwritten arithmetic. The original calculation is shown in (a), has its otherwise-hidden dependencies highlighted in (b), and is altered slightly in (c).\relax }}{5}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Illustrating the hidden dependencies and viscosity inherent in pre-algebra, handwritten arithmetic. The original calculation is shown in \emph {a)}; in \emph {b)}, it has its otherwise-hidden dependencies highlighted; and it is altered slightly in \emph {c)}.\relax }}{5}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{5}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{5}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{5}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Early designs for flowgraph-based calculation metaphors.\relax }}{9}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Early designs for flowgraph-based calculation metaphors.\relax }}{8}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{8}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{8}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces A refined sketch of a flowgraph-based language and application.\relax }}{9}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Early designs for triangle-based calculation metaphors.\relax }}{9}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{9}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{9}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces A more refined sketch of a flowgraph-based language and application.\relax }}{9}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Early designs for triangle-based calculation metaphors.\relax }}{10}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{10}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{10}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{10}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{10}
-\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {}}}{10}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces A more refined sketch of a triangle-based language.\relax }}{11}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{9}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{9}
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {}}}{9}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces A refined sketch of a triangle-based language.\relax }}{10}
 \contentsline {figure}{\numberline {2.6}{\ignorespaces Early designs for circle-based calculation metaphors.\relax }}{11}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{11}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{11}
@@ -23,7 +23,7 @@
 \contentsline {subfigure}{\numberline {(e)}{\ignorespaces {}}}{11}
 \contentsline {subfigure}{\numberline {(f)}{\ignorespaces {}}}{11}
 \contentsline {subfigure}{\numberline {(g)}{\ignorespaces {}}}{11}
-\contentsline {figure}{\numberline {2.7}{\ignorespaces A more refined sketch of a circle-based language.\relax }}{12}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces A refined sketch of a circle-based language.\relax }}{12}
 \contentsline {figure}{\numberline {2.8}{\ignorespaces Assorted early designs for other calculation metaphors.\relax }}{13}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{13}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{13}
@@ -38,37 +38,38 @@
 \contentsline {subfigure}{\numberline {(k)}{\ignorespaces {}}}{13}
 \contentsline {subfigure}{\numberline {(l)}{\ignorespaces {}}}{13}
 \contentsline {subfigure}{\numberline {(m)}{\ignorespaces {}}}{13}
-\contentsline {figure}{\numberline {2.9}{\ignorespaces A sample progression of a calculation in a language based around infinitely halving a rectangle.\relax }}{14}
+\contentsline {figure}{\numberline {2.9}{\ignorespaces A sample progression of a calculation using a language based around an infinitely-subdivided rectangle.\relax }}{14}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{14}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{14}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{14}
 \contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{14}
 \contentsline {subfigure}{\numberline {(e)}{\ignorespaces {}}}{14}
 \contentsline {figure}{\numberline {2.10}{\ignorespaces The prototype flowgraph-style language.\relax }}{15}
-\contentsline {figure}{\numberline {2.11}{\ignorespaces The prototype Sierpiński-triangle-based language.\relax }}{18}
-\contentsline {figure}{\numberline {2.12}{\ignorespaces The prototype circle-based language.\relax }}{20}
+\contentsline {figure}{\numberline {2.11}{\ignorespaces The prototype Sierpiński-triangle-based language.\relax }}{17}
+\contentsline {figure}{\numberline {2.12}{\ignorespaces The prototype circle-based language.\relax }}{19}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces A model of \emph {Nico}'s three-layer architecture.\relax }}{26}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Three instances of the question text being highlighted as a corresponding circle is moused-over.\relax }}{32}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces A model of \emph {Nico}'s three-layer architecture.\relax }}{25}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces A diagram of workflow in \emph {Nico}.\relax }}{26}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Three instances of the question text being highlighted as a corresponding circle is moused-over.\relax }}{32}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{32}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{32}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{32}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Decision tree to determine the appropriate response to a mouse click event.\relax }}{33}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces A screenshot of a \emph {Nico} session.\relax }}{36}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces A very early version of the user interface. Many features are yet to be implemented, but the layout with the buttons and the early revision of the notation is evident.\relax }}{38}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces A later revision of the user interface. The screen has been cleared, allowing context menus to replace buttons. The facility for checking an answer has been removed, due to the automatic answer-checking in this version. The notation has now been fully implemented, but still lacks many features of the final version.\relax }}{39}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces The final revision of the user interface. The layout is similar to the previous version, but now includes highlighting and the bin icon for deletion. The notation is now colour-coded, and the answer-checking button has been reintroduced.\relax }}{39}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces The unified dialogue box.\relax }}{40}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces The dialogue boxes used to modify existing circles in the application.\relax }}{41}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Decision tree to determine the appropriate response to a mouse click event.\relax }}{33}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces A screenshot of a \emph {Nico} session.\relax }}{36}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces A very early version of the user interface. Many features are yet to be implemented, but the layout with the buttons and the early revision of the notation is evident.\relax }}{38}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces A later revision of the user interface. The screen has been cleared, allowing context menus to replace buttons. The facility for checking an answer has been removed, due to the automatic answer-checking in this version. The notation has now been fully implemented, but still lacks many features of the final version.\relax }}{39}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces The final revision of the user interface. The layout is similar to the previous version, but now includes highlighting and the bin icon for deletion. The notation is now colour-coded, and the answer-checking button has been reintroduced.\relax }}{39}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces The unified dialogue box.\relax }}{40}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces The dialogue boxes used to modify existing circles in the application.\relax }}{41}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Editing a circle's operator}}}{41}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Editing a circle's argument}}}{41}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces An example of where nesting-based colour-coding would be confusing. The circle containing (2+2) can be considered to be both one and two circles removed from the root circle.\relax }}{44}
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Examples of colour-coding in \emph {Nico}.\relax }}{45}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces An example of where nesting-based colour-coding would be confusing. The circle containing (2+2) can be considered to be both one and two circles removed from the root circle.\relax }}{44}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Examples of colour-coding in \emph {Nico}.\relax }}{45}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Red text indicates that the answer submitted was incorrect}}}{45}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Green text indicates a correct answer; a dialogue box allows the user to progress to the next question when they are ready}}}{45}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {The circle's operator is highlighted when it is being edited}}}{45}
 \contentsline {subfigure}{\numberline {(d)}{\ignorespaces {An argument is highlighted when it is being edited}}}{45}
-\contentsline {figure}{\numberline {3.12}{\ignorespaces The notation used also went through a number of revisions before reaching its current state.\relax }}{46}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces The notation used also went through a number of revisions before reaching its current state.\relax }}{46}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {An old version of the notation. Circles are uniformly coloured, and links feed into the centre of their target circles. There is no indication of argument evaluation order.}}}{46}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {The final version of the notation. Circles are colour-coded by operation, highlighting has been implemented and links fill argument slots, ending in a circle to indicate their destination. The diagonal line and arrows have been added to circles to indicate evaluation order.}}}{46}
 \addvspace {10\p@ }
@@ -84,15 +85,16 @@
 \contentsline {figure}{\numberline {4.8}{\ignorespaces Diagram showing the proportions of positive, neutral and negative feedback per question.\relax }}{64}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Time taken in milliseconds per participant to answer Question 1.\relax }}{79}
-\contentsline {figure}{\numberline {A.2}{\ignorespaces Time taken in milliseconds per participant to answer Question 2.\relax }}{79}
-\contentsline {figure}{\numberline {A.3}{\ignorespaces Time taken in milliseconds per participant to answer Question 3.\relax }}{80}
-\contentsline {figure}{\numberline {A.4}{\ignorespaces Time taken in milliseconds per participant to answer Question 4.\relax }}{80}
-\contentsline {figure}{\numberline {A.5}{\ignorespaces Time taken in milliseconds per participant to answer Question 5.\relax }}{81}
-\contentsline {figure}{\numberline {A.6}{\ignorespaces Time taken in milliseconds per participant to answer Question 6.\relax }}{81}
-\contentsline {figure}{\numberline {A.7}{\ignorespaces Time taken in milliseconds per participant to answer Question 7.\relax }}{82}
-\contentsline {figure}{\numberline {A.8}{\ignorespaces Time taken in milliseconds per participant to answer Question 8.\relax }}{82}
-\contentsline {figure}{\numberline {A.9}{\ignorespaces Time taken in milliseconds per participant to answer Question 9.\relax }}{83}
-\contentsline {figure}{\numberline {A.10}{\ignorespaces Time taken in milliseconds per participant to answer Question 10.\relax }}{83}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Time taken in milliseconds per participant to answer Question 1.\relax }}{80}
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Time taken in milliseconds per participant to answer Question 2.\relax }}{80}
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Time taken in milliseconds per participant to answer Question 3.\relax }}{81}
+\contentsline {figure}{\numberline {B.4}{\ignorespaces Time taken in milliseconds per participant to answer Question 4.\relax }}{81}
+\contentsline {figure}{\numberline {B.5}{\ignorespaces Time taken in milliseconds per participant to answer Question 5.\relax }}{82}
+\contentsline {figure}{\numberline {B.6}{\ignorespaces Time taken in milliseconds per participant to answer Question 6.\relax }}{82}
+\contentsline {figure}{\numberline {B.7}{\ignorespaces Time taken in milliseconds per participant to answer Question 7.\relax }}{83}
+\contentsline {figure}{\numberline {B.8}{\ignorespaces Time taken in milliseconds per participant to answer Question 8.\relax }}{83}
+\contentsline {figure}{\numberline {B.9}{\ignorespaces Time taken in milliseconds per participant to answer Question 9.\relax }}{84}
+\contentsline {figure}{\numberline {B.10}{\ignorespaces Time taken in milliseconds per participant to answer Question 10.\relax }}{84}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

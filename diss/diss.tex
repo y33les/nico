@@ -275,7 +275,7 @@ Existing educational games for mathematics, although valid as a pedagogical tool
 % comprises a requirements analysis, followed by an overview of the system
 % architecture and a discussion of the additional tools used in the development of
 % the project.
-This chapter concerns the work that was completed prior to development.  It comprises a requirements analysis, followed by a discussion of the prototyping of the graphical notation that was to be implemented in the final application.
+This chapter concerns the work that was completed prior to development.  It comprises a requirements analysis, followed by a discussion of the prototyping of the graphical notation that was to be implemented in the final application.  A list of third-party tools used can be found in \emph{Appendix A}.
 
 \section{Requirements Analysis}
 % http://www.cs.fsu.edu/~lacher/courses/COP3331/rad.html
@@ -793,7 +793,7 @@ Prior to the implementation of the project, a thorough requirements analysis was
 
 This chapter includes a discussion of the system architecture, detailing the implementation of its infrastructure, management of mutable state, administration of circles, interpretation and evaluation of the notation, and handling of the questions posed to the user.  This is followed by a discussion of the interaction handler, the libraries used, the underlying structure of the user interface and the control scheme.  Next, there is an analysis of the development of the user interface, considering the application itself and its control scheme, use of colour-coding and notation.  Finally there is a discussion of testing methods used.
 
-The code itself totals approximately 1,500 lines of Clojure, and the application satisfies the success criteria in the project proposal, namely:
+The code itself totals approximately 1,500 lines of Clojure, and was developed in a bottom-up manner, using the iterative and incremental method of software development, in which components of the application are planned, implemented, tested and evaluated before being integrated with larger components.  The application satisfies the success criteria in the project proposal, namely:
 \begin{center}
 \parbox[c]{\textwidth-2cm}{
 \small
@@ -818,16 +818,16 @@ The system comprises three layers of operation: the user interface, the interact
 \end{figure}
 \end{center}
 \end{landscape}
-
-\begin{center}
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=\textwidth-2cm]{figs/nico_arch.pdf}
-\end{center}
-\caption{A diagram of workflow in \emph{Nico}.}
-\label{fig:NicoFlow}
-\end{figure}
-\end{center}
+%
+%\begin{center}
+%\begin{figure}[H]
+%\begin{center}
+%\includegraphics[width=\textwidth-2cm]{figs/nico_arch.pdf}
+%\end{center}
+%\caption{A diagram of workflow in \emph{Nico}.}
+%\label{fig:NicoFlow}
+%\end{figure}
+%\end{center}
 
 % TODO: sort out all the pictures, pdfxetex just can't handle that shit (i.e. scaling images - do it in gimp or something)
 % TODO: overview of system architecture beforehand
@@ -888,7 +888,7 @@ This naïve implementation of deletion led to many problems: it does not deal we
 
 The alternative deletion function works by first checking if any of the circles currently in the main list contain references to the circle being deleted.  If it is found that there are circles that do, the function determines if that circle is a root circle (\emph{Sec.~3.1.1.3}).  If so, the root circle is removed using the previous method and replaced, with null references changed to placeholders.  If the circle is non-root, the deletion function recursively calls itself upon the circle, thus removing all circles between the circle to be deleted and the root.  The circle can then be deleted using the original method, and the intermediate circles are replaced.
 
-This solved the problem of maintaining referential integrity, but it has also given rise to a new problem: as the alternative deletion function must call itself upon the other circles in the chain, deleting a circle that forms part of a chain deletes all of the links in the chain between the target and the root.  On reflection, a better way to implement deletion would have been to make the alternative deletion function inspect the main circle list after deletion, checking for any invalid references and replacing them with \verb¬\?¬s, rather than doing so at delete-time.
+The alternative method of deletion solved the problem of maintaining referential integrity, but it has also given rise to a new problem: as the alternative deletion function must call itself upon the other circles in the chain, deleting a circle that forms part of a chain deletes all of the links in the chain between the target and the root.  On reflection, a better way to implement deletion would have been to make the alternative deletion function inspect the main circle list after deletion, checking for any invalid references and replacing them with \verb¬\?¬s, rather than doing so at delete-time.
 
 \subsubsection{Evaluation}
 
@@ -1566,48 +1566,48 @@ Q10 & 0 & 0 & 1 & 0 & 0 & 5 & 1 & 0\\
 % or perhaps concat as above, then separate into the 1-markers and 0-markers
 % then again, might be better to just take a mean of the wrongs with that data
 % could even do this by question, e.g. if they got q1 wrong on paper they're more likely to get it wrong in the software, but getting q2 wrong might not mean shit
-The Pearson product-moment correlation coefficient \emph{r} of this data was calculated, comparing the concatenated `marks' data and the concatenated `tries' data (two series of 80 elements each).  The value obtained for \emph{r} was -0.2278926.  To determine the significance of this result, the \emph{r} value is compared to a critical value taken from Fisher's table, which gives, for a test at the 0.05 level and for 80 samples, a critical value of 0.2172 \cite{Fisher1990}.  Hence, the calculated \emph{r} value shows a statistically-significant, negative correlation between the marks obtained for a handwritten answer and the number of wrong submissions using \emph{Nico}.
+The Pearson product-moment correlation coefficient \emph{r} of this data was calculated, comparing the concatenated `marks' and `tries' data series (giving two series of 80 elements).  The \emph{r} value obtained was -0.2278926.  Using Fisher's critical value of 0.2172, we see that this is significant \cite{Fisher1990}.  This indicates that \emph{Nico} does not have a negative effect on a user's ability to answer questions correctly.
+%To determine the significance of this result, the \emph{r} value is compared to a critical value taken from Fisher's table, which gives, for a test at the 0.05 level and for 80 samples, a critical value of 0.2172 \cite{Fisher1990}.  Hence, the calculated \emph{r} value shows a statistically-significant, negative correlation between the marks obtained for a handwritten answer and the number of wrong submissions using \emph{Nico}.
 
 \subsubsection{Feedback}
 % feedback innit
 % TODO: this section
 
-The final section of the questionnaire constituted a series of questions adapted from Blackwell and Green \cite{Blackwell2000}.  The users' responses were graded based upon their tone, scoring -1 for negative, 0 for neutral and 1 for positive.
+The final section of the questionnaire constituted a series of questions adapted from Blackwell and Green \cite{Blackwell2000}.  The users' responses were graded based upon their tone, scoring -1 for negative, 0 for neutral and 1 for positive.  The total number of positive, negative and neutral response are shown in \emph{Table \ref{tab:FeedbackScores}}, with the full results in \emph{Appendix C}.
 
 \begin{center}
 \begin{table}[H]
 \begin{center}
-\begin{tabular}{|r||r|r|r|r||r|r|r|r||r|r|r|}
-\cline{2-12}
-\multicolumn{1}{c}{} & \multicolumn{4}{|c|}{Group 1} & \multicolumn{4}{c||}{Group 2} & \multicolumn{3}{c|}{Totals}\\ \hline
-\multicolumn{1}{|c||}{Question} & \multicolumn{1}{c|}{P1} & \multicolumn{1}{c|}{P2} & \multicolumn{1}{c|}{P3} & \multicolumn{1}{c||}{P4} & \multicolumn{1}{c|}{P1} & \multicolumn{1}{c|}{P2} & \multicolumn{1}{c|}{P3} & \multicolumn{1}{c||}{P4} & \multicolumn{1}{c|}{+} & \multicolumn{1}{c|}{±} & \multicolumn{1}{c|}{-}\\ \hline \hline
-2.1.1 & 1 & 1 & -1 & 0 & 1 & 1 & 1 & 1 & 6 & 1 & 1\\ \hline
-2.1.2 & -1 & 1 & -1 & -1 & -1 & -1 & 1 & -1 & 2 & 0 & 6\\ \hline
-2.1.3 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 8 & 0 & 0\\ \hline
-2.2.1 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 1 & 7 & 1 & 0\\ \hline
-2.2.2 & -1 & 1 & -1 & -1 & -1 & 1 & 1 & 1 & 4 & 0 & 4\\ \hline
-2.3.1 & -1 & -1 & -1 & -1 & -1 & 1 & 0 & 0 & 1 & 2 & 5\\ \hline
-2.3.2 & -1 & 1 & 0 & -1 & 0 & 0 & -1 & 1 & 2 & 3 & 3\\ \hline
-2.4.1 & 1 & 1 & -1 & 1 & -1 & 1 & 1 & 1 & 6 & 0 & 2\\ \hline
-2.4.2 & -1 & -1 & -1 & -1 & -1 & 1 & 1 & 1 & 3 & 0 & 5\\ \hline
-2.5.1 & -1 & 1 & -1 & 1 & 1 & 1 & 1 & 1 & 6 & 0 & 2\\ \hline
-2.5.2 & 0 & 1 & 0 & 0 & -1 & 1 & 1 & 1 & 4 & 3 & 1\\ \hline
-2.5.3 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 6 & 2 & 0\\ \hline
-2.6.1 & 1 & 1 & 0 & 0 & 1 & 1 & 1 & 1 & 6 & 2 & 0\\ \hline
-2.6.2 & -1 & -1 & -1 & -1 & -1 & 1 & 0 & 1 & 2 & 1 & 5\\ \hline
-2.7.1 & -1 & 1 & -1 & 1 & 0 & 1 & 1 & 1 & 5 & 1 & 2\\ \hline
-2.7.2 & 0 & -1 & -1 & 1 & 1 & 0 & 1 & 0 & 3 & 3 & 2\\ \hline
-2.7.3 & 0 & 1 & 0 & 1 & 0 & 0 & 1 & 0 & 3 & 5 & 0\\ \hline
-2.8.1 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 6 & 2 & 0\\ \hline
-2.9.1 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 2 & 6 & 0\\ \hline
-2.9.2 & 0 & 0 & -1 & 0 & 0 & 1 & 0 & 0 & 1 & 6 & 1\\ \hline
-2.9.3 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 7 & 0\\ \hline
-3.1 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 3 & 5 & 0\\ \hline
-3.2 & 0 & 1 & -1 & 0 & -1 & 1 & -1 & -1 & 2 & 2 & 4\\
+\begin{tabular}{|r||r|r|r|}
+\cline{2-4}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{+} & \multicolumn{1}{c|}{±} & \multicolumn{1}{c|}{-}\\ \hline \hline
+2.1.1 & 6 & 1 & 1\\ \hline
+2.1.2 & 2 & 0 & 6\\ \hline
+2.1.3 & 8 & 0 & 0\\ \hline
+2.2.1 & 7 & 1 & 0\\ \hline
+2.2.2 & 4 & 0 & 4\\ \hline
+2.3.1 & 1 & 2 & 5\\ \hline
+2.3.2 & 2 & 3 & 3\\ \hline
+2.4.1 & 6 & 0 & 2\\ \hline
+2.4.2 & 3 & 0 & 5\\ \hline
+2.5.1 & 6 & 0 & 2\\ \hline
+2.5.2 & 4 & 3 & 1\\ \hline
+2.5.3 & 6 & 2 & 0\\ \hline
+2.6.1 & 6 & 2 & 0\\ \hline
+2.6.2 & 2 & 1 & 5\\ \hline
+2.7.1 & 5 & 1 & 2\\ \hline
+2.7.2 & 3 & 3 & 2\\ \hline
+2.7.3 & 3 & 5 & 0\\ \hline
+2.8.1 & 6 & 2 & 0\\ \hline
+2.9.1 & 2 & 6 & 0\\ \hline
+2.9.2 & 1 & 6 & 1\\ \hline
+2.9.3 & 1 & 7 & 0\\ \hline
+3.1 & 3 & 5 & 0\\ \hline
+3.2 & 2 & 2 & 4\\
 \hline
 \end{tabular}
 \end{center}
-\caption{Table showing the tone of feedback by participant and question, with the totals for each type of feedback by question.}
+\caption{Table showing the totals of positive, neutral and negative responses to each question.}
 \label{tab:FeedbackScores}
 \end{table}
 \end{center}
@@ -1658,7 +1658,7 @@ The modal feedback scores both by question and by topic are shown below, to dete
 \hline
 \end{tabular}
 \end{center}
-\caption{Table showing the modal feedback values (using the same scoring system as in \emph{Table \ref{tab:FeedbackScores}}) by question and by groups of questions.}
+\caption{Table showing the modal feedback values by question and by groups of questions.}
 \end{table}
 \end{center}
 
@@ -1756,7 +1756,7 @@ As an extension, a user study was conducted to assess the suitability of the sof
 \item For simple questions, \emph{Nico} increases the solution time
 \item For complex questions involving large numbers and nested calculations, \emph{Nico} decreases the solution time
 \end{itemize}
-\item There is a statistically-significant negative correlation between whether a question is answered correctly or incorrectly by hand and the number of wrong attempts at an answer before succeeding using the software
+\item \emph{Nico} does not negatively impact the user's ability to answer question correctly
 \item Feedback on the software was broadly positive, with users concluding that:
 \begin{itemize}
 \item The notation had few hidden dependencies
@@ -1778,7 +1778,7 @@ Overall this project has been very successful.  Not only have the success criter
 
 The software itself comprises a three-layer structure, with an infrastructure that interprets and manipulates user-input data; an interaction handler that provides an iterface between the infrastructure and the user interface; and the user interface itself, the environment in which the user interacts with the notation to express calculations.
 
-The user study conducted as an extension to the main project concluded that \emph{Nico} made a statistically-significant difference both to the users' speed of answering questions and to the users' likelihood to answer questions correctly.  This was particularly the case for more complex questions, with many subcalculations and larger numbers, the software was shown to decrease the time taken for users to answer.  There was also a statistically-significant negative correlation between the number of marks obtained in handwritten tests and the number of incorrect answers submitted to the software.
+The user study conducted as an extension to the main project concluded that \emph{Nico} made a statistically-significant difference to the users' speed of answering questions.  This was particularly the case for more complex questions, with many subcalculations and larger numbers, the software was shown to decrease the time taken for users to answer.
 
 User feedback was modally positive, with users finding that the software made it easy to explore many possible solutions, but also that the notation could become confusing where a large number of circles occupied much of the canvas' available area.  However, it was also noted that the notation had few \emph{hidden dependencies}, and was easy to read in most cases.
 
@@ -1972,6 +1972,47 @@ Q10 & 357300 & 238300 & 261600 & 203110 & 237500 & 324581 & 472900 & 270177\\
 \end{center}
 \caption{Time taken in milliseconds per participant to answer Question 10.}
 \end{figure}
+\end{center}
+
+\chapter{User Feedback}
+
+The results of the user feedback are shown below, with -1 indicating a negative response, 0 indicating a neutral response and 1 indicating a positive response.
+
+\begin{center}
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|r||r|r|r|r||r|r|r|r||r|r|r|}
+\cline{2-12}
+\multicolumn{1}{c}{} & \multicolumn{4}{|c|}{Group 1} & \multicolumn{4}{c||}{Group 2} & \multicolumn{3}{c|}{Totals}\\ \hline
+\multicolumn{1}{|c||}{Question} & \multicolumn{1}{c|}{P1} & \multicolumn{1}{c|}{P2} & \multicolumn{1}{c|}{P3} & \multicolumn{1}{c||}{P4} & \multicolumn{1}{c|}{P1} & \multicolumn{1}{c|}{P2} & \multicolumn{1}{c|}{P3} & \multicolumn{1}{c||}{P4} & \multicolumn{1}{c|}{+} & \multicolumn{1}{c|}{±} & \multicolumn{1}{c|}{-}\\ \hline \hline
+2.1.1 & 1 & 1 & -1 & 0 & 1 & 1 & 1 & 1 & 6 & 1 & 1\\ \hline
+2.1.2 & -1 & 1 & -1 & -1 & -1 & -1 & 1 & -1 & 2 & 0 & 6\\ \hline
+2.1.3 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 8 & 0 & 0\\ \hline
+2.2.1 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 1 & 7 & 1 & 0\\ \hline
+2.2.2 & -1 & 1 & -1 & -1 & -1 & 1 & 1 & 1 & 4 & 0 & 4\\ \hline
+2.3.1 & -1 & -1 & -1 & -1 & -1 & 1 & 0 & 0 & 1 & 2 & 5\\ \hline
+2.3.2 & -1 & 1 & 0 & -1 & 0 & 0 & -1 & 1 & 2 & 3 & 3\\ \hline
+2.4.1 & 1 & 1 & -1 & 1 & -1 & 1 & 1 & 1 & 6 & 0 & 2\\ \hline
+2.4.2 & -1 & -1 & -1 & -1 & -1 & 1 & 1 & 1 & 3 & 0 & 5\\ \hline
+2.5.1 & -1 & 1 & -1 & 1 & 1 & 1 & 1 & 1 & 6 & 0 & 2\\ \hline
+2.5.2 & 0 & 1 & 0 & 0 & -1 & 1 & 1 & 1 & 4 & 3 & 1\\ \hline
+2.5.3 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 6 & 2 & 0\\ \hline
+2.6.1 & 1 & 1 & 0 & 0 & 1 & 1 & 1 & 1 & 6 & 2 & 0\\ \hline
+2.6.2 & -1 & -1 & -1 & -1 & -1 & 1 & 0 & 1 & 2 & 1 & 5\\ \hline
+2.7.1 & -1 & 1 & -1 & 1 & 0 & 1 & 1 & 1 & 5 & 1 & 2\\ \hline
+2.7.2 & 0 & -1 & -1 & 1 & 1 & 0 & 1 & 0 & 3 & 3 & 2\\ \hline
+2.7.3 & 0 & 1 & 0 & 1 & 0 & 0 & 1 & 0 & 3 & 5 & 0\\ \hline
+2.8.1 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 6 & 2 & 0\\ \hline
+2.9.1 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 2 & 6 & 0\\ \hline
+2.9.2 & 0 & 0 & -1 & 0 & 0 & 1 & 0 & 0 & 1 & 6 & 1\\ \hline
+2.9.3 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 7 & 0\\ \hline
+3.1 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 3 & 5 & 0\\ \hline
+3.2 & 0 & 1 & -1 & 0 & -1 & 1 & -1 & -1 & 2 & 2 & 4\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Table showing the tone of feedback by participant and question, with the totals for each type of feedback by question.}
+\end{table}
 \end{center}
 
 \chapter{Questionnaire}

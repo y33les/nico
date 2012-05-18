@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.2-0.9995.2 (TeX Live 2009/Debian) (format=xelatex 2012.3.2)  17 MAY 2012 21:25
+This is XeTeX, Version 3.1415926-2.2-0.9995.2 (TeX Live 2009/Debian) (format=xelatex 2012.3.2)  18 MAY 2012 01:09
 entering extended mode
  %&-line parsing enabled.
 **\input diss.tex
@@ -523,15 +523,15 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/n' will be
 (Font)              scaled to size 14.4pt on input line 108.
 LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 11.80809pt on input line 115.
+(Font)              scaled to size 11.80809pt on input line 114.
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 119.
+(Font)              scaled to size 5.0pt on input line 118.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 119.
+(Font)              <5> on input line 118.
 LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
-(Font)              scaled to size 8.20007pt on input line 119.
+(Font)              scaled to size 8.20007pt on input line 118.
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/bx/n' will be
-(Font)              scaled to size 17.28pt on input line 123.
+(Font)              scaled to size 17.28pt on input line 122.
  [1
 
 ] [2] [3]
@@ -575,17 +575,17 @@ Chapter 1.
 
 ]
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/n' will be
-(Font)              scaled to size 10.95pt on input line 245.
+(Font)              scaled to size 10.95pt on input line 239.
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/sl' in size <12> not a
 vailable
 (Font)              Font shape `EU1/LinuxLibertineO(0)/m/it' tried instead on i
-nput line 246.
+nput line 240.
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/it' will be
-(Font)              scaled to size 12.0pt on input line 246.
+(Font)              scaled to size 12.0pt on input line 240.
  [2] [3] [4]
 Chapter 2.
 LaTeX Font Info:    Font shape `EU1/LinuxLibertineO(0)/m/it' will be
-(Font)              scaled to size 10.0pt on input line 322.
+(Font)              scaled to size 10.0pt on input line 316.
 [5
 
 
@@ -594,10 +594,10 @@ File: figs/mockups/sketches/11/11a.jpg Graphic file (type QTm)
  <use  "figs/mockups/sketches/11/11a.jpg" >
 File: figs/mockups/sketches/11/11b.jpg Graphic file (type QTm)
 
-<use  "figs/mockups/sketches/11/11b.jpg" > [8]
+<use  "figs/mockups/sketches/11/11b.jpg" >
 File: figs/mockups/sketches/11/11jii.jpg Graphic file (type QTm)
 
-<use  "figs/mockups/sketches/11/11jii.jpg" >
+<use  "figs/mockups/sketches/11/11jii.jpg" > [8]
 File: figs/mockups/sketches/21/21b.jpg Graphic file (type QTm)
 
 <use  "figs/mockups/sketches/21/21b.jpg" >
@@ -615,7 +615,7 @@ File: figs/mockups/sketches/42/42b.jpg Graphic file (type QTm)
 <use  "figs/mockups/sketches/42/42b.jpg" > [9]
 File: figs/mockups/sketches/31/31a.jpg Graphic file (type QTm)
 
-<use  "figs/mockups/sketches/31/31a.jpg" >
+<use  "figs/mockups/sketches/31/31a.jpg" > [10]
 File: figs/mockups/sketches/12/12a.jpg Graphic file (type QTm)
 
 <use  "figs/mockups/sketches/12/12a.jpg" >
@@ -628,18 +628,15 @@ File: figs/mockups/sketches/12/12c.jpg Graphic file (type QTm)
 File: figs/mockups/sketches/12/12f.jpg Graphic file (type QTm)
 
 <use  "figs/mockups/sketches/12/12f.jpg" >
-Overfull \hbox (55.30531pt too wide) in paragraph at lines 508--523
- [][][][] 
- []
-
 File: figs/mockups/sketches/12/12h.jpg Graphic file (type QTm)
+
 <use  "figs/mockups/sketches/12/12h.jpg" >
 File: figs/mockups/sketches/41/41a.jpg Graphic file (type QTm)
 
 <use  "figs/mockups/sketches/41/41a.jpg" >
 File: figs/mockups/sketches/41/41b.jpg Graphic file (type QTm)
 
-<use  "figs/mockups/sketches/41/41b.jpg" > [10]
+<use  "figs/mockups/sketches/41/41b.jpg" >
 File: figs/mockups/sketches/21/21a.jpg Graphic file (type QTm)
 
 <use  "figs/mockups/sketches/21/21a.jpg" > [11]
@@ -689,11 +686,11 @@ Overfull \vbox (45.02295pt too high) has occurred while \output is active []
 File: figs/mockups/sketches/12/12gi.jpg Graphic file (type QTm)
  <use  "figs/mockups/sketches/12/12gi.jpg" >
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <24.88> on input line 652.
+(Font)              <24.88> on input line 647.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <20.74> on input line 652.
+(Font)              <20.74> on input line 647.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <17.28> on input line 652.
+(Font)              <17.28> on input line 647.
 File: figs/mockups/sketches/12/12gii.jpg Graphic file (type QTm)
 
 <use  "figs/mockups/sketches/12/12gii.jpg" >
@@ -705,78 +702,77 @@ File: figs/mockups/sketches/12/12giv.jpg Graphic file (type QTm)
 <use  "figs/mockups/sketches/12/12giv.jpg" >
 File: figs/mockups/sketches/12/12gv.jpg Graphic file (type QTm)
 
-<use  "figs/mockups/sketches/12/12gv.jpg" >
+<use  "figs/mockups/sketches/12/12gv.jpg" > [14]
 File: figs/mockups/flowgraph/img/fg-000.jpg Graphic file (type QTm)
 
-<use  "figs/mockups/flowgraph/img/fg-000.jpg" > [14]
+<use  "figs/mockups/flowgraph/img/fg-000.jpg" >
 LaTeX Font Info:    Font shape `EU1/RobotoRegular(0)/m/n' will be
-(Font)              scaled to size 9.84009pt on input line 701.
- [15]
+(Font)              scaled to size 9.84009pt on input line 697.
+ [15] [16]
 File: figs/mockups/sierp/sierp_mockup_full.png Graphic file (type QTm)
 
-<use  "figs/mockups/sierp/sierp_mockup_full.png" > [16] [17]
+<use  "figs/mockups/sierp/sierp_mockup_full.png" > [17] [18]
 File: figs/mockups/circles/nico_circmock.png Graphic file (type QTm)
 
-<use  "figs/mockups/circles/nico_circmock.png" > [18] [19] [20]
+<use  "figs/mockups/circles/nico_circmock.png" > [19] [20]
 Chapter 3.
 [21
 
 
-] [22]
+]
 File: figs/nico_arch_new.pdf Graphic file (type QTm)
  <use  "figs/nico_arch_new.pdf" >
-Overfull \hbox (71.3331pt too wide) in paragraph at lines 814--815
+Overfull \hbox (71.3331pt too wide) in paragraph at lines 806--807
  [] 
  []
 
-[23
+[22
 
-] [24
+] [23
 
 ]
 LaTeX Font Info:    Font shape `EU1/RobotoRegular(0)/m/n' will be
-(Font)              scaled to size 8.20007pt on input line 879.
- [25] [26] [27] [28]
+(Font)              scaled to size 8.20007pt on input line 876.
+ [24] [25] [26] [27]
 File: figs/nico_click.pdf Graphic file (type QTm)
  <use  "figs/nico_click.pdf" >
 LaTeX Font Info:    Try loading font information for OMS+LinuxLibertineO(0) on 
-input line 962.
-LaTeX Font Info:    No file OMSLinuxLibertineO(0).fd. on input line 962.
+input line 959.
+LaTeX Font Info:    No file OMSLinuxLibertineO(0).fd. on input line 959.
 LaTeX Font Info:    Font shape `OMS/LinuxLibertineO(0)/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textperiodcentered' on input line 962.
- [29] [30]
+(Font)              for symbol `textperiodcentered' on input line 959.
+ [28] [29]
 File: figs/nico_screen_01.png Graphic file (type QTm)
 
-<use  "figs/nico_screen_01.png" > [31] [32]
+<use  "figs/nico_screen_01.png" > [30]
 File: figs/nico_screen_oldest.png Graphic file (type QTm)
-
-<use  "figs/nico_screen_oldest.png" > [33]
+ <use  "figs/nico_screen_oldest.png" >
+[31]
 File: figs/nico_screen_older.png Graphic file (type QTm)
-
-<use  "figs/nico_screen_older.png" >
+ <use  "figs/nico_screen_older.png" > [32]
 File: figs/nico_screen_new.png Graphic file (type QTm)
- <use  "figs/nico_screen_new.png" >
-[34]
+
+<use  "figs/nico_screen_new.png" > [33]
 File: figs/nico_gudb.png Graphic file (type QTm)
- <use  "figs/nico_gudb.png" > [35] [36]
+ <use  "figs/nico_gudb.png" > [34]
 File: figs/nico_op.png Graphic file (type QTm)
- <use  "figs/nico_op.png" >
+
+<use  "figs/nico_op.png" >
 File: figs/nico_arg.png Graphic file (type QTm)
-
-<use  "figs/nico_arg.png" >
+ <use  "figs/nico_arg.png" >
 File: figs/nico_notn_old.png Graphic file (type QTm)
- <use  "figs/nico_notn_old.png" >
-File: figs/nico_notn_new.png Graphic file (type QTm)
 
-<use  "figs/nico_notn_new.png" >
+<use  "figs/nico_notn_old.png" >
+File: figs/nico_notn_new.png Graphic file (type QTm)
+ <use  "figs/nico_notn_new.png" >
 Underfull \hbox (badness 2111) in paragraph at lines 1131--1131
 \EU1/LinuxLibertineO(0)/m/n/10 highlighting has been implemented
  []
 
-[37] [38] [39]
+[35] [36] [37]
 File: figs/nico_screen_02.png Graphic file (type QTm)
- <use  "figs/nico_screen_02.png" > [40]
+ <use  "figs/nico_screen_02.png" > [38]
 File: figs/nico_hi1.png Graphic file (type QTm)
 
 <use  "figs/nico_hi1.png" >
@@ -784,119 +780,153 @@ File: figs/nico_hi2.png Graphic file (type QTm)
  <use  "figs/nico_hi2.png" >
 File: figs/nico_hi3.png Graphic file (type QTm)
 
-<use  "figs/nico_hi3.png" > [41]
+<use  "figs/nico_hi3.png" > [39]
 File: figs/nico_wrong.png Graphic file (type QTm)
  <use  "figs/nico_wrong.png" >
+Underfull \hbox (badness 1014) in paragraph at lines 1229--1229
+[]\EU1/LinuxLibertineO(0)/m/n/10 (a) |Red text indicates that
+ []
+
+
+Underfull \hbox (badness 1147) in paragraph at lines 1229--1229
+\EU1/LinuxLibertineO(0)/m/n/10 the answer submitted was
+ []
+
 File: figs/nico_right.png Graphic file (type QTm)
-
 <use  "figs/nico_right.png" >
+Underfull \hbox (badness 10000) in paragraph at lines 1232--1232
+[]\EU1/LinuxLibertineO(0)/m/n/10 (b) |Green text indicates
+ []
+
+
+Underfull \hbox (badness 4156) in paragraph at lines 1232--1232
+\EU1/LinuxLibertineO(0)/m/n/10 a correct answer; a dia-
+ []
+
+
+Underfull \hbox (badness 1043) in paragraph at lines 1232--1232
+\EU1/LinuxLibertineO(0)/m/n/10 logue box allows the user
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1232--1232
+\EU1/LinuxLibertineO(0)/m/n/10 to progress to the next
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1232--1232
+\EU1/LinuxLibertineO(0)/m/n/10 question when they are
+ []
+
 File: figs/nico_op_hi.png Graphic file (type QTm)
- <use  "figs/nico_op_hi.png" >
-Underfull \hbox (badness 1117) in paragraph at lines 1235--1235
-[]\EU1/LinuxLibertineO(0)/m/n/10 (c) |The circle’s operator is high-
- []
-
+<use  "figs/nico_op_hi.png" >
 File: figs/nico_arg_hi.png Graphic file (type QTm)
-<use  "figs/nico_arg_hi.png" >
-Underfull \hbox (badness 3872) in paragraph at lines 1238--1238
-[]\EU1/LinuxLibertineO(0)/m/n/10 (d) |An argument is highlighted
+ <use  "figs/nico_arg_hi.png" >
+Underfull \hbox (badness 1990) in paragraph at lines 1238--1238
+[]\EU1/LinuxLibertineO(0)/m/n/10 (d) |An argument is high-
  []
 
-[42] [43]
+
+Underfull \hbox (badness 5133) in paragraph at lines 1238--1238
+\EU1/LinuxLibertineO(0)/m/n/10 lighted when it is being
+ []
+
+[40]
 LaTeX Font Info:    Font shape `EU1/Monaco(0)/m/n' will be
 (Font)              scaled to size 8.97906pt on input line 1259.
- [44] [45] [46
+ [41] [42]
+Chapter 4.
+[43
+
 
 ]
-Chapter 4.
 File: figs/graphs/update_times_full.png Graphic file (type QTm)
-<use  "figs/graphs/update_times_full.png" >
+ <use  "figs/graphs/update_times_full.png" >
 File: figs/graphs/update_times_cut30.png Graphic file (type QTm)
 
-<use  "figs/graphs/update_times_cut30.png" > [47
+<use  "figs/graphs/update_times_cut30.png" > [44
 
-]
-Overfull \vbox (170.88045pt too high) has occurred while \output is active []
+] [45
 
-
-[48] [49] [50]
+] [46]
 File: figs/graphs/stacked-bar-times-gp1.png Graphic file (type QTm)
- <use  "figs/graphs/stacked-bar-times-gp1.png" > [51]
+
+<use  "figs/graphs/stacked-bar-times-gp1.png" >
 File: figs/graphs/stacked-bar-times-gp2.png Graphic file (type QTm)
 
-<use  "figs/graphs/stacked-bar-times-gp2.png" > [52]
+<use  "figs/graphs/stacked-bar-times-gp2.png" > [47]
 File: figs/graphs/q3.png Graphic file (type QTm)
 
-<use  "figs/graphs/q3.png" >
+<use  "figs/graphs/q3.png" > [48]
 File: figs/graphs/q6.png Graphic file (type QTm)
  <use  "figs/graphs/q6.png" >
-Underfull \hbox (badness 10000) in paragraph at lines 1505--1505
+Underfull \hbox (badness 10000) in paragraph at lines 1507--1507
 []\EU1/LinuxLibertineO(0)/m/n/10 Figure 4.5: |Time taken in milliseconds per pa
 rticipant to answer Question 6:
  []
 
-[53]
 File: figs/graphs/q7.png Graphic file (type QTm)
- <use  "figs/graphs/q7.png" > [54]
+<use  "figs/graphs/q7.png" > [49]
 File: figs/graphs/q9.png Graphic file (type QTm)
- <use  "figs/graphs/q9.png" > [55]
-[56] [57] [58] [59]
+ <use  "figs/graphs/q9.png" > [50] [51]
+[52] [53]
 File: figs/graphs/stacked-scores.png Graphic file (type QTm)
- <use  "figs/graphs/stacked-scores.png" > [60] [61] [62]
-[63] [64] [65] [66]
+ <use  "figs/graphs/stacked-scores.png" > [54] [55] [56] [57] [58]
+[59] [60] [61] [62
+
+]
 Chapter 5.
-[67
+[63
+
+] [64] (./diss.bbl [65
 
 
-] [68] (./diss.bbl [69
-
-
-] [70]) [71] [72
+] [66]) [67] [68
 
 ]
 Appendix A.
-[73
+[69
 
 ]
 Appendix B.
 
-Overfull \hbox (27.71333pt too wide) in paragraph at lines 1896--1927
+Overfull \hbox (27.71333pt too wide) in paragraph at lines 1904--1935
  [] 
  []
 
-[74
+[70
 
 ]
 File: figs/graphs/q1.png Graphic file (type QTm)
- <use  "figs/graphs/q1.png" > [75]
+ <use  "figs/graphs/q1.png" > [71]
 File: figs/graphs/q2.png Graphic file (type QTm)
  <use  "figs/graphs/q2.png" >
 File: figs/graphs/q3.png Graphic file (type QTm)
 
-<use  "figs/graphs/q3.png" > [76]
+<use  "figs/graphs/q3.png" > [72]
 File: figs/graphs/q4.png Graphic file (type QTm)
  <use  "figs/graphs/q4.png" >
 File: figs/graphs/q5.png Graphic file (type QTm)
 
-<use  "figs/graphs/q5.png" > [77]
+<use  "figs/graphs/q5.png" > [73]
 File: figs/graphs/q6.png Graphic file (type QTm)
  <use  "figs/graphs/q6.png" >
 File: figs/graphs/q7.png Graphic file (type QTm)
 
-<use  "figs/graphs/q7.png" > [78]
+<use  "figs/graphs/q7.png" > [74]
 File: figs/graphs/q8.png Graphic file (type QTm)
  <use  "figs/graphs/q8.png" >
 File: figs/graphs/q9.png Graphic file (type QTm)
 
-<use  "figs/graphs/q9.png" > [79]
+<use  "figs/graphs/q9.png" > [75]
 File: figs/graphs/q10.png Graphic file (type QTm)
- <use  "figs/graphs/q10.png" > [80]
+ <use  "figs/graphs/q10.png" > [76]
 Appendix C.
-[81
+[77
 
-] [82]
+] [78]
 Appendix D.
-[83
+[79
 
 ]
 File: qs.pdf Graphic file (type QTm)
@@ -915,79 +945,79 @@ File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page1>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page1> [84]
+<use  "qs.pdf"  page1> [80]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page2>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page2>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page2> [85]
+<use  "qs.pdf"  page2> [81]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page3>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page3>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page3> [86]
+<use  "qs.pdf"  page3> [82]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page4>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page4>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page4> [87]
+<use  "qs.pdf"  page4> [83]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page5>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page5>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page5> [88]
+<use  "qs.pdf"  page5> [84]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page6>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page6>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page6> [89]
+<use  "qs.pdf"  page6> [85]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page7>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page7>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page7> [90]
+<use  "qs.pdf"  page7> [86]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page8>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page8>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page8> [91]
+<use  "qs.pdf"  page8> [87]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page9>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page9>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page9> [92]
+<use  "qs.pdf"  page9> [88]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page10>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page10>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page10> [93]
+<use  "qs.pdf"  page10> [89]
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page11>
 File: qs.pdf Graphic file (type QTm)
  <use  "qs.pdf"  page11>
 File: qs.pdf Graphic file (type QTm)
 
-<use  "qs.pdf"  page11> [94]
+<use  "qs.pdf"  page11> [90]
 Appendix E.
-[95
+[91
 
 
 ]
@@ -1007,7 +1037,7 @@ File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page1>
 File: proposal_rev04.pdf Graphic file (type QTm)
- <use  "proposal_rev04.pdf"  page1> [96]
+ <use  "proposal_rev04.pdf"  page1> [92]
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page2>
@@ -1015,14 +1045,14 @@ File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page2>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
-<use  "proposal_rev04.pdf"  page2> [97]
+<use  "proposal_rev04.pdf"  page2> [93]
 File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page3>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page3>
 File: proposal_rev04.pdf Graphic file (type QTm)
- <use  "proposal_rev04.pdf"  page3> [98]
+ <use  "proposal_rev04.pdf"  page3> [94]
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page4>
@@ -1030,24 +1060,24 @@ File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page4>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
-<use  "proposal_rev04.pdf"  page4> [99]
+<use  "proposal_rev04.pdf"  page4> [95]
 File: proposal_rev04.pdf Graphic file (type QTm)
  <use  "proposal_rev04.pdf"  page5>
 File: proposal_rev04.pdf Graphic file (type QTm)
 
 <use  "proposal_rev04.pdf"  page5>
 File: proposal_rev04.pdf Graphic file (type QTm)
- <use  "proposal_rev04.pdf"  page5> [100]
+ <use  "proposal_rev04.pdf"  page5> [96]
 (./diss.aux)
 LaTeX Font Info:    Some font shapes were not available, defaults substituted.
  ) 
 Here is how much of TeX's memory you used:
  7851 strings out of 495724
  130232 string characters out of 1189347
- 226104 words of memory out of 3000000
+ 231104 words of memory out of 3000000
  10762 multiletter control sequences out of 15000+50000
  11222 words of font info for 79 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 44i,16n,83p,1297b,577s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,16n,83p,1153b,577s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on diss.pdf (112 pages).
+Output written on diss.pdf (108 pages).

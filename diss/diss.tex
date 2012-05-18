@@ -61,7 +61,7 @@
 \renewcommand{\captionfont}{\footnotesize}
 
 \setcounter{secnumdepth}{5}
-% \setcounter{tocdepth}{5}
+\setcounter{tocdepth}{3}
 
 \begin{document}
 \nocite{*}
@@ -431,7 +431,7 @@ To devise initial ideas for what could become the calculation metaphor, a target
 \end{figure}
 \end{center}
 
-The designs in \emph{Fig.~\ref{fig:Flows1}} use a flowgraph-based metaphor, in which variables and functions are represented as nodes in the graph.  Dataflow is extremely clear in such diagrams, giving these notations high \emph{visibility}.  These designs are similar to the one in the project proposal (\emph{Appendix D}).  The boxes and arrows occupy relatively little screen-estate, which is advantageous in cases where a question necessitates many subcalculations.  \emph{Fig.~\ref{fig:Flows2}} shows a refined version of a flowgraph notation, with an environment in which to utilise it.
+The designs in \emph{Fig.~\ref{fig:Flows1}} use a flowgraph-based metaphor, in which variables and functions are represented as nodes in the graph.  Dataflow is extremely clear in such diagrams, giving these notations high \emph{visibility}.  These designs are similar to the one in the project proposal (\emph{Appendix E}).  The boxes and arrows occupy relatively little screen-estate, which is advantageous in cases where a question necessitates many subcalculations.  \emph{Fig.~\ref{fig:Flows2}} shows a refined version of a flowgraph notation, with an environment in which to utilise it.
 
 \begin{center}
 \begin{figure}[H]
@@ -782,7 +782,7 @@ This design was ultimately chosen as it solved, or at least ameliorated, many of
 
 \section{Summary}
 
-Prior to the implementation of the project, a thorough requirements analysis was conducted to outline the expected behaviour of the application, contrasting it with the existing system of handwritten calculations.  In \emph{Sec.~2.2}, prototypes for a suitable graphical notation were developed, and three were explored in detail.  Two of these were offered as alternatives to the flawed original design.  The final choice of the circle-based metaphor has many advantanges over the original flowgraph notation.
+Prior to the implementation of the project, a thorough requirements analysis was conducted to outline the expected behaviour of the application, contrasting it with the existing system of handwritten calculations.  In \emph{Sec.~2.2.1}, prototypes for a suitable graphical notation were developed, and three were explored in detail.  Two of these were offered as alternatives to the flawed original design.  The final choice of the circle-based metaphor has many advantanges over the original flowgraph notation.
 
 \cleardoublepage
 \chapter{Implementation}
@@ -915,7 +915,7 @@ A future extension to this project could be to develop a partner application to 
 
 The interaction handler forms the `middle layer' of the application (\emph{Fig.~\ref{fig:NicoArch}}) that arbitrates between the infrastructure and the user interface.
 
-A rendering function is called every time the mouse is moved, as every action that updates the canvas requires use of the mouse.  By only re-rendering when the mouse moves, the application does not render when the canvas is unaltered.  The function paints the canvas white, draws a bin icon in the corner (see \emph{Sec.~3.2.2.2}) and iterates across the circle list, drawing corresponding circles.  References to other circles are visualised as lines extending from the source circle to the appropriate argument slot on the recipient.
+A rendering function is called every time the mouse is moved, as every action that updates the canvas requires use of the mouse.  By only re-rendering when the mouse moves, the application does not render when the canvas is unaltered.  The function paints the canvas white, draws a bin icon in the corner (see \emph{Sec.~3.2.3.2}) and iterates across the circle list, drawing corresponding circles.  References to other circles are visualised as lines extending from the source circle to the appropriate argument slot on the recipient.
 
 \subsubsection{GUI Libraries}
 
@@ -1075,7 +1075,7 @@ This design was abandoned as, again, it separated the user from their work.  Alt
 \end{figure}
 \end{center}
 
-The final revision of the software reintroduced the {\sfapp Check} button to address the issues with the automatic answer-checking in the previous version.  The system of context menus was replaced with a new control scheme (\emph{Sec. 3.2.2}).
+The final revision of the software reintroduced the {\sfapp Check} button to address the issues with the automatic answer-checking in the previous version.  The system of context menus was replaced with a new control scheme (\emph{Sec. 3.2.3}).
 
 \subsubsection{Dialogue Boxes}
 
@@ -1167,7 +1167,7 @@ The control system is, in its final revision, predominantly mouse-based for the 
 
 \subsubsection{Final Revision}
 
-Left-clicking on a blank patch of canvas creates a circle containing a placeholder expression.  This approach was chosen to make it clear to the user that the new circle required attention, and so that it wouldn't interfere with evaluation, (see \emph{Sec. 3.1.2.3}).
+Left-clicking on a blank patch of canvas creates a circle containing a placeholder expression.  This approach was chosen to make it clear to the user that the new circle required attention, and so that it wouldn't interfere with evaluation, (see \emph{Sec. 3.1.1.2}).
 
 Left-clicking on a circle's operator brings up a dialogue box with a radio button for each operator (\emph{Fig.~\ref{fig:Dialogues}}).  Similarly, left-clicking on a circle's argument brings up a dialogue box containing a spinner to set a new value, between -10 and 10.  This limitation was introduced to prevent the application from being used as a calculator.  The limited range of numbers means that the user must still consider strategies such as partitioning or long multiplication, focussing on how to solve the problem, rather than simply transcribing the question into one circle that will complete the calculation for them.  The user is not required to calculate manually using numbers within this range, as it is assumed that the target audience is familiar with very simple arithmetic.
 
@@ -1377,7 +1377,7 @@ A plot of the time taken for each call to \verb¬update-answer¬ to complete ove
 % results
 % pilot study - ellie suggested switching left/right-clicks in control scheme, implemented before main study
 
-To assess the utility of the software relative to handwritten arithmetic, a user study was conducted to evaluate the system in a more realistic context.  Users completed tasks both by hand and using the software, and completed a questionnaire (\emph{Appendix C}).
+To assess the utility of the software relative to handwritten arithmetic, a user study was conducted to evaluate the system in a more realistic context.  Users completed tasks both by hand and using the software, and completed a questionnaire (\emph{Appendix D}).
 
 \subsection{Experimental Design}
 
